@@ -1,0 +1,1 @@
+../../../../../pycrawler/spiders/cdesktop_picutres_album_crawler.py

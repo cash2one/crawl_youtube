@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<template>
+  <url_pattern>http://www.baomihua.com/(?!v\/).*</url_pattern>
+  <match target='category' limit='1'>
+    <xpath>//*[@id="Form1"]/div[@class="nav"]/ul/li/a[@class="current"]/text()</xpath>
+  </match>
+  <match target='category_list' limit='1'>
+    <xpath>//*[@id="Form1"]/div[@class="nav"]/ul/li/a[@class="current"]/text()</xpath>
+  </match>
+  <struct target='items'>
+    <xpath>//*[@id="videolist"]/div[@class="bd"]/ul/li</xpath>
+    <match target='title'>
+      <xpath>./a/div[@class="info"]/div/text()</xpath>
+    </match>
+    <match target='url'>
+      <xpath>./a/@href</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>./a/div[@class="pic"]/img[not(@class)]/@src</xpath>
+      <xpath>./a/div[@class="pic"]/img[@class="lazy"]/@data-original</xpath>
+    </match>
+  </struct>
+</template>

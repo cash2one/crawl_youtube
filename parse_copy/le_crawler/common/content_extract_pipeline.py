@@ -1,0 +1,169 @@
+#!/usr/bin/python
+# -*-coding:utf8-*-
+#
+# Copyright 2014 LeTV Inc. All Rights Reserved.
+# encoding = utf8
+__author__ = 'guoxiaohe@letv.com'
+"""
+this pipeline using for fetch content from html
+"""
+import re
+import os
+import json
+import time
+import traceback
+
+from scrapy import log
+from scrapy.selector import Selector
+
+from extract_content import ContentExtractor
+from timestr_parser import TimestrParser
+from html_utils import remove_tags
+
+
+class ContentExtractorPipeline(object):
+  def __init__(self):
+    self.spider_ = None
+    self.content_extractor = ContentExtractor(
+      opt={'threshold': 30,
+           'min_length': 10,
+           'punctuation_weight': 80,
+           'continuous_factor': 1.23,
+           'decay_factor': 0.83})
+
+    self.time_parser = TimestrParser()
+    self.times_reg = re.compile(r'^\d{9,10}$')
+
+  def initialize(self):
+    pass
+
+  def finalize(self):
+    pass
+
+  def open_spider(self, spider):
+    self.spider_ = spider
+
+  def close_spider(self, spider):
+    pass
+
+  #TODO(xiaohe):remove this ugly code for mtime
+  def __extract_mtime_imgs(self, body_html):
+    bodyjs = Selector(text=body_html, type='html')
+    jscode = ''
+    for j in bodyjs.xpath('//script[@type="text/javascript"]'):
+      jscode += j.xpath('./text()').extract()[0] + ';'
+    jslist = jscode.split(';')
+    imgs = set()
+    for i in jslist:
+      if 'var galleryImages' in i:
+        isp = i.find('=', 0)
+        if isp >= 0:
+          tmpstr = i[isp + 1:]
+          try:
+            jsd = json.loads(tmpstr)
+            for im in jsd:
+              if 'OriginalPicUrl' in im:
+                imgs.update(im.get('OriginalPicUrl'))
+              elif 'MiddlePicUrl' in im:
+                imgs.update(im.get('MiddlePicUrl'))
+              elif 'SmallPicUrl' in im:
+                imgs.update(im.get('SmallPicUrl'))
+          except Exception, e:
+            print traceback.format_exc()
+            print e
+            print i
+            print tmpstr
+            return set()
+    return imgs
+
+  def __extract_imgs(self, img_html):
+    retimgs = []
+    sel = Selector(text=img_html, type='html')
+    iss = sel.xpath('//img/@src')
+    for img_s in iss:
+      if img_s:
+        tmp = img_s.extract()
+        if tmp:
+          retimgs.append(tmp)
+    return retimgs
+
+  def __dupe_imgs(self, imgs):
+
+
+    retimgs = []
+    for i in imgs:
+      if not i:
+        continue
+      # http://mat1.gtimg.com/ent/dc_ent/img_wm.jpg
+      if 'img_wm.jpg' in i:
+        continue
+      if '/stn/' in i and '_stn.jpg' in i:
+        continue
+      if '/h180/' in i and '_h180.jpg' in i:
+        continue
+      if 'res.m.hexun.com' in i and 'ico_' in i:
+        continue
+      ext = os.path.splitext(i)
+      if not ext[1] or 'gif' in ext[1].lower():
+        continue
+      retimgs.append(i)
+    return retimgs
+
+  def process_item(self, item, spider):
+    imgs = set()
+    url = item.get('url', '')
+    mtime_site = 'news.mtime.com' in url
+    hupu_site = 'm.hupu.com' in url
+    if not mtime_site and 'content_body' in item:
+      imgs.update(self.__extract_imgs(item.get('content_body', '')))
+    if item.has_key('page') or item.has_key('content_body'):
+      if mtime_site:
+        imgs.update(self.__extract_mtime_imgs(item.get('page', ''))
+                    or self.__extract_imgs(item.get('content_body', '')))
+      # hupu raw content body is only contain strong, p, span tags
+      raw_cont = item.get('page', None) or item.get('content_body', None)
+      hupu_cont = []
+      if hupu_site:
+        hupu_cont = remove_tags(['strong', 'p', 'span'], raw_cont, '<p>')
+      res = \
+        self.content_extractor.extract_with_paragraph(raw_cont, encode_type='utf8')
+      if hupu_site and hupu_cont:
+        item['content_body'] = hupu_cont
+      elif res[-1]:
+        item['content_body'] = res[-1]
+      if res[0]:
+        imgs.update(set(self.__extract_imgs(''.join(res[0]))))
+      if res[1]:
+        item.setdefault('content_links', []).extend(res[1])
+      if not item.has_key('title') and res[2]:
+        item['title'] = res[2]
+    if imgs:
+      imgs = self.__dupe_imgs(imgs)
+      item.setdefault('content_imgs', []).extend(imgs)
+      #self.spider_.log('Got Imgs %s for %s' % (len(imgs), item.get('url', None)), log.INFO)
+      #self.spider_.log('imgs:%s' % (imgs), log.INFO)
+      #TODO(xiaohe): add time parser process
+    if item.has_key('article_time_raw'):
+      teststr = '%s' % (item.get('article_time_raw', '') or '')
+      if self.parser_time_from_timesta(teststr.strip()):
+        item['article_time'] = teststr
+      else:
+        teststr = teststr.replace(' ', ' ')
+        nt = None
+        try:
+          nt = self.time_parser.timestamp(teststr)
+        except Exception, e:
+          self.spider_.log('Failed convert time str:%s, %s' % (teststr,
+                                                               e.message),
+                           log.ERROR)
+          nt = int(time.time())
+        if nt != -1:
+          item['article_time'] = '%s' % nt
+        else:
+          nt = int(time.time())
+          self.spider_.log('Failed Convert TimeStr:%s' % (item['article_time_raw']),
+                           log.ERROR)
+    return item
+
+  def parser_time_from_timesta(self, str_tim):
+    return self.times_reg.search(str_tim)

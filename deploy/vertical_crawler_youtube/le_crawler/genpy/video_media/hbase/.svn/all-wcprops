@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/genpy/video_media/hbase
+END
+ttypes.py
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/genpy/video_media/hbase/ttypes.py
+END
+constants.py
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/genpy/video_media/hbase/constants.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/genpy/video_media/hbase/__init__.py
+END
+Hbase.py
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/genpy/video_media/hbase/Hbase.py
+END
+Hbase-remote
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/genpy/video_media/hbase/Hbase-remote
+END

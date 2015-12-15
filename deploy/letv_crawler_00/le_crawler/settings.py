@@ -1,0 +1,1 @@
+../../../pycrawler/inf/settings/settings.web.py

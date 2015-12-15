@@ -1,0 +1,54 @@
+{
+  "content": [
+    {
+      "url" : [
+        "http://top.baidu.com/category?c=513&fr=topbuzz_b11_c513",
+        ""
+      ],
+      "extend_map" : {},
+      "type" : "home",
+      "enable" : true,
+      "id" : "baidu_top"
+    },
+    {
+      "url" : [
+        "http://top.baidu.com/buzz?b=26",
+        ""
+      ],
+      "extend_map" : {"category": "百度电影榜"},
+      "type" : "list",
+      "enable" : true,
+      "id" : "baidu_movie"
+    },
+    {
+      "url" : [
+        "http://top.baidu.com/buzz?b=19",
+        ""
+      ],
+      "extend_map" : {"category": "百度综艺榜"},
+      "type" : "list",
+      "enable" : true,
+      "id" : "baidu_arts"
+    },
+    {
+      "url" : [
+        "http://top.baidu.com/buzz?b=23",
+        ""
+      ],
+      "extend_map" : {"category": "百度动漫榜"},
+      "type" : "list",
+      "enable" : true,
+      "id" : "baidu_comic"
+    },
+    {
+      "url" : [
+        "http://top.baidu.com/buzz?b=4",
+        ""
+      ],
+      "extend_map" : {"category": "百度电视剧榜"},
+      "type" : "list",
+      "enable" : true,
+      "id" : "baidu_tv"
+    }
+  ]
+}

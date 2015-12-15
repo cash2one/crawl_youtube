@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <url_pattern>http://v.youku.com/v_show/.*</url_pattern>
+  <match target='title'>
+    <xpath>//*[@id="subtitle"]/text()</xpath>
+  </match>
+  <match target='title'>
+    <xpath>//*[@id="vpvideotitlev5"]/div/div[1]/h1/text()</xpath>
+  </match>
+  <match target='showtime'>
+    <xpath>//div[@class="time"]/text()</xpath>
+    <regex>(.*)\s+上传</regex>
+  </match>
+  <match target='desc'>
+    <xpath>//*[@id="text_long"]/text()</xpath>
+    <connect>.</connect>
+  </match>
+  <match target='desc'>
+    <xpath>//*[@id="text_short"]/text()</xpath>
+  </match>
+  <match target='desc'>
+    <xpath>//*[@id="vpvideoinfov5"]/div/div[2]/div[1]/text()</xpath>
+  </match>
+  <match target='tags'>
+    <xpath>//*[@id="vpvideoinfov5"]/div/div[2]/div[3]/span/a/text()</xpath>
+  </match>
+  <!--  <match target='category'>
+    <xpath>//*[@class="guide"]/div/a[1]/text()</xpath>
+  </match> -->
+  <match target='crumbs'>
+    <xpath>//div[@class="crumbs"]/a/text()</xpath>
+    <connect>,</connect>
+  </match>
+  <match target='deadlink'>
+    <xpath>//div[@class="tips_404"]//text()</xpath>
+  </match>
+  <match target='user_url'>
+    <xpath>//*[@id="subname"]/a[1]/@href</xpath>
+  </match>
+  <struct target='items'>
+    <xpath>//li[@class="item" and @id]</xpath>
+    <match target='url'>
+      <xpath>./a/@href</xpath>
+    </match>
+    <match target='title'>
+      <xpath>./@title</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>./a/span[@class="l_img"]/img/@_src</xpath>
+    </match>
+    <match target='play_total'>
+      <xpath>./a/span[@class="l_stat"]/em/text()</xpath>
+    </match>
+    <match target='duration'>
+      <xpath>./a/span[@class="l_time"]/em/text()</xpath>
+    </match>
+  </struct>
+</template>

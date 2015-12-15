@@ -1,0 +1,10 @@
+#cntv
+#http://ent.cntv.cn/update/movie/index.shtml
+#http://ent.cntv.cn/update/tv/index.shtml
+
+#http://ent.cntv.cn/update/movie/data/(*today*).json
+#http://ent.cntv.cn/update/tv/data/(*today*).json
+{ "content" :
+  [
+    {
+ 

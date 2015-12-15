@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <url_pattern>http://v.ifeng.com/vlist/nav.*</url_pattern>
+  <match target='category'>
+    <xpath>//ul[@class="menulist"]/li[@class="current"]/a/text()</xpath>
+  </match>
+  <match target='category_list'>
+    <xpath>//*[@id="filter"]//li[@class="current"]/a/text()</xpath>
+    <mapping map2=''>不限</mapping>
+    <drop_empty></drop_empty>
+    <connect>,</connect>
+  </match>
+  <match target='no_data'>
+    <xpath>//div[@class="vlist_loading"]/img/@src</xpath>
+  </match>
+  <struct target='items'>
+    <xpath>//*[starts-with(@id, 'list')]/li</xpath>
+    <match target='url'>
+      <xpath>./h6/a/@href</xpath>
+    </match>
+    <match target='title'>
+      <xpath>./h6/a/text()</xpath>
+    </match>
+    <match target='duration'>
+      <xpath>./div/span[@class="sets"]/text()</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>./div/a/img/@src</xpath>
+    </match>
+    <match target='showtime'>
+      <xpath>./p/text()</xpath>
+    </match>
+  </struct>
+</template>

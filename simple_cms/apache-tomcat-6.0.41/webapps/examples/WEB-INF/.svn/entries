@@ -1,0 +1,77 @@
+10
+
+dir
+122471
+http://svn2.letv.cn/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/webapps/examples/WEB-INF
+http://svn2.letv.cn
+
+
+
+2015-04-08T05:33:40.008990Z
+69916
+guoxiaohe
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+21433022-bb36-4ff6-a907-2c018ad81495
+
+lib
+dir
+
+jsp
+dir
+
+web.xml
+file
+
+
+
+
+2015-09-11T07:32:13.539217Z
+027c81c7ddcdf11815de015bf7d4620d
+2015-04-08T05:33:40.008990Z
+69916
+guoxiaohe
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+10953
+
+classes
+dir
+
+jsp2
+dir
+
+tags
+dir
+

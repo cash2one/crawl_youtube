@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<template>
+  <encoding>utf-8</encoding>
+  <url_pattern>http://v.163.com/hot.*</url_pattern>
+  <match target='category'>
+    <xpath>//*[@id="overlayBox"]/ul/li[@class]/a/text()</xpath>
+    <mapping map2='资讯'>视频广场</mapping>
+  </match>
+  <match target='category_list'>
+    <xpath>//*[@id="overlayBox"]/ul/li[@class]/a/text()</xpath>
+    <xpath>//*[@id="chanels"]/li/span[@class="item on"]/text()</xpath>
+    <connect>,</connect>
+  </match>
+  <struct target='items'>
+    <xpath>//div[@id="masonry"]/div</xpath>
+    <match target='url'>
+      <xpath>./a[@class="img"]/@href</xpath>
+    </match>
+    <match target='title'>
+      <xpath>./h2/a/text()</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>a/img/@src</xpath>
+    </match>
+    <match target='duration'>
+      <xpath>a/span[@class="filter"]/span[@class="longth"]/text()</xpath>
+    </match>
+  </struct>
+</template>

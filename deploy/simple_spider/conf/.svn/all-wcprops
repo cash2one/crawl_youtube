@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/76165/tp/search2/crawler_ver2/deploy/simple_spider/conf
+END
+allowed_domains.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/!svn/ver/76165/tp/search2/crawler_ver2/deploy/simple_spider/conf/allowed_domains.cfg
+END
+denied_domains.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/!svn/ver/76165/tp/search2/crawler_ver2/deploy/simple_spider/conf/denied_domains.cfg
+END
+base_domains.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/!svn/ver/76165/tp/search2/crawler_ver2/deploy/simple_spider/conf/base_domains.cfg
+END

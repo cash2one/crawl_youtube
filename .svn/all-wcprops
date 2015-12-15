@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/!svn/ver/122430/tp/search2/crawler_ver2
+END
+recaller.py
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/!svn/ver/103990/tp/search2/crawler_ver2/recaller.py
+END
+scanner.py
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/!svn/ver/105239/tp/search2/crawler_ver2/scanner.py
+END
+scheduler_service.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/114915/tp/search2/crawler_ver2/scheduler_service.py
+END
+recrawl_failed.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/!svn/ver/117424/tp/search2/crawler_ver2/recrawl_failed.py
+END
+restart_scheduler.sh
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/112618/tp/search2/crawler_ver2/restart_scheduler.sh
+END
+OWNERS
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/!svn/ver/86717/tp/search2/crawler_ver2/OWNERS
+END
+url_filter_service.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/112356/tp/search2/crawler_ver2/url_filter_service.py
+END

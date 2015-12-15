@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+  <data-sources />
+  <form-beans >
+    <form-bean name="userloginForm" type="letv.struts.form.UserloginForm" />
+    <form-bean name="select_ablumsForm" type="letv.struts.form.Select_ablumsForm" />
+    <form-bean name="add_albumsForm" type="letv.struts.form.Add_albumsForm" />
+    <form-bean name="publish_albForm" type="letv.struts.form.Publish_albForm" />
+  </form-beans>
+  <global-exceptions />
+  <global-forwards />
+  <action-mappings >
+    <action
+      attribute="userloginForm"
+      input="/form/usrlogin.jsp"
+      name="userloginForm"
+      path="/userlogin"
+      scope="request"
+      type="letv.struts.action.UserloginAction">
+      <forward name="admin_log" path="/admin/index.html" />
+      <forward name="login_error" path="/form/usrlogin.jsp" />
+    </action>
+    <action
+      attribute="select_ablumsForm"
+      input="/form/select_ablums.jsp"
+      name="select_ablumsForm"
+      path="/select_ablums"
+      scope="request"
+      type="letv.struts.action.Select_ablumsAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="ok_fwd" path="/form/usrlogin.jsp" />
+      <forward name="failed_fwd" path="/form/usrlogin.jsp" />
+    </action>
+    <action
+      attribute="add_albumsForm"
+      input="/form/select_albums.jsp"
+      name="add_albumsForm"
+      path="/add_albums"
+      scope="request"
+      type="letv.struts.action.Add_albumsAction">
+      <forward name="selected_failed" path="/form/select_albums.jsp" />
+      <forward name="selected_ok" path="/admin/publish_albums.jsp" />
+    </action>
+    <action
+      attribute="publish_albForm"
+      input="/admin/publish_albums.jsp"
+      name="publish_albForm"
+      path="/publish_alb"
+      scope="request"
+      type="letv.struts.action.Publish_albAction">
+      <set-property property="cancellable" value="true" />
+      <forward name="pubulish_status" path="/admin/publish_albums.jsp" />
+    </action>
+
+  </action-mappings>
+  <message-resources parameter="ApplicationResources" />
+</struts-config>

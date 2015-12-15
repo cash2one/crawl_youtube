@@ -1,0 +1,1 @@
+../../../../pycrawler/spiders/web_spider_simple.py

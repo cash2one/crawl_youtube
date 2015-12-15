@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+    <encoding>utf8</encoding>
+    <url_pattern>http://www.56.com/u.*</url_pattern>
+    <match target='title'>
+        <xpath>//*[@id="video_title_text" or @id="vh_title_text"]/text()</xpath>
+    </match>
+    <match target='tags'>
+        <xpath>//*[@id="video_tags"]/a/text()</xpath>
+    </match>
+    <match target='tags'>
+        <xpath>//*[@name='keywords']/@content</xpath>
+        <split>,</split>
+        <drop_empty></drop_empty>
+    </match>
+    <match target='desc'>
+        <xpath>//div[@class="label_item intro_item"]/p/text()</xpath>
+    </match>
+    <match target='desc'>
+        <xpath>//*[@name='description']/@content</xpath>
+    </match>
+    <match target='play_total'>
+      <xpath>//em[@class="total_play_num"]/text()</xpath>
+    </match>
+    <match target='showtime'>
+      <xpath>//*[@id="pub_date"]/text()</xpath>
+    </match>
+    <match target='crumbs'>
+        <xpath>//span[@class="crumb"]/a/text()</xpath>
+        <connect>,</connect>
+    </match>
+    <match target='voteup_count'>
+      <xpath>//*[@class="action_item action_like"]/a/em/text()</xpath>
+    </match>
+    <match target='votedown_count'>
+      <xpath>//*[@class="action_item action_unlike"]/a/em/text()</xpath>
+    </match>
+</template>

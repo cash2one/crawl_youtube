@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <encoding>utf8</encoding>
+  <url_pattern>http://list.hunantv.com/.*</url_pattern>
+  <match target='category'>
+    <xpath>//div[@id="hony-searchtag-condition"]/p[@class="search-type clearfix"][1]/span[@class="name-txt"]/a[@class="on"]/text()</xpath>
+  </match>
+  <match target='category_list'>
+    <xpath>//*[@id="hony-searchtag-condition"]//a[@class="on"]/text()</xpath>
+    <mapping map2=''>全部</mapping>
+    <drop_empty></drop_empty>
+    <connect>,</connect>
+  </match>
+  <match target='area'>
+    <xpath>//div[@id="hony-searchtag-condition"]/p[@data-field="地区"]/span[@class="name-txt"]/a[@class="on"]/text()</xpath>
+  </match>
+  <match target='no_data'>
+    <xpath>//*[@class="search-noconten clearfix"]/text()</xpath>
+  </match>
+  <struct target='items'>
+    <xpath>//ul[@class="clearfix ullist-ele"]/li</xpath>
+    <match target='url'>
+      <xpath>./p[@class="img-box"]/a/@href</xpath>
+    </match>
+    <match target='title'>
+      <xpath>./p[@class="a-pic-t1"]/a/text()</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>./p[@class="img-box"]/img/@data-original</xpath>
+    </match>
+    <match target='duration'>
+      <xpath>./p[@class="img-box"]/span[@class="a-pic-t3"]/text()</xpath>
+    </match>
+    <match target='showtime'>
+      <xpath>./p[@class="a-pic-t2"]/text()</xpath>
+    </match>
+  </struct>
+</template>

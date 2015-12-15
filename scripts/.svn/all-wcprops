@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/!svn/ver/114875/tp/search2/crawler_ver2/scripts
+END
+headline_data_exporter.py
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/108809/tp/search2/crawler_ver2/scripts/headline_data_exporter.py
+END
+kill.sh
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/96508/tp/search2/crawler_ver2/scripts/kill.sh
+END
+database_refresh_page_counter.py
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/!svn/ver/114208/tp/search2/crawler_ver2/scripts/database_refresh_page_counter.py
+END
+query_mongo.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/114869/tp/search2/crawler_ver2/scripts/query_mongo.py
+END
+restart_crawler.sh
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/114875/tp/search2/crawler_ver2/scripts/restart_crawler.sh
+END
+stop_crawler.sh
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/!svn/ver/114875/tp/search2/crawler_ver2/scripts/stop_crawler.sh
+END

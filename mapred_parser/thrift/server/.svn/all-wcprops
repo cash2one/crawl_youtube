@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/thrift/server
+END
+THttpServer.py
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/thrift/server/THttpServer.py
+END
+TServer.py
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/thrift/server/TServer.py
+END
+TNonblockingServer.py
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/thrift/server/TNonblockingServer.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/thrift/server/__init__.py
+END
+TProcessPoolServer.py
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/thrift/server/TProcessPoolServer.py
+END

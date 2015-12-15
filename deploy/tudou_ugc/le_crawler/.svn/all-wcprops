@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/117817/tp/search2/crawler_ver2/deploy/tudou_ugc/le_crawler
+END
+proto
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/117817/tp/search2/crawler_ver2/deploy/tudou_ugc/le_crawler/proto
+END
+js_dep
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/117817/tp/search2/crawler_ver2/deploy/tudou_ugc/le_crawler/js_dep
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/!svn/ver/117817/tp/search2/crawler_ver2/deploy/tudou_ugc/le_crawler/__init__.py
+END
+settings.py
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/!svn/ver/117817/tp/search2/crawler_ver2/deploy/tudou_ugc/le_crawler/settings.py
+END
+common
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/117817/tp/search2/crawler_ver2/deploy/tudou_ugc/le_crawler/common
+END
+core
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/117817/tp/search2/crawler_ver2/deploy/tudou_ugc/le_crawler/core
+END
+spiders
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/117817/tp/search2/crawler_ver2/deploy/tudou_ugc/le_crawler/spiders
+END
+restart_crawler.sh
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/!svn/ver/117817/tp/search2/crawler_ver2/deploy/tudou_ugc/le_crawler/restart_crawler.sh
+END
+extractors
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/!svn/ver/117817/tp/search2/crawler_ver2/deploy/tudou_ugc/le_crawler/extractors
+END
+loop_start_crawler.sh
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/!svn/ver/117817/tp/search2/crawler_ver2/deploy/tudou_ugc/le_crawler/loop_start_crawler.sh
+END

@@ -1,0 +1,552 @@
+Index: crawler_db.py
+===================================================================
+--- crawler_db.py	(revision 122107)
++++ crawler_db.py	(working copy)
+@@ -33,7 +33,8 @@
+ from le_crawler.proto.scheduler.ttypes import CrawlDocSlim
+ 
+ 
+-fresh_docs = set(range(CrawlDocType.HUB_FRESH_MIN, CrawlDocType.HUB_FRESH_MAX))
++#fresh_docs = set(range(CrawlDocType.HUB_FRESH_MIN, CrawlDocType.HUB_FRESH_MAX))
++fresh_docs = set([CrawlDocType.HUB_HOME])
+ 
+ doc_type_map = {CrawlDocType.HOME: 21,
+                 CrawlDocType.HUB_HOME: 22,
+@@ -58,16 +59,18 @@
+   STOP_WRITE = (1 << 1)
+ 
+   def __init__(self, db_path, logger=None):
+-    self.logger_ = logger or Log('crawlerdb_log', 'crawler_sch_db.log')
++    self.logger_ = logger or Log('crawlerdb_log', 'crawler_sch_db.log').log
++    self._list_logger = Log('list_logger', 'log/list_recrawler.log').log
+     self.db_base_path_ = db_path
+     self.db_dict_ = {}
+     self._load_dbs(self.db_base_path_)
+     self.exit_sig_ = False
+     self.max_schedule_delay_ = 0
+     self.min_schedule_delay_ = 24 * 60 * 60  # 1 day
+-    self.mongo_client_ = MongoClient('10.180.91.41:9224,10.180.91.115:9224,10.180.91.125:9224')
+-    self.mongo_client_.admin.authenticate('admin', 'NjlmNTdkNGQ4OWY')
+-    self._load_from_mongo()
++    self.mongo_client_ = MongoClient('10.120.1.61:9220,10.120.1.62:9220,10.120.1.63:9220')
++    self.mongo_client_.admin.authenticate('admin', 'NzU3ZmU4YmFhZDg')
++    #self._load_from_mongo()
++    self.docs_pool_ = {}
+     Thread(target=self._recall_hub_docs).start()
+     self.db_create_lock_ = threading.Lock()
+ 
+@@ -96,13 +99,16 @@
+         if re.search(reg, doc.url):
+           return False
+       doc.discover_time = int(time.time())
+-      self.mongo_client_.crawl.hot_urls.update(
++      """
++      self.mongo_client_.admin.hot_urls.update(
+           {'url': doc.url},
+           {'$set': {'url': doc.url, 'update_time': time.strftime('%Y%m%d_%H%M%S')}},
+           upsert=True)
++      """
+       db = self._get_db(doc.url)
+       if db:
+         db.put(key, doc.crawl_doc)
++        self._list_logger.info('recalling list url: [%s]' % doc.url)
+         return True
+ 
+     while not self.exit_sig_:
+@@ -116,7 +122,7 @@
+             counter += 1
+         self.logger_.info('finished recalling [%s] hub docs into scheduler.' % counter)
+         # self._gather_info()
+-        time.sleep(20 * 60)
++        time.sleep(1 * 60 * 60)
+       except:
+         self.logger_.exception('failed recall docs.')
+ 
+@@ -176,6 +182,7 @@
+     db_len = len(self.db_dict_)
+     db_keys = self.db_dict_.keys()
+     db_idx = random.choice(range(db_len))
++    idx_0 = db_idx
+     while 1:
+       db = self.db_dict_[db_keys[db_idx]]
+       actual_num = average + last_spare
+@@ -190,6 +197,8 @@
+         if spare <= 0:
+           break
+       db_idx = (db_idx + 1) % db_len
++      if db_idx == idx_0:
++        break
+     self.logger_.info('batch num actual: %s' % total)
+     return data
+ 
+Index: youtube_writer.py
+===================================================================
+--- youtube_writer.py	(revision 0)
++++ youtube_writer.py	(revision 0)
+@@ -0,0 +1,151 @@
++#!/usr/bin/python
++# coding=utf8
++# Copyright 2015 LeTV Inc. All Rights Reserved.
++__author__ = 'zhaojincheng'
++
++import traceback
++from pymongo import MongoClient
++import json
++import time
++import copy
++import base64
++import logging
++
++from scrapy.utils.project import get_project_settings
++
++from ..core.page_writer import PageWriterWithBuff
++from logutil import Log
++from utils import gen_next_schedule_time
++
++
++class YoutubeWriter(PageWriterWithBuff):
++  def __init__(self, spider):
++    super(YoutubeWriter, self).__init__(spider)
++    self.total_save_count = 0
++    self.failed_save_count = 0
++    self.total_update_count = 0
++    self.failed_updata_count = 0
++    self.retry_time_max = 10
++    self.logger_ = Log('youtubewriter', log_path='../log/mongo_w.log', log_level=logging.INFO).log
++    self._init_client()
++
++  def _init_client(self):
++    try:
++      client = MongoClient('10.120.1.61:9220,10.120.1.62:9220,10.120.1.63:9220')
++      self._db = client.admin
++      self._db.authenticate('admin', 'NzU3ZmU4YmFhZDg')
++      if get_project_settings()['DEBUG_MODE']:
++        self._collection = self._db.debug_doc_info
++        self._collection_reschedule = self._db.debug_recrawl_page_info
++      else:
++        self._collection = self._db.doc_info
++        self._collection_reschedule = self._db.recrawl_page_info
++      self._ensure_indexs()
++    except Exception, e:
++      self._collection = None
++      self.logger_.exception('failed to connect to mongodb...')
++
++  def _ensure_indexs(self):
++    #index_info = self._collection.index_information()
++    #if not index_info or 'url_1' not in index_info or 'create_time_-1' not in index_info \
++    #  or 'update_time_-1' not in index_info:
++    from pymongo import IndexModel, ASCENDING, DESCENDING
++    self._collection.create_index('url', unique=True)
++    self._collection.create_index([('update_time', DESCENDING)])
++    self._collection.create_index([('create_time', DESCENDING)])
++    self._collection_reschedule.create_index('url', unique=True)
++    self._collection_reschedule.create_index([('next_schedule_time', DESCENDING)])
++
++
++  def _get_data(self, url):
++    try:
++      if not self._collection:
++        self._init_client()
++      doc = self._collection.find({'url':url})
++      doc = [obj for obj in doc]
++      if doc:
++      	self.logger_.error('exist data:[%s]' % url)
++        return doc[0]
++      else:
++        return []
++    except:
++      self.logger_.error('Failed get data:[%s], %s, %s' % (url, traceback.format_exc(), e.message))
++      raise
++
++  def _update_data(self, data):
++    try:
++      if not self._collection:
++        self._init_client()
++      if not data:
++        return False
++      data['update_time'] = int(time.time())
++      self._collection.update({'url': data['url']}, {'$set': data})
++      self.logger_.error('success update data:%s' % data['url'])
++      return True
++    except:
++      self.logger_.exception('Failed update data:%s' % data['url'])
++      return False
++
++
++  def _save_data(self, data):
++    try:
++      if not self._collection:
++        self._init_client()
++      if data:
++        data['create_time'] = int(time.time())
++        data['update_time'] = int(time.time())
++        self._collection.save(data)
++        self.logger_.error('success save data:%s' % data['url'])
++      return True
++    except:
++      self.logger_.exception('Failed save data:%s', data)
++      return False
++
++
++  def status(self):
++    return 'total_save:%s, total_update:%s, %s' % (self.total_save_count, self.total_update_count, super(YoutubeWriter, self).status())
++
++
++  def writer(self, item):
++    if not item or not item['url']:
++      return
++    db_data = self._get_data(item['url'])
++    if not db_data:
++      data = item.convert_item()
++      try_time = 0
++      while try_time < self.retry_time_max:
++        if not self._save_data(data):
++          try_time += 1
++          continue
++        break
++      self.total_save_count += 1
++    else:
++      item.merge_video(db_data.get('video', None))
++      data = item.convert_item()
++      self._update_data(data)
++      self.total_update_count += 1
++    self._save_reschedule_info(item)
++
++  def _save_reschedule_info(self, item):
++    if not item or not item['request_url']:
++      return
++    try:
++      content_timestamp = item.get('content_timestamp', None)
++      if not content_timestamp or (content_timestamp < int(time.time() - 604800)):
++        return
++      next_schedule_time = gen_next_schedule_time(item['crawl_history'].get('crawl_history', None))
++      if not next_schedule_time:
++        return
++      if not self._collection_reschedule:
++        self._init_client()
++      update_dict = {'content_timestamp': content_timestamp,
++                     'next_schedule_time': next_schedule_time,
++                     'doc_type': item['doc_type'],
++                     'page_type': item['page_type']}
++      self._collection_reschedule.update({'url': item['request_url']}, {'$set': update_dict}, upsert=True)
++      self.logger_.error('success update item:%s' % item['request_url'])
++      return True
++    except:
++      self.logger_.exception('Failed update item:%s' % item['url'])
++      return False
++
+Index: time_parser.py
+===================================================================
+--- time_parser.py	(revision 122107)
++++ time_parser.py	(working copy)
+@@ -11,13 +11,17 @@
+ import re
+ import sys
+ import time
++import datetime
+ import string
++import logging
++from datetime import datetime, timedelta
+ 
+ reload(sys)
+ sys.setdefaultencoding('utf8')
+ 
+ re_pattn_timestamp = re.compile(ur"(\d+)$")
+ re_pattn_now = re.compile(ur"刚刚|刚才")
++re_pattn_utcstr = re.compile(ur"(\d{4})\-(\d{2})\-(\d{2})[Tt](\d{2}):(\d{2}):(\d{2})\.\d+[z|Z]")
+ 
+ re_pattn_usfulltail =\
+                  re.compile(ur"(.*?)([年|月|日|(小时)|分|秒|(年前)|(月前)|(个月前)|(周前)|(星期前)|(个星期前)|(天前)|(小时前)|(个小时前)|(分前)|(分钟前)|(秒前)])$")
+@@ -195,6 +199,19 @@
+     except:
+       return
+ 
++  def parse_iso8601_time(self, timestr):
++    if not timestr:
++      return 0
++    try:
++      _ISO8601_DATE_FORMAT = '%Y-%m-%dT%H:%M:%S.%fZ'
++      _TIMEZONE_UTC_OFFSET = 8
++      dt = datetime.strptime(timestr, _ISO8601_DATE_FORMAT)
++      dt = dt + timedelta(hours=_TIMEZONE_UTC_OFFSET)
++      return int(time.mktime(dt.timetuple()))
++    except:
++      logging.exception('failed to parse to_iso8601_time string, %s' % s)
++      return 0
++
+   def timestamp(self, timestr, timestr_encode = "utf-8", refer_time = None):
+     try:
+       if not timestr:
+@@ -206,6 +223,9 @@
+       timestr = self.time_preprocess(timestr, refer_time)
+       if not timestr:
+         return 0
++      timeutc_rematch = re_pattn_utcstr.match(timestr)
++      if timeutc_rematch:
++        return self.parse_iso8601_time(timestr)
+       timenow_rematch = re_pattn_now.match(timestr)
+       if timenow_rematch:
+         return int(time.time())
+@@ -244,6 +264,8 @@
+     except:
+       return 0
+ 
++
++
+ if __name__ == "__main__":
+ 
+   now_time_struct = time.localtime(time.time())
+@@ -304,24 +326,25 @@
+                   "伍分钟前",
+                   "两秒前",
+                   '1375515597',
++                  '发布:昨天 19:26',
+                   ]
+   calc_ts_obj = TimeParser()
+-  teststr = u'发布:昨天 19:26'
++  teststr = u'2015-10-09T03:31:29.000Z'
+   teststr = teststr.replace(' ', ' ')
+-  time_temp = calc_ts_obj.timestamp(teststr, refer_time=1375515597)
++  time_temp = calc_ts_obj.timestamp(teststr)
+   print time_temp
+   timeArray = time.localtime(time_temp)
+   otherStyleTime = time.strftime("%Y-%m-%d %H:%M:%S", timeArray)
+   print otherStyleTime
+-  # print calc_ts_obj.timestamp(teststr)
+-  # for i in test_timestr:
+-  #   timestamp = calc_ts_obj.timestamp(i)
+-  #   timeArray = time.localtime(timestamp)
+-  #   otherStyleTime = time.strftime("%Y-%m-%d %H:%M:%S", timeArray)
+-  #   print 'test: %s， time: %s' % (i, otherStyleTime)
+-  # for i in special_case:
+-  #   timestamp = calc_ts_obj.timestamp(i)
+-  #   timeArray = time.localtime(timestamp)
+-  #   otherStyleTime = time.strftime("%Y-%m-%d %H:%M:%S", timeArray)
+-  #   print 'Special:%s, time:%s' % (i, otherStyleTime)
+-  # print 'time parser finish....'
++  print calc_ts_obj.timestamp(teststr)
++  for i in test_timestr:
++    timestamp = calc_ts_obj.timestamp(i)
++    timeArray = time.localtime(timestamp)
++    otherStyleTime = time.strftime("%Y-%m-%d %H:%M:%S", timeArray)
++    print 'test: %s， time: %s' % (i, otherStyleTime)
++  for i in special_case:
++    timestamp = calc_ts_obj.timestamp(i)
++    timeArray = time.localtime(timestamp)
++    otherStyleTime = time.strftime("%Y-%m-%d %H:%M:%S", timeArray)
++    print 'Special:%s, time:%s' % (i, otherStyleTime)
++  print 'time parser finish....'
+Index: utils.py
+===================================================================
+--- utils.py	(revision 122107)
++++ utils.py	(working copy)
+@@ -37,6 +37,7 @@
+   f.close()
+   return html
+ 
++
+ def str_gzip(content):
+   buf = StringIO.StringIO()
+   f = gzip.GzipFile(mode = 'wb', fileobj = buf)
+@@ -44,6 +45,7 @@
+   f.close()
+   return buf.getvalue()
+ 
++
+ def del_repeat(li):
+   if not li:
+     return li
+@@ -392,7 +394,7 @@
+     if key == 'crawl_history':
+       continue
+     value = data.get(key)
+-    if not value:
++    if value is None:
+       if dead_link:
+         continue
+       # if key in important_fields:
+@@ -416,10 +418,11 @@
+         value = int(value)
+     except:
+       logging.exception('failed convert %s, %s to %s, %s', url, key, type_id, value)
++      #print 'failed convert %s, %s to %s, %s', (url, key, type_id, value)
+       # if key in important_fields:
+       #   sys.stderr.write('reporter:counter:build_video,build_convert_%s,1\n' % key)
+       continue
+-    if value:
++    if value is not None:
+       setattr(video, key, value)
+   if data.get('user_url') and not video.user:
+     video.user = OriginalUser(url=data.get('user_url'), update_time=int(time.time()))
+@@ -471,7 +474,7 @@
+     return None
+   for key, type_id in video_fields.items():
+     value = data.get(key)
+-    if not value:
++    if value is None:
+       if key in data:
+         del data[key]
+       continue
+@@ -500,6 +503,23 @@
+   return data
+ 
+ 
++def massage_youtube_data(data):
++  if not data:
++    return None
++  url = data.get('url')
++  if not url:
++    return None
++  for key, type_id in video_fields.items():
++    value = data.get(key)
++    if value is None:
++      if key in data:
++        del data[key]
++      continue
++    if type_id == TType.STRING:
++      data[key] = value.encode('utf-8')
++  return data
++
++
+ def safe_eval(input_str):
+   if not input_str:
+     return None
+@@ -580,28 +600,6 @@
+       v = list_trends[i][1]
+   if trends[-1][0] != list_trends[-1][0]:
+     trends.append(list_trends[-1])
+-  """
+-  has_eq = False
+-  last_eq_idx = 0
+-  last_inserted_idx = 0
+-  for i in range(1, len(list_trends)):
+-    tv = list_trends[i][1]
+-    if tv is not None and tv != v:
+-      if has_eq:
+-        trends.append(list_trends[last_eq_idx])
+-      has_eq = False
+-      trends.append(list_trends[i])
+-      last_inserted_idx = i
+-      v = tv
+-    elif tv == v:
+-      has_eq = True
+-      last_eq_idx = i
+-  if has_eq == True:
+-    trends.append(list_trends[last_eq_idx])
+-    last_inserted_idx = last_eq_idx
+-  if last_inserted_idx != len(list_trends) - 1:
+-    trends.append(list_trends[-1])
+-  """
+ 
+   if len(trends) < 10:
+     return trends
+@@ -624,3 +622,31 @@
+   list_trends.append(trends[-1]) # add the last point
+   return list_trends
+ 
++def history2dict(history):
++  if not history:
++    return None
++
++  h_list = []
++  for item in history.crawl_history:
++    d = {}
++    d['crawl_time'] = item.crawl_time
++    d['crawl_interval'] = item.crawl_interval
++    d['play_count'] = item.play_count
++    h_list.append(d)
++  h_dict = {}
++  h_dict['crawl_history'] = h_list
++  h_dict['update_time'] = history.update_time
++  return h_dict 
++
++def gen_next_schedule_time(crawl_history):
++  if not crawl_history:
++    return None
++  now = int(time.time())
++  if len(crawl_history) == 1:
++    return now + 60*60
++  incr_count_hourly = ((crawl_history[0].get('play_count') or 0) - (crawl_history[1].get('play_count') or 0)) * 60 * 60 \
++      / ((crawl_history[0].get('crawl_time') or 0) - (crawl_history[1].get('crawl_time') or 0) or 1)
++  schedule_interval = crawl_history[0]['crawl_interval'] / 2 if incr_count_hourly > 1000 \
++      else crawl_history[0]['crawl_interval'] * 2
++  return now + schedule_interval
++
+Index: duration_parser.py
+===================================================================
+--- duration_parser.py	(revision 122107)
++++ duration_parser.py	(working copy)
+@@ -10,38 +10,46 @@
+ reload(sys)
+ sys.setdefaultencoding('utf8')
+ 
++ISO8601_PERIOD_REGEX = re.compile(
++  r"P(?!\b)"
++  r"((?P<days>[0-9]+)([,.][0-9]+)?D)?"
++  r"((?P<separator>T)((?P<hours>[0-9]+)([,.][0-9]+)?H)?"
++  r"((?P<minutes>[0-9]+)([,.][0-9]+)?M)?"
++  r"((?P<seconds>[0-9]+)([,.][0-9]+)?S)?)?$")
+ 
+ re_list = [
+-  re.compile(ur"[^\d]*((\d{1,})(秒)?)$"),
+-  re.compile(ur"[^\d]*?((\d{1,2})(:|时|小时))?((\d{1,2})(:|分|分钟))((\d{1,2})(秒)?)?$")]
++  re.compile(ur"[^\d]*(?P<seconds>\d{1,})(秒)?$"),
++  re.compile(ur"[^\d]*?((?P<hours>\d{1,2})(:|时|小时))?((?P<minutes>\d{1,2})(:|分|分钟))((?P<seconds>\d{1,2})(秒)?)?$"),
++  ISO8601_PERIOD_REGEX]
+ 
++
+ def duration_format(duration_str, duration_encode='utf-8'):
+-  duration_str = duration_str.lower()
++  # duration_str = duration_str.lower()
+   duration_str = duration_str.decode(duration_encode)
+   duration_str = duration_str.strip()
+   return duration_str
+ 
+-def array2int(parser_array):
+-  ret = 0
+-  length = len(parser_array)
+-  if length>=3 and parser_array[-2] is not None:
+-    ret += string.atoi(parser_array[-2])
+-  if length>=6 and parser_array[-5] is not None:
+-    ret += string.atoi(parser_array[-5])*60
+-  if length>=9 and parser_array[-8] is not None:
+-    ret += string.atoi(parser_array[-8])*3600
+-  return ret
+-
+ def duration2int(duration_str, duration_encode='utf-8'):
+   try:
++    ret = 0
++    if not duration_str:
++      return ret
+     duration_str = duration_format(duration_str, duration_encode)
+-    parser_array = []
++    parse_groups = {}
+     for re_pattern in re_list:
+-      duration_array_rematch = re_pattern.match(duration_str)
+-      if duration_array_rematch:
+-        parser_array = duration_array_rematch.groups()
++      duration_dict_rematch = re_pattern.match(duration_str)
++      if duration_dict_rematch:
++        parse_groups = duration_dict_rematch.groupdict()
+         break
+-    return array2int(parser_array)
++    if parse_groups.get('seconds', None):
++      ret += int(parse_groups['seconds'])
++    if parse_groups.get('minutes', None):
++      ret += int(parse_groups['minutes']) * 60
++    if parse_groups.get('hours', None):
++      ret += int(parse_groups['hours']) * 3600
++    if parse_groups.get('days', None):
++      ret += int(parse_groups['days']) * 86400
++    return ret
+   except:
+     return 0
+ 
+@@ -55,6 +63,7 @@
+     '03:02':182,
+     '3分10秒':190,
+     '102':102,
++    'PT1M53S': 113,
+   }
+   duration_str = '1小时1分'
+   print duration2int(duration_str)

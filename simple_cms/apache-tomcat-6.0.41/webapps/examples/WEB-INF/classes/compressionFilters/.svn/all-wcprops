@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/webapps/examples/WEB-INF/classes/compressionFilters
+END
+CompressionFilterTestServlet.class
+K 25
+svn:wc:ra_dav:version-url
+V 158
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/webapps/examples/WEB-INF/classes/compressionFilters/CompressionFilterTestServlet.class
+END
+CompressionResponseStream.class
+K 25
+svn:wc:ra_dav:version-url
+V 155
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/webapps/examples/WEB-INF/classes/compressionFilters/CompressionResponseStream.class
+END
+CompressionServletResponseWrapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/webapps/examples/WEB-INF/classes/compressionFilters/CompressionServletResponseWrapper.java
+END
+CompressionFilter.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/webapps/examples/WEB-INF/classes/compressionFilters/CompressionFilter.java
+END
+CompressionServletResponseWrapper.class
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/webapps/examples/WEB-INF/classes/compressionFilters/CompressionServletResponseWrapper.class
+END
+CompressionFilter.class
+K 25
+svn:wc:ra_dav:version-url
+V 147
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/webapps/examples/WEB-INF/classes/compressionFilters/CompressionFilter.class
+END
+CompressionFilterTestServlet.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/webapps/examples/WEB-INF/classes/compressionFilters/CompressionFilterTestServlet.java
+END
+CompressionResponseStream.java
+K 25
+svn:wc:ra_dav:version-url
+V 154
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/webapps/examples/WEB-INF/classes/compressionFilters/CompressionResponseStream.java
+END

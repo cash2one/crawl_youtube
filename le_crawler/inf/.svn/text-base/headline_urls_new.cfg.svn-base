@@ -1,0 +1,1086 @@
+{
+  "content": [
+    {
+      "url" : [
+        "http://www.baomihua.com/user/channelvideos.aspx?currentpage=(*1-10,0*)&appid=4055",
+        "http://video.baomihua.com/funny/pets_(*1-20,0*)&uid=0",
+        "http://video.baomihua.com/funny/zipai_(*1-20,0*)&uid=0",
+        "http://zt.baomihua.com/subjectinfo.aspx?name=gxiao&page=(*1-10,0*)",
+        "http://video.baomihua.com/funny/leiren_(*1-30,0*)&uid=0",
+        "http://video.baomihua.com/funny/jinxuan_(*1-23,0*)&uid=0",
+        "http://www.tudou.com/list/ich7a720b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+        "http://www.tudou.com/list/ich7a1237b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+        "http://www.tudou.com/list/ich7a1319b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+        "http://www.tudou.com/list/ich9.html",
+        "http://fun.56.com/crazy2/",
+        "http://fun.56.com/hot2/",
+        "http://fun.56.com/classic2/",
+        "http://fun.56.com/shock2/",
+        "http://video.baomihua.com/funny/jinxuan_(*1-23,0*)&uid=0",
+        "http://zt.baomihua.com/subjectinfo.aspx?name=gxiao&page=(*1-10,0*)",
+        "http://video.baomihua.com/funny/leiren_(*1-30,0*)&uid=0",
+        "http://video.baomihua.com/funny/pets_(*1-20,0*)&uid=0",
+        "http://video.baomihua.com/funny/zipai_(*1-20,0*)&uid=0",
+        "http://list.iqiyi.com/www/22/1902-------------10-(*1-5,0*)-2--1-.html",
+        "http://joke.ku6.com/egaozhenggu/",
+        "http://www.youku.com/v_showlist/c94g235d2s1p(*1-5,0*).html",
+        "http://all.wasu.cn/index/sort/time/cid/70/class/program",
+        "http://all.wasu.cn/index/sort/hits/cid/29/class/program",
+        ""
+      ],
+      "category" : "joke_jokes",
+      "enable" : true,
+      "type" : "list",
+      "id" : "jokes_jokes"
+    },
+    { "url" : [
+        "http://list.iqiyi.com/www/22/1901-------------10-(*1-5,0*)-2--1-.html",
+        "http://list.iqiyi.com/www/22/22169-------------10-(*1-5,0*)-2--1-.html",
+        "http://list.iqiyi.com/www/22/22170-------------10-(*1-5,0*)-2--1-.html",
+        "http://list.iqiyi.com/www/22/22172-------------10-(*1-5,0*)-2--1-.html",
+        "http://joke.ku6.com/baoxiaochongwu/",
+        "http://www.tudou.com/list/ich7a1235b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+        "http://www.tudou.com/list/ich7a242b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+        "http://www.tudou.com/list/ich7a1180b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+        "http://www.fun.tv/list/news/c-e7a4bee4bc9a.o-mf/",
+        ""
+      ],
+      "category" : "joke_others",
+      "enable" : true,
+      "type" : "list",
+      "id" : "joke_others"
+    },
+    { "url" : [
+        "http://tech.youku.com/daren",
+        "http://www.tudou.com/list/ich10a2285b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+        "http://v.zol.com.cn/week_hits/2-94-(*1-3,0*)-pic.html",
+        ""
+      ],
+      "category" : "technology_daren",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_daren"
+    },
+    { "url" : [
+        "http://www.tudou.com/list/ich10a1389b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+        ""
+      ],
+      "category" : "technology_iphone",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_iphone"
+    },
+    { "url" : [
+        "http://www.tudou.com/list/ich10a1390b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+        ""
+      ],
+      "category" : "technology_sumsang",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_sumsang"
+    },
+    { "url" : [
+        "http://www.tudou.com/list/ich10a1135b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+        ""
+      ],
+      "category" : "technology_ipad",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_ipad"
+    },
+    { "url" : [
+      "http://www.tudou.com/list/ich10a1391b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+        ""
+      ],
+      "category" : "technology_xiaomi",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_xiaomi"
+    },
+    { "url" : [
+        "http://www.tudou.com/list/ich10a1394b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+        ""
+      ],
+      "category" : "technology_nokia",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_nokia"
+    },
+  { "url" : [
+        "http://www.tudou.com/list/ich10a1394b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+        ""
+      ],
+      "category" : "technology_nokia",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_nokia"
+    },
+    { "url" : [
+        "http://www.tudou.com/list/ich10a1395b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+        ""
+      ],
+      "category" : "technology_htc",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_htc"
+    },
+    { "url" : [
+        "http://www.tudou.com/list/ich10a1392b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+        ""
+      ],
+      "category" : "technology_meizu",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_meizu"
+    },
+    { "url" : [
+        "http://www.tudou.com/list/ich10a1396b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+        ""
+      ],
+      "category" : "technology_sony",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_sony"
+    },
+    { "url" : [
+        "http://www.tudou.com/list/ich10a2283b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+        ""
+      ],
+      "category" : "technology_ssshuma",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_ssshuma"
+    },
+{ "url" : [
+        "http://www.tudou.com/list/ich10a2286b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+        ""
+      ],
+      "category" : "technology_cyshuma",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_cyshuma"
+    },
+{ "url" : [
+        "http://www.tudou.com/list/ich10a283b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+        ""
+      ],
+      "category" : "technology_pctest",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_pctest"
+    },
+{ "url" : [
+        "http://www.tudou.com/list/ich10a2281b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+        ""
+      ],
+      "category" : "technology_phroot",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_phroot"
+    },
+{ "url" : [
+        "http://www.tudou.com/list/ich10a2282b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+        ""
+      ],
+      "category" : "technology_rlcp",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_rlcp"
+    },
+{ "url" : [
+        "http://www.tudou.com/list/ich10a2284b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+        ""
+      ],
+      "category" : "technology_gjzn",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_gjzn"
+    },
+{ "url" : [
+        "http://www.tudou.com/list/ich10a1160b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+        ""
+      ],
+      "category" : "technology_appsd",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_appsd"
+    },
+{ "url" : [
+        "http://www.tudou.com/list/ich10a2285b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+        ""
+      ],
+      "category" : "technology_3dtc",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_3dtc"
+    },
+{ "url" : [
+        "http://www.tudou.com/list/ich10a1521b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+        ""
+      ],
+      "category" : "technology_wlgn",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_wlgn"
+    },
+{ "url" : [
+        "http://www.tudou.com/list/ich10a2061b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+        ""
+      ],
+      "category" : "technology_qxjs",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_qxjs"
+    },
+{ "url" : [
+        "http://www.tudou.com/list/ich10a1106b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+        ""
+      ],
+      "category" : "technology_jskj",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_jskj"
+    },
+{ "url" : [
+        "http://www.tudou.com/list/ich10a1662b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+        ""
+      ],
+      "category" : "technology_dqmm",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_dqmm"
+    },
+{ "url" : [
+        "http://www.tudou.com/list/ich10a1502b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+        ""
+      ],
+      "category" : "technology_hthk",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_hthk"
+    },
+{ "url" : [
+        "http://www.tudou.com/list/ich10a1105b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+        "http://list.iqiyi.com/www/30/--27952-----------11-1-2-iqiyi-1-.html",
+        ""
+      ],
+      "category" : "technology_kxfx",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_kxfx"
+    },
+{ "url" : [
+        "http://www.tudou.com/list/ich10a1503b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+        ""
+      ],
+      "category" : "technology_rckp",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_rckp"
+    },
+{ "url" : [
+        "http://list.iqiyi.com/www/30/--27973-----------11-1-2-iqiyi-1-.html",
+        ""
+      ],
+      "category" : "technology_network",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_network"
+    },
+{ "url" : [
+        "http://list.iqiyi.com/www/30/--27972-----------11-1-2-iqiyi-1-.html",
+        ""
+      ],
+      "category" : "technology_it",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_it"
+    },
+{ "url" : [
+        "http://list.iqiyi.com/www/30/--27943-----------11-1-2-iqiyi-1-.html",
+        "http://list.iqiyi.com/www/30/--27948-----------11-1-2-iqiyi-1-.html",
+        ""
+      ],
+      "category" : "technology_notepc",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_notepc"
+    },
+{ "url" : [
+        "http://list.iqiyi.com/www/30/--27944-----------11-1-2-iqiyi-1-.html",
+        "http://v.zol.com.cn/week_hits/2-54-(*1-4,0*)-pic.html",
+        ""
+      ],
+      "category" : "technology_znyj",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_znyj"
+    },
+{ "url" : [
+        "http://list.iqiyi.com/www/30/--27945-----------11-1-2-iqiyi-1-.html",
+        ""
+      ],
+      "category" : "technology_note",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_note"
+    },
+{ "url" : [
+        "http://list.iqiyi.com/www/30/--27949-----------11-1-2-iqiyi-1-.html",
+        ""
+      ],
+      "category" : "technology_tv",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_tv"
+    },
+{ "url" : [
+        "http://list.iqiyi.com/www/30/--27950-----------11-1-2-iqiyi-1-.html",
+        ""
+      ],
+      "category" : "technology_yxj",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_yxj"
+    },
+{ "url" : [
+        "http://v.zol.com.cn/week_hits/1-1-(*1-5,0*)-pic.html",
+        ""
+      ],
+      "category" : "technology_isj",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_isj"
+    },
+{ "url" : [
+        "http://v.zol.com.cn/week_hits/2-67-(*1-4,0*)-pic.html",
+        ""
+      ],
+      "category" : "technology_mrjr",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_mrjr"
+    },
+{ "url" : [
+        "http://v.zol.com.cn/week_hits/2-3-(*1-4,0*)-pic.html",
+        ""
+      ],
+      "category" : "technology_jndfkt",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_jndfkt"
+    },
+{ "url" : [
+        "http://v.zol.com.cn/week_hits/2-95-(*1-5,0*)-pic.html",
+        ""
+      ],
+      "category" : "technology_sjxwy",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_sjxwy"
+    },
+{ "url" : [
+        "http://v.zol.com.cn/week_hits/2-9-(*1-5,0*)-pic.html",
+        ""
+      ],
+      "category" : "technology_yjjzs",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_yjjzs"
+    },
+{ "url" : [
+        "http://list.iqiyi.com/www/30/--27951-----------11-1-2-iqiyi-1-.html",
+        ""
+      ],
+      "category" : "technology_qyjs",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_qyjs"
+    },
+{ "url" : [
+        "http://www.tudou.com/list/ich10a1510b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+        ""
+      ],
+      "category" : "technology_yzxx",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_yzxx"
+    },
+
+    { "url" : [
+        "http://tech.youku.com/smartphone",
+        "http://v.zol.com.cn/week_hits/1-2-(*1-3,0*)-pic.html",
+        "http://list.iqiyi.com/www/30/--27942-----------11-1-2-iqiyi-1-.html",
+        ""
+      ],
+      "category" : "technology_phone",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_phone"
+    },
+    { "url" : [
+        "http://tech.youku.com/pads",
+        "http://v.zol.com.cn/week_hits/2-69-(*1-3,0*)-pic.html",
+        ""
+      ],
+      "category" : "technology_note",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_note"
+    },
+    { "url" : [
+        "http://tech.youku.com/pc",
+        "http://v.zol.com.cn/week_hits/2-62-(*1-3,0*)-pic.html",
+        ""
+      ],
+      "category" : "technology_notepc",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_notepc"
+    },
+    { "url" : [
+        "http://tech.youku.com/digital",
+        "http://www.tudou.com/list/ich10a285b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+        "http://list.iqiyi.com/www/30/--27946-----------11-1-2-iqiyi-1-.html",
+        "http://v.zol.com.cn/week_hits/2-52-(*1-3,0*)-pic.html",
+        ""
+      ],
+      "category" : "technology_photog",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_photog"
+    },
+    { "url" : [
+        "http://tech.youku.com/game",
+        ""
+      ],
+      "category" : "technology_szjt",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_szjt"
+    },
+    { "url" : [
+      "http://tech.youku.com/shuma",
+        ""
+      ],
+      "category" : "technology_ssshuma",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_ssshuma"
+    },
+    { "url" : [
+        "http://tech.youku.com/it",
+        ""
+      ],
+      "category" : "technology_it",
+      "enable" : true,
+      "type" : "list",
+      "id" : "technology_it"
+    },
+
+    { "url" : [
+        "http://video.kankan.com/list/news/home,hot/index-1.html",
+        "http://news.cntv.cn/update/(*today*).shtml",
+        "http://tv.people.com.cn/GB/61600/index(*1-5,0*).html",
+        "http://so.tv.sohu.com/list_p1122_p2122204_p3_p4_p5_p6_p73_p8_p9_p10(*1-5,0*)_p11_p12_p13.html",
+        "http://all.wasu.cn/index/sort/time/cid/24/class/program",
+        ""
+      ],
+      "category" : "mainland_mainland",
+      "enable" : true,
+      "type" : "list",
+      "id" : "all_mainland"
+    },
+    {
+      "url" : [
+        "http://video.kankan.com/list/news/international,hot/index-1.html",
+        "http://news.cntv.cn/video/world/list/(*today*).shtml",
+        "http://so.tv.sohu.com/list_p1122_p2122205_p3_p4_p5_p6_p73_p8_p9_p10(*1-5,0*)_p11_p12_p13.html",
+        "http://tv.people.com.cn/GB/14645/25060/index(*1-5,0*).html",
+        "http://all.wasu.cn/index/sort/time/cid/25/class/program",
+        ""
+      ],
+      "category" : "world_world",
+      "enable" : true,
+      "type" : "list",
+      "id" : "word"
+    },
+    {
+      "url" : [
+        "http://news.cntv.cn/video/military/list/(*today*).shtml",
+        "http://tv.people.com.cn/GB/67816/index(*1-5,0*).html",
+        "http://video.sina.com.cn/mil/military/",
+        "http://video.kankan.com/list/news/military,hot/index-1.html",
+        "http://all.wasu.cn/index/sort/time/cid/111/class/program",
+        ""
+      ],
+      "category" : "military_military",
+      "type" : "list",
+      "enable" : true,
+      "id" : "military_military"
+    },
+   {
+      "url" : [
+        "http://v.autohome.com.cn/cate_8_1_(*1-5,0*).html",
+        "http://v.bitauto.com/cate_50_2_(*0-5,0*).html",
+        "http://www.youku.com/v_showlist/c104g277d2s1(*1-5,0*).html",
+        "http://all.wasu.cn/index/sort/hits/cid/106/class/program",
+        ""
+      ],
+      "category" : "car_drive",
+      "type" : "list",
+      "enable" : true,
+      "id" : "car_drive"
+    },
+    {
+      "url" : [
+        "http://v.autohome.com.cn/cate_4_1_(*1-5,0*).html",
+        "http://v.bitauto.com/cate_48_0_(*0-5,0*).html",
+        "http://www.youku.com/v_showlist/c104d2s1g263(*1-5,0*).html",
+        "http://v.bitauto.com/tag_18959_2_(*0-5,0*).html",
+        "http://all.wasu.cn/index/sort/hits/cid/103/class/program",
+        ""
+      ],
+      "category" : "car_news",
+      "type" : "list",
+      "enable" : true,
+      "id" : "car_news"
+    },
+    {
+      "url" : [
+        "http://v.autohome.com.cn/cate_2_1_(*1-5,0*).html",
+        "http://v.autohome.com.cn/cate_1_1_(*1-5,0*).html",
+        "http://www.youku.com/v_showlist/c104g291d2s1(*1-5,0*).html",
+        ""
+      ],
+      "category" : "car_buy",
+      "type" : "list",
+      "enable" : true,
+      "id" : "car_buy"
+    },
+    {
+      "url" : [
+       "http://v.bitauto.com/cate_53_2_(*0-5,0*).html",
+       "http://www.youku.com/v_showlist/c104g276d3s1(*1-5,0*).html",
+       "http://www.youku.com/v_showlist/c104g290d3s1(*1-5,0*).html",
+       "http://www.youku.com/v_showlist/c104g270d3s1(*1-5,0*).html",
+       "http://www.youku.com/v_showlist/c104g267d3s1(*1-5,0*).html",
+       "http://www.youku.com/v_showlist/c104g269d3s1(*1-5,0*).html",
+       "http://v.bitauto.com/cate_51_0_(*0-5,0*).html",
+       "http://v.bitauto.com/tag_15557_2_(*0-5,0*).html",
+       "http://v.bitauto.com/tag_c102_2_(*0-5,0*).html",
+       "http://v.autohome.com.cn/cate_5_1_(*1-5,0*).html",
+       ""
+      ],
+      "category" : "car_knowlodge",
+      "type" : "list",
+      "enable" : true,
+      "id" : "car_knowlodge"
+    },
+    {
+      "url" : [
+        "http://list.iqiyi.com/www/7/----1077---------10-(*1-5,0*)-2--1-.html",
+        "http://ent.56.com/movieInfo/",
+        "http://www.youku.com/v_showlist/c86g2067d2s1p(*1-5,0*).html",
+        ""
+      ],
+      "category" : "car_movie",
+      "type" : "list",
+      "enable" : true,
+      "id" : "car_movie"
+    },
+    {
+      "url" : [
+        "http://list.iqiyi.com/www/7/----1079---------10-(*1-5,0*)-2--1-.html",
+        "http://www.youku.com/v_showlist/c86g2142d2s1p(*1-5,0*).html",
+        "http://ent.56.com/musicInfo/",
+        ""
+      ],
+      "category" : "car_music",
+      "type" : "list",
+      "enable" : true,
+      "id" : "car_music"
+    },
+    {
+      "url" : [
+       "http://v.bitauto.com/cate_49_2_(*0-5,0*).html",
+      ""
+      ],
+      "category" : "car_play",
+      "type" : "list",
+      "enable" : true,
+      "id" : "car_play"
+    },
+    {
+      "url" : [
+        "http://video.kankan.com/list/yule/yyhr,hot/index-1.html",
+        "http://all.wasu.cn/index/sort/hits/cid/31/class/program",
+      ""
+      ],
+      "category" : "ent_music",
+      "type" : "list",
+      "enable" : true,
+      "id" : "ent_music"
+    },
+    {
+      "url" : [
+        "http://ent.56.com/gossip/",
+        "http://video.kankan.com/list/yule/dyr,new/index-1.html",
+        "http://video.kankan.com/list/yule/bg,new/index-1.html",
+        "http://all.wasu.cn/index/sort/hits/cid/27/class/program",
+      ""
+      ],
+      "category" : "ent_star",
+      "type" : "list",
+      "enable" : true,
+      "id" : "ent_star"
+    },
+    {
+      "url" : [
+       "http://list.iqiyi.com/www/7/----2296---------10-(*1-5,0*)-2--1-.html",
+       "http://www.youku.com/v_showlist/c86g2311d2s1p(*1-5,0*).html",
+       "http://www.youku.com/v_showlist/c86g2312d2s1p(*1-5,0*).html",
+       ""
+      ],
+      "category" : "ent_art",
+      "type" : "list",
+      "enable" : true,
+      "id" : "ent_art"
+    },
+    {
+      "url" : [
+       "http://www.youku.com/v_showlist/c86g2309d2s1p(*1-5,0*).html",
+       "http://www.youku.com/v_showlist/c86g2350d2s1p(*1-5,0*).html",
+       "http://list.iqiyi.com/www/7/----1082---------10-(*1-5,0*)-2--1-.html",
+       "http://all.wasu.cn/index/sort/hits/cid/28/class/program",
+       ""
+      ],
+      "category" : "ent_skill",
+      "type" : "list",
+      "enable" : true,
+      "id" : "ent_skill"
+    },
+    {
+      "url" : [
+       "http://list.iqiyi.com/www/28/21789-21796------------10--2-(*1-5,0*)-1-.html",
+       ""
+      ],
+      "category" : "military_mainland",
+      "type" : "list",
+      "enable" : true,
+      "id" : "military_mainland"
+    },
+    {
+      "url" : [
+       "http://list.iqiyi.com/www/28/21789-21798------------10--2-(*1-5,0*)-1-.html",
+      ""
+      ],
+      "category" : "military_taiwan",
+      "type" : "list",
+      "enable" : true,
+      "id" : "military_taiwan"
+    },
+    {
+      "url" : [
+       "http://video.sina.com.cn/mil/weapon/",
+       "http://list.iqiyi.com/www/28/21791-------------10-(*1-5,0*)-2--1-.html",
+      ""
+      ],
+      "category" : "military_weapons",
+      "type" : "list",
+      "enable" : true,
+      "id" : "military_weapons"
+    },
+    {
+      "url" : [
+       "http://list.iqiyi.com/www/24/2237-------------10-(*1-5,0*)-2--1-.html",
+       "http://finance.sina.com.cn/focus/video/l/",
+      ""
+      ],
+      "category" : "finance_money",
+      "type" : "list",
+      "enable" : true,
+      "id" : "finance_money"
+    },
+    {
+      "url" : [
+       "http://www.tudou.com/list/ich11a1929b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+       "http://list.iqiyi.com/www/13/-------1238------10-(*1-5,0*)-2--1-.html ",
+       "http://all.wasu.cn/index/sort/hits/cid/105/class/program",
+       "http://all.wasu.cn/index/sort/hits/cid/108/class/program",
+       ""
+      ],
+      "category" : "fashion_human",
+      "type" : "list",
+      "enable" : true,
+      "id" : "fashion_human"
+    },
+    {
+      "url" : [
+        "http://all.wasu.cn/index/sort/hits/cid/63/class/program",
+       ""
+      ],
+      "category" : "fashion_others",
+      "type" : "list",
+      "enable" : true,
+      "id" : "fashion_others"
+    },
+
+    {
+      "url" : [
+       "http://list.iqiyi.com/www/13/----1211---------10-(*1-5,0*)-2--1-.html ",
+      ""
+      ],
+      "category" : "fashion",
+      "type" : "list",
+      "enable" : true,
+      "id" : "fashion"
+    },
+   {
+      "url" : [
+       "http://finance.sina.com.cn/focus/video/z/",
+       "http://list.iqiyi.com/www/24/2236-------------10-(*1-5,0*)-2--1-.html",
+       ""
+      ],
+      "category" : "finance_market",
+      "type" : "list",
+      "enable" : true,
+      "id" : "finance_market"
+    },
+    {
+      "url" : [
+       "http://fashion.56.com/skinCare/",
+       "http://fashion.56.com/bodySculpting/",
+       "http://www.tudou.com/list/ich11a766b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+       "http://www.tudou.com/list/ich11a1909b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+       "http://www.tudou.com/list/ich11a1910b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+       "http://www.tudou.com/list/ich11a1911b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+       "http://www.tudou.com/list/ich11a1912b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+       "http://list.iqiyi.com/www/13/----1209---------10-(*1-5,0*)-2--1-.html ",
+       "http://fashion.56.com/foreFront/",
+       "http://fashion.56.com/beautyClass/",
+       "http://list.iqiyi.com/www/13/----1208---------10-(*1-5,0*)-2--1-.html",
+       ""
+      ],
+      "category" : "finance_other",
+      "type" : "list",
+      "enable" : true,
+      "id" : "finance_others"
+
+    },
+    {
+      "url" : [
+       "http://list.iqiyi.com/www/22/1905-------------10-(*1-5,0*)-2--1-.html",
+       "http://www.youku.com/v_showlist/c94g238d2s1p1(*1-5,0*).html",
+       "http://fun.56.com/pets2/",
+       "http://www.tudou.com/list/ich7a243b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+       "http://list.iqiyi.com/www/24/2238-------------10-(*1-5,0*)-2--1-.html",
+      ""
+      ],
+      "category" : "finance_interview",
+      "type" : "list",
+      "enable" : true,
+      "id" : "finance_interview"
+    },
+    {
+      "url" : [
+       "http://www.tudou.com/list/ich7a1179b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+       "http://list.iqiyi.com/www/22/1909-------------10-(*1-5,0*)-2--1-.html",
+       ""
+      ],
+      "category" : "joke_child",
+      "type" : "list",
+      "enable" : true,
+      "id" : "joke_child"
+    },
+    {
+      "url" : [
+       "http://finance.sina.com.cn/focus/video/h/",
+       "http://list.iqiyi.com/www/24/2233-------------10-(*1-5,0*)-2--1-.html",
+       ""
+      ],
+      "category" : "finance_macroeconomic",
+      "type" : "list",
+      "enable" : true,
+      "id" : "finance_macroeconomic"
+    },
+   {
+      "url" : [
+       "http://www.tudou.com/list/ich11a1926b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+       "http://www.tudou.com/list/ich11a1925b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+       ""
+      ],
+      "category" : "fashion_online",
+      "type" : "list",
+      "enable" : true,
+      "id" : "fashion_online"
+    },
+    {
+      "url" : [
+       "http://finance.sina.com.cn/focus/video/g/",
+       "http://finance.sina.com.cn/focus/video/x/",
+       "http://video.kankan.com/list/news/finance,hot/index-1.html"
+      ],
+      "category" : "finance_finance",
+      "type" : "list",
+      "enable" : true,
+      "id" : "finance"
+    },
+    {
+      "url" : [
+        "http://video.kankan.com/list/news/technology,hot/index-1.html",
+        ""
+      ],
+      "category" : "technology_technology",
+      "type" : "list",
+      "enable" : true,
+      "id" : "technology_technology"
+    },
+    {
+      "url" : [
+        "http://video.kankan.com/list/news/auto,hot/index-1.html",
+        ""
+      ],
+      "category" : "car_car",
+      "type" : "list",
+      "enable" : true,
+      "id" : "car_car"
+    },
+    {
+      "url" : [
+       "http://www.tudou.com/list/ich7a1238b-2c-2d-2e-2f-2g-2h-2i-2j-2k-2l-2m-2n-2sort2.html",
+       "http://list.iqiyi.com/www/22/1900-------------10-(*1-5,0*)-2--1-.html ",
+       "http://www.youku.com/v_showlist/c94g236d2s1p(*1-5,0*).html",
+       ""
+      ],
+      "category" : "joke_shoot",
+      "type" : "list",
+      "enable" : true,
+      "id" : "joke_shoot"
+    },
+    {
+      "url" : [
+       "http://video.sina.com.cn/mil/scene/",
+       "http://video.sina.com.cn/mil/documentary/",
+       ""
+      ],
+      "category" : "military_deep",
+      "type" : "list",
+      "enable" : true,
+      "id" : "military_deep"
+    },
+    {
+      "url" : [
+       "http://v.qq.com/video/list.html#mi_mtype:7,mi_type:4,mi_sort:1,pagenum:(*0-3,0*)",
+       "http://tv.people.com.cn/GB/39805/index(*1-5,0*).html",
+       "http://video.kankan.com/list/news/society,hot/index-1.html",
+       "http://all.wasu.cn/index/sort/time/cid/23/class/program",
+       "http://all.wasu.cn/index/sort/time/cid/62/class/program",
+      ""
+      ],
+      "category" : "news_society",
+      "type" : "list",
+      "enable" : true,
+      "id" : "news_society"
+    },
+    {
+      "url" : [
+        "http://api.tv.sohu.com/v4/search/stream/2.json?channeled=1000130005&page_size=500&pull_down=0&api_key=695fe827ffeb7d74260a813025970bd5&plat=3&partner=1&sver=4.2&poid=1",
+      ""
+      ],
+      "category" : "girl_sohu",
+      "type" : "list",
+      "enable" : true,
+      "id" : "json_api"
+    },
+    {
+      "url" : [
+       "http://list.iqiyi.com/www/7/----1078---------10-(*1-5,0*)-2--1-.html",
+       "http://www.youku.com/v_showlist/c86g2077d2s1p(*1-5,0*).html",
+       ""
+      ],
+      "category" : "ent_tv",
+      "type" : "list",
+      "enable" : true,
+      "id" : "all_ent_tv"
+    },
+    {
+      "url" : [
+       "http://list.iqiyi.com/www/17/1673-------------10-(*1-5,0*)-2--1-.html",
+       "http://all.wasu.cn/index/sort/time/cid/35/class/program",
+      ""
+      ],
+      "category" : "sport_football",
+      "type" : "list",
+      "enable" : true,
+      "id" : "all_sport_football"
+    },
+    {
+      "url" : [
+        "http://all.wasu.cn/index/sort/hits/cid/36/class/program",
+        "http://all.wasu.cn/index/sort/time/cid/33/class/program",
+        "http://all.wasu.cn/index/sort/time/cid/69/class/program",
+      ""
+      ],
+      "category" : "sport_others",
+      "type" : "list",
+      "enable" : true,
+      "id" : "sport_others"
+    },
+
+    {
+      "url" : [
+       "http://list.iqiyi.com/www/17/1688-------------10-(*1-5,0*)-2--1-.html",
+       "http://all.wasu.cn/index/sort/time/cid/34/class/program",
+      ""
+      ],
+      "category" : "sport_basketball",
+      "type" : "list",
+      "enable" : true,
+      "id" : "all_sport_basketball"
+    },
+    {
+      "url" : [
+       "http://list.iqiyi.com/www/17/1700-------------10-(*1-5,0*)-2--1-.html",
+      ""
+      ],
+      "category" : "sport_tennis",
+      "type" : "list",
+      "enable" : true,
+      "id" : "sport_tennis"
+    },
+    {
+      "url" : [
+       "http://list.iqiyi.com/www/17/1707-------------10-(*1-5,0*)-2--1-.html",
+      ""
+      ],
+      "category" : "sport_golf",
+      "type" : "list",
+      "enable" : true,
+      "id" : "sport_golf"
+    },
+    {
+      "url" : [
+       "http://www.youku.com/v_showlist/c104g2094d3s1(*1-5,0*).html",
+      ""
+      ],
+      "category" : "car_race",
+      "type" : "list",
+      "enable" : true,
+      "id" : "car_race"
+    },
+    {
+      "url" : [
+       "http://list.iqiyi.com/www/17/1708-------------10-(*1-5,0*)-2--1-.html",
+       ""
+      ],
+      "category" : "sport_race",
+      "type" : "list",
+      "enable" : true,
+      "id" : "sport_race"
+    },
+    {
+      "url" : [
+       "http://list.iqiyi.com/www/17/1711-------------10-(*1-5,0*)-2--1-.html",
+      ""
+      ],
+      "category" : "sport_extreme",
+      "type" : "list",
+      "enable" : true,
+      "id" : "sport_extreme"
+    },
+    {
+      "url" : [
+       "http://list.iqiyi.com/www/17/1712-------------10-(*1-5,0*)-2--1-.html",
+       "http://list.iqiyi.com/www/17/1715-------------10-(*1-5,0*)-2--1-.html"
+      ],
+      "category" : "sport_billiards",
+      "type" : "list",
+      "enable" : true,
+      "id" : "sport_billiards"
+    },
+    {
+      "url" : [
+        "http://list.iqiyi.com/www/17/1715-------------10-(*1-5,0*)-2--1-.html"
+      ],
+      "category" : "sport",
+      "type" : "list",
+      "enable" : true,
+      "id" : "sport"
+    },
+    {
+      "url" : [
+       "http://v.qq.com/video/list.html#mi_mtype:6,mi_type:-1,mi_sort:1,pagenum:(*0-3,0*)",
+       "http://so.tv.sohu.com/list_p1112_p20_p3_p4_p5_p6_p76_p8_p9_p10(*1-5,0*)_p11_p12_p13.html",
+       "http://www.youku.com/v_showlist/c86g2146d2s1p(*1-5,0*).html",
+       "http://www.youku.com/v_showlist/c86g2076d2s1p(*1-5,0*).html",
+       "http://list.iqiyi.com/www/7/----1081---------10-(*1-5,0*)-2--1-.html",
+       "http://list.iqiyi.com/www/7/----1083---------10-(*1-5,0*)-2--1-.html",
+       "http://video.kankan.com/list/yule/kkxw,new/index-1.html",
+       "http://all.wasu.cn/index/sort/hits/cid/50/class/program",
+      ""
+      ],
+      "category" : "ent_ent",
+      "type" : "list",
+      "enable" : true,
+      "id" : "ent"
+    },
+    {
+      "url" : [
+        "http://news.cntv.cn/video/index.shtml",
+        "http://v.qq.com/ent/",
+        "http://v.qq.com/",
+        "http://video.baomihua.com/funny/jinxuan&uid=0",
+        "http://zt.baomihua.com/subjectinfo.aspx?name=gxiao&page=1",
+        "http://video.baomihua.com/funny/leiren&uid=0",
+        "http://video.baomihua.com/funny/leiren&uid=0",
+        "http://video.baomihua.com/funny/zipai&uid=0",
+        "http://zt.baomihua.com/subjectinfo.aspx?name=gxiao&page=1",
+        "http://video.baomihua.com/funny/jinxuan&uid=0",
+        "http://video.baomihua.com/funny/leiren&uid=0",
+        "http://video.baomihua.com/funny/zipai&uid=0",
+        "http://video.baomihua.com/funny/leiren&uid=0",
+        "http://www.iqiyi.com/",
+        "http://news.smgbb.cn/",
+        "http://yule.iqiyi.com/",
+        "http://sports.iqiyi.com/",
+        "http://mil.iqiyi.com/",
+        "http://business.iqiyi.com/",
+        "http://fun.iqiyi.com/",
+        "http://f.iqiyi.com/",
+        "http://ku6.cn/",
+        "http://joke.ku6.com/",
+        "http://video.sina.com.cn/",
+        "http://video.sina.com.cn/mil/",
+        "http://video.sina.com.cn/sports/",
+        "http://fun.tudou.com/",
+        "http://tv.sohu.com/yule/",
+        "http://auto.tudou.com/",
+        "http://fashion.tudou.com/",
+        "http://www.tudou.com/list/ich13.html",
+        "http://www.56.com/",
+        "http://fun.56.com/",
+        "http://ent.56.com/",
+        "http://fashion.56.com/",
+        "http://www.v1.cn/",
+        "http://fun.v1.cn/",
+        "http://www.youku.com/",
+        "http://fun.youku.com/",
+        "http://v.bitauto.com/",
+        "http://tv.sohu.com/",
+        "http://www.fun.tv/",
+        "http://tv.sohu.com/news/",
+        "http://auto.youku.com/",
+        "http://v.qq.com/",
+        "http://tv.people.com.cn/",
+        "http://v.qq.com/ent/",
+        "http://v.autohome.com.cn",
+        ""
+      ],
+      "category" : "military_military",
+      "type" : "home",
+      "enable" : true,
+      "id" : "all_home_channel"
+    }
+  ]
+}

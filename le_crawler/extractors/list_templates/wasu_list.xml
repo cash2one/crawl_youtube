@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <encoding>utf8</encoding>
+  <url_pattern>http://all.wasu.cn/index.*/cid/.*</url_pattern>
+  <match target='category'>
+    <xpath>//div[@class="list_add"]/a[@class="hover"]/text()</xpath>
+  </match>
+  <match target='category_list'>
+    <xpath>//div[@class="list_add"]/a[@class="hover"]/text()</xpath>
+    <xpath>//div[@class="ws_all_span"]/ul/li/a[@class="hover"]/text()</xpath>
+    <mapping map2=''>全部</mapping>
+    <drop_empty></drop_empty>
+    <connect>,</connect>
+  </match>
+  <match target='no_data'>
+    <xpath>//*[@class="ws_null"]/text()</xpath>
+  </match>
+  <struct target='items'>
+    <xpath>//div[@class="ws_row mb25"]/div</xpath>
+    <match target='url'>
+      <xpath>./div/div[@class="v mb5"]/div[@class="v_link"]/a/@href</xpath>
+    </match>
+    <match target='title'>
+      <xpath>./div/div[@class="all_text"]/div/a/text()</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>./div/div[@class="v mb5"]/div[@class="v_img"]/img/@data-original</xpath>
+    </match>
+    <match target='duration'>
+      <xpath>./div/div[@class="v mb5"]/div[@class="v_meta"]/div[@class="meta_tr"]/text()</xpath>
+    </match>
+    <match target='plat_total'>
+      <xpath>./div/div[@class="all_text"]/p/span/text()</xpath>
+      <regex>.*播放[:|：]?(.*)</regex>
+    </match>
+    <match target='showtime'>
+      <xpath>./div/div[@class="all_text"]/p/span/text()</xpath>
+      <regex>.*发布时间[:|：]?(.*)</regex>
+    </match>
+  </struct>
+</template>

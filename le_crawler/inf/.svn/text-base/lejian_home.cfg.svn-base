@@ -1,0 +1,84 @@
+{
+  "content": [
+    {
+      "url" : [
+        "http://tv.sohu.com/",
+        ""
+      ],
+      "extend_map" : {},
+      "type" : "home",
+      "enable" : true,
+      "id" : "sohu_home"
+    },
+    {
+      "url" : [
+        "http://yule.iqiyi.com/",
+        ""
+      ],
+      "extend_map" : {},
+      "type" : "home",
+      "enable" : true,
+      "id" : "iqiyi_home"
+    },
+    {
+      "url" : [
+        "http://music.youku.com",
+        ""
+      ],
+      "extend_map" : {},
+      "type" : "home",
+      "enable" : true,
+      "id" : "youku_home"
+    },
+    {
+      "url" : [
+        "http://music.tudou.com/",
+        ""
+      ],
+      "extend_map" : {},
+      "type" : "home",
+      "enable" : true,
+      "id" : "tudou_home"
+    },
+    {
+      "url" : [
+        "http://news.pptv.com",
+        ""
+      ],
+      "extend_map" : {},
+      "type" : "home",
+      "enable" : true,
+      "id" : "pptv_home"
+    },
+    {
+      "url" : [
+        "http://v.163.com/",
+        ""
+      ],
+      "extend_map" : {},
+      "type" : "home",
+      "enable" : true,
+      "id" : "163_home"
+    },
+    {
+      "url" : [
+        "http://news.video.sina.com.cn/#249777212",
+        ""
+      ],
+      "extend_map" : {},
+      "type" : "channel",
+      "enable" : true,
+      "id" : "sina_news_home"
+    },
+    {
+      "url" : [
+        "http://www.fun.tv/",
+        ""
+      ],
+      "extend_map" : {},
+      "type" : "home",
+      "enable" : true,
+      "id" : "fun_all_home"
+    }
+  ]
+}

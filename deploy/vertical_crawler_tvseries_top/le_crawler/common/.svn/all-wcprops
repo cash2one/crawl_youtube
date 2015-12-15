@@ -1,0 +1,227 @@
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common
+END
+image_local_writer.py
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/image_local_writer.py
+END
+douban_settings.py
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/douban_settings.py
+END
+extend_map_json_parser.py
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/extend_map_json_parser.py
+END
+item_express_pipeline.py
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/item_express_pipeline.py
+END
+headline_api_extract_ugly.py
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/headline_api_extract_ugly.py
+END
+item_content_filter.py
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/item_content_filter.py
+END
+netease_todaytv.py
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/netease_todaytv.py
+END
+image_localstore_pipeline.py
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/image_localstore_pipeline.py
+END
+recrawl.py
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/recrawl.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/__init__.py
+END
+middlewares.py
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/middlewares.py
+END
+le_exceptions.py
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/le_exceptions.py
+END
+wc_page_writer.py
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/wc_page_writer.py
+END
+douban_movie_writer.py
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/douban_movie_writer.py
+END
+item_dupe_filter_pipeline.py
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/item_dupe_filter_pipeline.py
+END
+cdesktop_writer.py
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/cdesktop_writer.py
+END
+headline_album_settings.py
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/headline_album_settings.py
+END
+headline_album_updater.py
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/headline_album_updater.py
+END
+cd_pictures_album_extractor.py
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/cd_pictures_album_extractor.py
+END
+bindaddressmiddleware.py
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/bindaddressmiddleware.py
+END
+timer.py
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/timer.py
+END
+realtime_video_writer.py
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/realtime_video_writer.py
+END
+headline_album_extractor.py
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/headline_album_extractor.py
+END
+headline_location_updater.py
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/headline_location_updater.py
+END
+content_extract_pipeline.py
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/content_extract_pipeline.py
+END
+crawldoc_writer.py
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/crawldoc_writer.py
+END
+get_children_text.py
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/get_children_text.py
+END
+cdesktop_settings.py
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/cdesktop_settings.py
+END
+sequence_file_writer.py
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/sequence_file_writer.py
+END
+phone_wallpaper_extractor.py
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/phone_wallpaper_extractor.py
+END
+headline_video_settings.py
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/headline_video_settings.py
+END
+exceptions.py
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/exceptions.py
+END
+extend_map_handler.py
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/extend_map_handler.py
+END
+page_local_writer.py
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/page_local_writer.py
+END
+site_crawled_stats.py
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/site_crawled_stats.py
+END
+today_tv_writer.py
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/today_tv_writer.py
+END
+todaytv_writer.py
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/common/todaytv_writer.py
+END

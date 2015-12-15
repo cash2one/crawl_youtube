@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<template>
+  <encoding>utf-8</encoding>
+  <url_pattern>.*v1.cn/.+</url_pattern>
+  <match target='title'>
+    <xpath>//div[@class="videoMod"]//h1[@class="topTitle"]/text()</xpath>
+    <xpath>//div[@class="playMod_msg"]/h2/text()</xpath>
+  </match>
+  <match target="tags">
+    <xpath>//ul[@class="tagList"]/li/a/text()</xpath>
+  </match>
+  <!--  <match target="category">
+    <xpath>//ul[@class="summaryList"]//dl[dt/text()="频道："]/dd/a/text()</xpath>
+  </match> -->
+  <match target="play_total">
+    <xpath>//*[@id="bfnum"]/text()</xpath>
+  </match>
+  <match target="showtime">
+    <xpath>//ul[@class="summaryList"]//dl[dt/text()="发布时间："]/dd/text()</xpath>
+  </match>
+  <match target="voteup_count" data_type="int">
+    <xpath>//div[@class="bdlikebutton-count pmm_item_txt"]/text()</xpath>
+  </match>
+  <match target="desc">
+    <xpath>//p[@class="summaryList_long"]/text()</xpath>
+  </match>
+  <match target='crumbs'>
+    <xpath>//p[@class="crumbBox"]/a/text() | //p[@class="crumbBox"]/span[last()]/text()</xpath>
+    <xpath>//div[@class="tit"]//a/text()</xpath>
+    <connect>,</connect>
+  </match>
+</template>

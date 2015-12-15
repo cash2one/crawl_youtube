@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/spiders
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/spiders/__init__.py
+END
+douban_spider_en.py
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/spiders/douban_spider_en.py
+END

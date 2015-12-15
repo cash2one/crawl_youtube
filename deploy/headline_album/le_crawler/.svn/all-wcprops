@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler
+END
+settings.headline.py
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/settings.headline.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/__init__.py
+END
+settings.py
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/settings.py
+END
+settings.py.debug
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/settings.py.debug
+END
+loop_start_crawler.sh
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/loop_start_crawler.sh
+END

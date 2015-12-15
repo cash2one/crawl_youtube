@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/!svn/ver/120928/tp/search2/crawler_ver2/le_crawler/inf/settings
+END
+settings.ws.py
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/!svn/ver/96508/tp/search2/crawler_ver2/le_crawler/inf/settings/settings.ws.py
+END
+settings.tudou_ugc.py
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/!svn/ver/117080/tp/search2/crawler_ver2/le_crawler/inf/settings/settings.tudou_ugc.py
+END
+settings.toplist.py
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/!svn/ver/96508/tp/search2/crawler_ver2/le_crawler/inf/settings/settings.toplist.py
+END
+settings.baidu_hot.py
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/!svn/ver/100569/tp/search2/crawler_ver2/le_crawler/inf/settings/settings.baidu_hot.py
+END
+settings.sweb.py
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/!svn/ver/96508/tp/search2/crawler_ver2/le_crawler/inf/settings/settings.sweb.py
+END
+settings.doubanpic.py
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/!svn/ver/96508/tp/search2/crawler_ver2/le_crawler/inf/settings/settings.doubanpic.py
+END
+settings.youku_star.py
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/!svn/ver/96508/tp/search2/crawler_ver2/le_crawler/inf/settings/settings.youku_star.py
+END
+settings.xiami.py
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/!svn/ver/96508/tp/search2/crawler_ver2/le_crawler/inf/settings/settings.xiami.py
+END
+settings.hotwords.py
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/!svn/ver/96508/tp/search2/crawler_ver2/le_crawler/inf/settings/settings.hotwords.py
+END
+settings.headline.py
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/!svn/ver/96508/tp/search2/crawler_ver2/le_crawler/inf/settings/settings.headline.py
+END
+settings.web.py
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/!svn/ver/96508/tp/search2/crawler_ver2/le_crawler/inf/settings/settings.web.py
+END
+settings.test.py
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/!svn/ver/96508/tp/search2/crawler_ver2/le_crawler/inf/settings/settings.test.py
+END
+settings.phonewp.py
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/!svn/ver/96508/tp/search2/crawler_ver2/le_crawler/inf/settings/settings.phonewp.py
+END
+settings.lejian_full.py
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/!svn/ver/120928/tp/search2/crawler_ver2/le_crawler/inf/settings/settings.lejian_full.py
+END
+settings.cd.py
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/!svn/ver/96508/tp/search2/crawler_ver2/le_crawler/inf/settings/settings.cd.py
+END
+settings.page_info.py
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/!svn/ver/96508/tp/search2/crawler_ver2/le_crawler/inf/settings/settings.page_info.py
+END

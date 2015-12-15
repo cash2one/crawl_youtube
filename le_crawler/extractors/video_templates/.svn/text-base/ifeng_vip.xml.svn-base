@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<template>
+    <url_pattern>http://vip.v.ifeng.com/.*</url_pattern>
+    <match target='title'>
+        <xpath>//*[@id="js_title"]/text()</xpath>
+    </match>
+    <match target='desc'>
+        <xpath>//*[@id="js_info_continner"]/div[2]/p[3]/text()</xpath>
+    </match>
+    <match target='crumbs'>
+        <xpath>//div[@class="playerinfo"]/p/a/text()</xpath>
+        <connect>,</connect>
+    </match>
+</template>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+    <url_pattern>http://news.smgbb.cn/vplay/.*</url_pattern>
+    <match target='title'>
+        <xpath>/html/head/title/text()</xpath>
+    </match>
+    <match target='crumbs'>
+        <xpath>//div[@class="crumbs"]/a/text()</xpath>
+        <connect>,</connect>
+    </match>
+</template>

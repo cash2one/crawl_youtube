@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<template>
+  <encoding>utf-8</encoding>
+  <url_pattern>http://v.163.com/(zixun|paike|yule)/.+</url_pattern>
+  <!--  <match target='category'>
+    <xpath>//*[@id="overlayBox"]/div[@class="bo-banner"]/span[@class="left"]/a[last()]/text()</xpath>
+  </match> -->
+  <match target='tags'>
+    <xpath>//div[@class="video-digest"]/div[1]/span/a/text()</xpath>
+  </match>
+  <match target='showtime'>
+    <xpath>//div[@class="video-digest"]/div[@class="cDGray"]/span[last()]/text()</xpath>
+    <regex>.*?(\d+.*)</regex>
+  </match>
+  <match target='title'>
+    <xpath>//*[@id="overlayBox"]/div[@class="bo-banner"]/h1/span/text()</xpath>
+  </match>
+  <match target='voteup_count' data_type='int'>
+    <xpath>//*[@class="ding"]/text()</xpath>
+  </match>
+  <match target='votedown_count' data_type='int'>
+    <xpath>//*[@class="cai"]/text()</xpath>
+  </match>
+  <match target='play_total' data_type='int'>
+    <xpath>//*[@id="hits"]/text()</xpath>
+  </match>
+  <match target='crumbs'>
+    <xpath>//div[@class="bo-banner"]/span[@class="left"]/a/text()</xpath>
+    <connect>,</connect>
+  </match>
+</template>

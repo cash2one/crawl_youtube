@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/96514/tp/search2/crawler_ver2/le_crawler/proto/util
+END
+ttypes.py
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/96514/tp/search2/crawler_ver2/le_crawler/proto/util/ttypes.py
+END
+constants.py
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/96514/tp/search2/crawler_ver2/le_crawler/proto/util/constants.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/96514/tp/search2/crawler_ver2/le_crawler/proto/util/__init__.py
+END
+BloomFilterRdService.py
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/!svn/ver/96514/tp/search2/crawler_ver2/le_crawler/proto/util/BloomFilterRdService.py
+END
+BloomFilterRdService-remote
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/!svn/ver/96514/tp/search2/crawler_ver2/le_crawler/proto/util/BloomFilterRdService-remote
+END

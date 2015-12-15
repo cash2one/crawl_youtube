@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/119285/tp/search2/crawler_ver2/deploy/lejian_full/le_crawler
+END
+proto
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/96508/tp/search2/crawler_ver2/deploy/lejian_full/le_crawler/proto
+END
+js_dep
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/95909/tp/search2/crawler_ver2/deploy/lejian_full/le_crawler/js_dep
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/!svn/ver/88851/tp/search2/crawler_ver2/deploy/lejian_full/le_crawler/__init__.py
+END
+settings.py
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/!svn/ver/95909/tp/search2/crawler_ver2/deploy/lejian_full/le_crawler/settings.py
+END
+common
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/95909/tp/search2/crawler_ver2/deploy/lejian_full/le_crawler/common
+END
+core
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/95909/tp/search2/crawler_ver2/deploy/lejian_full/le_crawler/core
+END
+spiders
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/!svn/ver/95909/tp/search2/crawler_ver2/deploy/lejian_full/le_crawler/spiders
+END
+restart_crawler.sh
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/!svn/ver/119285/tp/search2/crawler_ver2/deploy/lejian_full/le_crawler/restart_crawler.sh
+END
+loop_start_crawler.sh
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/!svn/ver/112585/tp/search2/crawler_ver2/deploy/lejian_full/le_crawler/loop_start_crawler.sh
+END
+extractors
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/!svn/ver/109074/tp/search2/crawler_ver2/deploy/lejian_full/le_crawler/extractors
+END

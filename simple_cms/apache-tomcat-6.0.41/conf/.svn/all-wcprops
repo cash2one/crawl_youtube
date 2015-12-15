@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/conf
+END
+logging.properties
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/conf/logging.properties
+END
+context.xml
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/conf/context.xml
+END
+server.xml
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/conf/server.xml
+END
+tomcat-users.xml
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/conf/tomcat-users.xml
+END
+catalina.properties
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/conf/catalina.properties
+END
+catalina.policy
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/conf/catalina.policy
+END
+web.xml
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/conf/web.xml
+END

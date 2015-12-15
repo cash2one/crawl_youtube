@@ -1,0 +1,360 @@
+#!/usr/bin/env python
+#-*-coding:utf-8-*-
+#
+#Copyright 2014 LeTV Inc. All Right Reserved.
+#__auther__='zhaoguozhu@letv.com'
+
+"""
+  Calculate timestamp
+"""
+
+import re
+import sys
+import time
+import string
+import logging
+from datetime import datetime, timedelta
+
+reload(sys)
+sys.setdefaultencoding('utf8')
+
+re_pattn_timestamp = re.compile(ur"(\d+)$")
+re_pattn_now = re.compile(ur"刚刚|刚才")
+
+re_pattn_usfulltail =\
+                 re.compile(ur"(.*?)([年|月|日|(小时)|分|秒|(年前)|(月前)|(个月前)|(周前)|(星期前)|(个星期前)|(天前)|(小时前)|(个小时前)|(分前)|(分钟前)|(秒前)])$")
+
+re_pattn_uslesstail =\
+                 re.compile(ur"(.*?)([^\d]*)$")
+
+re_pattn_onlytime =\
+                 re.compile(ur"[^\d]*?((\d{1,2})[小时\s\:　 ]+)?((\d{1,2})[分\s\:　 ]*)?((\d{1,2})[秒\s　 ]*)?$")
+re_pattn_normal =\
+                 re.compile(ur"[^\d]*?((\d+)[年\-\.\\\/\s　 ]*)?((\d+)[月\-\.\\\/\s　 ]*)?((\d+)[日\s　 ]*)?((\d+)[小时\s\:　 ]+)?((\d+)[分\s\:　 ]*)?((\d+)[秒\s　 ]*)?$")
+re_pattn_engstyle =\
+                   re.compile(ur"[^\d]*?(january|february|march|april|may|june|july|august|september|october|november|december)+[\s　 ]+(\d+)[\s　 ]*,[\s　 ]*(\d+)[\s　 ]*(\d+)[小时\-\s\:　 ]+(\d+)[分\-|\s\:　 ]+(\d+)[秒\-|\s\:　 ]*.*")
+re_pattn_timeago =\
+                  re.compile(ur"[^\d]*?(\d+|壹|一|贰|二|两|参|三|肆|四|伍|五|陆|六|柒|七|捌|八|玖|九)[\s　 ]*(年前|个月前|月前|周前|星期前|个星期前|天前|小时前|个小时前|分前|分钟前|秒前|years|months|weeks|days|hours|minutes|seconds)+.*")
+
+class TimeParser(object):
+  """
+  this is the namespace wrapping the methon calculating time stamp
+  """
+  def __init__(self):
+    self.engmonthlist = {u'january':'1',u'february':'2', u'march':'3', u'april':'4', u'may':'5', u'june':'6',
+                         u'july':'7', u'august':'8', u'september':'9', u'october':'10', u'november':'11', u'december':'12',
+                         u'jan':'1', u'feb':'2', u'mar':'3', u'apr':'4', u'may':'5', u'jun':'6', u'jul':'7',
+                         u'aug':'8', u'sep':'9', u'oct':'10', u'nov':'11', u'dec':'12',}
+
+    self.timedeltaunitlist = {u"年前":0,u"月前":0,u"周前":604800,u"星期前":604800,u"个星期前":604800,u"天前":86400,
+                              u"小时前":3600,u"个小时前":3600,u"分前":60,u"分钟前":60,u"秒前":1,
+                              u"years ago":0,u"months ago":0,u"weeks ago":604800,u"days ago":86400,u"hours ago":3600,u"minutes ago":60,u"seconds ago":1}
+    self.hanziToNumMap = {u"壹":1, u"一":1, u"贰":2, u"二":2, u"两":2, u"参":3, u"三":3, u"肆":4, u"四":4,
+                          u"伍":5, u"五":5, u"陆":6, u"六":6, u"柒":7, u"七":7, u"捌":8, u"八":8, u"玖":9, u"九":9}
+
+  def __now_time(self):
+    now_time = time.localtime(time.time())
+    return now_time
+
+  def __month_before_span(self, timearray, offset):
+      if timearray[1] > offset:
+        timearray[1] = timearray[1] - offset
+      else:
+        timearray[1] = timearray[1] + 12 - offset
+        timearray[0] = timearray[0] - 1
+      return timearray
+
+  def __timestr_format(self, timestr):
+    """using re to judge time string format
+       and parse each time field for future processing"""
+    time_array_parse = ()
+    timestr = timestr.strip()
+    if not timestr:
+      return 0, time_array_parse
+    time_array_rematch = re_pattn_timeago.match(timestr)
+    if time_array_rematch is not None:
+      time_array_parse = time_array_rematch.groups()
+      return 3, time_array_parse
+    time_array_rematch = re_pattn_onlytime.match(timestr)
+    if time_array_rematch is not None:
+      time_array_parse = time_array_rematch.groups()
+      return 4, time_array_parse
+    time_array_rematch = re_pattn_normal.match(timestr)
+    if time_array_rematch is not None:
+      time_array_parse = time_array_rematch.groups()
+      return 1, time_array_parse
+    time_array_rematch = re_pattn_engstyle.match(timestr)
+    if time_array_rematch is not None:
+      time_array_parse = time_array_rematch.groups()
+      return 2, time_array_parse
+    return 0, time_array_parse
+
+  def __parse_normal_eng_style(self, time_type, time_array_parse):
+    """parsing absolute time string, the example patters is as follows:
+       "2014-5-19 10:10:10","2014年5月19日 10小时10分10秒","14年5月19日 10小时10分10秒",
+       "5月19日 10小时10分10秒","5月19日 10小时10分","May 19,2014 10小时10分10秒",
+       "2014年5月19日","14年5月19日","5月19日","10小时10分10秒",
+    """
+    now_time_struct = self.__now_time()
+    now_time_array = [now_time_struct[0],now_time_struct[1],now_time_struct[2],\
+                      now_time_struct[3],now_time_struct[4],now_time_struct[5],]
+    time_array_list = list(time_array_parse)
+    time_array = []
+    if time_type == 1:
+      if time_array_parse[1] is not None:
+        time_array.append(time_array_parse[1])
+      else:
+        time_array.append('%d'%now_time_array[0])
+      if time_array_parse[3] is not None:
+        time_array.append(time_array_parse[3])
+      else:
+        #time_array.append('%d'%now_time_array[1])
+        #time_array.append('%d'%now_time_array[2])
+        time_array.append('1')
+      if time_array_parse[5] is not None:
+        time_array.append(time_array_parse[5])
+      else:
+        time_array.append('1')
+      if time_array_parse[7] is not None:
+        time_array.append(time_array_parse[7])
+        time_array.append(time_array_parse[9])
+      else:
+        time_array.append('0')
+        time_array.append('0')
+      if time_array_parse[11] is not None:
+        time_array.append(time_array_parse[11])
+      else:
+        time_array.append('0')
+    elif time_type == 4:
+      time_array.append('%d'%now_time_array[0])
+      time_array.append('%d'%now_time_array[1])
+      time_array.append('%d'%now_time_array[2])
+      time_array.append(time_array_parse[1])
+      time_array.append(time_array_parse[3])
+      if time_array_parse[5] is not None:
+        time_array.append(time_array_parse[5])
+      else:
+        time_array.append('0')
+    elif time_type == 2:
+      for i in self.engmonthlist.keys():
+        if time_array_list[0] == i:
+          time_array_list[0] = self.engmonthlist[i]
+          break
+      time_array = [time_array_list[2],] + time_array_list[0:2] +\
+                   [time_array_list[3],time_array_list[4],time_array_list[5],]
+
+    time_array_ext = time_array[:] + ['0', '0', '0',]
+    time_array_int = []
+    for i in time_array_ext:
+      time_array_int.append(string.atoi(i))
+
+    if time_array_int[0] < 100:
+      if time_array_int[0] <= now_time_array[0]%100:
+        time_array_int[0] = time_array_int[0] + 2000
+      else:
+        time_array_int[0] = time_array_int[0] + 1900
+    s_timestamp = int(time.mktime(time_array_int))
+    return s_timestamp
+
+#  def __parse_timeago_style(* time_array_parse, * now_time_array, now_time_stamp):
+  def __parse_timeago_style(self, now_time_stamp, refer_time_array, time_array_parse):
+    """parsing relative time to the time the latenth value is memorized ,the pattern is as follows:
+       "5月前","5 dates ago"
+    """
+    if time_array_parse[0].isdigit():
+      time_span = string.atoi(time_array_parse[0])
+    else:
+      time_span = self.hanziToNumMap.get(time_array_parse[0], 0)
+    #time_span = string.atoi(time_array_parse[0])
+    if time_array_parse[1] == u"年前" or time_array_parse[1] == u"years ago":
+      time_array = [(refer_time_array[0]-time_span),] +\
+                   [refer_time_array[1],refer_time_array[2],refer_time_array[3],refer_time_array[4],refer_time_array[5]]
+    elif time_array_parse[1] in [u"月前", u"montha ago", u"个月前"]:
+      time_array = self.__month_before_span(refer_time_array,time_span)
+    else:
+      time_delta = time_span * self.timedeltaunitlist[time_array_parse[1]]
+      time_before_span = now_time_stamp - time_delta
+      return time_before_span
+
+    time_array_ext = time_array[:] + [0,0,0,]
+    s_timestamp = int(time.mktime(time_array_ext))
+    return s_timestamp
+
+  def time_preprocess(self, timestr, refer_time = None):
+    def gen_replace_daystr(delta_time, refer_time = None):
+      base_time = refer_time or int(time.time())
+      base_time = base_time - delta_time
+      timeArray = time.localtime(base_time)
+      return time.strftime("%Y-%m-%d ", timeArray)
+    try:
+      if not timestr:
+        return
+      replace_dict = {u'今天': 0, u'昨天': 86400, u'前天': 172800}
+      for replace_day, delta_time in replace_dict.items():
+        if replace_day in timestr:
+          return timestr.replace(replace_day, gen_replace_daystr(delta_time, refer_time))
+      return timestr
+    except:
+      return
+
+  def timestamp(self, timestr, timestr_encode = "utf-8", refer_time = None):
+    try:
+      if not timestr:
+        return 0
+      timestr = timestr.lower()
+      timestr = timestr.strip()
+      if isinstance(timestr, basestring):
+        timestr = timestr.decode(timestr_encode)
+      timestr = self.time_preprocess(timestr, refer_time)
+      if not timestr:
+        return 0
+      timenow_rematch = re_pattn_now.match(timestr)
+      if timenow_rematch:
+        return int(time.time())
+      timestamp_rematch = re_pattn_timestamp.match(timestr)
+      if timestamp_rematch:
+        return int(timestamp_rematch.groups()[0])
+      usfulltail_rematch = re_pattn_usfulltail.match(timestr)
+      if usfulltail_rematch is None:
+        uslesstail_rematch = re_pattn_uslesstail.match(timestr)
+        if uslesstail_rematch is not None:
+          timestr = uslesstail_rematch.groups()[0]
+        else:
+          return 0
+
+      (time_type, time_array_parse) = self.__timestr_format(timestr)
+
+      if time_type == 0:
+        return 0
+      elif time_type == 1 or time_type == 2 or time_type == 4:
+        s_timestamp = self.__parse_normal_eng_style(time_type, time_array_parse)
+      elif time_type == 3:
+        if refer_time is not None:
+          #refer_time_parse = re_pattn_normal.match(refer_time).groups()
+          #refer_time_array = self.__parse_normal_eng_style(refer_time_parse)
+          if isinstance(refer_time, basestring):
+            refer_time = int(refer_time)
+          refer_time_stamp = refer_time
+          refer_time_struct = time.localtime(refer_time_stamp)
+          refer_time_array = [refer_time_struct[0], refer_time_struct[1], refer_time_struct[2], refer_time_struct[3], refer_time_struct[4], refer_time_struct[5], ]
+        else:
+          now_time_struct = self.__now_time()
+          refer_time_array = [now_time_struct[0], now_time_struct[1], now_time_struct[2], now_time_struct[3], now_time_struct[4], now_time_struct[5],]
+          refer_time_stamp = int(time.mktime(now_time_struct))
+        s_timestamp = self.__parse_timeago_style(refer_time_stamp, refer_time_array, time_array_parse)
+      return s_timestamp
+    except:
+      return 0
+
+
+def to_iso8601_time(s):
+  if not s:
+    return 0
+  try:
+    _ISO8601_DATE_FORMAT = '%Y-%m-%dT%H:%M:%S.%fZ'
+    _TIMEZONE_UTC_OFFSET = 8
+    dt = datetime.strptime(s, _ISO8601_DATE_FORMAT)
+    dt = dt + timedelta(hours=_TIMEZONE_UTC_OFFSET)
+    return time.mktime(dt.timetuple())
+  except:
+    logging.exception('failed to parse to_iso8601_time string, %s' % s)
+    return 0
+
+
+if __name__ == "__main__":
+
+  now_time_struct = time.localtime(time.time())
+  now_time_array = [now_time_struct[0],now_time_struct[1],now_time_struct[2],\
+                      now_time_struct[3],now_time_struct[4],now_time_struct[5],]
+
+  time_array_10h_10m_10s = now_time_array[0:3] + [10,10,10] + [0,0,0,]
+  time_array_10h_10m = now_time_array[0:3] + [10,10,0] + [0,0,0,]
+
+  timestamp_10h_10m_10s = int(time.mktime(time_array_10h_10m_10s ))
+  timestamp_10h_10m = int(time.mktime(time_array_10h_10m ))
+
+  test_timestr = [
+                  u"2014-5-19 10:10 重庆时报",
+                  u"日期：2014-10-4 ",
+                  u"发表于：2014年5月19日 10小时10分10秒 于北京",
+                  u"发表于：2014年5月19日 10小时10分10秒",
+                  "2014  5  19 10 10 10",
+                  "2014 - 5 - 19 10:10:10",
+                  "2014 .5 . 19 10:10:10",
+                  "2014 \ 5 \ 19 10:10:10",
+                  "2014 / 5 / 19 10:10:10",
+                  "2014年5月19日 10小时10分10秒",
+                  "14年5月19日 10小时10分10秒",
+                  "5月19日 10小时10分10秒",
+                  "5月19日 10小时10分",
+                  "5月19日　10小时10分",
+                  "5月19日 10小时10分",
+                  " 发表于：May 19, 2014 10小时10分10秒",
+                  " May 19, 2014 10小时10分10秒",
+                  "10小时10分10秒",
+                  "10小时10分",
+                  "2014年5月19日",
+                  "14年5月19日",
+                  "5月19日",
+                  '2013-12',
+                  '2014 12',
+                  ]
+
+  special_case = [
+                  "刚刚",
+                  "2分钟前",
+                  "发表于：5年前",
+                  "5年前",
+                  "2月前",
+                  "2个月前",
+                  " 5 月前",
+                  "2周前",
+                  "2星期前",
+                  "2个星期前",
+                  "发表于：5分钟前",
+                  "发表于：五分钟前",
+                  "发表于：伍分钟前",
+                  "两年前",
+                  "二年前",
+                  "两小时前",
+                  "2个小时前",
+                  "伍分钟前",
+                  "两秒前",
+                  '1375515597',
+                  ]
+  calc_ts_obj = TimeParser()
+  teststr = u'发布:昨天 19:26'
+  teststr = teststr.replace(' ', ' ')
+  time_temp = calc_ts_obj.timestamp(teststr, refer_time=1375515597)
+  print time_temp
+  timeArray = time.localtime(time_temp)
+  otherStyleTime = time.strftime("%Y-%m-%d %H:%M:%S", timeArray)
+  print otherStyleTime
+<<<<<<< .mine
+  print calc_ts_obj.timestamp(teststr)
+  for i in test_timestr:
+    timestamp = calc_ts_obj.timestamp(i)
+    timeArray = time.localtime(timestamp)
+    otherStyleTime = time.strftime("%Y-%m-%d %H:%M:%S", timeArray)
+    print 'test: %s， time: %s' % (i, otherStyleTime)
+  for i in special_case:
+    timestamp = calc_ts_obj.timestamp(i)
+    timeArray = time.localtime(timestamp)
+    otherStyleTime = time.strftime("%Y-%m-%d %H:%M:%S", timeArray)
+    print 'Special:%s, time:%s' % (i, otherStyleTime)
+  print 'time parser finish....'
+  
+=======
+  # print calc_ts_obj.timestamp(teststr)
+  # for i in test_timestr:
+  #   timestamp = calc_ts_obj.timestamp(i)
+  #   timeArray = time.localtime(timestamp)
+  #   otherStyleTime = time.strftime("%Y-%m-%d %H:%M:%S", timeArray)
+  #   print 'test: %s， time: %s' % (i, otherStyleTime)
+  # for i in special_case:
+  #   timestamp = calc_ts_obj.timestamp(i)
+  #   timeArray = time.localtime(timestamp)
+  #   otherStyleTime = time.strftime("%Y-%m-%d %H:%M:%S", timeArray)
+  #   print 'Special:%s, time:%s' % (i, otherStyleTime)
+  # print 'time parser finish....'
+>>>>>>> .r115380

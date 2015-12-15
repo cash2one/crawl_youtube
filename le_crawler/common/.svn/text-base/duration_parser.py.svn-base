@@ -1,0 +1,64 @@
+#!/usr/bin/env python
+#-*-coding:utf-8-*-
+
+__author__ = 'zhaojincheng'
+
+import re
+import sys
+import string
+
+reload(sys)
+sys.setdefaultencoding('utf8')
+
+
+re_list = [
+  re.compile(ur"[^\d]*((\d{1,})(秒)?)$"),
+  re.compile(ur"[^\d]*?((\d{1,2})(:|时|小时))?((\d{1,2})(:|分|分钟))((\d{1,2})(秒)?)?$")]
+
+def duration_format(duration_str, duration_encode='utf-8'):
+  duration_str = duration_str.lower()
+  duration_str = duration_str.decode(duration_encode)
+  duration_str = duration_str.strip()
+  return duration_str
+
+def array2int(parser_array):
+  ret = 0
+  length = len(parser_array)
+  if length>=3 and parser_array[-2] is not None:
+    ret += string.atoi(parser_array[-2])
+  if length>=6 and parser_array[-5] is not None:
+    ret += string.atoi(parser_array[-5])*60
+  if length>=9 and parser_array[-8] is not None:
+    ret += string.atoi(parser_array[-8])*3600
+  return ret
+
+def duration2int(duration_str, duration_encode='utf-8'):
+  try:
+    duration_str = duration_format(duration_str, duration_encode)
+    parser_array = []
+    for re_pattern in re_list:
+      duration_array_rematch = re_pattern.match(duration_str)
+      if duration_array_rematch:
+        parser_array = duration_array_rematch.groups()
+        break
+    return array2int(parser_array)
+  except:
+    return 0
+
+if __name__ == '__main__':
+  duration_map = {
+    '时长：1小时1分10秒':3670,
+    '时长：10:51':651,
+    '1时1分':3660,
+    '01:57:01':7021,
+    '2秒':2,
+    '03:02':182,
+    '3分10秒':190,
+    '102':102,
+  }
+  duration_str = '1小时1分'
+  print duration2int(duration_str)
+  for i in duration_map:
+    print 'duration_str:%s, duration_int:%s' % (i, duration2int(i))
+    assert duration_map[i] == duration2int(i)
+  print 'duration_parser finish........'

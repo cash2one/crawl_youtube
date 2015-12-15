@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/!svn/ver/122059/tp/search2/crawler_ver2/le_crawler/common/langdetect/tests/utils
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/!svn/ver/122059/tp/search2/crawler_ver2/le_crawler/common/langdetect/tests/utils/__init__.py
+END
+test_lang_profile.py
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/!svn/ver/122059/tp/search2/crawler_ver2/le_crawler/common/langdetect/tests/utils/test_lang_profile.py
+END
+test_ngram.py
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/!svn/ver/122059/tp/search2/crawler_ver2/le_crawler/common/langdetect/tests/utils/test_ngram.py
+END

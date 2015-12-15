@@ -1,0 +1,27 @@
+# ifeng ent
+{ "content" :
+  [
+    {
+      "url" : [
+        "http://ent.ifeng.com/listpage/236/1/list.shtml",
+        "http://ent.ifeng.com/listpage/236/(*1-10,0*)/list.shtml",
+        "http://ent.ifeng.com/listpage/44168/1/list.shtml",
+        "http://ent.ifeng.com/listpage/44168/(*1-10,0*)/list.shtml",
+# http://app.ent.ifeng.com/star 
+        "http://app.ent.ifeng.com/star/new.php?id=1&page=1",
+        "http://app.ent.ifeng.com/star/new.php?id=(*1-3600,0*)&page=(*1-5,0*)",
+        "http://ent.ifeng.com/listpage/14584/1/list.shtml",
+        "http://ent.ifeng.com/listpage/14584/(*1-10,0*)/list.shtml",
+        "http://ent.ifeng.com/listpage/476/1/list.shtml",
+        "http://ent.ifeng.com/listpage/476/(*1-10,0*)/list.shtml",
+        "http://ent.ifeng.com/listpage/31031/1/list.shtml",
+        "http://ent.ifeng.com/listpage/31031/(*1-10,0*)/list.shtml",
+        ""
+       ],
+      "category" : "news",
+      "enable"   : true,
+      "type"     : "list",
+      "id"     : "ifeng.com"
+    }
+    ]
+}

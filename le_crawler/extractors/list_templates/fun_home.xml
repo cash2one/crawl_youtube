@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <url_pattern>http://www.fun.tv/channel/.*</url_pattern>
+  <match target='category_list'>
+    <xpath>//div[@class="hd-content-sub-con"]//a[@class="item current"]/text()</xpath>
+    <mapping map2=''>全部</mapping>
+    <drop_empty></drop_empty>
+    <connect>,</connect>
+  </match>
+  <match target='category'>
+    <xpath>//div[@class="hd-content-sub-con"]//a[@class="item current"]/text()</xpath>
+  </match>
+  <struct target='items'>
+    <xpath>//div[contains(@class, "mod-vd-i")]</xpath>
+    <match target='url'>
+      <xpath>./div[@class="pic"]/a/@href</xpath>
+      <prefix no_duplicate='true'>http://www.fun.tv</prefix>
+    </match>
+    <match target='title'>
+      <xpath>./div[@class="pic"]/a/@title</xpath>
+    </match>
+    <match target='duration' data_type='int'>
+      <xpath>./div[@class="pic"]//i[@class="tip"]/text()</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>./div[@class="pic"]/a/img/@_lazysrc</xpath>
+    </match>
+    <match target='play_total'>
+      <xpath>./div[@class="info"]/div[@class="detail"]/span/text()</xpath>
+      <regex>.*：(\d+\.?,?\d*万?).*</regex>
+    </match>
+  </struct>
+</template>

@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/conf
+END
+allowed_domains.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/conf/allowed_domains.cfg
+END
+denied_domains.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/conf/denied_domains.cfg
+END
+base_domains.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/conf/base_domains.cfg
+END

@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/!svn/ver/27804/tp/search2/crawler_ver2/cpython/base
+END
+string_piece.cc
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/27804/tp/search2/crawler_ver2/cpython/base/string_piece.cc
+END
+string_piece.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/27804/tp/search2/crawler_ver2/cpython/base/string_piece.h
+END
+python_base_lib.cc
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/27804/tp/search2/crawler_ver2/cpython/base/python_base_lib.cc
+END
+hash.cc
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/27804/tp/search2/crawler_ver2/cpython/base/hash.cc
+END
+hash.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/27804/tp/search2/crawler_ver2/cpython/base/hash.h
+END
+port.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/27804/tp/search2/crawler_ver2/cpython/base/port.h
+END
+basictypes.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/27804/tp/search2/crawler_ver2/cpython/base/basictypes.h
+END

@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/WebRoot/WEB-INF
+END
+struts-logic.tld
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/WebRoot/WEB-INF/struts-logic.tld
+END
+struts-tiles.tld
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/WebRoot/WEB-INF/struts-tiles.tld
+END
+struts-config.xml
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/WebRoot/WEB-INF/struts-config.xml
+END
+struts-nested.tld
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/WebRoot/WEB-INF/struts-nested.tld
+END
+struts-html.tld
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/WebRoot/WEB-INF/struts-html.tld
+END
+ApplicationResources.properties
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/WebRoot/WEB-INF/ApplicationResources.properties
+END
+struts-bean.tld
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/WebRoot/WEB-INF/struts-bean.tld
+END
+validator-rules.xml
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/WebRoot/WEB-INF/validator-rules.xml
+END
+web.xml
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/WebRoot/WEB-INF/web.xml
+END
+.struts-config.mex
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/WebRoot/WEB-INF/.struts-config.mex
+END
+sqlconnect.config
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/WebRoot/WEB-INF/sqlconnect.config
+END

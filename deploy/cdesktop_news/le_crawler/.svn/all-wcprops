@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/76165/tp/search2/crawler_ver2/deploy/cdesktop_news/le_crawler
+END
+genpy
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/!svn/ver/76165/tp/search2/crawler_ver2/deploy/cdesktop_news/le_crawler/genpy
+END
+js_dep
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/!svn/ver/76165/tp/search2/crawler_ver2/deploy/cdesktop_news/le_crawler/js_dep
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/!svn/ver/76165/tp/search2/crawler_ver2/deploy/cdesktop_news/le_crawler/__init__.py
+END
+settings.py
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/!svn/ver/76165/tp/search2/crawler_ver2/deploy/cdesktop_news/le_crawler/settings.py
+END
+common
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/!svn/ver/76165/tp/search2/crawler_ver2/deploy/cdesktop_news/le_crawler/common
+END
+core
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/76165/tp/search2/crawler_ver2/deploy/cdesktop_news/le_crawler/core
+END
+base
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/76165/tp/search2/crawler_ver2/deploy/cdesktop_news/le_crawler/base
+END
+loop_start_crawler.sh
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/!svn/ver/76165/tp/search2/crawler_ver2/deploy/cdesktop_news/le_crawler/loop_start_crawler.sh
+END

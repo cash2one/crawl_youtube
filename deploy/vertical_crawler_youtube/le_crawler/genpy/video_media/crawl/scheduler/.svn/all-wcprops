@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/genpy/video_media/crawl/scheduler
+END
+ttypes.py
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/genpy/video_media/crawl/scheduler/ttypes.py
+END
+constants.py
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/genpy/video_media/crawl/scheduler/constants.py
+END
+SchedulerService.py
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/genpy/video_media/crawl/scheduler/SchedulerService.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/genpy/video_media/crawl/scheduler/__init__.py
+END
+SchedulerService-remote
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/genpy/video_media/crawl/scheduler/SchedulerService-remote
+END

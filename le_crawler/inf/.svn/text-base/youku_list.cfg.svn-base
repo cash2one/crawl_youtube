@@ -1,0 +1,184 @@
+{
+  "content": [
+    {
+      "url" : [
+        "http://news.youku.com/jiankong/jrtj",
+        ""
+      ],
+      "extend_map" : {},
+      "type" : "list",
+      "enable" : true,
+      "id" : "youku_jinrituijian"
+    },
+    {
+      "url" : [
+        "http://news.youku.com/jiankong",
+        ""
+      ],
+      "extend_map" : {},
+      "type" : "list",
+      "enable" : true,
+      "id" : "youku_jiankongjishi"
+    },
+    {
+      "url" : [
+        "http://news.youku.com/mil",
+        ""
+      ],
+      "extend_map" : {},
+      "type" : "list",
+      "enable" : true,
+      "id" : "youku_jinqingqianxian"
+    },
+    {
+      "url" : [
+        "http://news.youku.com/hotnews/qsj",
+        ""
+      ],
+      "extend_map" : {},
+      "type" : "list",
+      "enable" : true,
+      "id" : "youku_qianshijiao"
+    },
+    {
+      "url" : [
+        "http://news.youku.com/jiankong/dyxc",
+        ""
+      ],
+      "extend_map" : {},
+      "type" : "list",
+      "enable" : true,
+      "id" : "youku_diyixianchang"
+    },
+    {
+      "url" : [
+        "http://news.youku.com/jiankong/shggx",
+        ""
+      ],
+      "extend_map" : {},
+      "type" : "list",
+      "enable" : true,
+      "id" : "youku_shenghuogezhongxiu"
+    },
+    {
+      "url" : [
+        "http://news.youku.com/renwen",
+        ""
+      ],
+      "extend_map" : {},
+      "type" : "list",
+      "enable" : true,
+      "id" : "youku_renwen"
+    },
+    {
+      "url" : [
+        "http://paike.youku.com/index/pkjx",
+        ""
+      ],
+      "extend_map" : {},
+      "type" : "list",
+      "enable" : true,
+      "id" : "youku_pkjx"
+    },
+    {
+      "url" : [
+        "http://paike.youku.com/index/zpdr",
+        ""
+      ],
+      "extend_map" : {},
+      "type" : "list",
+      "enable" : true,
+      "id" : "youku_zpdr"
+    },
+    {
+      "url" : [
+        "http://paike.youku.com/index/pzqq",
+        ""
+      ],
+      "extend_map" : {},
+      "type" : "list",
+      "enable" : true,
+      "id" : "youku_pzqq"
+    },
+    {
+      "url" : [
+        "http://paike.youku.com/index/ssxj",
+        ""
+      ],
+      "extend_map" : {},
+      "type" : "list",
+      "enable" : true,
+      "id" : "youku_ssxj"
+    },
+    {
+      "url" : [
+        "http://paike.youku.com/index/xcjl",
+        ""
+      ],
+      "extend_map" : {},
+      "type" : "list",
+      "enable" : true,
+      "id" : "youku_xcjl"
+    },
+    {
+      "url" : [
+        "http://finance.youku.com/caijingkuaixun/new",
+        ""
+      ],
+      "extend_map" : {},
+      "type" : "list",
+      "enable" : true,
+      "id" : "youku_caijingkuaixun"
+    },
+    {
+      "url" : [
+        "http://finance.youku.com/jujiaotoutiao/new",
+        ""
+      ],
+      "extend_map" : {},
+      "type" : "list",
+      "enable" : true,
+      "id" : "youku_jujiaotoutiao"
+    },
+    {
+      "url" : [
+        "http://finance.youku.com/chuangye/new",
+        ""
+      ],
+      "extend_map" : {},
+      "type" : "list",
+      "enable" : true,
+      "id" : "youku_chuangye"
+    },
+    {
+      "url" : [
+        "http://finance.youku.com/index/xflc",
+        ""
+      ],
+      "extend_map" : {},
+      "type" : "list",
+      "enable" : true,
+      "id" : "youku_xflc"
+    },
+    {
+      "url" : [
+        "http://sports.youku.com/index/zuqiu",
+        ""
+      ],
+      "extend_map" : {},
+      "type" : "list",
+      "enable" : true,
+      "id" : "youku_tianxiazuqiu"
+    },
+    {
+      "url" : [
+        "http://sports.youku.com/index/lanqiu",
+        ""
+      ],
+      "extend_map" : {},
+      "type" : "list",
+      "enable" : true,
+      "id" : "youku_tianxialanqiu"
+    }
+  ]
+}

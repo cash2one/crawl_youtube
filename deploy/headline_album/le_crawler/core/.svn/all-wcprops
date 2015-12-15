@@ -1,0 +1,167 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/core
+END
+docid_generator.py
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/core/docid_generator.py
+END
+connection_manager.py
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/core/connection_manager.py
+END
+crawler_docid_gen.py
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/core/crawler_docid_gen.py
+END
+extend_map_exractor.py
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/core/extend_map_exractor.py
+END
+extract_custom_block_words.py
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/core/extract_custom_block_words.py
+END
+page_writer_pipeline.py
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/core/page_writer_pipeline.py
+END
+crawldoc_convert.py
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/core/crawldoc_convert.py
+END
+connection.py
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/core/connection.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/core/__init__.py
+END
+recrawl.py
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/core/recrawl.py
+END
+signals.py
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/core/signals.py
+END
+sgml.py
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/core/sgml.py
+END
+dupefilter.py
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/core/dupefilter.py
+END
+request_compress.py
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/core/request_compress.py
+END
+page_writer.py
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/core/page_writer.py
+END
+domain_filter_middleware.py
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/core/domain_filter_middleware.py
+END
+exact_link_extract.py
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/core/exact_link_extract.py
+END
+extra_extend_map_engine.py
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/core/extra_extend_map_engine.py
+END
+scheduler_client.py
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/core/scheduler_client.py
+END
+queue_manager.py
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/core/queue_manager.py
+END
+scheduler.py
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/core/scheduler.py
+END
+stored_dupfilter.py
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/core/stored_dupfilter.py
+END
+timer.py
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/core/timer.py
+END
+items.py
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/core/items.py
+END
+le_sgml.py
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/core/le_sgml.py
+END
+queue.py
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/core/queue.py
+END
+queue_cluster.py
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/core/queue_cluster.py
+END

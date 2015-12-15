@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='utf-8'?>
+<template>
+  <url_pattern>http://so.tv.sohu.com/list.*</url_pattern>
+  <match target='category'>
+    <xpath>//ul[@class="r sn-2"]/li[@class="son"]/a/text()</xpath>
+  </match>
+  <match target='area'>
+    <xpath>//div[@class="sort-type"]/dl[dt="地区："]/dd/a[@class="aon"]/text()</xpath>
+  </match>
+  <match target='language'>
+    <xpath>//div[@class="sort-type"]/dl[dt="语言："]/dd/a[@class="aon"]/text()</xpath>
+  </match>
+  <match target='showyear'>
+    <xpath>//div[@class="sort-type"]/dl[dt="年份："]/dd/a[@class="aon"]/text()</xpath>
+  </match>
+  <match target='category_list'>
+    <xpath>//ul[@class="r sn-2"]/li[@class="son"]/a/text()</xpath>
+    <xpath>//div[@class="sort-type"]/dl/dd/a[@class="aon"]/text()</xpath>
+    <mapping map2=''>全部</mapping>
+    <drop_empty></drop_empty>
+    <connect>,</connect>
+  </match>
+  <match target='no_data'>
+    <xpath>//*[@class='so-erro']/text()</xpath>
+  </match>
+  <struct target='items'>
+    <xpath>//ul[@class="st-list short cfix"]/li</xpath>
+    <match target='url'>
+      <xpath>./strong/a/@href</xpath>
+    </match>
+    <match target='url'>
+      <xpath>./h3/a/@href</xpath>
+    </match>
+    <match target='title'>
+      <xpath>./strong/a/text()</xpath>
+    </match>
+    <match target='title'>
+      <xpath>./h3/a/text()</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>./div[@class="st-pic"]/a/img/@src</xpath>
+    </match>
+    <match target='duration'>
+      <xpath>./div/a/span[@class="maskTx"]/text()</xpath>
+    </match>
+    <match target='duration'>
+      <xpath>./div/span[@class="maskTx"]/text()</xpath>
+    </match>
+    <match target='play_total'>
+      <xpath>./p/a[1]/text()</xpath>      
+    </match>
+    <match target='showtime'>
+      <xpath>./p/a[2]/text()</xpath>
+    </match>
+  </struct>
+</template>

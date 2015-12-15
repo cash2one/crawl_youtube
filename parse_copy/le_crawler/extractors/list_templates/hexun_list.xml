@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <encoding>utf-8</encoding>
+  <url_pattern>http://tv.hexun.com/.*</url_pattern>
+  <match target='category_list' limit='1'>
+    <xpath>//div[@id="mainer"]/div/a[2]/text()</xpath>
+  </match>
+  <struct target='items'>
+    <xpath>//*[@class="con_list"]/li</xpath>
+    <match target='title'>
+      <xpath>.//p[@class="gray"]/text()</xpath>
+    </match>
+    <match target='desc'>
+      <xpath>./p/text()</xpath>
+    </match>
+    <match target='url'>
+      <xpath>.//dt/a/@href</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>.//dl[@class="list_boxer"]//img/@src</xpath>
+    </match>
+    <match target='showtime'>
+      <xpath>.//dd/p/span/text()</xpath>
+      <regex>发布时间：(\w+)</regex>
+    </match>
+  </struct>
+</template>

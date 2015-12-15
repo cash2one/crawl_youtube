@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<template>
+  <encoding>utf-8</encoding>
+  <url_pattern>http://tv.people.com.cn/n/.*</url_pattern>
+  <match target='title'>
+    <xpath>//div[@class="tit1 fl"]/h2/text()</xpath>
+  </match>
+  <!--  <match target='category'>
+    <xpath>//div[@class="nav_center fl"]/a[1]/text()</xpath>
+    <mapping map2='新闻'>首页</mapping>
+  </match> -->
+  <match target='tags'>
+    <xpath>//div[@class="daohang"]/a[last()]/text()</xpath>
+  </match>
+  <match target='showtime'>
+    <xpath>//div[@class="publishtime"]/text()</xpath>
+    <regex>.*?(\d+.*)</regex>
+  </match>
+  <match target='crumbs'>
+    <xpath>//div[@class="daohang" or @class="daohang fl"]/a/text()</xpath>
+    <connect>,</connect>
+  </match>
+</template>

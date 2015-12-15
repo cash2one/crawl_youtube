@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<template>
+  <encoding>utf-8</encoding>
+  <url_pattern>http://tv.people.com.cn/GB/.*</url_pattern>
+  <match target='category'>
+    <xpath>//div[@class="nav_center fl"]/a[1]/text()</xpath>
+    <mapping map2='新闻'>首页</mapping>
+  </match>
+  <match target='category_list'>
+    <xpath>//div[@class="fl fl1"]/a/text()</xpath>
+    <connect>,</connect>
+  </match>
+  <struct target='items'>
+    <xpath>//div[starts-with(@class, "w1000 p1_content")]/ul/li</xpath>
+    <match target='title'>
+      <xpath>./a/text()</xpath>
+    </match>
+    <match target='url'>
+      <xpath>./a/@href</xpath>
+      <prefix no_duplicate='true'>http://tv.people.com.cn</prefix>
+    </match>
+    <match target='showtime'>
+      <xpath>./i/text()</xpath>
+    </match>
+  </struct>
+  <struct target='items'>
+    <xpath>//div[@class="d2_4 clear"]/ul/li</xpath>
+    <match target='title'>
+      <xpath>./a[last()]/text()</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>./a[1]/img/@src</xpath>
+      <prefix no_duplicate='true'>http://tv.people.com.cn</prefix>
+    </match>
+    <match target='url'>
+      <xpath>./a[1]/@href</xpath>
+      <prefix no_duplicate='true'>http://tv.people.com.cn</prefix>
+    </match>
+  </struct>
+</template>

@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='utf-8'?>
+<template>
+  <encoding>utf-8</encoding>
+  <url_pattern>http://v.ifeng.com/(?!vlist).*</url_pattern>
+  <match target='title'>
+    <xpath>//*[@id="js_video_title"]/span/text()</xpath>
+  </match>
+  <match target='title'>
+    <xpath>//*[@id="js_video_title"]/text()</xpath>
+  </match>
+  <match target='tags'>
+    <xpath>//*[@videoinfo]/ul/li[3]/a/text()</xpath>
+  </match>
+  <match target='tags'>
+    <xpath>//*[@id="js_info_continner"]/div/ul/li/a/text()</xpath>
+  </match>
+  <match target='tags'>
+    <xpath>//*[@class="vtags"]/a/text()</xpath>
+    <xpath>//*[@class="protag"]/a/text()</xpath>
+  </match>
+  <match target='duration'>
+    <xpath>//*[@id="duration"]/text()</xpath>
+  </match>
+  <match target='program'>
+    <xpath>//*[@id="js_info_continner"]/div/h3/a/@href</xpath>
+  </match>
+  <match target='program'>
+    <xpath>/html/body/div/div[2]/div[1]/div[2]/ul/li[1]/a/@href</xpath>
+  </match>
+  <match target='desc'>
+    <xpath>//*[@id="js_info_continner"]/div/p[1]/text()</xpath>
+  </match>
+  <match target='desc'>
+    <xpath>//*[@id="js_video_continner"]/div[1]/div[2]/p/text()</xpath>
+  </match>
+  <match target='showtime'>
+    <xpath>//p[@class="vTit_crumbs"]//span[@class="data"]/text()</xpath>
+  </match>
+  <match target='showtime'>
+    <xpath>//*[@id="js_video_continner"]/div[@class="playerinfo"]/p/text()</xpath>
+    <xpath>//*[@id="js_video_continner"]/div[@class="vTit_Inner"]/p/span[contains(text(), '发布')]/text()</xpath>
+    <regex>.*发布:(.*)</regex>
+  </match>
+  <match target='play_total'>
+    <xpath>//*[@id="numPlay"]/text()</xpath>
+    <xpath>//*[@id="js_pubTime"]/text()</xpath>
+    <regex>.*?(\d+.*)</regex>
+  </match>
+  <match target='voteup_count'>
+    <xpath>//*[@class="ding"]/a/em/text()</xpath>
+  </match>
+  <match target='votedown_count'>
+    <xpath>//*[@class="cai"]/a/em/text()</xpath>
+  </match> 
+</template>

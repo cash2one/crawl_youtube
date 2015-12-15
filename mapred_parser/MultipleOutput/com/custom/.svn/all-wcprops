@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/MultipleOutput/com/custom
+END
+MultipleTextOutputFormatByKey.class
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/MultipleOutput/com/custom/MultipleTextOutputFormatByKey.class
+END
+MultipleSequenceFileOutputFormatByKey.class
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/MultipleOutput/com/custom/MultipleSequenceFileOutputFormatByKey.class
+END

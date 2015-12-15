@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/WebRoot/WEB-INF/classes/letv/mock/album
+END
+AlbumInfo.class
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/WebRoot/WEB-INF/classes/letv/mock/album/AlbumInfo.class
+END
+AlbumInfos.class
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/WebRoot/WEB-INF/classes/letv/mock/album/AlbumInfos.class
+END
+PublishedAlbum.class
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/WebRoot/WEB-INF/classes/letv/mock/album/PublishedAlbum.class
+END
+AlbumInfosType.class
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/WebRoot/WEB-INF/classes/letv/mock/album/AlbumInfosType.class
+END
+SimpleConfReader.class
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/WebRoot/WEB-INF/classes/letv/mock/album/SimpleConfReader.class
+END
+AlbumInfo$Status.class
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/WebRoot/WEB-INF/classes/letv/mock/album/AlbumInfo$Status.class
+END
+AlbumOper.class
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/WebRoot/WEB-INF/classes/letv/mock/album/AlbumOper.class
+END

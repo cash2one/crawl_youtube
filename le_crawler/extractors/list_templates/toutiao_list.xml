@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <url_pattern>http://toutiao.com/articles.+</url_pattern>
+  <match target='category'>
+    <xpath>//div[@class="container clearfix"]/ul/li/a[@class="item selected"]/text()</xpath>
+    <drop_empty></drop_empty>
+  </match>
+  <match target='category_list'>
+    <xpath>//div[@class="container clearfix"]/ul/li/a[@class="item selected"]/text()</xpath>
+    <drop_empty></drop_empty>
+  </match>
+  <struct target='items'>
+    <xpath>//li[@data-node='item']</xpath>
+    <match target='title'>
+      <xpath>./div[@class='info']//a/@title</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>.//img/@src</xpath>
+    </match>
+    <match target='writer'>
+      <xpath>./p[@class='footer']/span//span/text()</xpath>
+    </match>
+    <match target='url'>
+      <xpath>./div[@class='info']//a/@href</xpath>
+      <prefix no_duplicate='true'>http://toutiao.com</prefix>
+    </match>
+  </struct>
+</template>

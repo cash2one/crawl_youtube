@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <url_pattern>http://v.qq.com/.*?/list/.*</url_pattern>
+  <match target='category'>
+    <xpath>//dl[@class="mod_indexs_bar bor"]/dd[@class="current"]/a/text()</xpath>
+  </match>
+  <match target='area'>
+    <xpath>//div[@class="mod_indexs bor"]/div/ul[@gname="mi_area"]/li[@class="current"]/a/text()</xpath>
+  </match>
+  <match target='showyear'>
+    <xpath>//div[@class="mod_indexs bor"]/div/ul[@gname="mi_year"]/li[@class="current"]/a/text()</xpath>
+  </match>
+  <match target='category_list'>
+    <xpath>//div[@class="mod_indexs bor"]/div/ul/li[contains(@class, "current")]/a/text()</xpath>
+    <xpath>//div[@class="mod_variety_list"]/ul/li[@class="current"]/a/text()</xpath>
+    <xpath>//*[@id="mod_filter_list"]/li/div/a[@class="current"]/text()</xpath>
+    <xpath>//div[@class="mod_list"]/div[1]/dl/dd/a[@class="_gtag current _hotkey"]/text()</xpath>
+    <xpath>//div[@class="mod_variety_list"]/h3[@class="c_txt5 open open current"]/a/text()</xpath>
+    <mapping map2=''>全部</mapping>
+    <drop_empty></drop_empty>
+    <connect>,</connect>
+  </match>
+  <match target='no_data'>
+    <xpath>//*[@id="content"]/text()</xpath>
+    <drop_empty></drop_empty>
+  </match>
+  <struct target='items'>
+    <xpath>//*[@class="mod_video_list poster"]/div/ul/li</xpath>
+    <match target='url'>
+      <xpath>./h6/a/@href</xpath>
+    </match>
+    <match target='title'>
+      <xpath>./h6/a/text()</xpath>
+    </match>
+    <match target='duration'>
+      <xpath>./a/div/*[@class='mod_version']/text()</xpath>
+    </match>
+    <match target='poster' example='http://v.qq.com/paike/list/pklist_0_0_1_1.html'>
+      <xpath>./a/img/@src</xpath>
+      <xpath>./a/img/@lz_src</xpath>
+    </match>
+    <match target='quality'>
+      <xpath>./a/div/*[@class='mod_HD']/text()</xpath>
+    </match>
+    <match target='play_total'>
+      <xpath>./p/span[1]/text()</xpath>
+    </match>
+    <match target='actor'>
+      <xpath>./p[@class="singer"]/a/text()</xpath>
+    </match>
+  </struct>
+  <struct target='items'>
+    <xpath>//*[@id="content"]/div</xpath>
+    <match target='url'>
+      <xpath>./div[1]/a/@href</xpath>
+    </match>
+    <match target='title'>
+      <xpath>./div[2]/div/h3/a/text()</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>./div[1]/a/img/@src</xpath>
+    </match>
+    <match target='singer'>
+      <xpath>./div[2]/div/p/a/text()</xpath>
+    </match>
+  </struct>
+</template>

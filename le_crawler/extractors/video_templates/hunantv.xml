@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <encoding>utf8</encoding>
+  <url_pattern>http://www.hunantv.com/v/.+</url_pattern>
+  <!--  <match target='category'>
+    <xpath>//div[@class="play-index-tiltag"]/a[2]/text()</xpath>
+  </match>
+  <match target='category'>
+    <xpath>//script/text()</xpath>
+    <regex>.*?type: "(.*?)".*</regex>
+    <mapping map2='音乐'>music</mapping>
+  </match> -->
+  <match target='title'> 
+    <xpath>//div[@class="play-index-til"]/text()</xpath>
+    <xpath>//div[@class="u-videoplay-tit"]/text()</xpath>
+  </match>
+  <match target='play_total'>
+    <xpath>//p[@class="play-numall"]/em/text()</xpath>
+    <xpath>//div[@class="u-videoplay-num"]/em/text()</xpath>
+  </match>
+  <match target='voteup_count'>
+    <xpath>//div[@id="hony-share-emotion"]/a[1]/span/text()</xpath>
+    <xpath>//div[@class="u-videoplay-rec"]/a[1]/em/text()</xpath>
+  </match>
+  <match target='votedown_count'>
+    <xpath>//div[@id="hony-share-emotion"]/a[2]/span/text()</xpath>
+    <xpath>//div[@class="u-videoplay-rec"]/a[2]/em/text()</xpath>
+  </match>
+  <match target='short_desc'>
+    <xpath>//p[@class="info-box-all clearfix"]/span/text()</xpath>
+  </match>
+  <match target='showtime'>
+    <xpath>//div[@id="newest"]/div/dl[contains(@class, "playing")]/dt/p[@class="dt-time"]/text()</xpath>
+  </match>
+  <match target='duration'>
+    <xpath>//div[@id="newest"]/div/dl[1]/dd/span[@class="time"]/text()</xpath>
+  </match>
+  <match target='crumbs'>
+    <xpath>//div[@class="play-index-tiltag"]/*/text() | //div[@class="play-index-tiltag"]/text()</xpath>
+    <xpath>//div[@class="u-videoplay-crumbs"]/a[@href!="#"]/text()</xpath>
+    <regex>>?(.*)</regex>
+    <drop_empty></drop_empty>
+    <connect>,</connect>
+  </match>
+</template>

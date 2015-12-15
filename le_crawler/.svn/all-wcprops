@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/!svn/ver/122430/tp/search2/crawler_ver2/le_crawler
+END
+start_crawler.sh
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/97766/tp/search2/crawler_ver2/le_crawler/start_crawler.sh
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/98058/tp/search2/crawler_ver2/le_crawler/__init__.py
+END
+loop_start_crawler.sh
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/97766/tp/search2/crawler_ver2/le_crawler/loop_start_crawler.sh
+END

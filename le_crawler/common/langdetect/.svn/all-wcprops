@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/122170/tp/search2/crawler_ver2/le_crawler/common/langdetect
+END
+detector.py
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/!svn/ver/122170/tp/search2/crawler_ver2/le_crawler/common/langdetect/detector.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/!svn/ver/122059/tp/search2/crawler_ver2/le_crawler/common/langdetect/__init__.py
+END
+detector_factory.py
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/!svn/ver/122059/tp/search2/crawler_ver2/le_crawler/common/langdetect/detector_factory.py
+END
+language.py
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/!svn/ver/122059/tp/search2/crawler_ver2/le_crawler/common/langdetect/language.py
+END
+lang_detect_exception.py
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/!svn/ver/122059/tp/search2/crawler_ver2/le_crawler/common/langdetect/lang_detect_exception.py
+END

@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='utf-8'?>
+<template>
+  <url_pattern>http://tv.sohu.com/(yule|sports|news|ugc)/.*</url_pattern>
+  <encoding>utf8</encoding>
+  <match target='category'>
+    <xpath>//div[@class="hd_nav cf"]/ul[@class="l hd_n1"]/li[@class="hd_n hd_n_on"]/a/text()</xpath>
+  </match>
+  <match target='category_list'>
+    <xpath>//div[@class="hd_nav cf"]/ul[@class="l hd_n1"]/li[@class="hd_n hd_n_on"]/a/text()</xpath>
+    <mapping map2=''>全部</mapping>
+    <drop_empty></drop_empty>
+    <connect>,</connect>
+  </match>
+  <struct target='items' example='http://tv.sohu.com/ugc/fun'>
+    <xpath>//*[h3/a]</xpath>
+    <match target='url' limit='1'>
+      <xpath>.//a[img]/@href</xpath>
+      <xpath>../p/a[img]/@href | ../a[img]/@href</xpath>
+    </match>
+    <match target='title'>
+      <xpath>./h3/a/text()</xpath>
+    </match>
+    <match target='poster' limit='1'>
+      <xpath>.//a/img/@src</xpath>
+      <xpath>../p/a/img/@src | ../a/img/@src</xpath>
+    </match>
+    <match target='play_total'>
+      <xpath>./p/a[@class="bcount r"]/text()</xpath>      
+    </match>
+  </struct>
+  <struct target='items1' example='http://tv.sohu.com/yule'>
+    <xpath>//*[p/@class='p_bt']</xpath>
+    <match target='url' limit='1'>
+      <xpath>./a[img]/@href</xpath>
+    </match>
+    <match target='title'>
+      <xpath>./p/a/text()</xpath>
+    </match>
+    <match target='poster' limit='1'>
+      <xpath>./a/img/@data-original</xpath>
+      <xpath>./a/img/@src</xpath>
+    </match>
+    <match target='play_total'>
+      <xpath>./a/span[@class="pcount"]/text()</xpath>      
+    </match>
+  </struct>
+  <struct target='items2' example='http://tv.sohu.com/news'>
+    <xpath>//*[@id='modA']/div[@class="colL"]/div[@class="fcImg rel mb25"]</xpath>
+    <match target='url'>
+      <xpath>./a/@href</xpath>
+    </match>
+    <match target='title'>
+      <xpath>./div/h2/a/text()</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>./a/img/@src</xpath>
+    </match>
+  </struct>
+  <struct target='items3' example='http://tv.sohu.com/yule'>
+    <xpath>//*[@id='modA0']/div[@class="con"]/div[@class="colL"]/a</xpath>
+    <match target='url'>
+      <xpath>./@href</xpath>
+    </match>
+    <match target='title'>
+      <xpath>./span[@class="lisTx"]/text()</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>./img/@src</xpath>
+    </match>
+	<match target='play_total'>
+      <xpath>./span[@class="pcount"]/text()</xpath>
+    </match>
+  </struct>
+</template>

@@ -1,0 +1,85 @@
+import json
+import os
+
+from ..common.xpather import Xpather
+from ..common.domain_parser import query_domain_from_url
+from youku_static import YoukuStatic
+from tudou_static import TudouStatic
+from iqiyi_static import IqiyiStatic
+from qq_static import QQStatic
+from sohu_static import SohuStatic
+from ifeng_static import IfengStatic
+from pptv_static import PPTVStatic
+from wasu_static import WasuStatic
+from hunantv_static import HunantvStatic
+from people_static import PeopleStatic
+from sina_static import SinaStatic
+from netease_static import NeteaseStatic
+from v1_static import VOneStatic
+from wuliu_static import WuliuStatic
+from cztv_static import CztvStatic
+from fun_static import FunStatic
+from toutiao_static import ToutiaoStatic
+from hexun_static import HexunStatic
+from soku_static import SokuStatic
+from youtube_static import YoutubeStatic
+#from baomihua_static import BaomihuaStatic
+
+class VideoAdaptor(object):
+  def __init__(self, templates_name):
+    py_path = os.path.dirname(os.path.realpath(__file__))
+    template_dir = os.path.join(py_path, templates_name)
+    xpather = Xpather()
+    xpather.load_templates(template_dir)
+    with open(os.path.join(template_dir, 'deadlink_urls.txt')) as f:
+      deadlinks = json.load(f)
+    for k, v in deadlinks.iteritems():
+      deadlinks[k] = set(url.rstrip('/') for url in v)
+    self._domain_extractor_dict = {
+      "youku.com": YoukuStatic(xpather, deadlinks),
+      "tudou.com": TudouStatic(xpather, deadlinks),
+      "iqiyi.com": IqiyiStatic(xpather, deadlinks),
+      "qq.com": QQStatic(xpather, deadlinks),
+      "sohu.com": SohuStatic(xpather, deadlinks),
+      "ifeng.com": IfengStatic(xpather, deadlinks),
+      "pptv.com": PPTVStatic(xpather, deadlinks),
+      "wasu.cn": WasuStatic(xpather, deadlinks),
+      "hunantv.com": HunantvStatic(xpather, deadlinks),
+      "ifeng.com": IfengStatic(xpather, deadlinks),
+      "people.com.cn": PeopleStatic(xpather, deadlinks),
+      "163.com": NeteaseStatic(xpather, deadlinks),
+      "sina.com.cn": SinaStatic(xpather, deadlinks),
+      "v1.cn": VOneStatic(xpather, deadlinks),
+      "56.com": WuliuStatic(xpather, deadlinks),
+      "cztv.com": CztvStatic(xpather, deadlinks),
+      "toutiao.com": ToutiaoStatic(xpather, deadlinks),
+      "fun.tv": FunStatic(xpather, deadlinks),
+      "hexun.com": HexunStatic(xpather, deadlinks),
+      "soku.com": SokuStatic(xpather, deadlinks),
+      "youtube.com": YoutubeStatic(xpather, deadlinks),
+    }
+
+  def get_static(self, crawler_doc):
+    if not crawler_doc:
+      return None
+    url_domain = query_domain_from_url(crawler_doc.url)
+    extractor = self._domain_extractor_dict.get(url_domain, None)
+    if not extractor:
+      return None
+    return extractor.GetStatic(crawler_doc)
+
+
+if __name__ == '__main__':
+  from optparse import OptionParser
+  import sys
+
+  sys.path.append('../../')
+  sys.path.append('../')
+  import python_library.utils as utils
+
+  adaptor = VideoAdaptor()
+  parser = OptionParser()
+  parser.add_option("-u", "--url", dest="url", help="url")
+  (options, args) = parser.parse_args()
+  html = utils.FetchHTML(options.url)
+  print adaptor.get_static(html)

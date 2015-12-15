@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <url_pattern>http://www.wasu.cn/Play/show/id/.*</url_pattern>
+  <match target='title'> 
+    <xpath>//div[@class="play_site mb10"]/div/h3/text()</xpath>
+  </match>
+  <match target='showtime'>
+    <xpath>//div[@class="play_information_t"]/div[1]/div[2]/b/text()</xpath>
+  </match>
+  <match target='tags'>
+    <xpath>//div[@class="play_information_t"]/div[1]/div[3]/a/text()</xpath>
+    <xpath>//div[@class="play_site mb10"]/div[1]/div/a[3]/text()</xpath>
+  </match>
+  <match target='short_desc'>
+    <xpath>//div[@class="play_information_t"]/div[2]/b/text()</xpath>
+  </match>
+  <!--  <match target='category'>
+    <xpath>//div[@class="play_site mb10"]/div[1]/div/a[2]/text()</xpath>
+  </match> -->
+  <match target='play_total'>
+    <xpath>//div[@class="play_video_b"]/div[1]/i/text()</xpath>
+  </match>
+  <match target='crumbs'>
+    <xpath>//div[@class="play_seat"]/a[@title]/text()</xpath>
+    <xpath>//div[@class="play_seat"]/text()</xpath>
+    <drop_empty></drop_empty>
+    <connect>,</connect>
+  </match>
+  <struct target="items">
+    <xpath>//div[@class="special_items scrollbar_items"]/div</xpath>
+    <match target="url">
+      <xpath>.//div[@class="t_link"]/a/@href</xpath>
+      <prefix no_duplicate='true'>http://www.wasu.cn</prefix>
+    </match>
+    <match target="title">
+      <xpath>.//div[@class="t_link"]/a/@title</xpath>
+    </match>
+    <match target="play_total">
+      <xpath>.//div[@class="ws_des r"]//p/span/text()</xpath>
+      <regex>播放：(\d+)</regex>
+    </match>
+    <match target="poster">
+      <xpath>.//img/@src</xpath>
+    </match>
+    <match target="duration">
+      <xpath>.//div[@class="meta_tr"]/text()</xpath>
+    </match>
+  </struct>
+</template>

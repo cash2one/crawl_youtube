@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <url_pattern>.*\.iqiyi\.com(/\w+)?/?$</url_pattern>
+  <encoding>utf8</encoding>
+  <match target='category_list'>
+    <xpath>//*[@class="topDot"]/h2/text()</xpath>
+  </match>
+  <match target='category'>
+    <xpath>//*[@class="topDot"]/h2/text()</xpath>
+  </match>
+  <struct target='items'>
+    <xpath>//div[@class="site-piclist_pic"]</xpath>
+    <match target='url'>
+      <xpath>./a/@href</xpath>
+    </match>
+    <match target='title' limit='1'>
+      <xpath>./a/@title</xpath>
+      <xpath>./a/div/div/div/p/text()</xpath>
+      <xpath>../div[@class="site-piclist_info"]/p[@class="site-piclist_info_title"]/a/text()</xpath>
+      <xpath example='http://baby.iqiyi.com/'>../div[@class="site-piclist_info"]/p/a/span[contains(@rseat, "name")]/text()</xpath>
+      <xpath example='http://dv.iqiyi.com/'>./a/div[@class="weekLink_title"]/p/text()</xpath>
+      <drop_empty></drop_empty>
+    </match>
+    <match target='duration'>
+      <xpath>./a/div/div/span/text()</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>./a//img/@src</xpath>
+    </match>
+  </struct>
+  <struct target='items1' example='http://news.iqiyi.com/'>
+    <xpath>//ul[contains(@class, 'focus-pics_item')]/li</xpath>
+    <match target='url'>
+      <xpath>./a/@href</xpath>
+    </match>
+    <match target='title'>
+      <xpath>./a/@title</xpath>
+      <xpath>./a/div/h3/text()</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>./a/img/@src</xpath>
+    </match>
+  </struct>
+  <struct target='items2' example='http://f.iqiyi.com/'>
+    <xpath>//div[@class="piclist_title"]</xpath>
+    <match target='url'>
+      <xpath>./p/a/@href</xpath>
+    </match>
+    <match target='title' limit='1'>
+      <xpath>./p/text()</xpath>
+      <xpath>./p/a/@title</xpath>
+      <xpath>./p/a/text()</xpath>
+      <drop_empty></drop_empty>
+    </match>
+    <match target='poster'>
+      <xpath>../a/img/@src</xpath>
+    </match>
+  </struct>
+  <struct target='items3' example='http://f.iqiyi.com/'>
+    <xpath>//div[contains(@class, 'video_both_flow')]</xpath>
+    <match target='url'>
+      <xpath>../@href</xpath>
+    </match>
+    <match target='title' limit='1'>
+      <xpath>./div/h1/text()</xpath>
+      <xpath>./div/p/text()</xpath>
+      <xpath>./p/text()</xpath>
+      <drop_empty></drop_empty>
+    </match>
+    <match target='poster'>
+      <xpath>../img/@src</xpath>
+    </match>
+  </struct>
+</template>

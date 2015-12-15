@@ -1,0 +1,146 @@
+{
+  "content" : [
+    {
+      "url" : [
+        "http://v.ifeng.com/vlist/nav_category/fash_0019-0063-0001/update/(*1-5,0*)/list.shtml",
+        ""
+        ],
+      "category" : "fashion_body",
+      "enable" : true,
+      "type" : "list",
+      "id"  : "fashion_body"
+    },
+    {
+      "url" : [
+        "http://v.ifeng.com/vlist/nav_category/fash_0019-0063-0002/update/(*1-5,0*)/list.shtml",
+        ""
+        ],
+      "category" : "fashion_pop",
+      "enable" : true,
+      "type" : "list",
+      "id"  : "fashion_pop"
+    },
+    {
+      "url" : [
+        "http://v.ifeng.com/vlist/nav_category/fash_0019-0063-0007/update/(*1-5,0*)/list.shtml",
+        ""
+        ],
+      "category" : "fashion_online",
+      "enable" : true,
+      "type" : "list",
+      "id"  : "fashion_online"
+    },
+    {
+      "url" : [
+        "http://v.ifeng.com/vlist/nav_category/fash_0019-0063-0008/update/(*1-5,0*)/list.shtml",
+        ""
+        ],
+      "category" : "fashion_human",
+      "enable" : true,
+      "type" : "list",
+      "id"  : "fashion_human"
+    },
+    {
+      "url" : [
+        "http://v.ifeng.com/vlist/nav_category/infor_0019-0062-0000/update/(*1-5,0*)/list.shtml",
+        ""
+        ],
+      "category" : "mainland_mainland",
+      "enable" : true,
+      "type" : "list",
+      "id"  : "mainland"
+    },
+    {
+      "url" : [
+        "http://v.ifeng.com/vlist/nav_category/infor_0019-0062-0001/update/(*1-5,0*)/list.shtml",
+        ""
+        ],
+      "category" : "world_world",
+      "enable" : true,
+      "type" : "list",
+      "id"  : "world"
+    },
+    {
+      "url" : [
+        "http://v.ifeng.com/vlist/nav_category/infor_0019-0062-0003/update/(*1-5,0*)/list.shtml",
+        ""
+        ],
+      "category" : "news_society",
+      "enable" : true,
+      "type" : "list",
+      "id"  : "news_society"
+    },
+{
+      "url" : [
+        "http://v.ifeng.com/vlist/nav_category/infor_0019-0062-0005/update/(*1-6,0*)/list.shtml",
+        ""
+        ],
+      "category" : "finance_money",
+      "enable" : true,
+      "type" : "list",
+      "id"  : "finance_money"
+    },
+{
+      "url" : [
+        "http://v.ifeng.com/vlist/nav_category/mili_0019-0052-0000/update/(*1-5,0*)/list.shtml",
+        ""
+        ],
+      "category" : "military_mainland",
+      "enable" : true,
+      "type" : "list",
+      "id"  : "military_mainland"
+    },
+{
+      "url" : [
+        "http://v.ifeng.com/vlist/nav_category/mili_0019-0052-0001/update/(*1-5,0*)/list.shtml",
+        ""
+        ],
+      "category" : "military_taiwan",
+      "enable" : true,
+      "type" : "list",
+      "id"  : "military_taiwan"
+    },
+{
+      "url" : [
+        "http://v.ifeng.com/vlist/nav_category/mili_0019-0052-0002/update/(*1-5,0*)/list.shtml",
+        ""
+        ],
+      "category" : "military_world",
+      "enable" : true,
+      "type" : "list",
+      "id"  : "military_world"
+    },
+{
+      "url" : [
+        "http://v.ifeng.com/vlist/nav_category/mili_0019-0052-0003/update/(*1-5,0*)/list.shtml",
+        ""
+        ],
+      "category" : "military_weapons",
+      "enable" : true,
+      "type" : "list",
+      "id"  : "military_weapons"
+    },
+{
+      "url" : [
+        "http://v.ifeng.com/vlist/nav_category/mili_0019-0052-0004/update/(*1-5,0*)/list.shtml",
+        ""
+        ],
+      "category" : "military_secrets",
+      "enable" : true,
+      "type" : "list",
+      "id"  : "military_secrets"
+    },
+{
+      "url" : [
+        "http://v.ifeng.com/",
+        "http://v.ifeng.com/mil/",
+        "http://v.ifeng.com/news/",
+        ""
+        ],
+      "category" : "home",
+      "enable" : true,
+      "type" : "channel",
+      "id"  : "home"
+    }
+  ]
+}

@@ -1,0 +1,161 @@
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/base
+END
+thrift_util.py
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/base/thrift_util.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/base/__init__.py
+END
+utils.py
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/base/utils.py
+END
+start_urls_load.py
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/base/start_urls_load.py
+END
+start_url_loads.py
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/base/start_url_loads.py
+END
+singleton_test.py
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/base/singleton_test.py
+END
+singleton.py
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/base/singleton.py
+END
+url_normalize_settings.py
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/base/url_normalize_settings.py
+END
+extract_content_test.py
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/base/extract_content_test.py
+END
+timestr_parser.py
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/base/timestr_parser.py
+END
+extract_content.py
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/base/extract_content.py
+END
+url_domain_parser.py
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/base/url_domain_parser.py
+END
+sharedb_test.py
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/base/sharedb_test.py
+END
+url_filter.py
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/base/url_filter.py
+END
+sharedb.py
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/base/sharedb.py
+END
+url_extend.py
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/base/url_extend.py
+END
+time_parser.py
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/base/time_parser.py
+END
+filewriter_test.py
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/base/filewriter_test.py
+END
+filewriter.py
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/base/filewriter.py
+END
+start_url_processor.py
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/base/start_url_processor.py
+END
+logutil.py
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/base/logutil.py
+END
+url_normalize_test.py
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/base/url_normalize_test.py
+END
+url_normalize.py
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/base/url_normalize.py
+END
+hash.py
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/base/hash.py
+END
+html_utils.py
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/base/html_utils.py
+END
+file_monitor.py
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/base/file_monitor.py
+END

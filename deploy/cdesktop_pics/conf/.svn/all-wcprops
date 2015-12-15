@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/76165/tp/search2/crawler_ver2/deploy/cdesktop_pics/conf
+END
+allowed_domains.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/!svn/ver/76165/tp/search2/crawler_ver2/deploy/cdesktop_pics/conf/allowed_domains.cfg
+END
+denied_domains.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/!svn/ver/76165/tp/search2/crawler_ver2/deploy/cdesktop_pics/conf/denied_domains.cfg
+END
+start_urls.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/!svn/ver/76165/tp/search2/crawler_ver2/deploy/cdesktop_pics/conf/start_urls.cfg
+END
+base_domains.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/!svn/ver/76165/tp/search2/crawler_ver2/deploy/cdesktop_pics/conf/base_domains.cfg
+END

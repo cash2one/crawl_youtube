@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/122170/tp/search2/crawler_ver2/le_crawler/common/langdetect/utils
+END
+messages.properties
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/!svn/ver/122059/tp/search2/crawler_ver2/le_crawler/common/langdetect/utils/messages.properties
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/!svn/ver/122059/tp/search2/crawler_ver2/le_crawler/common/langdetect/utils/__init__.py
+END
+unicode_block.py
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/!svn/ver/122059/tp/search2/crawler_ver2/le_crawler/common/langdetect/utils/unicode_block.py
+END
+lang_profile.py
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/!svn/ver/122170/tp/search2/crawler_ver2/le_crawler/common/langdetect/utils/lang_profile.py
+END
+ngram.py
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/!svn/ver/122059/tp/search2/crawler_ver2/le_crawler/common/langdetect/utils/ngram.py
+END
+messages.py
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/!svn/ver/122059/tp/search2/crawler_ver2/le_crawler/common/langdetect/utils/messages.py
+END

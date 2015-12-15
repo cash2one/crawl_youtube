@@ -1,0 +1,113 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/includes
+END
+xslt.pxd
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/includes/xslt.pxd
+END
+lxml-version.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/includes/lxml-version.h
+END
+dtdvalid.pxd
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/includes/dtdvalid.pxd
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/includes/__init__.py
+END
+uri.pxd
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/includes/uri.pxd
+END
+tree.pxd
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/includes/tree.pxd
+END
+relaxng.pxd
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/includes/relaxng.pxd
+END
+etree_defs.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/includes/etree_defs.h
+END
+schematron.pxd
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/includes/schematron.pxd
+END
+etreepublic.pxd
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/includes/etreepublic.pxd
+END
+config.pxd
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/includes/config.pxd
+END
+c14n.pxd
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/includes/c14n.pxd
+END
+xmlerror.pxd
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/includes/xmlerror.pxd
+END
+xinclude.pxd
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/includes/xinclude.pxd
+END
+xmlparser.pxd
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/includes/xmlparser.pxd
+END
+xmlschema.pxd
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/includes/xmlschema.pxd
+END
+htmlparser.pxd
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/includes/htmlparser.pxd
+END
+xpath.pxd
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/includes/xpath.pxd
+END

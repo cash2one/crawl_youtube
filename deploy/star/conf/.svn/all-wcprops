@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/star/conf
+END
+allowed_domains.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/star/conf/allowed_domains.cfg
+END
+denied_domains.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/star/conf/denied_domains.cfg
+END
+base_domains.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/star/conf/base_domains.cfg
+END

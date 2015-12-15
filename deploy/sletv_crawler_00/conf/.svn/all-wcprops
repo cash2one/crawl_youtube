@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/sletv_crawler_00/conf
+END
+allowed_domains.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/sletv_crawler_00/conf/allowed_domains.cfg
+END
+denied_domains.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/sletv_crawler_00/conf/denied_domains.cfg
+END
+base_domains.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/sletv_crawler_00/conf/base_domains.cfg
+END

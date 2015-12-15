@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <url_pattern>http://list.iqiyi.com/www/.*</url_pattern>
+  <match target='category_list'>
+    <xpath>//*[@class="mod_sear_menu mt20 mb30"]//li[@class="selected"]/a/text()</xpath>
+    <mapping map2=''>全部</mapping>
+    <drop_empty></drop_empty>
+    <connect>,</connect>
+  </match>
+  <match target='category'>
+    <xpath>//*[@class="mod_sear_menu mt20 mb30"]/div[1]/ul/li[@class="selected"]/a/text()</xpath>
+  </match>
+  <match target='area'>
+    <xpath>//*[@class="mod_sear_menu mt20 mb30"]/div[h3="地区：" or h3="地域："]/ul/li[@class="selected"]/a/text()</xpath>
+  </match>
+  <match target='language'>
+    <xpath>//*[@class="mod_sear_menu mt20 mb30"]/div[h3="语种：" or h3="语言："]/ul/li[@class="selected"]/a/text()</xpath>
+  </match>
+  <match target='is_pay' data_type='int'>
+    <xpath>//*[@class="mod_sear_menu mt20 mb30"]/div[h3="资费："]/ul/li[@class="selected"]/a/text()</xpath>
+    <mapping map2='1'>付费</mapping>
+    <mapping map2='0'>免费</mapping>
+  </match>
+  <match target='no_data'>
+    <xpath>//*[@class="wrapper-piclist"]/p/text()</xpath>
+  </match>
+  <struct target='items'>
+    <xpath>//div[@class="wrapper-piclist"]/ul/li</xpath>
+    <match target='url'>
+      <xpath>./div[2]/div[1]/p/a/@href</xpath>
+    </match>
+    <match target='title' limit='1'>
+      <xpath>./div[@class="site-piclist_info"]/div[@class="mod-listTitle_left"]/p/a/@title</xpath>
+      <xpath>./div[2]/div[1]/p/a/text()</xpath>
+      <drop_empty></drop_empty>
+    </match>
+    <match target='duration' data_type='int'>
+      <xpath>./div[1]/a/div/div/p/text()</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>./div[1]/a/img/@src</xpath>
+    </match>
+    <match target='showtime'>
+      <xpath>./div[2]/div[2]/text()</xpath>
+    </match>
+  </struct>
+</template>

@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_realtime/conf
+END
+allowed_domains.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_realtime/conf/allowed_domains.cfg
+END
+denied_domains.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_realtime/conf/denied_domains.cfg
+END
+base_domains.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_realtime/conf/base_domains.cfg
+END
+start_urls.cfg.ok
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_realtime/conf/start_urls.cfg.ok
+END
+start_urls_api.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_realtime/conf/start_urls_api.cfg
+END

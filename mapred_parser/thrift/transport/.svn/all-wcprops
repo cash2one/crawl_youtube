@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/thrift/transport
+END
+TSocket.py
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/thrift/transport/TSocket.py
+END
+TSSLSocket.py
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/thrift/transport/TSSLSocket.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/thrift/transport/__init__.py
+END
+TTransport.py
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/thrift/transport/TTransport.py
+END
+TZlibTransport.py
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/thrift/transport/TZlibTransport.py
+END
+THttpClient.py
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/thrift/transport/THttpClient.py
+END
+TTwisted.py
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/thrift/transport/TTwisted.py
+END

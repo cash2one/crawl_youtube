@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <encoding>utf8</encoding>
+  <url_pattern>.*wasu.cn/?$</url_pattern>
+  <match target='category_list'>
+    <xpath>//div[@class="container clear"]/div/div[@class="l head_nav_line ws_head480"]/ul/li[@class="hover"]/a/text()</xpath>
+    <drop_empty></drop_empty>
+    <connect>,</connect>
+  </match>
+  <struct target='items'>
+    <xpath>//*[img]</xpath>
+    <match target='url' limit='1'>
+      <xpath>../div[contains(@class, "_link")]/a/@href</xpath>
+      <xpath>./@href</xpath>
+      <drop_empty></drop_empty>
+    </match>
+    <match target='title' limit='1'>
+      <xpath>../div[contains(@class, "_link")]/a/@title</xpath>
+      <xpath>./@title</xpath>
+      <drop_empty></drop_empty>
+    </match>
+    <match target='poster' limit='1'>
+      <xpath>./img/@data-original</xpath>
+      <xpath>./img/@src</xpath>
+      <drop_empty></drop_empty>
+    </match>
+  </struct>
+</template>

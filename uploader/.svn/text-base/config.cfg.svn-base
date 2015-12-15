@@ -1,0 +1,15 @@
+[global]
+hdfs_dir = crawler_upload
+hdfs_subdir = websearch
+batch_num = 5
+max_ideal_times = 0
+hadoop_bin = /usr/local/hadoop/bin/hadoop
+log_path = ../log/upload.log
+check_interval = 600
+
+[crawler]
+data_dir = /letv/crawler_delta/
+ips = 10.150.140.82,10.150.140.83,10.150.140.84,10.150.140.85, 10.150.140.86,10.150.140.87, 10.180.155.135, 10.180.155.136, 10.180.155.137, 10.180.155.138, 10.180.155.139, 10.130.208.60, 10.130.208.64, 10.130.208.65, 10.130.208.66, 10.130.208.67
+upload_bin = /usr/local/hadoop/bin/hadoop
+backup_dir = /letv/crawler_backup/
+

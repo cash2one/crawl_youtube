@@ -1,0 +1,187 @@
+10
+
+dir
+122471
+http://svn2.letv.cn/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/webapps/examples/jsp
+http://svn2.letv.cn
+
+
+
+2015-04-08T05:33:40.008990Z
+69916
+guoxiaohe
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+21433022-bb36-4ff6-a907-2c018ad81495
+
+chat
+dir
+
+include
+dir
+
+simpletag
+dir
+
+checkbox
+dir
+
+error
+dir
+
+tagplugin
+dir
+
+source.jsp
+file
+
+
+
+
+2015-09-11T07:32:13.794217Z
+72651edf5dee294f0b46571f407a65f5
+2015-04-08T05:33:40.008990Z
+69916
+guoxiaohe
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+972
+
+source.jsp.html
+file
+
+
+
+
+2015-09-11T07:32:13.794217Z
+e08f94b61ac3150e21aa53cdce1e8a21
+2015-04-08T05:33:40.008990Z
+69916
+guoxiaohe
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1025
+
+plugin
+dir
+
+cal
+dir
+
+jsptoserv
+dir
+
+num
+dir
+
+xml
+dir
+
+snp
+dir
+
+dates
+dir
+
+colors
+dir
+
+forward
+dir
+
+images
+dir
+
+sessions
+dir
+
+security
+dir
+
+index.html
+file
+
+
+
+
+2015-09-11T07:32:13.794217Z
+666facd1eee4dbdb21149f0c302907e3
+2015-04-08T05:33:40.008990Z
+69916
+guoxiaohe
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+16658
+
+jsp2
+dir
+

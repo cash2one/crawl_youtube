@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='utf-8'?>
+<template>
+  <encoding>utf-8</encoding>
+  <url_pattern>http://v.qq.com/(boke|cover|page)/.*</url_pattern>
+  <match target='title'>
+    <xpath>/html/body/root/video/title/text()</xpath>
+  </match>
+  <match target='title'>
+    <xpath>//*[@id="h1_title"]/text()</xpath>
+  </match>
+  <match target='title'>
+    <xpath>/html/body/div/div/div/h1/text()</xpath>
+  </match>
+  <match target='desc'>
+    <xpath>/html/body/root/video/desc/text()</xpath>
+    <xpath>//*[@id='vinfo_more']/span/text()</xpath>
+  </match>
+  <match target='tags'>
+    <xpath>/html/body/root/video/tag/text()</xpath>
+    <xpath>//p[@class='info_tags']/a/span/text()</xpath>
+    <xpath>//p[@class='info_tags']/span/a/span/text()</xpath>
+    <xpath>//span[@class="tag_inner"]/text()</xpath>
+  </match>
+  <!--  <match target='category'>
+    <xpath>//*[@class='mod_crumbs']/a[1]/text()</xpath>
+  </match>
+  <match target='category'>
+    <xpath>//*[@class="breadcrumb"]/a[1]/text()</xpath>
+  </match> -->
+  <match target='play_total' example='http://v.qq.com/cover/w/w0qhpncrtaxwk1x.html'>
+    <xpath>//*[@class="current"]//span[@class="playnum_inner _playnum"]/text()</xpath>
+  </match>
+  <match target='play_total' example='http://v.qq.com/cover/t/tgjlkllgtjg1jod.html'>
+    <xpath>//*[@class="list_item current"]//span[@class="info_inner _playnum"]/text()</xpath>
+  </match>
+  <match target='play_total' example='http://v.qq.com/cover/j/jk9eis9j54nmuaa.html?vid=p0015omhica'>
+    <xpath>//*[@class="item current"]//em[@class="num  _playnum"]/text()</xpath>
+  </match>
+  <match target='play_total' example='http://v.qq.com/boke/page/z/l/e/z0160c45fle.html'>
+    <xpath>//*[@id="act_playnum"]/text()</xpath>
+    <xpath>//*[@id="act_playnum"]/strong/text()</xpath>
+  </match>
+  <match target='showtime'>
+    <xpath>//p[@class="info_news"]/text()</xpath>
+    <regex>.*?([\d\-]+ [\d:]+).*</regex>
+  </match>
+  <match target='showtime'>
+    <xpath>//span[@class="cont_inner"]/text()</xpath>
+    <xpath>//span[@class="name_item"]/span[@class="name_inner"]/text()</xpath>
+    <xpath>//span[@class="list_txt"]/text()</xpath>
+  </match>
+  <match target='crumbs'>
+    <xpath>//div[@class="mod_crumbs" or @class="breadcrumb"]/a/text()</xpath>
+    <xpath>//div[@class="mod_crumbs" or @class="breadcrumb"]/span/text()</xpath>
+    <connect>,</connect>
+  </match>
+  <struct target='items'>
+    <xpath>//*[@id="_mod_hotvideo" or @id="mod_recommend_ulike_list" or @id="mod_hotplay_list" or @id="mod_videolist" or @id="news_rec" or @id="ulike_content_div"]//li</xpath>
+    <match target='url'>
+      <xpath>.//a[1]/@href</xpath>
+    </match>
+    <match target='title'>
+      <xpath>.//a[1]/@title</xpath>
+      <xpath>.//a[1]/img/@alt</xpath>
+    </match>
+    <match target='duration'>
+      <xpath>.//span/@data-tl</xpath>
+    </match>
+    <match target='duration'>
+      <xpath>.//em[@class="mask_txt"]/text()</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>.//img/@src</xpath>
+      <xpath>.//img/@___src</xpath>
+    </match>
+    <match target='play_total'>
+      <xpath>.//span[contains(@class, "_playnum")]/text()</xpath>
+    </match>
+    <match target='showtime'>
+      <xpath>.//a[1]/@ut</xpath>
+    </match>
+  </struct>
+</template>

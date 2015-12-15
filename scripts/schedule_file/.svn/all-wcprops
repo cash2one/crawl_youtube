@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/113767/tp/search2/crawler_ver2/scripts/schedule_file
+END
+txt2seq.py
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/113767/tp/search2/crawler_ver2/scripts/schedule_file/txt2seq.py
+END
+utils.py
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/113767/tp/search2/crawler_ver2/scripts/schedule_file/utils.py
+END
+file_collector.py
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/!svn/ver/113767/tp/search2/crawler_ver2/scripts/schedule_file/file_collector.py
+END
+hadoop_uploader.py
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/!svn/ver/113767/tp/search2/crawler_ver2/scripts/schedule_file/hadoop_uploader.py
+END

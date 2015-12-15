@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <encoding>utf8</encoding>
+  <url_pattern>http://video.56.com/wolelist.*</url_pattern>
+  <match target='category'>
+    <xpath>//div[@class="sort-nav cfix"]/ul/li[@class]/a/text()</xpath>
+  </match>
+  <match target='category_list'>
+    <xpath>//div[@class="sort-nav cfix"]/ul/li[@class]/a/text()</xpath>
+    <xpath>//div[@class="sort-type"]/dl/dd[@class="sort-tag"]/a[@class]/text()</xpath>
+    <mapping map2=''>全部</mapping>
+    <drop_empty></drop_empty>
+    <connect>,</connect>
+  </match>
+  <struct target='items'>
+    <xpath>//*[@class="st-list short cfix"]/li</xpath>
+    <match target='url'>
+      <xpath>./div[@class="st-pic"]/a/@href</xpath>
+    </match>
+    <match target='title'>
+      <xpath>./strong/a/text()</xpath>
+      <xpath>./h3[@class="st-tit"]/a/text()</xpath>
+    </match>
+    <match target='showtime'>
+      <xpath>./p/a[@class="tcount"]/text()</xpath>
+    </match>
+    <match target='duration'>
+      <xpath>./div[@class="st-pic"]/a/span[@class="maskTx"]/text()</xpath>
+      <xpath>./div[@class="st-pic"]/span[@class="maskTx"]/text()</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>./div[@class="st-pic"]/a/img/@src</xpath>
+    </match>
+    <match target='play_total'>
+      <xpath>./p/a[@class="bcount"]/text()</xpath>
+    </match>
+  </struct>
+</template>

@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='utf-8'?>
+<template>
+  <encoding>utf-8</encoding>
+  <url_pattern>http://\w+\.pptv\.com/?</url_pattern>
+  <match target='category'>
+    <xpath>//div[@class="hd-nav fl cf"]//a[@class=" now active"]/text()</xpath>
+  </match>
+  <match target='category_list'>
+    <xpath>//div[@class="hd-nav fl cf"]//a[@class=" now active"]/text()</xpath>
+  </match>
+  <struct target='items'>
+    <xpath>//a[starts-with(@href, "http://v.pptv.com/show/")]</xpath>
+    <match target='url'>
+      <xpath>./@href</xpath>
+    </match>
+    <match target='title' limit='1'>
+      <xpath>./@title</xpath>
+      <xpath>./text()</xpath>
+      <xpath>.//p[@class="main-tt"]/text()</xpath>
+      <drop_empty></drop_empty>
+    </match>
+    <match target='poster' limit='1'>
+      <xpath>.//img/@data-src2</xpath>
+      <xpath>.//img/@src2</xpath>
+      <xpath>.//img/@src</xpath>
+      <drop_empty></drop_empty>
+    </match>
+  </struct>
+  <struct target='items1'>
+    <xpath>//a[starts-with(@href, "/video/")]</xpath>
+    <match target='url'>
+      <xpath>./@href</xpath>
+      <prefix no_duplicate='true'>http://game.pptv.com</prefix>
+    </match>
+    <match target='title' limit='1'>
+      <xpath>./@title</xpath>
+      <xpath>./text()</xpath>
+      <xpath>.//p[@class="main-tt"]/text()</xpath>
+      <drop_empty></drop_empty>
+    </match>
+    <match target='poster' limit='1'>
+      <xpath>.//img/@data-src2</xpath>
+      <xpath>.//img/@src2</xpath>
+      <xpath>.//img/@src</xpath>
+      <drop_empty></drop_empty>
+    </match>
+  </struct>
+</template>

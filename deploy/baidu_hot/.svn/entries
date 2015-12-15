@@ -1,0 +1,77 @@
+10
+
+dir
+122471
+http://svn2.letv.cn/tp/search2/crawler_ver2/deploy/baidu_hot
+http://svn2.letv.cn
+
+
+
+2015-08-14T07:17:37.614980Z
+97021
+gaoqiang
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+21433022-bb36-4ff6-a907-2c018ad81495
+
+le_crawler
+dir
+
+scrapy.cfg
+file
+
+
+
+
+2015-09-11T07:32:15.229213Z
+460fee4ecb7d8b193d3eedfa77c5f665
+2015-08-14T06:07:05.288468Z
+96969
+zhaojincheng
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+266
+
+log
+dir
+
+start_urls
+dir
+
+conf
+dir
+
+data
+dir
+

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <encoding>utf8</encoding>
+  <url_pattern>http://www.soku.com/.*</url_pattern>
+  <match target='category_list'>
+    <xpath>//*[@id="secHead"]/h3/a/text()</xpath>
+    <xpath>//*[@id="secTags"]/div/a[@class="current"]/text()</xpath>
+    <xpath>//div[contains(@id, "sec_")]/ul/li[@class="current"]/a/text()</xpath>
+    <xpath>//meta[@name="keywords"]/@content</xpath>
+    <mapping map2=''>全部</mapping>
+    <drop_empty></drop_empty>
+    <connect>,</connect>
+  </match>
+  <struct target='items'>
+    <xpath>//*[@class="sk-vlist clearfix"]/div</xpath>
+    <match target='poster'>
+      <xpath>.//div[@class="v-thumb"]/img/@src</xpath>
+    </match>
+    <match target='title'>
+      <xpath>.//div[@class="v-link"]/a/@title</xpath>
+    </match>
+    <match target='url'>
+      <xpath>.//div[@class="v-link"]/a/@href</xpath>
+    </match>
+    <match target='duration'>
+      <xpath>./div[1]/span/span[2]/text()</xpath>
+    </match>
+    <match target='play_total'>
+      <xpath>./div[2]/ul/li[contains(text(), '播放')]/text()</xpath>
+      <regex>.*?(\d+\.?,?\d*万?).*</regex>
+    </match>
+    <match target='showtime'>
+      <xpath>.//div[@class="v-meta-data"]//span[@class="pub"]/text()</xpath>
+    </match>
+  </struct>
+</template>

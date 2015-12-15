@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/!svn/ver/85016/tp/search2/crawler_ver2/uploader
+END
+uploader_service.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/61167/tp/search2/crawler_ver2/uploader/uploader_service.py
+END
+config.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/27804/tp/search2/crawler_ver2/uploader/config.cfg
+END
+upload_global_service.py
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/85016/tp/search2/crawler_ver2/uploader/upload_global_service.py
+END

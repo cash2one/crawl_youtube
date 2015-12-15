@@ -1,0 +1,101 @@
+#!/usr/bin/python
+# coding=utf8
+# Copyright 2015 LeTV Inc. All Rights Reserved.
+# author: gaoqiang@letv.com (Qiang Gao)
+
+import os
+import signal
+from le_crawler.common.logutil import Log
+thrift_logger = Log('thrift.server.TServer', 'log/thrift_filter.error').log
+
+from optparse import OptionParser
+
+from thrift.transport import TSocket
+from thrift.transport import TTransport
+from thrift.protocol import TCompactProtocol
+from thrift.server import TServer
+from pybloom import ScalableBloomFilter
+
+from le_crawler.proto.filter import UrlFilterService
+
+class FilterHandler(object):
+  def __init__(self, logger):
+    self.logger_ = logger
+    self._load_from_file()
+
+
+  def url_seen(self, url):
+    if self.deduper_.add(url):
+      self.logger_.info('url duplicated: %s', url)
+      return True
+    return False
+
+
+  def _load_from_file(self):
+    self.logger_.info('loading data from cache file...')
+    if not os.path.isfile('data/bloom.data'):
+      self.logger_.error('bloom cache file not found, create one instead.')
+      self.deduper_ = ScalableBloomFilter(100000, 0.0001, 4)
+    else:
+      with open('data/bloom.data', 'r') as f:
+        self.deduper_ = ScalableBloomFilter.fromfile(f)
+
+
+  def _dump_to_file(self):
+    self.logger_.info('dumping data...')
+    if not os.path.isdir('data'):
+      os.mkdir('data')
+    with open('data/bloom.data', 'w') as f:
+      self.deduper_.tofile(f)
+    self.logger_.info('dump data finished.')
+
+
+  def close(self):
+    self._dump_to_file()
+
+
+class FilterServiceMain(object):
+  def __init__(self):
+    self.logger_ = Log('filter_log', 'log/filter.log').log
+    self.exit_ = False
+
+
+  def close(self, num, fram):
+    self.exit_ = True
+    try:
+      self.socket_.close()
+      self.handler_.close()
+      self.logger_.info('close transport')
+    except:
+      self.logger_.exception('failed to close transport.')
+
+
+  def run(self, host, port):
+    # this flag daemon set true is for stop service by outside signal
+    self.socket_ = TSocket.TServerSocket(host, port)
+    self.handler_ = FilterHandler(self.logger_)
+    self.service = TServer.TThreadedServer(UrlFilterService.Processor(self.handler_),
+                                           self.socket_,
+                                           TTransport.TBufferedTransportFactory(),
+                                           TCompactProtocol.TCompactProtocolFactory(),
+                                           daemon=True)
+    self.logger_.info('begin server on %s, %s' % (host, port))
+    print 'begin server on %s, %s' % (host, port)
+    self.service.serve()
+
+
+scheduler = FilterServiceMain()
+
+signal.signal(signal.SIGINT, scheduler.close)
+signal.signal(signal.SIGTERM, scheduler.close)
+
+
+if __name__ == '__main__':
+  option_parser = OptionParser()
+  option_parser.add_option('-H', '--host', type='string', dest='host',
+                           default='10.150.140.84', help="service host")
+  option_parser.add_option('-p', '--port', type='int', dest='port',
+                           default=8089, help="service port")
+  options, _ = option_parser.parse_args()
+  scheduler.run(options.host, options.port)
+

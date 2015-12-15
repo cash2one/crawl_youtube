@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <url_pattern>http://v.youku.com/v_show/.*</url_pattern>
+  <match target='title'>
+    <xpath>//*[@id="subtitle"]/text()</xpath>
+  </match>
+  <match target='title'>
+    <xpath>//*[@id="vpvideotitlev5"]/div/div[1]/h1/text()</xpath>
+  </match>
+  <match target='showtime'>
+    <xpath>//div[@class="time"]/text()</xpath>
+    <regex>(.*)\s+上传</regex>
+  </match>
+  <match target='desc'>
+    <xpath>//*[@id="text_long"]/text()</xpath>
+    <connect>.</connect>
+  </match>
+  <match target='desc'>
+    <xpath>//*[@id="text_short"]/text()</xpath>
+  </match>
+  <match target='desc'>
+    <xpath>//*[@id="vpvideoinfov5"]/div/div[2]/div[1]/text()</xpath>
+  </match>
+  <match target='tags'>
+    <xpath>//*[@id="vpvideoinfov5"]/div/div[2]/div[3]/span/a/text()</xpath>
+  </match>
+  <!--  <match target='category'>
+    <xpath>//*[@class="guide"]/div/a[1]/text()</xpath>
+  </match> -->
+  <match target='crumbs'>
+    <xpath>//div[@class="crumbs"]/a/text()</xpath>
+    <connect>,</connect>
+  </match>
+</template>

@@ -1,0 +1,151 @@
+#!/usr/bin/python
+#
+# Copyright 2014 LeTV Inc. All Rights Reserved.
+
+"""
+get base crawler items to fill
+using unicode as middle code
+decoing item with utf8
+in crawler we recommend using coding unicode
+when output data should using utf8
+"""
+
+__author__ = 'guoxiaohe@letv.com (Guo XiaoHe)'
+
+import json
+import traceback
+from scrapy.item import Item, Field
+from scrapy.loader import ItemLoader
+from scrapy.loader.processors import MapCompose, TakeFirst, Join
+import time
+
+from ..proto.crawl.ttypes import Response, RedirectInfo, Request
+from ..common.url_normalize import UrlNormalize
+from ..common.parse_youtube import gen_youtube_video_url
+from docid_generator import gen_docid
+
+
+try:
+  import cPickle as pickle
+except:
+  import pickle
+
+
+url_normalize_ = UrlNormalize.get_instance()
+
+
+# all item should first alig to unicode,
+# output should encod utf8
+class ItemType(object):
+  CRAWL_DOC = 0X11
+  WEB_PAGE = 0x12
+  PICS_DOC = 0x13
+  IMAGE = 0x14
+
+def fill_doc(crawl_doc, response):
+  crawl_doc.crawl_time = int(time.time())
+  if not response:
+    return crawl_doc
+  crawl_doc.response = Response()
+  crawl_doc.response.url = url_normalize_.get_unique_url(response.url) or response.url
+  crawl_doc.response.body = response.body.decode(response.encoding, 'ignore').encode('utf-8')
+  crawl_doc.response.header = response.headers.to_string()
+  crawl_doc.response.return_code = response.status
+  crawl_doc.response.redirect_info = RedirectInfo()
+  crawl_doc.response.redirect_info.redirect_urls = response.meta.get('redirect_urls')
+
+def crawldoc_to_item(crawl_doc, response=None):
+  item = CrawlerItem()
+  fill_doc(crawl_doc, response)
+  item['crawl_doc'] = encode_item(crawl_doc)
+  return item
+
+def crawldoc_to_youtube_item(crawl_doc, response=None):
+  if not crawl_doc:
+    print 'Empty crawl_doc !!!!'
+    return
+
+  crawl_doc.crawl_time = int(time.time())
+  if response:
+    response.meta.pop('crawl_doc', None)
+    crawl_doc.url = gen_youtube_video_url(response.url)
+    crawl_doc.id = gen_docid(crawl_doc.url)
+    crawl_doc.request = Request()
+    crawl_doc.request.raw_url = response.request.meta.get('Rawurl')
+
+    crawl_doc.response = Response()
+    crawl_doc.response.url = crawl_doc.url
+    crawl_doc.response.body = response.body.decode(response.encoding, 'ignore').encode('utf-8')
+    crawl_doc.response.header = response.headers.to_string()
+    crawl_doc.response.return_code = response.status
+    crawl_doc.response.redirect_info = RedirectInfo()
+    crawl_doc.response.redirect_info.redirect_urls = response.meta.get('redirect_urls')
+    crawl_doc.response.meta = pickle.dumps(response.meta)
+
+  item = CrawlerItem()
+  item['crawl_doc'] = encode_item(crawl_doc)
+  return item
+
+
+def encode_item(obj):
+  if isinstance(obj, unicode):
+    return obj.encode('utf-8')
+  if isinstance(obj, dict):
+    for (k, v) in obj.items():
+      obj[encode_item(k)] = encode_item(v)
+  if hasattr(obj, '__iter__'):
+    for idx, v in enumerate(obj):
+      obj[idx] = encode_item(v)
+  if hasattr(obj, "__dict__"):
+    for key, value in obj.__dict__.iteritems():
+      if not callable(value):
+        setattr(obj, key, encode_item(value))
+  return obj
+
+
+# post item process
+def process_item(item, encoding):
+  if not item:
+    return item
+  try:
+    for k in item.keys():
+      if isinstance(item[k], str) or k == 'page':
+        item[k] = item[k].decode(encoding, 'ignore')
+  except:
+    print traceback.format_exc(), 'with encoding:%s' % encoding
+  return item
+
+
+class CrawlerItem(Item):
+  crawl_doc = Field()
+
+  def to_json_str(self, include_empty=False, encodeing='utf8'):
+    try:
+      return json.dumps(dict(self), ensure_ascii=False).encode(encodeing)
+    except:
+      print 'Failed encoding json: %s, %s' % (self, traceback.format_exc())
+      return None
+
+  def get_key(self, key, type_need=str):
+    try:
+      if self.get(key):
+        if isinstance(self[key], type_need):
+          return True, self[key]
+        elif type_need == str:
+          return True, self[key].encode('utf-8')
+        else:
+          return True, type_need(self[key])
+    except:
+      print traceback.format_exc()
+    return False, None
+
+  def to_crawldoc(self):
+    return self['crawl_doc']
+
+
+class CrawlerLoader(ItemLoader):
+  default_item_class = CrawlerItem
+  default_input_processor = MapCompose(lambda s: s.strip())
+  default_output_processor = TakeFirst()
+  description_out = Join()
+

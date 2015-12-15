@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='utf-8'?>
+<template>
+  <!-- 代码中已经过滤了视频页，所以这里的url_pattern就匹配所有视频页就好了 -->
+  <url_pattern>http://.*.iqiyi.com/.*</url_pattern>
+  <match target='title'>
+    <xpath>//*[@id="widget-videoname"]/text()</xpath>
+  </match>
+  <match target='title'>
+    <xpath>//*[@id="widget-videotitle"]/text()</xpath>
+  </match>
+  <match target="tags">
+    <xpath example="http://www.iqiyi.com/v_19rrokxjzo.html#vfrm=2-4-0-1; http://www.iqiyi.com/v_19rrh0uuh8.html#vfrm=2-4-0-1">
+      //div[@*='mod-crumb_bar']/span[contains(@id, 'tag')]/a/text()
+    </xpath>
+  </match>
+  <match target="duration">
+    <xpath>//div[@id='widget-shortrecmd']//li[@class='selected blackArea']//a[1]/p[1]/text()</xpath>
+  </match>
+  <match target="play_total">
+    <xpath>//*[@id='widget-playcount']/text()</xpath>
+  </match>
+  <match target="deadlink">
+    <xpath>//div[@class="error_videoInfo"]/@class</xpath>
+  </match>
+  <match target="voteup_count" data_type="int">
+    <xpath>//*[@id='widget-voteupcount']/text()</xpath>
+  </match>
+  <match target="votedown_count" data_type="int">
+    <xpath>//*[@id='widget-votedowncount']/text()</xpath>
+  </match>
+  <match target="crumbs">
+    <xpath>//div[@class="mod-crumb_bar"]/span[1]/a/text()</xpath>
+    <connect>,</connect>
+  </match>
+  <match target='showtime'>
+    <xpath>//*[@id="widget-vshort-ptime" or @id="widget-videopubtime"]/text()</xpath>
+    <regex>.*?发布时间[：|:]?(\d+.*)</regex>
+  </match>
+  <struct target="items">
+    <xpath>//*[@id="widget-shortrecmd" or @class="playList_bodan clearfix"]/ul/li[not(@class="selected blackArea")]</xpath>
+	  <match target="url">
+	    <xpath>./div/div[@class="pic-left"]/a/@href</xpath>
+	  </match>
+	  <match target="title" limit='1'>
+	    <xpath>./@data-title</xpath>
+	    <xpath>./div/div[@class="con-right"]/h3/a/text()</xpath>
+      <drop_empty></drop_empty>
+	  </match>
+	  <match target="play_total">
+	    <xpath>./div/div[@class="con-right"]/p[starts-with(@rseat, "playcount")]/text()</xpath>
+	  </match>
+	  <match target="showtime">
+	    <xpath>./div/div[@class="con-right"]/p[starts-with(text(), '发布于')]/text()</xpath>
+	    <regex>发布于\s*(.*)</regex>
+	  </match>
+	  <match target="duration">
+	    <xpath>./div/div[@class="pic-left"]/a/p[@class="video_position video_rb"]/span/text()</xpath>
+	  </match>
+	  <match target="poster">
+	    <xpath>./div/div[@class="pic-left"]/a/img/@src</xpath>
+	  </match>
+  </struct>
+<!-- <struct target="items1">
+    <xpath>//*[@id="block-E"]/ul/li</xpath>
+	  <match target="url">
+	    <xpath>./div[@class="site-piclist_pic"]/a/@href</xpath>
+	  </match>
+	  <match target="title">
+	    <xpath>./div[@class="site-piclist_info"]/p/a/text()</xpath>
+	  </match>
+	  <match target="duration">
+	    <xpath>./div[@class="site-piclist_pic"]/a/div/div/span/text()</xpath>
+	  </match>
+	  <match target="poster">
+	    <xpath>./div[@class="site-piclist_pic"]/a/img/@src</xpath>
+	  </match>
+  </struct> -->
+</template>

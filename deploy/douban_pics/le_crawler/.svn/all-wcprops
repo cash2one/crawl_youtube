@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/95909/tp/search2/crawler_ver2/deploy/douban_pics/le_crawler
+END
+genpy
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/douban_pics/le_crawler/genpy
+END
+js_dep
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/95909/tp/search2/crawler_ver2/deploy/douban_pics/le_crawler/js_dep
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/douban_pics/le_crawler/__init__.py
+END
+settings.py
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/!svn/ver/95909/tp/search2/crawler_ver2/deploy/douban_pics/le_crawler/settings.py
+END
+common
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/95909/tp/search2/crawler_ver2/deploy/douban_pics/le_crawler/common
+END
+core
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/95909/tp/search2/crawler_ver2/deploy/douban_pics/le_crawler/core
+END
+spiders
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/!svn/ver/95909/tp/search2/crawler_ver2/deploy/douban_pics/le_crawler/spiders
+END
+base
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/95909/tp/search2/crawler_ver2/deploy/douban_pics/le_crawler/base
+END
+loop_start_crawler.sh
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/!svn/ver/80473/tp/search2/crawler_ver2/deploy/douban_pics/le_crawler/loop_start_crawler.sh
+END

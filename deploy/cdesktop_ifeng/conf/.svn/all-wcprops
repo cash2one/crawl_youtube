@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/76165/tp/search2/crawler_ver2/deploy/cdesktop_ifeng/conf
+END
+allowed_domains.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/!svn/ver/76165/tp/search2/crawler_ver2/deploy/cdesktop_ifeng/conf/allowed_domains.cfg
+END
+denied_domains.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/!svn/ver/76165/tp/search2/crawler_ver2/deploy/cdesktop_ifeng/conf/denied_domains.cfg
+END
+base_domains.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/!svn/ver/76165/tp/search2/crawler_ver2/deploy/cdesktop_ifeng/conf/base_domains.cfg
+END
+start_urls.cfg.ok
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/!svn/ver/76165/tp/search2/crawler_ver2/deploy/cdesktop_ifeng/conf/start_urls.cfg.ok
+END
+start_urls_api.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/!svn/ver/76165/tp/search2/crawler_ver2/deploy/cdesktop_ifeng/conf/start_urls_api.cfg
+END

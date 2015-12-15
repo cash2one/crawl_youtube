@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/112356/tp/search2/crawler_ver2/le_crawler/proto/scheduler
+END
+ttypes.py
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/!svn/ver/109296/tp/search2/crawler_ver2/le_crawler/proto/scheduler/ttypes.py
+END
+constants.py
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/!svn/ver/95910/tp/search2/crawler_ver2/le_crawler/proto/scheduler/constants.py
+END
+SchedulerService.py
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/!svn/ver/112356/tp/search2/crawler_ver2/le_crawler/proto/scheduler/SchedulerService.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/!svn/ver/95910/tp/search2/crawler_ver2/le_crawler/proto/scheduler/__init__.py
+END
+SchedulerService-remote
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/!svn/ver/109296/tp/search2/crawler_ver2/le_crawler/proto/scheduler/SchedulerService-remote
+END

@@ -1,0 +1,122 @@
+# this start urls if configure to headline video
+#ku6 joke
+http://joke.ku6.com/shenghuogaoxiao/  KU6_JOKE
+#http://joke.ku6.com/zuixintuijian/ KU6_JOKE
+#http://joke.ku6.com/zuixintuijian/index.shtml KU6_JOKE
+#http://joke.ku6.com/zuixintuijian/index_(*1-5,0*).shtml KU6_JOKE
+#
+#http://joke.ku6.com/leiren/ KU6_JOKE
+#http://joke.ku6.com/leiren/index_(*1-5,0*).shtml KU6_JOKE
+#
+#http://joke.ku6.com/shenghuogaoxiao/ KU6_JOKE
+#http://joke.ku6.com/shenghuogaoxiao/index_(*1-8,0*).shtml KU6_JOKE
+#
+#http://joke.ku6.com/baoxiaochongwu/ KU6_JOKE
+#http://joke.ku6.com/baoxiaochongwu/index_(*1-6,0*).shtml KU6_JOKE
+#
+#http://joke.ku6.com/egaozhenggu/ KU6_JOKE
+#http://joke.ku6.com/egaozhenggu/index_(*1-4,0*).shtml KU6_JOKE
+#http://joke.ku6.com/xiangshengxiaopin/ KU6_JOKE
+#http://joke.ku6.com/xiangshengxiaopin/index_(*1-4,0*).shtml KU6_JOKE
+#
+## 56 joke
+#http://fun.56.com/crazy2/p-(*1-3,0*).html 56_JOKE 
+#http://fun.56.com/hot2/p-(*1-7,0*).html 56_JOKE 
+#http://fun.56.com/pets2/p-(*1-7,0*)  56_JOKE 
+#http://fun.56.com/znznv2/ 56_JOKE
+#http://fun.56.com/znznv2/p-(*1-9,0*)  56_JOKE 
+#http://fun.56.com/variety2/ 56_JOKE
+#http://fun.56.com/variety2/p-(*1-6,0*)  56_JOKE 
+#http://fun.56.com/original2/ 56_JOKE
+#http://fun.56.com/original2/p-(*1-4,0*) 56_JOKE
+#http://fun.56.com/classic2/ 56_JOKE
+#http://fun.56.com/classic2/p-(*1-5,0*)  56_JOKE 
+#http://fun.56.com/shock2/ 56_JOKE
+#http://fun.56.com/shock2/p-(*1-10,0*)  56_JOKE
+## 56 ent
+#http://ent.56.com/ 56_ENT
+## 56 fashion
+#http://fashion.56.com/ 56_FASHION
+#
+## fun society
+#http://www.fun.tv/list/news/c-e7a4bee4bc9a.o-mo.pg-(*1-11,0*)  FUN_SOCIETY
+## sina finance
+#http://finance.sina.com.cn/focus/video/x/ SINA_FINANCE
+#http://finance.sina.com.cn/focus/video/z/ SINA_FINANCE
+#http://finance.sina.com.cn/focus/video/l/ SINA_FINANCE
+#http://finance.sina.com.cn/focus/video/h/ SINA_FINANCE
+#http://finance.sina.com.cn/focus/video/g/ SINA_FINANCE
+## sina military
+#http://video.sina.com.cn/mil/scene/ SINA_MILI
+#http://video.sina.com.cn/mil/military/ SINA_MILI
+#http://video.sina.com.cn/mil/weapon/ SINA_MILI
+#http://video.sina.com.cn/mil/documentary/ SINA_MILI
+## sina sport
+#http://video.sina.com.cn/sports/ SINA_SPORTS
+##
+## iqiyi fashion
+#http://list.iqiyi.com/ugc/%E6%97%B6%E5%B0%9A__2_(*1-5,0*).html IQIYI_FASHION
+### iqiyi ent
+#http://list.iqiyi.com/www/7/------------2-1-(*1-11,0*)-1---.html IQIYI_ENT
+## iqiyi mil
+#http://mil.iqiyi.com IQIYI_MIL
+#http://list.iqiyi.com/www/28/-------------4-(*1-11,0*)-2--1-.html IQIYI_MIL
+## iqiyi sports
+#http://sports.iqiyi.com/ IQIYI_SPORTS
+#http://list.iqiyi.com/www/17/-------------4-(*1-11,0*)-2--1-.html IQIYI_SPORTS
+## iqiyi finance
+#http://business.iqiyi.com/ IQIYI_FINANCE
+#http://list.iqiyi.com/www/24/-------------4-(*1-10,0*)-2--1-.html IQIYI_FINANCE
+## iqiyi joke
+#http://fun.iqiyi.com/ IQIYI_JOKE
+#http://list.iqiyi.com/www/22/-------------4-(*1-11,0*)-2--1-.html IQIYI_JOKE
+## sohu ent
+#http://so.tv.sohu.com/list_p1112_p20_p3_p40_p5_p6_p76_p8_p90_p10(*0-10,0*)_p110.html SOHU_ENT
+## sohu main land
+#http://so.tv.sohu.com/list_p1122_p2122205_p3_p40_p5_p6_p73_p8_p90_p10(*1-10,0*)_p110.html SOHU_MAINLAND
+## sohu world
+#http://so.tv.sohu.com/list_p1122_p2122204_p3_p40_p5_p6_p73_p8_p90_p10(*1-10,0*)_p110.html SOHU_WORLD
+## bomihua ent
+#http://www.baomihua.com/user/channelvideos.aspx?currentpage=(*1-10,0*)&appid=4055 BOMIHUA_ENT
+## bomihua joke
+#http://zt.baomihua.com/subjectinfo.aspx?name=gxiao&page=1 BOMIHUA_JOKE
+#http://zt.baomihua.com/subjectinfo.aspx?name=gxiao&page=(*1-10,0*) BOMIHUA_JOKE
+#http://video.baomihua.com/funny/jinxuan&uid=0 BOMIHUA_JOKE
+#http://video.baomihua.com/funny/jinxuan_(*1-23,0*)&uid=0 BOMIHUA_JOKE
+#http://video.baomihua.com/funny/leiren&uid=0 BOMIHUA_JOKE
+#http://video.baomihua.com/funny/leiren_(*1-30,0*)&uid=0 BOMIHUA_JOKE
+#http://video.baomihua.com/funny/leiren&uid=0 BOMIHUA_JOKE
+#http://video.baomihua.com/funny/pets_(*1-20,0*)&uid=0 BOMIHUA_JOKE
+#http://video.baomihua.com/funny/zipai&uid=0 BOMIHUA_JOKE
+#http://video.baomihua.com/funny/zipai_(*1-20,0*)&uid=0 BOMIHUA_JOKE
+## tudou enter
+#http://ent.tudou.com/ TUDOU_ENT
+#http://www.tudou.com/list/ich13.html TUDOU_ENT
+## tudou joke
+#http://fun.tudou.com/ TUDOU_JOKE
+#http://www.tudou.com/list/ich7.html TUDOU_JOKE
+## tudou fashion
+#http://fashion.tudou.com/ TUDOU_FASHION
+#http://www.tudou.com/list/ich11.html TUDOU_FASHION
+## tudou car
+#http://auto.tudou.com/ TUDOU_CAR
+#http://www.tudou.com/list/ich9.html TUDOU_CAR
+## bitauto
+#http://v.bitauto.com/ BITAUTO
+#http://v.bitauto.com/cate_30_0_0.html BITAUTO
+#http://v.bitauto.com/cate_56_0_0.html BITAUTO
+#http://v.bitauto.com/cate_45_0_0.html BITAUTO
+#http://v.bitauto.com/cate_15_0_0.html BITAUTO
+#http://v.bitauto.com/cate_48_0_0.html BITAUTO
+#http://v.bitauto.com/cate_49_0_0.html BITAUTO
+#http://v.bitauto.com/cate_50_0_0.html BITAUTO
+#http://v.bitauto.com/spjj.shtml BITAUTO
+#http://v.bitauto.com/cate_53_0_0.html BITAUTO
+#http://v.bitauto.com/cate_54_0_0.html BITAUTO
+## qichezhijia , autohome
+#http://v.autohome.com.cn AUTOHOME
+#http://v.autohome.com.cn/cate_8_1_1.html AUTOHOME
+#http://v.autohome.com.cn/cate_4_1_1.html AUTOHOME
+#http://v.autohome.com.cn/cate_2_1_1.html AUTOHOME
+#http://v.autohome.com.cn/cate_1_1_1.html AUTOHOME
+#http://v.autohome.com.cn/cate_5_1_1.html AUTOHOM

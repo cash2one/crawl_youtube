@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <encoding>utf8</encoding>
+  <url_pattern>http://v.pptv.com/show/.*</url_pattern>
+  <match target='title'>
+    <xpath>//*[@id="mailContent"]/div[1]/div[1]/h3/text()</xpath>
+	<xpath url='http://v.pptv.com/show/DicL4d99FtfNW1Dw.html'>//*[@class='tit']/text()</xpath>
+  </match>
+  <!--  <match target='category'>
+    <xpath>//*[@class='intro intro-hot']/div[1]/ul/li//span[text()='类型：']/following-sibling::a/text()</xpath>
+  </match> -->
+  <match target="area">
+    <xpath>//*[@class='intro intro-hot']/div[1]/ul/li//span[text()='地区：']/following-sibling::a/text()</xpath>
+  </match>
+  <match target='rating' data_type='float'>
+    <xpath>//*[@id='scoremark']//em/text()</xpath>
+  </match>
+</template>

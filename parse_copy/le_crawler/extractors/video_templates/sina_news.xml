@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <encoding>utf8</encoding>
+  <url_pattern>http://video.sina.com.cn/(p|topic)/.+</url_pattern>
+  <match target='title' limit='1'>
+    <xpath>//div[@class="Vd_titBox clearfix"]/h2/text()</xpath>
+    <xpath>//h1[@class="pl_tl"]/text()</xpath>
+    <drop_empty></drop_empty>
+  </match>
+  <!--  <match target='category'>
+    <xpath>//div[@class="hiddenBox"]/p[@class="channel"]/a[1]/text()</xpath>
+  </match> -->
+  <match target='desc' limit='1'>
+    <xpath>//em[@class="vdiCont"]/p/text()</xpath>
+    <xpath>//em[@task="oldinfor"]/p/text()</xpath>
+    <xpath>//span[@id="pl_collapse"]/text()</xpath>
+    <drop_empty></drop_empty>
+  </match>
+  <match target='play_total'>
+    <xpath>//div[@id="pl_video_info"]/div[@class="tit"]/span[1]/i[@task="playNum"]/text()</xpath>
+  </match>
+  <match target='tags'>
+    <xpath>//p[@class="tags"]/a/text()</xpath>
+  </match>
+  <match target='showtime'>
+    <xpath>//p[@class="from"]/span[1]/em/text()</xpath>
+  </match>
+  <match target='crumbs'>
+    <xpath>//p[@class="channel" and position() &lt;2]/a/text()</xpath>
+    <xpath>//div[@class="TF_cnt TM_crumb"]/a/text()</xpath>
+    <connect>,</connect>
+  </match>
+  <struct target="items">
+    <xpath>//div[@class="relatedVido favVideo"]/ul[@class="vd_vedioplayLs"]/li</xpath>
+    <match target="title">
+      <xpath>.//a[@class="videoLk"]/@title</xpath>
+    </match>
+    <match target="url">
+      <xpath>.//a[@class="videoLk"]/@node-url</xpath>
+    </match>
+    <match target="img">
+      <xpath>.//a[@class="videoLk"]/img/@src</xpath>
+    </match>
+    <match target="duration">
+      <xpath>.//span[@class="playTm"]/em/text()</xpath>
+    </match>
+    <match target="play_total">
+      <xpath>.//i[@node-type="video.count"]/text()</xpath>
+    </match>
+  </struct>
+</template>

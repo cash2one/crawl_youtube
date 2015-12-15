@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/hotlist/le_crawler/spiders
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/hotlist/le_crawler/spiders/__init__.py
+END
+toptv_spider.py
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/hotlist/le_crawler/spiders/toptv_spider.py
+END

@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/111265/tp/search2/crawler_ver2/mapred_parser/test
+END
+test.url
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/test/test.url
+END
+test_adaptor.py
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/87528/tp/search2/crawler_ver2/mapred_parser/test/test_adaptor.py
+END
+video_templates
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/111265/tp/search2/crawler_ver2/mapred_parser/test/video_templates
+END
+list_templates
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/111265/tp/search2/crawler_ver2/mapred_parser/test/list_templates
+END
+run_test.py
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/111265/tp/search2/crawler_ver2/mapred_parser/test/run_test.py
+END

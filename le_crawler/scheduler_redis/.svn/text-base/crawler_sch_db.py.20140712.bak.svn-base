@@ -1,0 +1,140 @@
+#!/usr/bin/python
+#
+# Copyright 2014 LeTV Inc. All Rights Reserved.
+# not thread safe 
+__author__ = 'guoxiaohe@letv.com'
+
+import os
+import traceback
+import md5
+import string
+
+from base.sharedb import ShareDB, DBOption
+from base.url_filter  import UrlFilter
+from base.logutil import Log
+
+# this cls is using for crawler backgroud request
+# store db, store by domain
+try:
+  import cPickle as pickle 
+except ImportError: 
+  import pickle 
+
+class CrawlerDBManger(object):
+  STOP_READ = 1
+  STOP_WRITER = (1 << 1)
+  def __init__(self, db_path, loger = None):
+    self.__db_base_path = db_path
+    self.__db_dict = {}
+    self.__db_mark_dict = {}
+    self.__url_filter = UrlFilter()
+    self.loger = loger or Log('crawlerdb_log', '../log/crawler_sch_db.log')
+    self.store_by_priority = True
+
+  # this fun call url filter allowed host
+  # FIXME(xiaohe): using file monitor service 
+  def read_mark_file(self, mark_path):
+    self.__db_mark_dict['youku.com'] = 
+
+  def test_stop_read(self, dbid):
+    if CrawlerDBManger.STOP_WRITER & self.__get_mark(dbid):
+   
+  def __mark(self, dbid, flag):
+    self.__db_mark_dict[dbid] |= flag
+
+  def __get_mark(self, dbid):
+    if self.__db_mark_dict.has_key(dbid):
+      return self.__db_mark_dict[dbid]
+    return 0
+
+  def __get_db_id_from_url(self, url):
+    #self.loger.log.info('put %s' % url)
+    return self.__url_filter.get_flag(url)
+
+  def __get_db(self, url = None, id = None):
+    dbid = id or self.__get_db_id_from_url(url)
+    if not dbid:
+      return None
+    if self.__db_dict.has_key(dbid):
+      return self.__db_dict[dbid]
+    else:
+      # create db for domain
+      db_path = os.path.join(self.__db_base_path, dbid)
+      op = DBOption()
+      domain_db = ShareDB(db_path, dboption = op)
+      self.__db_dict[dbid] = domain_db
+      self.loger.log.info('created db [%s, %s] to [%s] ' % (dbid, url, db_path))
+      return domain_db
+
+  def __get_store_key(self, url, priority = 0):
+    if self.store_by_priority:
+      return '%s_%s' % (string.zfill(priority, 6), md5.new(url).hexdigest())
+    else:
+      return  md5.new(url).hexdigest()
+  # input request pickle's value
+  def put(self, reqv):
+    if not reqv:
+      return True
+    try:
+      req_dict = pickle.loads(reqv)
+      url = None
+      if req_dict.has_key('u'):
+        url = req_dict['u']
+      elif req_dict.has_key('url'):
+        url = req_dict['url']
+      if not url:
+        self.loger.log.error('value is not contails url: %s' % (reqv))
+        return False
+      # get priority from request
+      priority = 0
+      if self.store_by_priority:
+        metadic = None
+        if req_dict.has_key('me'):
+          metadic = req_dict['me']
+        elif req_dict.has_key('meta'):
+          metadic = req_dict['meta']
+        if metadic and metadic.has_key('depth'):
+          priority = metadic['depth']
+      dbid = self.__get_db_id_from_url(url)
+      if CrawlerDBManger.STOP_WRITER & self.__get_mark(dbid):
+        self.loger.log.error('stop writer for stop mark flag for %s' % (dbid))
+        return False
+      db = self.__get_db(id = dbid)
+      #print db
+      db.put(self.__get_store_key(url, priority), reqv)
+    except Exception, e:
+      self.loger.log.error('%s, %s : %s '% (e.message, traceback.format_exc(),
+        reqv))
+      return False
+
+  # FIXME(xiaohe): load policy fetcher from each db
+  # return iterator able value
+  def get_requests(self, batch_num = 1024):
+    for (id, db) in self.__db_dict.items():
+      if CrawlerDBManger.STOP_WRITER & self.__get_mark(id):
+        self.loger.log.error('stop read for stop mark flag for %s' % (id))
+        continue
+      batch_res = db.batch_get(batch_num)
+      self.loger.log.info('Got request from [%s] [%d]' % (db.db_id, len(batch_res)))
+      if not batch_res or len(batch_res) <= 0:
+        continue
+      db.batch_delete([k for (k, v) in batch_res])
+      yield [v for (k, v) in batch_res]
+
+  # return all the db status
+  def get_status(self):
+    total_num = 0
+    rets = []
+    for (id, db) in self.__db_dict.items():
+      tmpnum = int(db.get_total_num())
+      total_num += tmpnum
+      rets.append('%s db status[%d]\n' % (id, tmpnum))
+      #rets.append(db.status())
+    rets.append('Total Num:%d' % total_num)
+    return rets
+  # writer the request to db
+  # the api for request_manger , 
+  # input: request is [[requests], [request],]
+  def writer_request(self, requests):
+    for req in requests:
+      self.put(req)

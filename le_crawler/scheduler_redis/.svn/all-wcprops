@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/95910/tp/search2/crawler_ver2/le_crawler/scheduler_redis
+END
+crawler_sch_db.py.20140712-1.bak
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/!svn/ver/95910/tp/search2/crawler_ver2/le_crawler/scheduler_redis/crawler_sch_db.py.20140712-1.bak
+END
+backup_leveldb_data.py
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/!svn/ver/95910/tp/search2/crawler_ver2/le_crawler/scheduler_redis/backup_leveldb_data.py
+END
+crawler_sch_db.py.20140712.bak
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/!svn/ver/95910/tp/search2/crawler_ver2/le_crawler/scheduler_redis/crawler_sch_db.py.20140712.bak
+END
+start_scheduler_service.sh
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/!svn/ver/95910/tp/search2/crawler_ver2/le_crawler/scheduler_redis/start_scheduler_service.sh
+END
+crawler_sch_db.py
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/!svn/ver/95910/tp/search2/crawler_ver2/le_crawler/scheduler_redis/crawler_sch_db.py
+END
+redisdb_wrap.py
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/!svn/ver/95910/tp/search2/crawler_ver2/le_crawler/scheduler_redis/redisdb_wrap.py
+END
+requests_manager.py
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/!svn/ver/95910/tp/search2/crawler_ver2/le_crawler/scheduler_redis/requests_manager.py
+END
+leveldb_wrap.py
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/!svn/ver/95910/tp/search2/crawler_ver2/le_crawler/scheduler_redis/leveldb_wrap.py
+END

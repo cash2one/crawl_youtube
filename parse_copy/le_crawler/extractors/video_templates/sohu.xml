@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='utf-8'?>
+<template>
+  <url_pattern>.*tv.sohu.com/.*</url_pattern>
+  <encoding>utf8</encoding>
+  <match target='deadlink'>
+    <xpath>/html/head/meta[@name = "description" and contains(@content, "404")]/@name</xpath>
+  </match>
+  <match target='title'>
+    <xpath>//*[@*="crumbsBar"]/div/div[1]/h2/text()</xpath>
+  </match>
+  <match target='title'>
+    <xpath>//*[@id="video-title"]/@title</xpath>
+  </match>
+  <match target='title'>
+    <xpath>//*[@id="location"]/div[1]/span/text()</xpath>
+  </match>
+  <!--  <match target='category'>
+    <xpath>//*[@id="crumbsBar"]/div/div[1]/div/a[1]/text()</xpath>
+  </match>
+  <match target='category'>
+    <xpath>//*[@id="contentA"]/div[1]/div[1]/a[1]/text()</xpath>
+  </match> -->
+  <match target='duration'>
+    <xpath>//*[@class="info info-con"]/ul/li[contains(text(),'时长')]/text()</xpath>
+    <regex>.*?时长[：|:]?(\d+.*)</regex>
+  </match>
+  <match target='duration'>
+    <xpath>//*[@id="content"]/div[1]/div[2]/ul/li[1]/text()</xpath>
+  </match>
+  <match target='duration'>
+    <xpath>//*[@id="playlist"]/div[1]/ul/li[4]/text()</xpath>
+  </match>
+  <match target='tags'>
+    <xpath>//*[@id="vtags"]/a/text()</xpath>
+    <xpath>//*[@class="info info-con"]/ul/li[starts-with(text(),'类型')]/a/text()</xpath>
+    <xpath>//p[@class="sr"]/a/text()</xpath>
+  </match>
+  <match target='area'>
+    <xpath>//*[@class="info info-con"]/ul/li[@id="areabox"]/a/text()</xpath>
+  </match>
+  <match target='actor'>
+    <xpath>//*[@class="info info-con"]/ul/li[starts-with(text(),'主演')]/a/text()</xpath>
+  </match>
+  <match target='showyear'>
+    <xpath>//*[@class="info info-con"]/ul/li[starts-with(text(),'年份')]/a/text()</xpath>
+  </match>
+  <match target='showtime'>
+    <xpath>//*[@class="info info-con"]/ul/li[starts-with(text(),'发布')]/text()</xpath>
+    <xpath>//div[contains(@class, "scroll-bar")]//li[contains(@class, "on")]//span[contains(@class, "rtime") or @class="r"]/text()</xpath>
+  </match>
+  <match target='desc'>
+  <xpath>//*[@class="info info-con"]/p/text()</xpath>
+  </match>
+  <match target='desc'>
+    <xpath>//*[@id="info"]/ul/li[2]/div/p/text()</xpath>
+  </match>
+  <match target='desc'>
+    <xpath>//*[@id="playlist"]/div[1]/p/text()</xpath>
+    <xpath>//div[@class="jieshao cfix"]/div[@class="colR"]/p[1]/span[last()]/text()</xpath>
+  </match>
+  <match target='play_total'>
+    <xpath>//div[@id="playtoolbar"]/div[@class="vBox vBox-play vBox-play-panel"]/div/dl[2]/dd/span[2]/em/text()</xpath>
+  </match>
+  <match target='play_total'>
+    <xpath>//div[@data-pb-txid="pg_player_vv"]/a/em/i/text()</xpath>
+    <xpath>//*[@id="playtoolbar"]/div[@class="vBox vBox-play"]/span/em/i/text()</xpath>
+  </match>
+  <match target="voteup_count">
+    <xpath>//*[@*='vBox vBox-ding']//i[1]/text()</xpath>
+  </match>
+  <match target="votedown_count">
+    <xpath>//*[@*='vBox vBox-cai']//i[1]/text()</xpath>
+  </match>
+  <match target='crumbs'>
+    <xpath>//div[@class='crumbs']/a/text()</xpath>
+    <connect>,</connect>
+  </match>
+  <struct target="items">
+    <xpath>//div[contains(@id, "otherswatch")]//li</xpath>
+    <match target="url">
+      <xpath>./div/a/@href</xpath>
+    </match>
+    <match target="title">
+      <xpath>./strong/a/text()|./h3/a/text()</xpath>
+    </match>
+    <match target="poster">
+      <xpath>./div/a/img/@src</xpath>
+    </match>
+    <match target="play_total">
+      <xpath>.//span[@class="bcount"]/text()</xpath>
+    </match>
+  </struct>
+  <struct target="items1">
+    <xpath>//div[contains(@class, "scroll-bar")]//li</xpath>
+    <match target="url" limit='1'>
+      <xpath>./div/a/@href</xpath>
+      <xpath>./a/@href</xpath>
+      <drop_empty></drop_empty>
+    </match>
+    <match target="title" limit='1'>
+      <xpath>./div/a/@title</xpath>
+      <xpath>./a/div/strong/text()|./a/@title</xpath>
+      <drop_empty></drop_empty>
+    </match>
+    <match target="poster">
+      <xpath>.//a/img/@src</xpath>
+    </match>
+    <match target="play_total">
+      <xpath>.//span[contains(@class, "count")]/text()</xpath>
+    </match>
+    <match target="showtime">
+      <xpath>.//span[contains(@class, "rtime")]/text()|.//span[@class="r"]/text()</xpath>
+    </match>
+  </struct>
+</template>

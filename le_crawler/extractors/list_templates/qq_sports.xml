@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <url_pattern>http://sports.qq.com/*</url_pattern>
+  <match target='category'>
+    <xpath>//*[@id="txvSitemap"]/div/ul/li[@class="list_item list_item_hassub list_item_open"]/a/span/text()</xpath>
+  </match>
+  <match target='category_list'>
+    <xpath>//*[@id="txvSitemap"]/div/ul/li[@class="list_item list_item_hassub list_item_open"]/a/span/text()</xpath>
+  </match>
+  <struct target='items'>
+    <xpath>//ul[@class="s-wrap"]/li[@class="mod-wrap"]/div[@class="mod-inner mod-type-a"]/a</xpath>
+    <match target='url'>
+      <xpath>./@href</xpath>
+    </match>
+    <match target='title'>
+      <xpath>./@title</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>./img/@src</xpath>
+    </match>
+  </struct>
+  <struct target='items1'>
+    <xpath>//ul[contains(@class, "figures-list")]/li[contains(@class,"list-item")]</xpath>
+    <match target="url">
+      <xpath>./a/@href</xpath>
+    </match>
+    <match target="poster">
+      <xpath>./a/img/@src</xpath>
+    </match>
+    <match target="title">
+      <xpath>./p/a/text()</xpath>
+    </match>
+    <match target="duration">
+      <xpath>./a/span//em[@class="time"]/text()</xpath>
+    </match>
+    <match target="play_total">
+      <xpath>./a/span/em[@class="play"]/text()</xpath>
+    </match>
+  </struct>
+  <struct target="items2">
+    <xpath>//a[img]</xpath> -->
+    <match target='url'>
+      <xpath>./@href</xpath>
+    </match>
+    <match target="poster">
+      <xpath>./img/@src</xpath>
+    </match>
+    <match target="title">
+      <xpath>../h4/a/text()</xpath>
+      <xpath>../h4/i/text()</xpath>
+      <xpath>./p/text()</xpath>
+      <xpath>../h4/text()</xpath>
+      <xpath>../../p/a/text()</xpath>
+    </match>
+  </struct>
+</template>

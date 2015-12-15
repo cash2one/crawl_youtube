@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<template>
+  <encoding>utf-8</encoding>
+  <url_pattern>http://v.ifeng.com/(news|mil|documentary|ent|ent/zongyi|gaoxiao|program|gaokaike)/|http://tv.v.ifeng.com/$</url_pattern>
+  <match target='category'>
+    <xpath>//ul[@class="clearfix"]//li[@class="home"]/a/text()</xpath>
+  </match>
+  <match target='category_list'>
+    <xpath>//ul[@class="clearfix"]//li[@class="home"]/a/text()</xpath>
+    <connect>,</connect>
+  </match>
+  <struct target='items'>
+    <xpath>//a[@href]</xpath>
+    <match target='url'>
+      <xpath>./@href</xpath>
+    </match>
+    <match target='title'>
+      <xpath>./@title</xpath>
+    </match>
+    <match target='title'>
+      <xpath>./text()</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>.//img/@src</xpath>
+    </match>
+  </struct>
+</template>

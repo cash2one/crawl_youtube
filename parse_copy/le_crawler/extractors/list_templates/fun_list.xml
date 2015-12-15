@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <url_pattern>.*www\.fun\.tv\/retrieve\/.*</url_pattern>
+  <match target='category'>
+    <xpath>//div[@class="ls-nav"]/div[1]/ul/li[@class="bar-item bar-current"]/a/text()</xpath>
+  </match>
+  <match target='category_list'>
+    <xpath>//div[@class="ls-nav"]/div/ul/li[@class="bar-item bar-current"]/a/text()</xpath>
+    <mapping map2=''>全部</mapping>
+    <drop_empty></drop_empty>
+    <connect>,</connect>
+  </match>
+  <match target='no_data'>
+    <xpath>//div[@class="ls-no-list fix"]/p/text()</xpath>
+  </match>
+  <struct target='items'>
+    <xpath>//*[starts-with(@class, "mod-vd-i")]</xpath>
+    <match target='url'>
+      <xpath>./div[@class="pic"]/a/@href</xpath>
+      <prefix no_duplicate='true'>http://www.fun.tv</prefix>
+    </match>
+    <match target='title'>
+      <xpath>./div[@class="info"]/h3/a/text()</xpath>
+    </match>
+    <match target='duration'>
+      <xpath>./div[@class="pic"]/a/span[@class="shadow"]/i/text()</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>./div[@class="pic"]/a/img/@_lazysrc</xpath>
+    </match>
+    <match target='play_total'>
+      <xpath>./div[@class="info"]/div/span[1]/text()</xpath>
+      <regex>.*?播放：(\d+.*)</regex>
+    </match>
+    <match target='showtime'>
+      <xpath>./div[@class="info"]/div/span[2]/text()</xpath>
+    </match>
+  </struct>
+</template>

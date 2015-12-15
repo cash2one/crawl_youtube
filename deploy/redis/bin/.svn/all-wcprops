@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/redis/bin
+END
+redis-check-aof
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/redis/bin/redis-check-aof
+END
+redis-check-dump
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/redis/bin/redis-check-dump
+END
+redis-sentinel
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/redis/bin/redis-sentinel
+END
+redis-server
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/redis/bin/redis-server
+END
+redis-cli
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/redis/bin/redis-cli
+END
+start_redis.sh
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/redis/bin/start_redis.sh
+END
+redis-benchmark
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/redis/bin/redis-benchmark
+END

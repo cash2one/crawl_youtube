@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/120441/tp/search2/crawler_ver2/deploy/lejian_full/start_urls
+END
+qq_sports_home.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/!svn/ver/110827/tp/search2/crawler_ver2/deploy/lejian_full/start_urls/qq_sports_home.cfg
+END
+lejian_urls.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/!svn/ver/97472/tp/search2/crawler_ver2/deploy/lejian_full/start_urls/lejian_urls.cfg
+END
+youku_list.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/!svn/ver/108167/tp/search2/crawler_ver2/deploy/lejian_full/start_urls/youku_list.cfg
+END
+hexun_urls.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/!svn/ver/120441/tp/search2/crawler_ver2/deploy/lejian_full/start_urls/hexun_urls.cfg
+END
+sina_urls.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/!svn/ver/120441/tp/search2/crawler_ver2/deploy/lejian_full/start_urls/sina_urls.cfg
+END

@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<template>
+    <url_pattern>http://m.tv.sohu.com/.*</url_pattern>
+    <match target='title'>
+        <xpath>//*[@data-key="tv_name"]/text()</xpath>
+    </match>
+    <match target='title'>
+        <xpath>/html/body/div[2]/div[1]/div/div[6]/div[2]/h3/text()</xpath>
+    </match>
+    <match target='showtime' data_type='datetime' time_format='%Y-%m-%d-%H-%M'>
+        <xpath>//*[@data-key="tv_detail"]/p[1]/text()</xpath>
+        <regex connector='-'>.*(20[0,1]\d).([0, 1]?\d).([0-3]?\d).([0-2]?\d).([0-5]?\d).*</regex>
+    </match>
+    <match target='tags'>
+        <xpath>//*[@data-key="tv_detail"]/p[2]/text()</xpath>
+    </match>
+    <match target='desc'>
+        <xpath>//*[@data-key="tv_desc"]/text()</xpath>
+    </match>
+</template>

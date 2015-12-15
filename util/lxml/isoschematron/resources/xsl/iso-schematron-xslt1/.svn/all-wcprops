@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/isoschematron/resources/xsl/iso-schematron-xslt1
+END
+iso_abstract_expand.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/isoschematron/resources/xsl/iso-schematron-xslt1/iso_abstract_expand.xsl
+END
+iso_schematron_message.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/isoschematron/resources/xsl/iso-schematron-xslt1/iso_schematron_message.xsl
+END
+iso_svrl_for_xslt1.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/isoschematron/resources/xsl/iso-schematron-xslt1/iso_svrl_for_xslt1.xsl
+END
+iso_schematron_skeleton_for_xslt1.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/isoschematron/resources/xsl/iso-schematron-xslt1/iso_schematron_skeleton_for_xslt1.xsl
+END
+iso_dsdl_include.xsl
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/isoschematron/resources/xsl/iso-schematron-xslt1/iso_dsdl_include.xsl
+END
+readme.txt
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/isoschematron/resources/xsl/iso-schematron-xslt1/readme.txt
+END

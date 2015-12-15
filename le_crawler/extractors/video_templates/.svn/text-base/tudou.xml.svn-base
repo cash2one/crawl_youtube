@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <encoding>utf8</encoding>
+  <url_pattern>http://www.tudou.com/programs/.*</url_pattern>
+  <match target='title'>
+    <xpath>//*[@id="videoKw"]/text()</xpath>
+  </match>
+  <!--  <match target='category'>
+    <xpath>//*[@name='irCategory']/@content</xpath>
+  </match> -->
+  <match target="duration">
+    <xpath>//script/text()</xpath>
+    <regex>[\S\s]*,time[:：'‘\s]*([\d:]*).*</regex>
+    <drop_empty></drop_empty>
+  </match>
+  <match target="tags">
+    <xpath>//script/text()</xpath>
+    <regex>[\S\s]*,tag[:：'‘\s]*(.*?)'.*</regex>
+    <split>,</split>
+  </match>
+  <match target="showtime">
+    <xpath>//script/text()</xpath>
+    <regex>.*pt:\s*(\d{10})0.*</regex>
+  </match>
+  <match target="desc" example='http://www.tudou.com/programs/view/_8wV8Xd6d2s/'>
+    <xpath>//script/text()</xpath>
+    <regex>.*desc.{0,5}'(.*?)'.*</regex>
+  </match>
+  <match target='voteup_count' data_type="int">
+    <xpath>//div[@class='dig_container']//*[@class='num']/text()</xpath>
+  </match>
+  <match target="play_total">
+    <xpath>//div[@class='exponent']/a/span/text()</xpath>
+  </match>
+  <match target="crumbs">
+    <xpath>//*[@id="information"]//span[@class="v_channel"]/a/text()</xpath>
+  </match>
+  <match target="deadlink">
+    <xpath>//div[@id="modError"]//text()</xpath>
+  </match>
+  <match target='user_url'>
+    <xpath>//*[@*='v_user']/a[1]/@href</xpath>
+    <xpath>//*[@id="userInfo"]/div[@class="user_con"]/a/@href</xpath>
+    <regex>http://www.tudou.com/home/([^/]*)/?</regex>
+    <prefix>http://v.tudou.com/</prefix>
+  </match>
+</template>

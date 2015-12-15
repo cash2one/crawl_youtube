@@ -1,0 +1,1 @@
+../../../../pycrawler/spiders/phone_wallpaper_spider.py

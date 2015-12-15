@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <encoding>utf8</encoding>
+  <url_pattern>http://i.youku.com/u/.*?/(videos|playlists)$</url_pattern>
+  <struct target='user'>
+    <xpath>//div[@class="userinfo"]</xpath>
+    <match target='user_url'>
+      <xpath>./div[@class="avatar"]/a/@href</xpath>
+      <prefix no_duplicate='true'>http://i.youku.com</prefix>
+    </match>
+    <match target='user_name'>
+      <xpath>./div[@class="avatar"]/a/@title</xpath>
+    </match>
+    <match target='user_portrait'>
+      <xpath>./div[@class="avatar"]/a/img/@src</xpath>
+    </match>
+    <match target='user_play_num'>
+      <xpath>.//li[@class="vnum"]/em/text()</xpath>
+    </match>
+    <match target='user_fans_num'>
+      <xpath>.//li[@class="snum"]/em/text()</xpath>
+    </match>
+  </struct>
+  <struct target='items' example='http://i.youku.com/u/UMTQ0MTMxMzUwNA==/videos'>
+    <xpath>//div[@class="yk-col4"]//div[@class="v"]</xpath>
+    <match target='url'>
+      <xpath>./div[@class="v-link"]/a/@href</xpath>
+    </match>
+    <match target='title'>
+      <xpath>./div[@class="v-link"]/a/@title</xpath>
+    </match>
+    <match target='duration'>
+      <xpath>./div[@class="v-thumb"]//span[@class="v-time"]/text()</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>./div[@class="v-thumb"]/img/@src</xpath>
+    </match>
+    <match target='play_total'>
+      <xpath>./div[@class="v-meta va"]//span[@class="v-num"]/text()</xpath>
+    </match>
+    <match target='showtime'>
+      <xpath>../@c_time</xpath>
+    </match>
+  </struct>
+  <struct target='items' example='http://i.youku.com/u/UMTI4MDQzNDg2MA==/playlists'>
+    <xpath>//div[@class="v firstVideo"]</xpath>
+    <match target='url'>
+      <xpath>./div[@class="v-link"]/a/@href</xpath>
+    </match>
+    <match target='title'>
+      <xpath>./div[@class="v-link"]/a/@title</xpath>
+    </match>
+    <match target='duration'>
+      <xpath>./div[@class="v-meta vb"]//span[@class="v-time"]/text()</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>./div[@class="v-thumb"]/img/@src</xpath>
+    </match>
+    <match target='showtime'>
+      <xpath>./@c_time</xpath>
+    </match>
+  </struct>
+</template>

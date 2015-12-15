@@ -1,0 +1,1 @@
+../../../pycrawler/inf/settings/settings.xiami.py

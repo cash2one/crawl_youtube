@@ -1,0 +1,21 @@
+{
+  "sohu.com":[
+    "http://tv.sohu.com/",
+    "http://tv.sohu.com/s2011/sitemap/index.shtml"
+  ],
+  "cntv.cn":[
+    "http://tv.cntv.cn/"
+  ],
+  "qq.com":[
+    "http://v.qq.com/index.html"
+  ],
+  "tudou.com":[
+    "http://www.tudou.com/error.php"
+  ],
+  "wasu.cn":[
+    "http://www.wasu.cn/"
+  ],
+  "youku.com":[
+    "http://www.youku.com/index/y404/"
+  ]
+}

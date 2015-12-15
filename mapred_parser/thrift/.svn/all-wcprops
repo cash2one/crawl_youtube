@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/thrift
+END
+TSCons.py
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/thrift/TSCons.py
+END
+TTornado.py
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/thrift/TTornado.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/thrift/__init__.py
+END
+Thrift.py
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/thrift/Thrift.py
+END
+TSerialization.py
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/thrift/TSerialization.py
+END

@@ -1,0 +1,1 @@
+../../../../../pycrawler/spiders/cdesktop_crawler.py

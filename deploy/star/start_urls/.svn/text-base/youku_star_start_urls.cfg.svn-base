@@ -1,0 +1,15 @@
+{
+  "content": [
+  {
+    "url" : [
+      "http://www.soku.com/detail/person_XNDU0NjQ=_0__.html",
+      "http://www.soku.com/channel/personlist______1.html",
+      ""
+        ],
+      "category" : "news",
+      "enable"   : true,
+      "type"     : "list",
+      "id"     : "youku_star"
+  }
+  ]
+}

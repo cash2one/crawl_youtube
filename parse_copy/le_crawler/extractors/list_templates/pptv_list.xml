@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<template>
+  <encoding>utf-8</encoding>
+  <url_pattern>http://list.pptv.com.*</url_pattern>
+  <match target='category'>
+    <xpath>//div[@class="fixed_inner"]/h2/span/text()</xpath>
+  </match>
+  <match target='category_list'>
+    <xpath>//div[@class="fixed_inner"]/h2/span/text()</xpath>
+    <xpath>//dl[@class="zongyi"]/dd/a[@class="four all"]/text()</xpath>
+    <xpath>//div[@class="sport-sai"]/a/span/text()</xpath>
+    <xpath>//div[@class="sear-menu"]/dl[last()]/dt/a/span/text()</xpath>
+    <mapping map2=''>全部</mapping>
+    <drop_empty></drop_empty>
+    <connect>,</connect>
+  </match>
+  <match target='no_data'>
+    <xpath>//*[@class="sorry"]/p[@class="text"]/text()</xpath>
+  </match>
+  <struct target='items'>
+    <xpath>//ul[@class="cf"]/li</xpath>
+    <match target='url'>
+      <xpath>a/@href</xpath>
+    </match>
+    <match target='title'>
+      <xpath>a/p[2]/span/text()</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>a/p[1]/img/@data-src2</xpath>
+    </match>
+    <match target='showtime'>
+      <xpath>a/p[1]/span[1]/text()</xpath>
+      <regex>.*?(\d+.*)</regex>
+    </match>
+  </struct>
+</template>

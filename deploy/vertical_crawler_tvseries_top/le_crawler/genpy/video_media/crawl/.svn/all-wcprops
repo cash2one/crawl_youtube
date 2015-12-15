@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/genpy/video_media/crawl
+END
+ttypes.py
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/genpy/video_media/crawl/ttypes.py
+END
+constants.py
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/genpy/video_media/crawl/constants.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_tvseries_top/le_crawler/genpy/video_media/crawl/__init__.py
+END

@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml
+END
+cssselect.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/cssselect.py
+END
+pyclasslookup.py
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/pyclasslookup.py
+END
+sax.py
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/sax.py
+END
+doctestcompare.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/doctestcompare.py
+END
+ElementInclude.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/ElementInclude.py
+END
+etree.so
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/etree.so
+END
+lxml.etree.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/lxml.etree.h
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/__init__.py
+END
+usedoctest.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/usedoctest.py
+END
+_elementpath.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/_elementpath.py
+END
+builder.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/builder.py
+END
+lxml.etree_api.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/lxml.etree_api.h
+END
+objectify.so
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/objectify.so
+END

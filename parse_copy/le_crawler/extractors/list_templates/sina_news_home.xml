@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <encoding>utf-8</encoding>
+  <url_pattern>.*video.sina.com.cn/*</url_pattern>
+  <match target='category' limit='1'>
+    <xpath>//div[@class="logo"]/a/text()</xpath>
+    <xpath>//h2[@class="sect_tl"]/text()</xpath>
+    <drop_empty></drop_empty>
+    <mapping map2='资讯'>新浪新闻视频</mapping>
+    <mapping map2='话题'>热门话题</mapping>
+  </match>
+  <match target='category_list' limit='1'>
+    <xpath>//div[@class="logo"]/a/text()</xpath>
+    <xpath>//h2[@class="sect_tl"]/text()</xpath>
+    <drop_empty></drop_empty>
+    <mapping map2='资讯'>新浪新闻视频</mapping>
+    <mapping map2='话题'>热门话题</mapping>
+  </match>
+  <struct target='items'>
+    <xpath>//a[@class="cover" and starts-with(@href, 'http://video')]</xpath>
+    <match target='title'>
+      <xpath>..//a[contains(@class, 'title')]/text()</xpath>
+    </match>
+    <match target='url'>
+      <xpath>./@href</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>../a[contains(@class, 'imglink')]/img/@src</xpath>
+    </match>
+  </struct>
+  <struct target='items1'>
+    <xpath>//div[@class="thumb" or @class="item" or @class="wrap"]</xpath>
+    <match target='title'>
+      <xpath>./div[@class="text" or @class="tl"]/span/text()</xpath>
+      <xpath>./div[@class="img_tl"]/div[@class="tl"]/text()</xpath>
+    </match>
+    <match target='url'>
+      <xpath>./a/@href</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>./img/@src</xpath>
+      <xpath>./img/@_src</xpath>
+    </match>
+  </struct>
+  <struct target='items2'>
+    <xpath>//span[@class="thumb"]</xpath>
+    <match target='title' limit='1'>
+      <xpath>../span[@class="tl"]/text()</xpath>
+      <xpath>../span[@class="tl"]/em/text()</xpath>
+      <drop_empty></drop_empty>
+    </match>
+    <match target='url'>
+      <xpath>../@href</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>./img/@_src</xpath>
+    </match>
+  </struct>
+  <struct target='items3'>
+    <xpath>//div[@class="news-content"]//ul[@class="con-list"]/li</xpath>
+    <match target="title">
+      <xpath>.//a[contains(@class, "lis-title link_title")]/text()</xpath>
+    </match>
+    <match target="poster">
+      <xpath>.//a[@class="lis-link imglink"]/img/@src</xpath>
+    </match>
+    <match target="url">
+      <xpath>.//a[contains(@class, "lis-title link_title")]/@href</xpath>
+    </match>
+  </struct>
+</template>

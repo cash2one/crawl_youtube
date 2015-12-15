@@ -1,0 +1,143 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/121140/tp/search2/crawler_ver2/mapred_parser
+END
+le_crawler
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/108477/tp/search2/crawler_ver2/mapred_parser/le_crawler
+END
+reducer.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/121122/tp/search2/crawler_ver2/mapred_parser/reducer.py
+END
+data_viewer.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/108585/tp/search2/crawler_ver2/mapred_parser/data_viewer.py
+END
+run_statistic.py
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/121140/tp/search2/crawler_ver2/mapred_parser/run_statistic.py
+END
+letvbase.so
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/104526/tp/search2/crawler_ver2/mapred_parser/letvbase.so
+END
+custom.jar
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/custom.jar
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/__init__.py
+END
+websearch_parser.sh
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/87528/tp/search2/crawler_ver2/mapred_parser/websearch_parser.sh
+END
+video_parser.sh
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/video_parser.sh
+END
+scripts_uploader.sh
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/114337/tp/search2/crawler_ver2/mapred_parser/scripts_uploader.sh
+END
+hdfs_utils.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/108181/tp/search2/crawler_ver2/mapred_parser/hdfs_utils.py
+END
+crawler_monitor.py
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/114339/tp/search2/crawler_ver2/mapred_parser/crawler_monitor.py
+END
+statistic_mapper.py
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/121140/tp/search2/crawler_ver2/mapred_parser/statistic_mapper.py
+END
+parser.sh
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/parser.sh
+END
+python_library
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/90707/tp/search2/crawler_ver2/mapred_parser/python_library
+END
+statistic_reducer.py
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/121140/tp/search2/crawler_ver2/mapred_parser/statistic_reducer.py
+END
+update_mongo.py
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/116868/tp/search2/crawler_ver2/mapred_parser/update_mongo.py
+END
+analysis.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/analysis.py
+END
+urlmd5_inserter.py
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/104737/tp/search2/crawler_ver2/mapred_parser/urlmd5_inserter.py
+END
+mapper.py
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/!svn/ver/120367/tp/search2/crawler_ver2/mapred_parser/mapper.py
+END
+auto_deploy.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/121140/tp/search2/crawler_ver2/mapred_parser/auto_deploy.py
+END
+get_jobid.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/114337/tp/search2/crawler_ver2/mapred_parser/get_jobid.py
+END
+monitor.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/121140/tp/search2/crawler_ver2/mapred_parser/monitor.py
+END

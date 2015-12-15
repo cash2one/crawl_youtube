@@ -1,0 +1,113 @@
+{
+  "content": [
+    {
+      "url": [
+        "http://nba.sina.cn/?vt=4&pos=10",
+        "http://wap.hupu.com/nba",
+        "http://info.3g.qq.com/g/s?sid=AVMBkDU0Cj5UvvEWAlZEEkFH&icfa=sports_h&aid=template&tid=sports_nba",
+#        "http://3g.163.com/ntes/special/0034073A/touchlist.html?docid=9ARJKN5Fbjwangjian&title=NBA",
+        "http://3g.163.com/touch/article/list/9ARJKN5Fbjwangjian/(*0-4,0*)-16.html",
+        ""
+        ],
+      "category" : "news",
+      "subcategory" : "101",
+      "enable"   : true,
+      "type"     : "list",
+      "id"     : "sports_nba"
+    },
+    {
+      "url": [
+        "http://wap.hupu.com/bbs/24",
+        "http://sports.sina.cn/cba/index.d.html?vt=4&pos=10",
+#        "http://3g.163.com/ntes/special/00340D52/3gtouchlist.html?docid=9ARMC8BLbjwangjian&title=CBA",
+        "http://3g.163.com/touch/article/list/9ARMC8BLbjwangjian/(*0-4,0*)-16.html",
+        "http://info.3g.qq.com/g/s?sid=AVMBkDU0Cj5UvvEWAlZEEkFH&icfa=sports_h&aid=template&tid=sports_cba",
+        ""
+        ],
+      "category" : "news",
+      "subcategory" : "102",
+      "enable"   : true,
+      "type"     : "list",
+      "id"     : "sports_cba"
+    },
+{
+      "url": [
+        "http://sports.sina.cn/premierleague/index.d.html?vt=4&pos=10",
+        "http://info.3g.qq.com/g/s?sid=AVMBkDU0Cj5UvvEWAlZEEkFH&icfa=sports_h&aid=template&tid=sports_eng",
+        ""
+        ],
+      "category" : "news",
+      "subcategory" : "103",
+      "enable"   : true,
+      "type"     : "list",
+      "id"     : "sports_premierleague"
+    },
+{
+      "url": [
+        "http://sports.sina.cn/football?vt=4&pos=10",
+#        "http://3g.163.com/ntes/special/0034073A/touchlist.html?docid=9ARJLF58bjwangjian&title=%E5%9B%BD%E9%99%85%E8%B6%B3%E7%90%83",
+        "http://3g.163.com/touch/article/list/9ARJLF58bjwangjian/(*0-4,0*)-16.html",
+        "http://info.3g.qq.com/g/s?sid=AVMBkDU0Cj5UvvEWAlZEEkFH&icfa=sports_h&aid=template&tid=sports_football",
+        "http://wap.hupu.com/soccer",
+        ""
+        ],
+      "category" : "news",
+      "subcategory" : "10",
+      "enable"   : true,
+      "type"     : "list",
+      "id"     : "sports_football"
+    },
+{
+      "url": [
+        "http://sports.sina.cn/laliga/index.d.html?vt=4&pos=10",
+        "http://info.3g.qq.com/g/s?sid=AVMBkDU0Cj5UvvEWAlZEEkFH&icfa=sports_h&aid=template&tid=sports_spa",
+        ""
+        ],
+      "category" : "news",
+      "subcategory" : "13",
+      "enable"   : true,
+      "type"     : "list",
+      "id"     : "sports_laliga"
+    },
+{
+      "url": [
+        "http://lives.sina.cn/live/index?vt=4&pos=10&date=&channel=sport&live_mg=sports",
+        "http://live4.3g.qq.com/g/touch2/?#home/sid=AVMBkDU0Cj5UvvEWAlZEEkFH",
+        ""
+        ],
+      "category" : "news",
+      "subcategory" : "10",
+      "enable"   : true,
+      "type"     : "list",
+      "id"     : "sports_live"
+    },
+{
+      "url": [
+        "http://sports.sina.cn/csl/index.d.html?vt=4&pos=10",
+#        "http://3g.163.com/ntes/special/0034073A/touchlist.html?docid=9ARJL5K0bjwangjian&title=%E4%B8%AD%E8%B6%85",
+        "http://3g.163.com/touch/article/list/9ARJL5K0bjwangjian/(*0-4,0*)-16.html",
+        "http://info.3g.qq.com/g/s?sid=AVMBkDU0Cj5UvvEWAlZEEkFH&icfa=sports_h&aid=template&tid=sports_csl",
+        ""
+        ],
+      "category" : "news",
+      "subcategory" : "104",
+      "enable"   : true,
+      "type"     : "list",
+      "id"     : "sports_csl"
+    },
+{
+      "url": [
+        "http://sports.sina.cn/others/index.d.html?vt=4&pos=10",
+        "http://info.3g.qq.com/g/s?sid=AcSTWc4Mz4m1PKfTv2p5RSEL&icfa=sports_nba&aid=template&tid=sports_h",
+        "http://3g.163.com/touch/article/list/9ARME4LDbjwangjian/(*0-4,0*)-16.html",
+        "http://info.3g.qq.com/g/s?sid=AVMBkDU0Cj5UvvEWAlZEEkFH&icfa=sports_h&aid=template&tid=sports_others",
+        ""
+        ],
+      "category" : "news",
+      "subcategory" : "10",
+      "enable"   : true,
+      "type"     : "list",
+      "id"     : "sports_other"
+    }
+  ] 
+}

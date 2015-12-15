@@ -1,0 +1,1 @@
+settings.doubanpic.py

@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<template>
+  <encoding>utf-8</encoding>
+  <url_pattern>http://me.cztv.com/video-\d+.*</url_pattern>
+  <match target='title'>
+    <xpath>//div[@class="video_info"]/h1/text()</xpath>
+    <drop_empty></drop_empty> 
+  </match>
+  <match target="desc">
+    <xpath>//*[@id="allintro"]/text()</xpath>
+  </match>
+  <match target="play_total">
+    <xpath>//div[@class="vidoe_no"]/span/text()</xpath>
+  </match>
+  <match target="showtime">
+    <xpath>//div[@class="update_time fr"]/text()</xpath>
+    <regex>.*?(\d+.*)</regex>
+  </match>
+  <match target="tags">
+    <xpath>//span[contains(text(), '标签')]/a/em/text()</xpath>
+  </match>
+  <match target="deadlink">
+    <xpath>/html/head/title[text() = "CNTV.cn_ERROR"]</xpath>
+  </match>
+</template>

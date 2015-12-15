@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<template>
+  <encoding>utf-8</encoding>
+  <url_pattern>http://v.163.com/(zixun|video|paike|yule)/$</url_pattern>
+  <match target='category'>
+    <xpath>//*[@id="overlayBox"]//li[@class="v-nav-on"]/a/text()</xpath>
+  </match>
+  <match target='category_list'>
+    <xpath>//*[@id="overlayBox"]//li[@class="v-nav-on"]/a/text()</xpath>
+    <connect>,</connect>
+  </match>
+  <struct target='items'>
+    <xpath>//a[@href]</xpath>
+    <match target='url'>
+      <xpath>./@href</xpath>
+    </match>
+    <match target='title'>
+      <xpath>./@title</xpath>
+    </match>
+    <match target='title'>
+      <xpath>./text()</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>.//img/@src</xpath>
+    </match>
+  </struct>
+</template>

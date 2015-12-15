@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <encoding>utf8</encoding>
+  <url_pattern>http://video.sina.com.cn/view/.+</url_pattern>
+  <match target='title' limit='1'>
+    <xpath>//h1[@class="tl"]/text()</xpath>
+  </match>
+  <match target='desc' limit='1'>
+    <xpath>//span[@id="detail_all"]/text()</xpath>
+  </match>
+  <match target='play_total'>
+    <xpath>//span[@id="pl_playCount"]/text()</xpath>
+  </match>
+  <match target='tags'>
+    <xpath>//span[@class="tag_nm"]/text()</xpath>
+  </match>
+  <match target='showtime'>
+    <xpath>//span[@class="tm_wrap m_hd"]/text()</xpath>
+  </match>
+  <match target='crumbs'>
+    <xpath>//dl[@class="m_hd dtl_lst"][2]/dd/text()</xpath>
+    <connect>,</connect>
+  </match>
+  <struct target="items">
+    <xpath>//div[@id="pl_related"]/div</xpath>
+    <match target="title">
+      <xpath>.//div[@class="thumb"]/a/@title</xpath>
+    </match>
+    <match target="url">
+      <xpath>.//div[@class="thumb"]/a/@href</xpath>
+    </match>
+    <match target="img">
+      <xpath>.//div[@class="thumb"]/a/img/@src</xpath>
+    </match>
+    <match target="duration">
+      <xpath>.//div[@class="thumb"]//span[@class="last"]/text()</xpath>
+    </match>
+    <match target="play_total">
+      <xpath>.//span[@data-action="count"]/text()</xpath>
+    </match>
+  </struct>
+</template>

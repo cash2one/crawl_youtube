@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <url_pattern>http://toutiao.com/[ai]\d+.*</url_pattern>
+  <match target='title'>
+    <xpath>//div[@class='title']/h1/text()</xpath>
+  </match>
+  <match target='showtime'>
+    <xpath>//div[@class='subtitle clearfix']/span[@class='time']/text()</xpath>
+  </match>
+  <match target='writer'>
+    <xpath>//div[@class='subtitle clearfix']/span[@class='src']/text() | //div[@class='subtitle clearfix']/span[@class='profile_avatar']/a/text()[2]</xpath>
+  </match>
+  <match target='desc'>
+    <xpath>//blockquote/p/text()</xpath>
+  </match>
+  <match target='poster'>
+    <xpath>.//div[@class="article-content"]//div/@tt-poster</xpath>
+  </match>
+  <match target='tags'>
+    <xpath>//ul[@class='tag-list']/li/a/text()</xpath>
+  </match>
+  <match target="url" example="http://toutiao.com/i4713695412/">
+    <xpath>//div[@class="tt-video-box"]//video/@src</xpath>
+  </match>
+  <!--
+  <match target='Toutiaohao'>
+    <xpath>//div[@id='pagelet-subscribe']/@data-mediaid</xpath>
+  </match>
+  -->
+  <match target='voteup_count'>
+    <xpath>//span[@data-node='ndigg']/text()</xpath>
+  </match>
+  <match target='votedown_count'>
+    <xpath>//span[@data-node='nbury']/text()</xpath>
+  </match>
+  <match target='videoUrl'>
+    <xpath>//video/@src | //embed/@src</xpath>
+  </match>
+</template>

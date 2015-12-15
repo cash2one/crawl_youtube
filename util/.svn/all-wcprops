@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/!svn/ver/104402/tp/search2/crawler_ver2/util
+END
+BUILD
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/!svn/ver/104402/tp/search2/crawler_ver2/util/BUILD
+END
+bloom_redis_filter.cc
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/104402/tp/search2/crawler_ver2/util/bloom_redis_filter.cc
+END
+bloom_redis_filter.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/104402/tp/search2/crawler_ver2/util/bloom_redis_filter.h
+END
+connection_pool.cc
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/69754/tp/search2/crawler_ver2/util/connection_pool.cc
+END
+connection_pool.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/85016/tp/search2/crawler_ver2/util/connection_pool.h
+END
+start_bloom_service.sh
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/69754/tp/search2/crawler_ver2/util/start_bloom_service.sh
+END

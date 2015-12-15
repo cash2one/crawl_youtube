@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <encoding>utf8</encoding>
+  <url_pattern>.*www\.fun\.tv\/vplay\/.*</url_pattern>
+  <match target='title'>
+      <xpath>//*[contains(@calss, "nowplay")]/text()</xpath>
+  </match>
+  <match target='play_total'>
+    <xpath>//a[@class="exp-num"]/text()</xpath>
+    <regex>.*?(\d+.*)</regex>
+  </match>
+  <match target='crumbs'>
+      <xpath>//div[@class="crumbsline"]/a/text()</xpath>
+      <connect>,</connect>
+  </match>
+  <match target='deadlink'>
+      <xpath>//div[contains(@class, "page-error")]/@class</xpath>
+  </match>
+  <struct target='items'>
+    <xpath>//a[@class="vd-list-item"]</xpath>
+    <match target='title'>
+      <xpath>./@title</xpath>
+    </match>
+    <match target='url'>
+      <xpath>./@href</xpath>
+      <prefix no_duplicate='true'>http://www.fun.tv</prefix>
+    </match>
+    <match target='poster'>
+      <xpath>./img[@class="itm-img lazy-alpha-start"]/@_lazysrc</xpath>
+      <xpath>./img/@src</xpath>
+    </match>
+    <match target='play_total'>
+      <xpath>./span/b[@class="itm-plnum"]/text()</xpath>
+      <regex>.*：(\d+)</regex>
+    </match>
+  </struct>
+</template>

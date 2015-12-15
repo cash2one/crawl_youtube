@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/html
+END
+diff.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/html/diff.py
+END
+formfill.py
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/html/formfill.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/html/__init__.py
+END
+_html5builder.py
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/html/_html5builder.py
+END
+_setmixin.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/html/_setmixin.py
+END
+ElementSoup.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/html/ElementSoup.py
+END
+defs.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/html/defs.py
+END
+clean.py
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/html/clean.py
+END
+usedoctest.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/html/usedoctest.py
+END
+soupparser.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/html/soupparser.py
+END
+_diffcommand.py
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/html/_diffcommand.py
+END
+builder.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/html/builder.py
+END
+html5parser.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/html/html5parser.py
+END
+_dictmixin.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/87894/tp/search2/crawler_ver2/util/lxml/html/_dictmixin.py
+END

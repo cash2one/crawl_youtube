@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/!svn/ver/119599/tp/search2/crawler_ver2/filter
+END
+BUILD
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/!svn/ver/119599/tp/search2/crawler_ver2/filter/BUILD
+END
+filter_handler.cc
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/119599/tp/search2/crawler_ver2/filter/filter_handler.cc
+END
+filter_handler.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/!svn/ver/119599/tp/search2/crawler_ver2/filter/filter_handler.h
+END
+filter_service.cc
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/119599/tp/search2/crawler_ver2/filter/filter_service.cc
+END
+bf_test.cc
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/!svn/ver/119599/tp/search2/crawler_ver2/filter/bf_test.cc
+END

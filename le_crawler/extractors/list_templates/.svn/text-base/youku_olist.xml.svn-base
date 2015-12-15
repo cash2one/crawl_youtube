@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+    <url_pattern>http://www.youku.com/v_olist/.*</url_pattern>
+    <match target='category'>
+      <xpath>//*[@class="yk-filter-panel"]/div[1]/ul/li[@class="current"]/span/text()</xpath>
+    </match>
+    <match target='area'>
+      <xpath>//*[@class="yk-filter-panel"]/div[label="地区"]/ul/li[@class="current"]/span/text()</xpath>
+    </match>
+    <match target='language'>
+      <xpath>//*[@class="yk-filter-panel"]/div[label="语言"]/ul/li[@class="current"]/span/text()</xpath>
+    </match>
+    <match target='quality'>
+      <xpath>//*[@class="yk-filter-panel"]/div[label="画质"]/ul/li[@class="current"]/span/text()</xpath>
+    </match>
+    <match target='showyear'>
+      <xpath>//*[@class="yk-filter-panel"]/div[label="发行"]/ul/li[@class="current"]/span/text()</xpath>
+    </match>
+    <match target='category_list'>
+      <xpath>//*[@class="yk-filter-panel"]/div/ul/li[@class="current"]/span/text()</xpath>
+      <mapping map2=''>全部</mapping>
+      <drop_empty></drop_empty>
+      <connect>,</connect>
+    </match>
+    <match target='no_data'>
+      <xpath>//*[@class="null"]/text()</xpath>
+    </match>
+    <struct target='items'>
+        <xpath>//*[@id="listofficial"]/div[1]/div</xpath>
+        <match target='url'>
+            <xpath>./div/div[2]/a/@href</xpath>
+        </match>
+        <match target='title'>
+            <xpath>./div/div[2]/a/@title</xpath>
+        </match>
+        <match target='quality'>
+            <xpath>./div/div[1]/div[1]/i/@title</xpath>
+        </match>
+        <match target='duration' data_type='int'>
+            <xpath>./div/div[1]/div[2]/span/text()</xpath>
+        </match>
+        <match target='poster'>
+            <xpath>./div/div[1]/img/@src</xpath>
+        </match>
+        <match target='play_total'>
+            <xpath>./div/div[4]/div[2]/span/text()</xpath>
+        </match>
+    </struct>
+</template>

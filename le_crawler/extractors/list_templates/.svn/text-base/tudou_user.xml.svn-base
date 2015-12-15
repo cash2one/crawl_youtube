@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <encoding>utf8</encoding>
+  <url_pattern>http://www.tudou.com/.*?/(item|playlist)$</url_pattern>
+  <struct target='user'>
+    <xpath>//*[@id="userAvatar"]</xpath>
+    <match target='user_url'>
+      <xpath>./a/@href</xpath>
+    </match>
+    <match target='user_name'>
+      <xpath>./a/img/@title</xpath>
+    </match>
+    <match target='user_portrait'>
+      <xpath>./a/img/@src</xpath>
+    </match>
+    <match target='user_play_num'>
+      <xpath>../*[@id="topRight"]/span[@class="playtimes"]/text()</xpath>
+      <regex>(.*?)次观看</regex>
+    </match>
+    <match target='user_fans_num'>
+      <xpath>../*[@id="topRight"]/span[@class="gbtn_sub "]/em[@class="num_r"]/text()</xpath>
+    </match>
+  </struct>
+  <struct target='items' example='http://v.tudou.com/alwayswet/item'>
+    <xpath>//*[@id="main"]//div[@class="pack pack_album2"]</xpath>
+    <match target='url'>
+      <xpath>./div[@class="pic"]/a/@href</xpath>
+    </match>
+    <match target='title'>
+      <xpath>./div[@class="pic"]/a/@title</xpath>
+    </match>
+    <match target='duration'>
+      <xpath>./div[@class="pic"]/span[@class="vtime"]/span[@class="di"]/text()</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>./div[@class="pic"]/img/@src</xpath>
+    </match>
+    <match target='play_total'>
+      <xpath>./div[@class="txt"]/ul[@class="info"]//span[1]/text()</xpath>
+      <regex>(.*?)次播放</regex>
+    </match>
+    <match target='showtime'>
+      <xpath>./div[@class="txt"]/ul[@class="info"]//span[1]/text()</xpath>
+      <regex>.*?\s+(.*)</regex>
+    </match>
+  </struct>
+  <struct target='items' example='http://v.tudou.com/alwayswet/playlist'>
+    <xpath>//*[@id="main"]//div[@class="pack packs_plist"]</xpath>
+    <match target='url'>
+      <xpath>./div[@class="pic v2p"]/a/@href</xpath>
+    </match>
+    <match target='title'>
+      <xpath>./div[@class="pic v2p"]/a/@title</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>./div[@class="pic v2p"]/img/@src</xpath>
+    </match>
+    <match target='play_total'>
+      <xpath>./div[@class="txt v2t"]/ul[@class="info"]/li[1]/text()</xpath>
+      <regex>(.*?)次播放</regex>
+    </match>
+    <match target='showtime'>
+      <xpath>./div[@class="txt v2t"]/ul[@class="info"]/li[2]/text()</xpath>
+    </match>
+  </struct>
+</template>

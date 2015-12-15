@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<template>
+  <encoding>utf-8</encoding>
+  <url_pattern>http://tv.hexun.com/.*</url_pattern>
+  <match target='title'>
+    <xpath>//title/text()</xpath>
+  </match>
+  <match target='duration'>
+    <xpath>//*[@id="duration"]/text()</xpath>
+  </match>
+  <match target='showtime'>
+    <xpath>//div[@class="boxs source c_white"]/span[1]/text()</xpath>
+  </match>
+  <match target="crumbs">
+    <xpath>//div[@class="crumbs"]/a/text()</xpath>
+    <connect>,</connect>
+  </match>
+  <struct target='items'>
+    <xpath>//ul[contains(@class, "hot_")]/li</xpath>
+    <match target='title'>
+      <xpath>./p/a/text()</xpath>
+      <xpath>./strong/a/text()</xpath>
+    </match>
+    <match target="url">
+      <xpath>./strong/a/@href</xpath>
+      <xpath>./p/a/@href</xpath>
+    </match>
+    <match target="poster">
+      <xpath>.//a/img/@src</xpath>
+    </match>
+    <match target="showtime">
+      <xpath>.//font/text()</xpath>
+    </match>
+  </struct>
+</template>

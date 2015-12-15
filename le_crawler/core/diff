@@ -1,0 +1,87 @@
+Index: scheduler.py
+===================================================================
+--- scheduler.py	(revision 113894)
++++ scheduler.py	(working copy)
+@@ -11,6 +11,7 @@
+ except:
+   import pickle
+ from threading import Thread
++from random import choice
+ 
+ # from scrapy.utils.misc import load_object
+ from scrapy.utils.reqser import request_to_dict, request_from_dict
+@@ -48,7 +49,7 @@
+   def open(self, spider):
+     self.spider_ = spider
+     self.logger_ = spider.logger_
+-    self.len_start_urls_ = len(self.spider_.start_urls)
++    self.len_start_urls_ = self.spider_.start_size
+     self.logger_.info('amount of start urls: %s', self.len_start_urls_)
+     self.scheduler_client_.open(self.logger_)
+     if self.idle_before_close < 0:
+@@ -221,9 +222,63 @@
+ 
+ 
+   def __len__(self):
+-    return self.cache_input_.qsize() + self.cache_upload_.qsize()
++    return self.cache_input_.qsize()
+ 
+ 
+   def has_pending_requests(self):
+-    return not self.exit_sig_ and len(self) > 0
++    return len(self) > 0
+ 
++
++class SchedulerYoutube(CrawlDocScheduler):
++  def __init__(self, thrift_client, idle_before_close, crawler):
++    CrawlDocScheduler.__init__(self, thrift_client, idle_before_close, crawler)
++    self._keys = ['AIzaSyADAw1LV8-DmiqJNvYD7qxTRn7VclazxAE',
++                  'AIzaSyDR82r3LDFYgXAnio126YwtkWWcOfwrcDM',
++                  'AIzaSyAAvUAixwoB2XtPsuX-i6aq64QStKczcag',
++                  'AIzaSyDNW5VmzjLzzsxOWcLhse8zXZWAyHcbggM',
++                  'AIzaSyDklVqYGpjE3nOUDIOuc5fNRrdFr-t7T9g',
++                  'AIzaSyCLiSdR3CBH2AcgnwPEovag88BrPCfyhPA',
++                  'AIzaSyCObEV-VM_xecAQGROfi8RA9qB5eLqxFWc']
++    self.cache_input_max_ = 50
++    self.cache_upload_max_ = 50
++
++
++  def _add_key(self, url):
++    if not url:
++      return None
++    if 'key=' in url:
++      self._logger.error('url already has key')
++      return url
++    key = choice(self._keys)
++    return '%s&key=%s' % (url, key)
++
++  def _flush_queue(self):
++    if self.cache_upload_.empty():
++      return
++    flush_docs = []
++    while not self.cache_upload_.empty():
++      try:
++        doc = self.cache_upload_.get(timeout=1)
++        self.spider_.update_status(doc.url, {'status': CrawlStatus._VALUES_TO_NAMES.get(CrawlStatus.SCHEDULING)})
++        crawl_doc_slim = CrawlDocSlim(url=doc.url,
++                                      crawl_doc=thrift_util.thrift_to_str(doc),
++                                      priority=self._cal_priority(doc))
++        flush_docs.append(crawl_doc_slim)
++        self.spider_.update_recrawl_info(url=doc.url,
++                                         data={'next_schedule_time': int(time.time()) + 7200,
++                                               'retry_times': 0,
++                                               'crawl_doc_slim': pickle.dumps(crawl_doc_slim)})
++      except:
++        self.logger_.exception('failed to get flush doc from cache.')
++    if flush_docs:
++      self.logger_.info('<<<< pushing requests to scheduler service, requests amount: %s' % len(flush_docs))
++      self.scheduler_client_.set_crawldocs_local(flush_docs)
++
++  def next_request(self):
++    request = super(SchedulerYoutube, self).next_request()
++    if request:
++      replace_url = self._add_key(request.url)
++      #print 'replace_url:', replace_url
++      request = request.replace(url=replace_url)
++    return request
++

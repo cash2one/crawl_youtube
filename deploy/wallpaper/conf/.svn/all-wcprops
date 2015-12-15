@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/wallpaper/conf
+END
+allowed_domains.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/wallpaper/conf/allowed_domains.cfg
+END
+denied_domains.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/wallpaper/conf/denied_domains.cfg
+END
+base_domains.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/wallpaper/conf/base_domains.cfg
+END

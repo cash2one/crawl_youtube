@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowViewLayout Version="1.2">
+  <StrutsActivity path="/userlogin.do" location="50,50" dimension="265,120" />
+  <StrutsActivity path="/select_ablums.do" location="50,250" dimension="300,120" />
+  <StrutsActivity path="/add_albums.do" location="950,250" dimension="214,88" />
+  <StrutsActivity path="/publish_alb.do" location="650,450" dimension="278,120" />
+  <StrutsActivity path="/form/usrlogin.jsp" location="650,50" dimension="148,57" />
+  <StrutsActivity path="/admin/index.html" location="950,50" dimension="152,57" />
+  <StrutsActivity path="/form/select_ablums.jsp" location="650,250" dimension="191,57" />
+  <StrutsActivity path="/form/select_albums.jsp" location="50,450" dimension="144,49" />
+  <StrutsActivity path="/admin/publish_albums.jsp" location="350,450" dimension="155,49" />
+  <StrutsTransition id="/form/select_albums.jsp,null,/add_albums.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="122,499" />
+      <AbsolutePoint location="122,574" />
+      <AbsolutePoint location="1087,574" />
+      <AbsolutePoint location="1087,338" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/userlogin.do,admin_log,/admin/index.html,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="315,152" />
+      <AbsolutePoint location="1026,152" />
+      <AbsolutePoint location="1026,107" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/userlogin.do,login_error,/form/usrlogin.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="315,78" />
+      <AbsolutePoint location="650,78" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/publish_alb.do,pubulish_status,/admin/publish_albums.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="650,474" />
+      <AbsolutePoint location="505,474" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/add_albums.do,selected_ok,/admin/publish_albums.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="950,322" />
+      <AbsolutePoint location="427,322" />
+      <AbsolutePoint location="427,450" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/form/usrlogin.jsp,null,/userlogin.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="694,107" />
+      <AbsolutePoint location="694,122" />
+      <AbsolutePoint location="315,122" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/form/select_ablums.jsp,null,/select_ablums.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="650,278" />
+      <AbsolutePoint location="350,278" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/admin/publish_albums.jsp,null,/publish_alb.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="427,499" />
+      <AbsolutePoint location="427,514" />
+      <AbsolutePoint location="650,514" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/select_ablums.do,ok_fwd,/form/usrlogin.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="230,250" />
+      <AbsolutePoint location="230,215" />
+      <AbsolutePoint location="754,215" />
+      <AbsolutePoint location="754,107" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/add_albums.do,selected_failed,/form/select_albums.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1027,338" />
+      <AbsolutePoint location="1027,415" />
+      <AbsolutePoint location="122,415" />
+      <AbsolutePoint location="122,450" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/select_ablums.do,failed_fwd,/form/usrlogin.jsp,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="200,250" />
+      <AbsolutePoint location="200,185" />
+      <AbsolutePoint location="724,185" />
+      <AbsolutePoint location="724,107" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+</FlowViewLayout>
+

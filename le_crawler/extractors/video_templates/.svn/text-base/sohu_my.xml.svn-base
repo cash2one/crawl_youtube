@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<template>
+  <url_pattern>http://my.tv.sohu.com/.*</url_pattern>
+  <encoding>utf8</encoding>
+  <match target='title'>
+    <xpath>//*[@id="crumbsBar"]/div/div/div[1]/h2/text()</xpath>
+  </match>
+  <match target='category'>
+    <xpath>//*[@id="crumbsBar"]/div/div[1]/div/a[1]/text()</xpath>
+  </match>
+  <match target='tag'>
+    <xpath>//*[@id="content"]/div[1]/div[1]/div[3]/div/p/a/text()</xpath>
+  </match>
+  <match target='desc'>
+    <xpath>//*[@id="content"]/div[1]/div[1]/div[3]/p/@title</xpath>
+  </match>
+</template>

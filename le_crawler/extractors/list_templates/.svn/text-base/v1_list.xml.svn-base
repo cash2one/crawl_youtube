@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <url_pattern>.*?v1.cn/?$</url_pattern>
+  <match target='category'>
+    <xpath>//*[@id="menu_main"]//a[@class="nav_item nav_this"]/text()</xpath>
+  </match>
+  <struct target='items'>
+    <xpath>//div[@class="wrap1070 pd_picboxes height"]/li</xpath>
+    <match target='url'>
+      <xpath>./ul/a/@href</xpath>
+    </match>
+    <match target='title'>
+      <xpath>./h4/a/text()</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>./ul/a/img/@src</xpath>
+    </match>
+  </struct>
+</template>

@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/!svn/ver/76165/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler
+END
+js_dep
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/!svn/ver/76165/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/js_dep
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/__init__.py
+END
+settings.py
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/settings.py
+END
+settings.doubanpic.py
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/settings.doubanpic.py
+END
+settings.page_info.py
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/settings.page_info.py
+END
+loop_start_crawler.sh
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/loop_start_crawler.sh
+END

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <url_pattern>http://me.cztv.com/video-list.*</url_pattern>
+  <match target='category_list'>
+    <xpath>//div[@class="listbox665"]/div[@class="title"]/h2/span[@class="tit_mm"]/text()</xpath>
+  </match>
+  <match target='category'>
+    <xpath>//div[@class="listbox665"]/div[@class="title"]/h2/span[@class="tit_mm"]/text()</xpath>
+  </match>
+  <struct target='items'>
+    <xpath>//div[@class="listboxmain clearfix"]/dl</xpath>
+    <match target='url'>
+      <xpath>./dt/a/@href</xpath>
+      <prefix no_duplicate='true'>http://me.cztv.com</prefix>
+    </match>
+    <match target='title'>
+      <xpath>./dd/p/a/text()</xpath>
+    </match>
+    <match target='play_total'>
+      <xpath>./dd/span/text()</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>./dt/a/img/@src</xpath>
+    </match>
+    <match target='showtime'>
+      <xpath>./dd/b/text()</xpath>
+    </match>
+  </struct>
+</template>

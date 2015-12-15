@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <encoding>utf8</encoding>
+  <url_pattern>http://paike.youku.com/.*</url_pattern>
+  <match target='category_list'>
+    <xpath>//*[@class="yk-nav-pills-sub"]/li[@class="current"]/a/text()</xpath>
+    <connect>,</connect>
+  </match>
+  <match target='no_data'>
+    <xpath>//*[@class="null"]/text()</xpath>
+  </match>
+  <struct target='items'>
+    <xpath>//*[@class="yk-row"]/div[contains(@class, "yk-col4")]/div</xpath>
+    <match target='url'>
+      <xpath>./div[@class="v-link"]/a/@href</xpath>
+    </match>
+    <match target='title'>
+      <xpath>.//div[@class="v-meta-title"]/a/text()</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>./div[@class="v-thumb"]/img/@src</xpath>
+    </match>
+    <match target='play_total'>
+      <xpath>.//div[@class="v-meta-entry"]/span[1]/text()</xpath>
+    </match>
+    </struct>
+</template>

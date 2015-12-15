@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/xiami/le_crawler
+END
+genpy
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/xiami/le_crawler/genpy
+END
+js_dep
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/xiami/le_crawler/js_dep
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/xiami/le_crawler/__init__.py
+END
+settings.py
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/xiami/le_crawler/settings.py
+END
+common
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/xiami/le_crawler/common
+END
+core
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/xiami/le_crawler/core
+END
+base
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/xiami/le_crawler/base
+END
+loop_start_crawler.sh
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/xiami/le_crawler/loop_start_crawler.sh
+END

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <encoding>utf8</encoding>
+  <url_pattern>http://www.tudou.com/list/.*</url_pattern>
+  <match target='category'>
+    <xpath>//*[@id="secHead"]/h3/a/text()</xpath>
+  </match>
+  <match target='area'>
+    <xpath>//div[@id="sec_63"]/ul/li[@class="current"]/a/text()</xpath>
+  </match>
+  <match target='language'>
+    <xpath>//div[@id="sec_121"]/ul/li[@class="current"]/a/text()</xpath>
+  </match>
+  <match target='quality'>
+    <xpath>//div[@id="sec_67"]/ul/li[@class="current"]/a/text()</xpath>
+  </match>
+  <match target='category_list'>
+    <xpath>//*[@id="secHead"]/h3/a/text()</xpath>
+    <xpath>//*[@id="secTags"]/div/a[@class="current"]/text()</xpath>
+    <xpath>//div[contains(@id, "sec_")]/ul/li[@class="current"]/a/text()</xpath>
+    <mapping map2=''>全部</mapping>
+    <drop_empty></drop_empty>
+    <connect>,</connect>
+  </match>
+  <match target='no_data'>
+    <xpath>//*[@class="no_data fix"]/div[@class="txt"]/h3/text()</xpath>
+  </match> 
+  <struct target='items'>
+    <xpath>//*[@id="dataList"]/div</xpath>
+    <match target='url'>
+      <xpath>./div[2]/h6/a/@href</xpath>
+    </match>
+    <match target='title'>
+      <xpath>./div[2]/h6/a/text()</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>./div[@class='pic']/img[@class='quic']/@src</xpath>
+      <xpath>./div[@class='pic']/img[@class='quic lazyImg']/@alt</xpath>
+    </match>
+    <match target='duration'>
+      <xpath>.//span[@class="vtime"]/span[@class="di"]/text()</xpath>
+    </match>
+    <match target='duration'>
+      <xpath>./div[1]/span/span[2]/text()</xpath>
+    </match>
+    <match target='play_total'>
+      <xpath>./div[2]/ul/li[contains(text(), '播放')]/text()</xpath>
+      <regex>.*?(\d+\.?,?\d*万?).*</regex>
+    </match>
+    <match target='showtime'>
+      <xpath>./div[@class="txt"]/ul[@class="info"]/li[3]/text()</xpath>
+    </match>
+  </struct>
+</template>

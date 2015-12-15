@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <url_pattern>http://v.qq.com/(?!sports)\w+/?$</url_pattern>
+  <match target='category'>
+    <xpath>//*[@id="txvSitemap"]/div/ul/li[@class="list_item list_item_hassub list_item_open"]/a/span/text()</xpath>
+  </match>
+  <match target='category_list'>
+    <xpath>//*[@id="txvSitemap"]/div/ul/li[@class="list_item list_item_hassub list_item_open"]/a/span/text()</xpath>
+  </match>
+  <struct target='items'>
+    <xpath>//a[img]</xpath>
+    <match target='url'>
+      <xpath>./@href</xpath>
+    </match>
+    <match target='title' limit='1'>
+      <xpath>./@title</xpath>
+      <xpath>..//strong//text()</xpath>
+      <xpath>.//em[@class="mask_txt"]/text()</xpath>
+      <xpath>./div[@class="more_info"]/span[@class="figure_mask"]/text()</xpath>
+      <drop_empty></drop_empty>
+    </match>
+    <match target='poster'>
+      <xpath>./img/@src</xpath>
+      <xpath>./img/@lz_src</xpath>
+    </match>
+    <match target='play_total'>
+      <xpath>..//span[starts-with(@class, 'figure_info_play')]/span/text()</xpath>
+    </match>
+    <match target='showtime'>
+      <xpath>../div[@class="figure_info"]/span[@class="figure_info_brand"]/span/text()</xpath>
+    </match>
+    <match target='duration'>
+      <xpath>.//span[@class="time"]/text()</xpath>
+    </match>
+  </struct>
+</template>

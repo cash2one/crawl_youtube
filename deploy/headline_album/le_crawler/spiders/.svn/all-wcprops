@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/spiders
+END
+headline_album_crawler.py
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/spiders/headline_album_crawler.py
+END
+headline_crawler.py
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/spiders/headline_crawler.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/spiders/__init__.py
+END
+json_spider.py
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/!svn/ver/75198/tp/search2/crawler_ver2/deploy/headline_album/le_crawler/spiders/json_spider.py
+END

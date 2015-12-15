@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/thrift/protocol
+END
+TBinaryProtocol.py
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/thrift/protocol/TBinaryProtocol.py
+END
+TCompactProtocol.py
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/thrift/protocol/TCompactProtocol.py
+END
+TBase.py
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/thrift/protocol/TBase.py
+END
+TJSONProtocol.py
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/thrift/protocol/TJSONProtocol.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/thrift/protocol/__init__.py
+END
+TProtocol.py
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/!svn/ver/85016/tp/search2/crawler_ver2/mapred_parser/thrift/protocol/TProtocol.py
+END

@@ -1,0 +1,110 @@
+#!python
+#
+# Copyright 2014 LeTV Inc. All Rights Reserved.
+__author__ = 'guoxiaohe@letv.cn'
+
+import time
+import signal
+from threading import Thread
+
+from thrift.transport import TSocket
+from thrift.transport import TTransport
+from thrift.protocol import TCompactProtocol
+from thrift.server import TServer
+
+from le_crawler.base.logutil import Log
+from le_crawler.base.data_hook import SchedulerDataHook
+from le_crawler.proto.scheduler import SchedulerService
+
+
+class SchedulerHandler(object):
+  def __init__(self, data_hook, logger):
+    self.logger_ = logger
+    self.data_hook_ = data_hook
+
+
+  # api
+  def ping(self):
+    return True
+
+
+  # api
+  def get_crawldocs(self, required_num, force = False):
+    try:
+      self.logger_.debug('getting crawldocs...')
+      docs = self.data_hook_.get_requests(required_num)
+      self.logger_.debug('got crawldocs, amount: %s' % len(docs))
+      return docs
+    except:
+      self.logger_.exception('failed to get crawl_docs.')
+      return None
+
+
+  # api
+  def set_crawldocs(self, docs):
+    try:
+      self.logger_.debug('setting crawldocs, amount: %s...' % len(docs))
+      if not docs:
+        self.logger_.debug('empty crawldocs, skip.')
+        return
+      self.data_hook_.set_requests(docs)
+      self.logger_.debug('finish setting crawldocs, [%s]' % len(docs))
+    except:
+      self.logger_.exception('failed to set crawl_docs.')
+
+
+class SchedulerServiceMain(object):
+  def __init__(self, host='127.0.0.1', port=8088):
+    self.logger_ = Log('scheduler_log', 'log/scheduler.log').log
+    self.data_hook_ = SchedulerDataHook(self.logger_, 'database', host, 8099)
+    self.bind_ip_ = host
+    self.bind_port_ = port
+    self.socket_ = TSocket.TServerSocket(self.bind_ip_, self.bind_port_)
+    self.exit_ = False
+    self.monitor_thread = Thread(target=self.monitor)
+
+
+  def close(self, num, fram):
+    self.exit_ = True
+    try:
+      self.socket_.close()
+      self.data_hook_.stop()
+      self.logger_.info('close transport')
+    except:
+      self.logger_.exception('failed to close transport.')
+
+
+  def run(self):
+    # this flag daemon set true is for stop service by outside signal
+    self.service = TServer.TThreadedServer(SchedulerService.Processor(SchedulerHandler(self.data_hook_, self.logger_)),
+                                           self.socket_,
+                                           TTransport.TBufferedTransportFactory(),
+                                           TCompactProtocol.TCompactProtocolFactory(),
+                                           daemon=True)
+    self.logger_.info('begin server on %s, %s' % (self.bind_ip_, self.bind_port_))
+    print 'begin server on %s, %s' % (self.bind_ip_, self.bind_port_)
+    self.monitor_thread.start()
+    self.service.serve()
+
+
+  def monitor(self):
+    log_invert = 60
+    while not self.exit_:
+      if log_invert >= 60:
+        self.logger_.info(self.data_hook_.status())
+        log_invert = 0
+      time.sleep(1)
+      log_invert += 1
+    self.logger_.info(self.data_hook_.status())
+    self.logger_.info('monior thread ended')
+
+
+scheduler = SchedulerServiceMain('65.255.32.210', 8088)
+
+signal.signal(signal.SIGINT, scheduler.close)
+signal.signal(signal.SIGTERM, scheduler.close)
+
+
+if __name__ == '__main__':
+  scheduler.run()
+

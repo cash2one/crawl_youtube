@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/122430/tp/search2/crawler_ver2/le_crawler/proto
+END
+BUILD
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/99136/tp/search2/crawler_ver2/le_crawler/proto/BUILD
+END
+bloom_redis_filter.thrift
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/!svn/ver/96514/tp/search2/crawler_ver2/le_crawler/proto/bloom_redis_filter.thrift
+END
+video_media.thrift
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/!svn/ver/122430/tp/search2/crawler_ver2/le_crawler/proto/video_media.thrift
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/!svn/ver/95910/tp/search2/crawler_ver2/le_crawler/proto/__init__.py
+END
+url_filter_service.thrift
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/!svn/ver/120107/tp/search2/crawler_ver2/le_crawler/proto/url_filter_service.thrift
+END
+sharedb.thrift
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/95910/tp/search2/crawler_ver2/le_crawler/proto/sharedb.thrift
+END
+crawl_doc.def
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/!svn/ver/119489/tp/search2/crawler_ver2/le_crawler/proto/crawl_doc.def
+END
+crawl_doc.thrift
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/122430/tp/search2/crawler_ver2/le_crawler/proto/crawl_doc.thrift
+END
+scheduler_service.thrift
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/!svn/ver/114904/tp/search2/crawler_ver2/le_crawler/proto/scheduler_service.thrift
+END

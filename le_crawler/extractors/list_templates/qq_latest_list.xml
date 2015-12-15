@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <url_pattern>http://v.qq.com/.*?/latest/.*</url_pattern>
+  <match target='category'>
+    <xpath>//dl[@class="mod_indexs_bar bor"]/dd[@class="current"]/a/text()</xpath>
+  </match>
+  <match target='category_list'>
+    <xpath>//dl[@class="mod_indexs_bar bor"]/dd[@class="current"]/a/text()</xpath>
+    <xpath>//p[@class="mod_sub_tab "]/a[@class="current"]/text()</xpath>
+    <mapping map2=''>全部</mapping>
+    <drop_empty></drop_empty>
+    <connect>,</connect>
+  </match>
+  <match target='no_data'>
+    <xpath>//*[@class="mod_video_list details variety_page"]/div[not(boolean(//div[@class="mod_item"]))]/@class</xpath>
+  </match>
+  <struct target='items'>
+    <xpath>//div[@class="mod_video_list details variety_page"]/div/div</xpath>
+    <match target='url'>
+      <xpath>./div[1]/a/@href</xpath>
+      <prefix no_duplicate='true'>http://v.qq.com</prefix>
+    </match>
+    <match target='title'>
+      <xpath>./div[2]/div/h3/a/text()</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>./div[1]/a/img/@src</xpath>
+    </match>
+    <match target='showtime'>
+      <xpath>./div[1]/a/span/text()</xpath>
+    </match>
+  </struct>
+</template>

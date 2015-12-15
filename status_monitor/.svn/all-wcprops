@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/33543/tp/search2/crawler_ver2/status_monitor
+END
+admin_utils.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/29356/tp/search2/crawler_ver2/status_monitor/admin_utils.py
+END
+scrapy-ws.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/29356/tp/search2/crawler_ver2/status_monitor/scrapy-ws.py
+END
+simple_screen_status.py
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/!svn/ver/29356/tp/search2/crawler_ver2/status_monitor/simple_screen_status.py
+END
+crawler_status_service.py
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/!svn/ver/33543/tp/search2/crawler_ver2/status_monitor/crawler_status_service.py
+END

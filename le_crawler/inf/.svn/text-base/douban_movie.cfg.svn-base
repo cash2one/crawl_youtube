@@ -1,0 +1,17 @@
+# this start urls is using for fetch movie pictures
+# we begin by tags api list
+#movies 
+{
+  "content": [
+    {
+      "url" : [
+        "http://movie.douban.com/j/search_tags?type=movie",
+        "http://movie.douban.com/tag/"
+       ],
+      "category" : "news",
+      "enable"   : true,
+      "type"     : "list",
+      "id"     : "douban.com"
+    }
+  ]
+}

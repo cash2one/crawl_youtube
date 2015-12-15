@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/!svn/ver/97021/tp/search2/crawler_ver2/deploy/baidu_hot/le_crawler
+END
+proto
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/!svn/ver/96969/tp/search2/crawler_ver2/deploy/baidu_hot/le_crawler/proto
+END
+js_dep
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/96969/tp/search2/crawler_ver2/deploy/baidu_hot/le_crawler/js_dep
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/!svn/ver/96969/tp/search2/crawler_ver2/deploy/baidu_hot/le_crawler/__init__.py
+END
+settings.py
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/!svn/ver/97021/tp/search2/crawler_ver2/deploy/baidu_hot/le_crawler/settings.py
+END
+common
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/!svn/ver/96969/tp/search2/crawler_ver2/deploy/baidu_hot/le_crawler/common
+END
+core
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/96969/tp/search2/crawler_ver2/deploy/baidu_hot/le_crawler/core
+END
+spiders
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/96969/tp/search2/crawler_ver2/deploy/baidu_hot/le_crawler/spiders
+END
+base
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/!svn/ver/96969/tp/search2/crawler_ver2/deploy/baidu_hot/le_crawler/base
+END
+loop_start_crawler.sh
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/!svn/ver/96969/tp/search2/crawler_ver2/deploy/baidu_hot/le_crawler/loop_start_crawler.sh
+END

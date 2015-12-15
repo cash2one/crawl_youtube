@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <encoding>utf-8</encoding>
+  <url_pattern>http://news.sina.com.cn/zxt/more.shtml</url_pattern>
+  <match target='category' limit='1'>
+    <xpath>//div[@class="mod_nav"]/div/a[1]/text()</xpath>
+    <mapping map2='资讯'>全部资讯</mapping>
+  </match>
+  <match target='category_list' limit='1'>
+    <xpath>//div[@class="mod_nav"]/div/a[1]/text()</xpath>
+  </match>
+  <struct target='items'>
+    <xpath>//*[@id="feedWrapper"]/div</xpath>
+    <match target='title'>
+      <xpath>./a[@class="title play_handle"]/text()</xpath>
+    </match>
+    <match target='desc'>
+      <xpath>./p/text()</xpath>
+    </match>
+    <match target='url'>
+      <xpath>./a[@class="title play_handle"]/@href</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>./a[@class="img play_handle"]/img/@src</xpath>
+    </match>
+    <match target='showtime'>
+      <xpath>./div/p/text()</xpath>
+    </match>
+    <match target='play_total'>
+      <xpath>./div/div/span[@class="views"]/span/text()</xpath>
+    </match>
+  </struct>
+</template>

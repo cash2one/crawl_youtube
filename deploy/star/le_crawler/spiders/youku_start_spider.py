@@ -1,0 +1,1 @@
+../../../../pycrawler/spiders/youku_start_spider.py

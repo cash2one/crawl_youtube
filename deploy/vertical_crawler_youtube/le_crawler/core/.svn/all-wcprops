@@ -1,0 +1,251 @@
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/!svn/ver/76165/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core
+END
+pipelines.py
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/pipelines.py
+END
+docid_generator.py
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/docid_generator.py
+END
+dupefilter_redis.py
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/dupefilter_redis.py
+END
+crawler_docid_gen.py
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/crawler_docid_gen.py
+END
+xml_extract.py
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/xml_extract.py
+END
+extract_custom_block_words.py
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/extract_custom_block_words.py
+END
+crawldoc_convert.py
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/crawldoc_convert.py
+END
+recrawl.py
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/recrawl.py
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/__init__.py
+END
+signals.py
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/signals.py
+END
+json_extract.py
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/json_extract.py
+END
+request_compress.py
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/request_compress.py
+END
+base_extract.py
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/base_extract.py
+END
+scheduler_redis.py
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/scheduler_redis.py
+END
+links_extractor.py
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/!svn/ver/76165/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/links_extractor.py
+END
+exact_link_extract.py
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/exact_link_extract.py
+END
+extra_extend_map_engine.py
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/extra_extend_map_engine.py
+END
+queue_manager.py
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/queue_manager.py
+END
+timer.py
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/timer.py
+END
+items.py
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/items.py
+END
+queue.py
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/queue.py
+END
+json_path_selector.py
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/json_path_selector.py
+END
+connection_manager.py
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/connection_manager.py
+END
+extend_map_exractor.py
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/extend_map_exractor.py
+END
+page_writer_pipeline.py
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/page_writer_pipeline.py
+END
+html_extract.py
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/html_extract.py
+END
+connection.py
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/connection.py
+END
+sgml.py
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/sgml.py
+END
+dupefilter.py
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/dupefilter.py
+END
+page_writer.py
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/page_writer.py
+END
+domain_filter_middleware.py
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/domain_filter_middleware.py
+END
+queue_redis.py
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/queue_redis.py
+END
+scheduler_client.py
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/scheduler_client.py
+END
+scheduler.py
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/scheduler.py
+END
+stored_dupfilter.py
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/stored_dupfilter.py
+END
+jsp_download_middleware.py
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/jsp_download_middleware.py
+END
+extra_extend_map_json.py
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/extra_extend_map_json.py
+END
+le_sgml.py
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/le_sgml.py
+END
+queue_cluster.py
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/queue_cluster.py
+END
+json_path.py
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/json_path.py
+END
+connection_redis.py
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/!svn/ver/69763/tp/search2/crawler_ver2/deploy/vertical_crawler_youtube/le_crawler/core/connection_redis.py
+END

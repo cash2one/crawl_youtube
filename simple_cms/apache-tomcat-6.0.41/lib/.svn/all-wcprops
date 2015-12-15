@@ -1,0 +1,155 @@
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/lib
+END
+annotations-api.jar
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/lib/annotations-api.jar
+END
+mysql-connector-java-5.1.12-bin.jar
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/lib/mysql-connector-java-5.1.12-bin.jar
+END
+struts.jar
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/lib/struts.jar
+END
+el-api.jar
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/lib/el-api.jar
+END
+tomcat-i18n-es.jar
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/lib/tomcat-i18n-es.jar
+END
+tomcat-i18n-fr.jar
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/lib/tomcat-i18n-fr.jar
+END
+jakarta-oro.jar
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/lib/jakarta-oro.jar
+END
+catalina.jar
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/lib/catalina.jar
+END
+commons-digester.jar
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/lib/commons-digester.jar
+END
+antlr.jar
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/lib/antlr.jar
+END
+jasper-el.jar
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/lib/jasper-el.jar
+END
+jasper.jar
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/lib/jasper.jar
+END
+tomcat-coyote.jar
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/lib/tomcat-coyote.jar
+END
+servlet-api.jar
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/lib/servlet-api.jar
+END
+catalina-ant.jar
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/lib/catalina-ant.jar
+END
+tomcat-i18n-ja.jar
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/lib/tomcat-i18n-ja.jar
+END
+commons-fileupload.jar
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/lib/commons-fileupload.jar
+END
+tomcat-dbcp.jar
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/lib/tomcat-dbcp.jar
+END
+commons-validator.jar
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/lib/commons-validator.jar
+END
+commons-logging.jar
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/lib/commons-logging.jar
+END
+commons-beanutils.jar
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/lib/commons-beanutils.jar
+END
+ecj-4.3.1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/lib/ecj-4.3.1.jar
+END
+catalina-tribes.jar
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/lib/catalina-tribes.jar
+END
+catalina-ha.jar
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/lib/catalina-ha.jar
+END
+jsp-api.jar
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/!svn/ver/69916/tp/search2/crawler_ver2/simple_cms/apache-tomcat-6.0.41/lib/jsp-api.jar
+END

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<template>
+  <url_pattern>http://video.baomihua.com/v/.*</url_pattern>
+  <match target='title'>
+    <xpath>//h1[@class="title"]/text()</xpath>
+  </match>
+</template>

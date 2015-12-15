@@ -1,0 +1,12 @@
+#python
+*.pyc
+
+#log
+*.log
+*.error*
+
+#txt file
+*.txt
+
+#temp_unique
+*temp_unique

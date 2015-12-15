@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <encoding>utf8</encoding>
+  <url_pattern>http://\w+\.youku\.com/?$</url_pattern>
+  <match target='category'>
+    <xpath>//*[@class="yk-nav-main"]/ul/li[@class="current"]/a/text()</xpath>
+  </match>
+  <match target='category_list'>
+    <xpath>//*[@class="yk-nav-main"]/ul/li[@class="current"]/a/text()</xpath>
+  </match>
+  <struct target='items'>
+    <xpath>//div[contains(@class, "-link")]</xpath>
+    <match target='url'>
+      <xpath>./a/@href</xpath>
+    </match>
+    <match target='title'>
+      <xpath>../div[contains(@class, "-meta")]/div[contains(@class, "-meta-title")]/a/text()</xpath>
+    </match>
+    <match target='poster' limit='1'>
+      <xpath>../div[contains(@class, "-thumb")]/img/@_src</xpath>
+      <xpath>../div[contains(@class, "-thumb")]/img/@src</xpath>
+      <drop_empty></drop_empty>
+    </match>
+    <match target='duration' limit='1'>
+      <xpath>..//span[@class="v-time"]/text()</xpath>
+      <drop_empty></drop_empty>
+    </match>
+    <match target='play_total' limit='1'>
+      <xpath>../div[contains(@class, "v-meta")]//span[@class="v-num"]/text()</xpath>
+      <drop_empty></drop_empty>
+    </match>
+  </struct>
+  <struct target='items1'>
+    <xpath>//div[@class="project-item"]</xpath>
+    <match target='url'>
+      <xpath>./div[@class="project-bg"]/a/@href</xpath>
+    </match>
+    <match target='title'>
+      <xpath>./div[@class="project-info"]/a/h1/text()</xpath>
+    </match>
+    <match target='poster' limit='1'>
+      <xpath>./div[@class="project-bg"]/a/img/@_src</xpath>
+      <xpath>./div[@class="project-bg"]/a/img/@src</xpath>
+      <drop_empty></drop_empty>
+    </match>
+  </struct>
+  <struct target='items2'>
+    <xpath>//div[@class="yk-ablumCube"]</xpath>
+    <match target='url'>
+      <xpath>./a[@class="yk-ablumCube-pic"]/@href</xpath>
+    </match>
+    <match target='title'>
+      <xpath>./a[@class="yk-ablumCube-name"]/text()</xpath>
+    </match>
+    <match target='poster' limit='1'>
+      <xpath>./a[@class="yk-ablumCube-pic"]/img/@_src</xpath>
+      <xpath>./a[@class="yk-ablumCube-pic"]/img/@src</xpath>
+      <drop_empty></drop_empty>
+    </match>
+  </struct>
+  <struct target='items3'>
+    <xpath>//div[@class="item item-thumb"]</xpath>
+    <match target='url'>
+      <xpath>./a/@href</xpath>
+    </match>
+    <match target='title'>
+      <xpath>./a/text()</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>./span[@class="thumb"]/a/img/@src</xpath>
+    </match>
+  </struct>
+  <struct target='items4'>
+    <xpath>//div[@class="contentHolderUnit"]</xpath>
+    <match target='url'>
+      <xpath>./a/@href</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>./img/@src</xpath>
+    </match>
+  </struct>
+</template>

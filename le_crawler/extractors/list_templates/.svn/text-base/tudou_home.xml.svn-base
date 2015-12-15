@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+  <encoding>utf8</encoding>
+  <url_pattern>http://\w+\.tudou\.com/?$</url_pattern>
+  <match target='category'>
+    <xpath>//*[@class="g-nav-master"]/li[@class="current"]/a/text()</xpath>
+  </match>
+  <match target='category_list'>
+    <xpath>//*[@class="g-nav-master"]/li[@class="current"]/a/text()</xpath>
+  </match>
+  <struct target='items'>
+    <xpath>//*[@class="pic" or @class="pic v2p"]</xpath>
+    <match target='url'>
+      <xpath>./a/@href</xpath>
+    </match>
+    <match target='title' limit='1'>
+      <xpath>../*[@class="txt" or @class="txt v2t"]/h6/a/text()</xpath>
+      <xpath>../*[@class="txt" or @class="txt v2t"]/h6/text()</xpath>
+      <xpath>../*[@class="txt" or @class="txt v2t"]/div[@class="t"]/h6/a/text()</xpath>
+      <drop_empty></drop_empty>
+    </match>
+    <match target='poster'>
+      <xpath>./img/@alt</xpath>
+    </match>
+    <match target='duration'>
+      <xpath>./span[@class="vtime"]/span[@class="di"]/text()</xpath>
+    </match>
+    <match target='play_total'>
+      <xpath>../*[@class="txt" or @class="txt v2t"]/ul[@class="info"]/li[contains(text(), "次播放")]/text()</xpath>
+      <regex>(.*?)次播放.*</regex>
+    </match>
+    <match target='showtime'>
+      <xpath>./div[@class="txt"]/ul[@class="info"]/li[3]/text()</xpath>
+    </match>
+  </struct>
+  <struct target='items1'>
+    <xpath>//*[@class="pics"]/ul/li</xpath>
+    <match target='url'>
+      <xpath>./a/@href</xpath>
+    </match>
+    <match target='title'>
+      <xpath>./*[contains(@class, "txt")]/div[@class="t"]/h3/text()</xpath>
+    </match>
+    <match target='poster'>
+      <xpath>./img/@alt</xpath>
+    </match>
+  </struct>
+</template>
