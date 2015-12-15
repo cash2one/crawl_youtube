@@ -100,7 +100,7 @@ class CrawlDocScheduler(object):
       request.meta['crawl_doc'] = crawl_doc
       return request
     except:
-      self.logger_.exception('failed decode request: %s', crawl_doc.request.meta)
+      self.logger_.exception('failed decode request: %s', crawl_doc)
       return None
 
 
