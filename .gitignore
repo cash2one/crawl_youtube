@@ -6,7 +6,7 @@
 *.error*
 
 #txt file
-*.txt
+#*.txt
 
 #temp_unique
 *temp_unique

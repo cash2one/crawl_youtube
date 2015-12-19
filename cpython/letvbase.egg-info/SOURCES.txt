@@ -1,0 +1,8 @@
+setup.py
+base/hash.cc
+base/python_base_lib.cc
+base/string_piece.cc
+letvbase.egg-info/PKG-INFO
+letvbase.egg-info/SOURCES.txt
+letvbase.egg-info/dependency_links.txt
+letvbase.egg-info/top_level.txt
