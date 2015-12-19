@@ -22,7 +22,7 @@ class CrawlDocWriter(PageWriterBase):
       file_max_nums = 20
       self.data_dir_ = '/tmp/crawler_delta/'
     else:
-      gen_max_time = 900
+      gen_max_time = 300
       file_max_nums = 200
       self.data_dir_ = '/letv/crawler_delta/'
     self.set_name('CrawlDocWriter')

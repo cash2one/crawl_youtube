@@ -21,9 +21,11 @@ class YoutubeStatic(StaticExtractor):
     StaticExtractor.__init__(self, xpather, deadlinks)
     self._web_name = 'youtube.com'
     self._source_dict = {'youtube_pop': SourceType.YOUTUBE,
+                         'youtube': SourceType.YOUTUBE,
                          'custom': SourceType.CUSTOM, 
                          'socialblade': SourceType.SOCIALBLADE, 
-                         'related_channel': SourceType.RELATED_CHANNEL}
+                         'related_channel': SourceType.RELATED_CHANNEL,
+                         'related_video': SourceType.RELATED_VIDEO}
 
   def GetStatic(self, crawl_doc):
     url = crawl_doc.url
@@ -88,7 +90,7 @@ class YoutubeStatic(StaticExtractor):
       if html_data['channel_id']:
         user_url = 'https://www.youtube.com/channel/%s' % html_data['channel_id']
         video = MediaVideo()
-        video.user = OriginalUser(url=user_url.encode('utf-8'), channel_id=html_data['channel_id'].encode('utf-8'), update_time=crawl_doc.crawl_time)
+        # video.user = OriginalUser(url=user_url.encode('utf-8'), channel_id=html_data['channel_id'].encode('utf-8'), update_time=crawl_doc.crawl_time)
         crawl_doc.video = video
 
       html_data['showtime'] = snippet.get('publishedAt', None)
@@ -210,6 +212,16 @@ class YoutubeStatic(StaticExtractor):
       original_user.fans_num = int(channel_dict.get('fans_num', '0'))
       original_user.comment_num = int(channel_dict.get('comment_num', '0'))
       original_user.update_time = channel_dict.get('update_time', None)
+
+      in_related_user = channel_dict.get('in_related_user', [])
+      if in_related_user:
+        original_user.in_related_user = [related_user.encode('utf-8') for related_user in in_related_user]
+
+      out_related_user = channel_dict.get('out_related_user', [])
+      if out_related_user:
+        original_user.out_related_user = [related_user.encode('utf-8') for related_user in out_related_user]
+
       video = MediaVideo()
       video.user = original_user
       crawl_doc.video = video
+

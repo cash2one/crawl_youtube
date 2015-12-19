@@ -21,6 +21,7 @@ from ..proto.crawl_doc.ttypes import CrawlDoc
 from ..proto.crawl.ttypes import Request, CrawlStatus, ScheduleDocType, CrawlDocType
 from ..proto.scheduler.ttypes import CrawlDocSlim
 from scheduler_client import SchedulerClient
+from ..common.domain_parser import query_domain_from_url
 
 
 class CrawlDocScheduler(object):
@@ -263,12 +264,15 @@ class SchedulerYoutube(CrawlDocScheduler):
   def _add_key(self, url):
     if not url:
       return None
+
+    if query_domain_from_url(url) != 'googleapis.com':
+      return url
+
     if 'key=' in url:
       self.logger_.error('url already has key, url: [%s]', url)
       return url
     key = choice(self._keys)
     return '%s&key=%s' % (url, key)
-
 
   def next_request(self):
     request = super(SchedulerYoutube, self).next_request()

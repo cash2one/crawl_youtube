@@ -58,7 +58,7 @@ def parse_channel_detail(channel_data, extend_map=None):
   ret_dict['channel_desc'] = channel_data.get('snippet', {}).get('description', None)
   ret_dict['publish_time'] = time_parser.timestamp(channel_data.get('snippet', {}).get('publishedAt', None))
   ret_dict['thumbnails'] = json.dumps(channel_data.get('snippet', {}).get('thumbnails', {}), ensure_ascii=False)
-  ret_dict['portraiy_url'] = channel_data.get('snippet', {}).get('thumbnails', {}).get('default', {}).get('url', None)
+  ret_dict['portrait_url'] = channel_data.get('snippet', {}).get('thumbnails', {}).get('default', {}).get('url', None)
   ret_dict['country'] = channel_data.get('snippet', {}).get('country', None)
   ret_dict['video_num'] = int(channel_data.get('statistics', {}).get('videoCount', None))
   ret_dict['play_num'] = int(channel_data.get('statistics', {}).get('viewCount', None))
@@ -68,6 +68,7 @@ def parse_channel_detail(channel_data, extend_map=None):
   if extend_map:
     ret_dict['user'] = extend_map.get('user', None)
     ret_dict['category'] = extend_map.get('category', None)
+  ret_dict['is_parse'] = True
   return ret_dict
   
   
