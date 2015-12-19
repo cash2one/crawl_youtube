@@ -86,6 +86,13 @@ class MergeItem:
   def count_video(self, video):
     if not video:
       return
+    sys.stderr.write('reporter:counter:reduce,video_total,1\n')
+    category = video.category
+    if category:
+      category = category.replace(' ', '_')
+      sys.stderr.write('reporter:counter:reduce,%s,1\n' % category)
+    else:
+      sys.stderr.write('reporter:counter:reduce,not_category,1\n')
     content_timestamp = video.content_timestamp
     if not content_timestamp:
       sys.stderr.write('reporter:counter:reduce,not_content_timestamp,1\n')
@@ -97,6 +104,8 @@ class MergeItem:
       sys.stderr.write('reporter:counter:reduce,video_2h,1\n')
     if time_delta > 0 and time_delta < 86400:
       sys.stderr.write('reporter:counter:reduce,video_24h,1\n')
+      if category:
+        sys.stderr.write('reporter:counter:reduce,24h_%s,1\n' % category)
     if time_delta > 0 and time_delta < 172800:
       sys.stderr.write('reporter:counter:reduce,video_48h,1\n')
 
