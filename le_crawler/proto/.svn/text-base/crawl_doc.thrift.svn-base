@@ -63,6 +63,7 @@ enum PageType {
   ORDER_TYPE              = 4,    # 排序类型，按照时间、热度排序
   RELATED_CHANNEL         = 5,    # 相关频道
   RELATED_VIDEO           = 6,    # 相关视频
+  CATEGORY                = 7,    # category页(目前YouTube使用)
 }
 
 enum SourceType {
@@ -357,5 +358,15 @@ enum LanguageType {
 struct RegionStrategy {
   1:  optional list<string>                    region_allowed;            //Youtube在用,允许地区列表, 注(NONE为不生效，[]为全屏蔽)
   2:  optional list<string>                    region_blocked;            //Youtube在用,限制地区列表，注(NONE为不生效，[]为全允许)
+}
+
+struct CategoryProportion {
+  1:  string                    category;
+  2:  double                    proportion;
+}
+
+struct LanguageProportion {
+  1:  LanguageType              language_type;
+  2:  double                    proportion;
 }
 

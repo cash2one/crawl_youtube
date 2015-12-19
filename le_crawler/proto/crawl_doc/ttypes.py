@@ -40,6 +40,7 @@ class CrawlDoc:
    - video
    - domain
    - domain_id
+   - videos
   """
 
   thrift_spec = (
@@ -65,9 +66,10 @@ class CrawlDoc:
     (19, TType.STRUCT, 'video', (le_crawler.proto.video.ttypes.MediaVideo, le_crawler.proto.video.ttypes.MediaVideo.thrift_spec), None, ), # 19
     (20, TType.STRING, 'domain', None, None, ), # 20
     (21, TType.I32, 'domain_id', None, None, ), # 21
+    (22, TType.LIST, 'videos', (TType.STRUCT,(le_crawler.proto.video.ttypes.MediaVideo, le_crawler.proto.video.ttypes.MediaVideo.thrift_spec)), None, ), # 22
   )
 
-  def __init__(self, id=None, discover_time=None, schedule_time=None, crawl_time=None, schedule_doc_type=thrift_spec[8][4], page_type=None, doc_type=None, request=None, response=None, url=None, in_links=None, out_links=None, crawl_history=None, page_state=thrift_spec[18][4], video=None, domain=None, domain_id=None,):
+  def __init__(self, id=None, discover_time=None, schedule_time=None, crawl_time=None, schedule_doc_type=thrift_spec[8][4], page_type=None, doc_type=None, request=None, response=None, url=None, in_links=None, out_links=None, crawl_history=None, page_state=thrift_spec[18][4], video=None, domain=None, domain_id=None, videos=None,):
     self.id = id
     self.discover_time = discover_time
     self.schedule_time = schedule_time
@@ -85,6 +87,7 @@ class CrawlDoc:
     self.video = video
     self.domain = domain
     self.domain_id = domain_id
+    self.videos = videos
 
   def read(self, iprot):
     if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
@@ -196,6 +199,17 @@ class CrawlDoc:
           self.domain_id = iprot.readI32();
         else:
           iprot.skip(ftype)
+      elif fid == 22:
+        if ftype == TType.LIST:
+          self.videos = []
+          (_etype15, _size12) = iprot.readListBegin()
+          for _i16 in xrange(_size12):
+            _elem17 = le_crawler.proto.video.ttypes.MediaVideo()
+            _elem17.read(iprot)
+            self.videos.append(_elem17)
+          iprot.readListEnd()
+        else:
+          iprot.skip(ftype)
       else:
         iprot.skip(ftype)
       iprot.readFieldEnd()
@@ -249,15 +263,15 @@ class CrawlDoc:
     if self.in_links is not None:
       oprot.writeFieldBegin('in_links', TType.LIST, 15)
       oprot.writeListBegin(TType.STRUCT, len(self.in_links))
-      for iter12 in self.in_links:
-        iter12.write(oprot)
+      for iter18 in self.in_links:
+        iter18.write(oprot)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.out_links is not None:
       oprot.writeFieldBegin('out_links', TType.LIST, 16)
       oprot.writeListBegin(TType.STRUCT, len(self.out_links))
-      for iter13 in self.out_links:
-        iter13.write(oprot)
+      for iter19 in self.out_links:
+        iter19.write(oprot)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.crawl_history is not None:
@@ -279,6 +293,13 @@ class CrawlDoc:
     if self.domain_id is not None:
       oprot.writeFieldBegin('domain_id', TType.I32, 21)
       oprot.writeI32(self.domain_id)
+      oprot.writeFieldEnd()
+    if self.videos is not None:
+      oprot.writeFieldBegin('videos', TType.LIST, 22)
+      oprot.writeListBegin(TType.STRUCT, len(self.videos))
+      for iter20 in self.videos:
+        iter20.write(oprot)
+      oprot.writeListEnd()
       oprot.writeFieldEnd()
     oprot.writeFieldStop()
     oprot.writeStructEnd()

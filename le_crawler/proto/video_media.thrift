@@ -65,6 +65,8 @@ struct OriginalUser {
   15: optional string                                    country;                        //国家
   16: optional list<crawl_doc.CategoryProportion>        category_proportion_list;       //频道大部分视频的category所占百分比
   17: optional list<crawl_doc.LanguageProportion>        language_proportion_list;       //频道大部分视频的语言类型所占百分比
+  18: optional list<string>                              in_related_user;                //入链相关频道的user_url
+  19: optional list<string>                              out_related_user;               //相关频道的user_url
 }
 
 //视频结构
@@ -165,6 +167,7 @@ struct MediaVideo {
   95: optional crawl_doc.LanguageType         language_type;                  //语言类型
   96: optional list<list<crawl_doc.Anchor>>   inlink_history;                 //爬取路径
   97: optional crawl_doc.RegionStrategy       region_strategy;                //地域策略
+  98: optional string                         external_id;                    //单视频的video_id
 }
 
 //专辑下的视频列表。尽量不存冗余，只存用于排序，筛选的字段.

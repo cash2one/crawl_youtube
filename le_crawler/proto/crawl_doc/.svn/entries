@@ -1,14 +1,14 @@
 10
 
 dir
-122471
+127980
 http://svn2.letv.cn/tp/search2/crawler_ver2/le_crawler/proto/crawl_doc
 http://svn2.letv.cn
 
 
 
-2015-11-19T17:50:09.996075Z
-119489
+2015-12-03T10:05:40.454919Z
+123297
 gaoqiang
 
 
@@ -32,10 +32,10 @@ file
 
 
 
-2015-11-20T05:07:49.474706Z
-b3600ffbb48d76fd267bd67f7340ce68
-2015-11-19T17:50:09.996075Z
-119489
+2015-12-10T06:15:45.363551Z
+a40b76d0520352fc181303ea27ff9ac4
+2015-12-03T10:05:40.454919Z
+123297
 gaoqiang
 
 
@@ -58,7 +58,7 @@ gaoqiang
 
 
 
-10422
+11274
 
 constants.py
 file

@@ -63,6 +63,7 @@ enum PageType {
   ORDER_TYPE              = 4,    # 排序类型，按照时间、热度排序
   RELATED_CHANNEL         = 5,    # 相关频道
   RELATED_VIDEO           = 6,    # 相关视频
+  CATEGORY                = 7,    # category页(目前YouTube使用)
 }
 
 enum SourceType {

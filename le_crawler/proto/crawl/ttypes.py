@@ -163,6 +163,7 @@ class PageType:
   ORDER_TYPE = 4
   RELATED_CHANNEL = 5
   RELATED_VIDEO = 6
+  CATEGORY = 7
 
   _VALUES_TO_NAMES = {
     0: "HUB",
@@ -172,6 +173,7 @@ class PageType:
     4: "ORDER_TYPE",
     5: "RELATED_CHANNEL",
     6: "RELATED_VIDEO",
+    7: "CATEGORY",
   }
 
   _NAMES_TO_VALUES = {
@@ -182,6 +184,7 @@ class PageType:
     "ORDER_TYPE": 4,
     "RELATED_CHANNEL": 5,
     "RELATED_VIDEO": 6,
+    "CATEGORY": 7,
   }
 
 class SourceType:

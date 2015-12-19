@@ -27,6 +27,7 @@ struct CrawlDoc {
   19: optional video_media.MediaVideo              video;
   20: optional string                              domain;
   21: optional i32                                 domain_id;
+  22: optional list<video_media.MediaVideo>        videos;
 }
 
 
