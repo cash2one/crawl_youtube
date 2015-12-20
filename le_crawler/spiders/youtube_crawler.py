@@ -396,7 +396,7 @@ class YouTubeCrawler(Spider):
         self.upsert_channel_info(channel_dict)
 
       related_channel_urls = ['https://www.youtube.com/channel/' + channel for channel in related_channel_list]
-      channel_dict = self.get_channel_dict(channel_id, None)
+      channel_dict = self.get_channel_info(channel_id, None)
       out_related_user = channel_dict.get('out_related_user', [])
       out_related_user.extend(related_channel_urls)
       channel_dict = {'channel_id': channel_id, 'out_related_user': out_related_user}
