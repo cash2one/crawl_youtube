@@ -189,9 +189,10 @@ class YoutubeStatic(StaticExtractor):
 
       thumbnails = channel_dict.get('thumbnails', None)
       if thumbnails:
-        original_user.thumbnails = thumbnails.encode('utf-8')
-
-      original_user.thumbnail_list = parse_thumbnail_list(thumbnails)
+        original_user.thumbnails = json.dumps(thumbnails, ensure_ascii=False).encode('utf-8')
+      thumbnail_list = parse_thumbnail_list(thumbnails)
+      if thumbnail_list
+        original_user.thumbnail_list = thumbnail_list
 
       
       original_user.portrait_url = channel_dict.get('portrait_url', None)

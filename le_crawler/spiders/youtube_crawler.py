@@ -81,6 +81,7 @@ class YouTubeCrawler(Spider):
     self._recrawl_collection.create_index('url', unique=True)
     self._recrawl_collection.create_index([('next_schedule_time', DESCENDING)])
     self._channel_collection.create_index('channel_id', unique=True)
+    self._channel_collection.create_index([('next_schedule_time', DESCENDING)])
 
   def _strip_key(self, url):
     if not url:
@@ -441,7 +442,7 @@ class YouTubeCrawler(Spider):
                 (part, maxResults, nextPageToken, playlist)
         if page_index > 1:
           dont_filter = is_pop
-          doc_type = CrawlDocType.HUB_OTHER
+          doc_type = CrawlDocType.HUB_TIME_HOME if is_pop else CrawlDocType.HUB_OTHER
         else:
           dont_filter = True
           doc_type = CrawlDocType.HUB_TIME_HOME
@@ -511,7 +512,7 @@ class YouTubeCrawler(Spider):
             self.logger_.error('failed to get channel_id, url: [%s]', url)
             continue
           channel_dict = self.get_channel_info(channel_id)
-          if not  channel_dict:
+          if not  channel_dict or not channel_dict.get('is_parse', False):
             exmap = {'channel_id': channel_id, 'source': 'youtube'}
             part = 'snippet,statistics,contentDetails'
             api = 'https://www.googleapis.com/youtube/v3/channels?part=%s&id=%s' % \

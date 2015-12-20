@@ -52,19 +52,52 @@ youtube_category_dict = {'1': 'Film & Animation',
 
 def parse_channel_detail(channel_data, extend_map=None):
   ret_dict = {}
-  ret_dict['channel_id'] = channel_data.get('id', None)
+  channel_id = channel_data.get('id', None)
+  if channel_id is not None:
+    ret_dict['channel_id'] = channel_id
+  else:
+    return None
   ret_dict['url'] = 'https://www.youtube.com/channel/%s' % ret_dict['channel_id']
-  ret_dict['channel_title'] = channel_data.get('snippet', {}).get('title', None)
-  ret_dict['channel_desc'] = channel_data.get('snippet', {}).get('description', None)
-  ret_dict['publish_time'] = time_parser.timestamp(channel_data.get('snippet', {}).get('publishedAt', None))
-  ret_dict['thumbnails'] = json.dumps(channel_data.get('snippet', {}).get('thumbnails', {}), ensure_ascii=False)
-  ret_dict['portrait_url'] = channel_data.get('snippet', {}).get('thumbnails', {}).get('default', {}).get('url', None)
-  ret_dict['country'] = channel_data.get('snippet', {}).get('country', None)
-  ret_dict['video_num'] = int(channel_data.get('statistics', {}).get('videoCount', None))
-  ret_dict['play_num'] = int(channel_data.get('statistics', {}).get('viewCount', None))
-  ret_dict['fans_num'] = int(channel_data.get('statistics', {}).get('subscriberCount', None))
-  ret_dict['comment_num'] = int(channel_data.get('statistics', {}).get('commentCount', None))
-  ret_dict['update_time'] = int(time.time())
+  
+  channel_title = channel_data.get('snippet', {}).get('title', None)
+  if channel_title is not None:
+    ret_dict['channel_title'] = channel_title
+
+  channel_desc = channel_data.get('snippet', {}).get('description', None)
+  if channel_desc is not None:
+    ret_dict['channel_desc'] = channel_desc
+    
+  publish_time = channel_data.get('snippet', {}).get('publishedAt', None)
+  if publish_time is not None:
+    ret_dict['publish_time'] = time_parser.timestamp(publish_time)
+
+  thumbnails = channel_data.get('snippet', {}).get('thumbnails', None)
+  if thumbnails is not None:
+    ret_dict['thumbnails'] = thumbnails
+  portrait_url = thumbnails.get('default', {}).get('url', None)
+  if portrait_url is not None:
+    ret_dict['portrait_url'] = portrait_url
+
+  country = channel_data.get('snippet', {}).get('country', None)
+  if country is not None:
+    ret_dict['country'] = country
+
+  video_num = channel_data.get('statistics', {}).get('videoCount', None)
+  if video_num is not None:
+    ret_dict['video_num'] = int(video_num)
+
+  play_num = channel_data.get('statistics', {}).get('viewCount', None)
+  if play_num is not None:
+    ret_dict['play_num'] = int(play_num)
+
+  fans_num = channel_data.get('statistics', {}).get('subscriberCount', None)
+  if fans_num is not None:
+    ret_dict['fans_num'] = int(fans_num)
+
+  comment_num = channel_data.get('statistics', {}).get('commentCount', None)
+  if comment_num is not None:
+    ret_dict['comment_num'] = int(comment_num)
+
   if extend_map:
     if extend_map.get('user', None):
       ret_dict['user'] = extend_map['user']
@@ -72,7 +105,9 @@ def parse_channel_detail(channel_data, extend_map=None):
       ret_dict['source'] = extend_map['source']
     if extend_map.get('country', None) and ret_dict.get('country', None):
       ret_dict['country'] = extend_map['country']
+
   ret_dict['is_parse'] = True
+  ret_dict['update_time'] = int(time.time())
   return ret_dict
   
   
@@ -93,12 +128,11 @@ def gen_youtube_video_url(request_url):
     print msg
     
  
-def parse_thumbnail_list(thumbnail_str):
-  if not thumbnail_str:
+def parse_thumbnail_list(thumbnail_dict):
+  if not thumbnail_dict:
     return
   thumbnail_list = []
   try:
-    thumbnail_dict = json.loads(thumbnail_str)
     for key, value in thumbnail_dict.items():
       thumbnail = Thumbnail()
       thumbnail.scale = key.encode('utf-8')
