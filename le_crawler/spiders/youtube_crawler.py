@@ -523,9 +523,6 @@ class YouTubeCrawler(Spider):
         if channel_dict and channel_dict.get('is_parse', False):
           extend_map['channel_dict'] = channel_dict
           response.meta['extend_map'] = extend_map
-          youtube_item = crawldoc_to_youtube_item(doc, response)
-          if youtube_item:
-            items.append(youtube_item)
           self.remove_recrawl_info(url)
         else:
           exmap = {'channel_id': channel_id, 'source': 'youtube'}
@@ -533,6 +530,10 @@ class YouTubeCrawler(Spider):
           api = 'https://www.googleapis.com/youtube/v3/channels?part=%s&id=%s' % \
                 (part, channel_id)
           items.append(self._create_request(api, PageType.CHANNEL, CrawlDocType.HUB_HOME, meta={'extend_map': exmap}, headers=headers, in_doc=doc))
+          
+        youtube_item = crawldoc_to_youtube_item(doc, response)
+        if youtube_item:
+          items.append(youtube_item)
       self.update_status(doc, CrawlStatus._VALUES_TO_NAMES.get(CrawlStatus.EXTRACTED))
       #self.remove_recrawl_info(url)
       return items
