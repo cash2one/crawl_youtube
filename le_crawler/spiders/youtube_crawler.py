@@ -25,8 +25,10 @@ from ..proto.crawl_doc.ttypes import CrawlDoc
 from ..core.url_filter_client import UrlFilterClient
 from ..common.parse_youtube import parse_channel_detail
 from ..common.start_url_loads import StartUrlsLoader
+from ..common.time_parser import TimeParser
 
 
+time_parser = TimeParser()
 
 class YouTubeCrawler(Spider):
   name = 'youtube'
@@ -524,6 +526,13 @@ class YouTubeCrawler(Spider):
         if channel_dict and channel_dict.get('is_parse', False):
           extend_map['channel_dict'] = channel_dict
           response.meta['extend_map'] = extend_map
+          video_follow_time = channel_dict.get('video_follow_time', [])
+          showtime = datas[0].get('snippet', {}).get('publishedAt')
+          content_timestamp = time_parser.timestamp(showtime)
+          if content_timestamp and content_timestamp not in video_follow_time:
+            video_follow_time.append(content_timestamp)
+            video_follow_time.sort(reverse=True)
+            self.upsert_channel_info({'channel_id': channel_id, 'video_follow_time': video_follow_time})
           self.remove_recrawl_info(url)
         else:
           exmap = {'channel_id': channel_id, 'source': 'youtube'}

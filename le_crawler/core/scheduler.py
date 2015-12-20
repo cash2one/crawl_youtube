@@ -18,10 +18,11 @@ from scrapy.utils.reqser import request_to_dict, request_from_dict
 
 from ..common import thrift_util
 from ..proto.crawl_doc.ttypes import CrawlDoc
-from ..proto.crawl.ttypes import Request, CrawlStatus, ScheduleDocType, CrawlDocType
+from ..proto.crawl.ttypes import Request, CrawlStatus, ScheduleDocType, CrawlDocType, PageType
 from ..proto.scheduler.ttypes import CrawlDocSlim
 from scheduler_client import SchedulerClient
 from ..common.domain_parser import query_domain_from_url
+from ..commom.parse_youtube import parse_channel_id
 
 
 class CrawlDocScheduler(object):
@@ -155,11 +156,19 @@ class CrawlDocScheduler(object):
         #if not doc.domain_id:
         #  self.logger_.error('no domain_id, url: %s, in_link: %s', doc.url, doc.in_links[0].url if doc.in_links else None)
         flush_docs.append(crawl_doc_slim)
+        now = int(time.time())
         if CrawlDocType.PAGE_PLAY < crawl_doc_slim.priority < CrawlDocType.HUB_FRESH_MAX:
           self.spider_.update_recrawl_info(url=doc.url,
-                                           data={'next_schedule_time': int(time.time()) + 60 * 30,
+                                           data={'next_schedule_time': now + 60 * 30,
                                                  'retry_times': 0,
                                                  'crawl_doc_slim': pickle.dumps(crawl_doc_slim)})
+        if doc.page_type == PageType:
+          channel_id = parse_channel_id(doc.url)
+          channel_dict = {'channel_id': channel_id,
+                          'next_schedule_time': now + 3 * 60,
+                          'update_time': now,
+                          'crawl_doc_slim': pickle.dumps(crawl_doc_slim)})
+          self.spider_.upsert_channel_info(channel_dict)
       except:
         self.logger_.exception('failed to get flush doc from cache.')
     if flush_docs:

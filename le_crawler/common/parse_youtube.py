@@ -126,6 +126,24 @@ def gen_youtube_video_url(request_url):
     msg = e.message
     msg += traceback.format_exc()
     print msg
+
+
+def parse_channel_id(url):
+  if not url:
+    return None
+  if not url.startswith('https://www.googleapis.com/youtube/v3/channels'):
+    return None
+  try:
+    urlparse_ret = urlparse.urlparse(url)
+    url_query = urlparse.parse_qs(urlparse_ret.query)
+    channel_id = url_query.get('id', [''])[0]
+    return channel_id
+  except Exception, e:
+    msg = e.message
+    msg += traceback.format_exc()
+    print msg
+
+
     
  
 def parse_thumbnail_list(thumbnail_dict):

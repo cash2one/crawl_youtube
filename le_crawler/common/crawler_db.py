@@ -34,7 +34,7 @@ from le_crawler.proto.scheduler.ttypes import CrawlDocSlim
 
 
 #fresh_docs = set(range(CrawlDocType.HUB_FRESH_MIN, CrawlDocType.HUB_FRESH_MAX))
-fresh_docs = set([CrawlDocType.HUB_HOME])
+fresh_docs = set([CrawlDocType.PAGE_HOT])
 
 doc_type_map = {CrawlDocType.HOME: 21,
                 CrawlDocType.HUB_HOME: 22,
