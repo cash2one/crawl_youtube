@@ -366,7 +366,7 @@ class YouTubeCrawler(Spider):
       headers = {'Referer': url}
       doc = response.meta.get('crawl_doc')
       #print 'parse_channel url:', url
-      self.logger_.error('parse_channel url: %s' % url)
+      self.logger_.error('parse_related_channel url: %s' % url)
       page = response.body.decode(response.encoding)
       self.update_status(doc, CrawlStatus._VALUES_TO_NAMES.get(CrawlStatus.DOWNLOADED))
       extend_map = response.meta.get('extend_map', {})
@@ -396,7 +396,7 @@ class YouTubeCrawler(Spider):
         self.upsert_channel_info(channel_dict)
 
       related_channel_urls = ['https://www.youtube.com/channel/' + channel for channel in related_channel_list]
-      channel_dict = self.get_channel_info(channel_id, None)
+      channel_dict = self.get_channel_info(channel_id)
       out_related_user = channel_dict.get('out_related_user', [])
       out_related_user.extend(related_channel_urls)
       channel_dict = {'channel_id': channel_id, 'out_related_user': out_related_user}
