@@ -208,6 +208,9 @@ class YouTubeCrawler(Spider):
         yield self._create_request(url, PageType.CHANNEL, CrawlDocType.PAGE_HOT, meta={'extend_map': exmap}, dont_filter=True)
       elif type == 'list':
         yield self._create_request(url, PageType.HUB, CrawlDocType.PAGE_HOT, meta={'extend_map': exmap}, dont_filter=True)
+      elif type == 'page':
+        yield self._create_request(url, PageType.PLAY, CrawlDocType.PAGE_HOT, meta={'extend_map': exmap}, dont_filter=True)
+
 
     #from mongo
     for item in self._starturl_collection.find({}):
@@ -495,12 +498,13 @@ class YouTubeCrawler(Spider):
       page = response.body.decode(response.encoding)
       self.update_status(doc, CrawlStatus._VALUES_TO_NAMES.get(CrawlStatus.DOWNLOADED))
       extend_map = response.meta.get('extend_map', {})
-      is_expand = extend_map.get('is_expand', False)
+      is_multi = extend_map.get('is_multi', False)
       rep_dict = json.loads(page)
       datas = rep_dict.get('items', [])
       if not datas:
         self.logger_.error('failed to pase data, url: [%s]', url)
         return
+      if is_multi:
         for data in datas:
           channel_id = data.get('snippet', {}).get('channelId', None)
           if not channel_id:
@@ -508,7 +512,7 @@ class YouTubeCrawler(Spider):
             continue
           channel_dict = self.get_channel_info(channel_id)
           if not  channel_dict:
-            exmap = {'channel_id': channel_id}
+            exmap = {'channel_id': channel_id, 'source': 'youtube'}
             part = 'snippet,statistics,contentDetails'
             api = 'https://www.googleapis.com/youtube/v3/channels?part=%s&id=%s' % \
                   (part, channel_id)
@@ -524,7 +528,7 @@ class YouTubeCrawler(Spider):
             items.append(youtube_item)
           self.remove_recrawl_info(url)
         else:
-          exmap = {'channel_id': channel_id}
+          exmap = {'channel_id': channel_id, 'source': 'youtube'}
           part = 'snippet,statistics,contentDetails'
           api = 'https://www.googleapis.com/youtube/v3/channels?part=%s&id=%s' % \
                 (part, channel_id)
