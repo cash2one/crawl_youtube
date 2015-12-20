@@ -114,10 +114,10 @@ class CrawlDocScheduler(object):
 
 
   def enqueue_request(self, request):
-    self.logger_.info('<<<< enqueue request, %s', request.url)
     if not request:
       self.logger_.error('invalid request, skip.')
       return
+    self.logger_.info('<<<< enqueue request, %s', request.url)
     doc = self._encode_request(request)
     if not doc.url:
       return
