@@ -216,7 +216,7 @@ class YouTubeCrawler(Spider):
       part = 'snippet,statistics,contentDetails'
       api = 'https://www.googleapis.com/youtube/v3/channels?part=%s&id=%s' % \
           (part, channel_id)
-      yield self._create_request(api, PageType.CHANNEL, CrawlDocType.HUB_HOME, meta={'extend_map': exmap})
+      yield self._create_request(api, PageType.CHANNEL, CrawlDocType.HUB_HOME, meta={'extend_map': exmap}, dont_filter=False)
 
 
   def parse_home(self, response):
@@ -321,7 +321,6 @@ class YouTubeCrawler(Spider):
       if not datas:
         self.logger_.error('parse channel failed, url: [%s]' % url)
         return None
-      data in datas:
       data = datas[0]
       exmap = {}
       exmap.update(extend_map)
