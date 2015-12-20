@@ -384,7 +384,7 @@ class YouTubeCrawler(Spider):
           in_related_user = related_channel_dict.get('in_related_user', [])
           in_related_user.append(url)
         else:
-          exmap = {'channel_id': related_channel}
+          exmap = {'channel_id': related_channel, 'source': 'related_channel'}
           in_related_user = [channel_id]
           part = 'snippet,statistics,contentDetails'
           api = 'https://www.googleapis.com/youtube/v3/channels?part=%s&id=%s' % \

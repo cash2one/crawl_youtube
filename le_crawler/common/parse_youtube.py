@@ -66,8 +66,12 @@ def parse_channel_detail(channel_data, extend_map=None):
   ret_dict['comment_num'] = int(channel_data.get('statistics', {}).get('commentCount', None))
   ret_dict['update_time'] = int(time.time())
   if extend_map:
-    ret_dict['user'] = extend_map.get('user', None)
-    ret_dict['category'] = extend_map.get('category', None)
+    if extend_map.get('user', None):
+      ret_dict['user'] = extend_map['user']
+    if extend_map.get('source', NOne):
+      ret_dict['source'] = extend_map['source']
+    if extend_map.get('country', None) and ret_dict.get('country', None):
+      ret_dict['country'] = extend_map['country']
   ret_dict['is_parse'] = True
   return ret_dict
   
