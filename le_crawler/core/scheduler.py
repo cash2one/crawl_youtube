@@ -165,11 +165,15 @@ class CrawlDocScheduler(object):
         if doc.page_type == PageType.CHANNEL:
           channel_id = parse_channel_id(doc.url)
           if channel_id:
-            channel_dict = {'channel_id': channel_id,
-                            'next_schedule_time': now + 3 * 60,
-                            'update_time': now,
-                            'crawl_doc_slim': pickle.dumps(crawl_doc_slim)}
-            self.spider_.upsert_channel_info(channel_dict)
+            return
+          channel_dict = self.spider_.get_channel_info(channel_id)
+          if not channel_dict or not channel_dict.get('crawl_doc_slim', None):
+            return
+          channel_dict = {'channel_id': channel_id,
+                          'next_schedule_time': now + 3 * 60,
+                          'update_time': now,
+                          'crawl_doc_slim': pickle.dumps(crawl_doc_slim)}
+          self.spider_.upsert_channel_info(channel_dict)
       except:
         self.logger_.exception('failed to get flush doc from cache.')
     if flush_docs:
