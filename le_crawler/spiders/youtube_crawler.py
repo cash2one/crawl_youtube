@@ -252,7 +252,7 @@ class YouTubeCrawler(Spider):
         part = 'snippet'
         maxResults = 50
         api = 'https://www.googleapis.com/youtube/v3/channels?part=%s&categoryId=%s&maxResults=%s' % (part, category_id, maxResults)
-        items.append(self._create_request(api, PageType.CATEGORY, CrawlDocType.HUB_HOME, meta={'extend_map': exmap}, headers=headers, in_doc=doc))
+        items.append(self._create_request(api, PageType.CATEGORY, CrawlDocType.HUB_CATEGORY, meta={'extend_map': exmap}, headers=headers, in_doc=doc))
       self.update_status(doc, CrawlStatus._VALUES_TO_NAMES.get(CrawlStatus.EXTRACTED))
       self.remove_recrawl_info(url)
       return items
@@ -283,7 +283,7 @@ class YouTubeCrawler(Spider):
         part = 'snippet'
         maxResults = 50
         api = 'https://www.googleapis.com/youtube/v3/channels?part=%s&categoryId=%s&maxResults=%s&pageToken=%s' % (part, category_id, maxResults, nextPageToken)
-        items.append(self._create_request(api, PageType.HOME, CrawlDocType.CATEGORY, meta={'extend_map': exmap}, headers=headers, in_doc=doc, is_next=True))
+        items.append(self._create_request(api, PageType.CATEGORY, CrawlDocType.HUB_CATEGORY, meta={'extend_map': exmap}, headers=headers, in_doc=doc, is_next=True))
 
       datas = rep_dict.get('items', [])
       if not datas:
@@ -384,10 +384,11 @@ class YouTubeCrawler(Spider):
         related_channel_dict = self.get_channel_info(related_channel)
         if related_channel_dict:
           in_related_user = related_channel_dict.get('in_related_user', [])
-          in_related_user.append(url)
+          if url not in in_related_user:
+            in_related_user.append(url)
         else:
           exmap = {'channel_id': related_channel, 'source': 'related_channel'}
-          in_related_user = [channel_id]
+          in_related_user = [url]
           part = 'snippet,statistics,contentDetails'
           api = 'https://www.googleapis.com/youtube/v3/channels?part=%s&id=%s' % \
                 (part, related_channel)
@@ -397,9 +398,9 @@ class YouTubeCrawler(Spider):
 
       related_channel_urls = ['https://www.youtube.com/channel/' + channel for channel in related_channel_list]
       channel_dict = self.get_channel_info(channel_id)
-      out_related_user = channel_dict.get('out_related_user', [])
-      out_related_user.extend(related_channel_urls)
-      channel_dict = {'channel_id': channel_id, 'out_related_user': out_related_user}
+      #out_related_user = channel_dict.get('out_related_user', [])
+      #out_related_user.extend(related_channel_urls)
+      channel_dict = {'channel_id': channel_id, 'out_related_user': related_channel_urls}
       self.upsert_channel_info(channel_dict)
       return items
     except Exception, e:
@@ -411,8 +412,6 @@ class YouTubeCrawler(Spider):
 
   def parse_list(self, response):
     try:
-      if not response:
-        return
       items = []
       url = response.url.strip()
       headers = {'Referer': url}
