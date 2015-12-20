@@ -22,7 +22,7 @@ from ..proto.crawl.ttypes import Request, CrawlStatus, ScheduleDocType, CrawlDoc
 from ..proto.scheduler.ttypes import CrawlDocSlim
 from scheduler_client import SchedulerClient
 from ..common.domain_parser import query_domain_from_url
-from ..commom.parse_youtube import parse_channel_id
+from ..common.parse_youtube import parse_channel_id
 
 
 class CrawlDocScheduler(object):
