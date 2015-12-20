@@ -212,6 +212,9 @@ class YouTubeCrawler(Spider):
     #from mongo
     for item in self._starturl_collection.find({}):
       item.pop('_id', None)
+      channel_id = item.get('channel_id')
+      if not channel_id:
+        continue
       exmap = item
       part = 'snippet,statistics,contentDetails'
       api = 'https://www.googleapis.com/youtube/v3/channels?part=%s&id=%s' % \
