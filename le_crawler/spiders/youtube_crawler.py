@@ -44,7 +44,7 @@ class YouTubeCrawler(Spider):
                           PageType.PLAY:                  self.parse_page,
                           PageType.RELATED_CHANNEL:       self.parse_related_channel}
     self._init_client()
-    self.start_size = self._starturl_collection.count()
+    self.start_size = len(YouTubeCrawler.start_url_loader.get_start_urls()) + self._starturl_collection.count()
     self._sub_key_pattern = re.compile(r"&key=.*")
     self.deduper_ = ScalableBloomFilter(100000, 0.0001, 4)
     self.url_filter_client_ = UrlFilterClient(get_project_settings()['CRAWLDOC_SCHEDULER_HOST'],
