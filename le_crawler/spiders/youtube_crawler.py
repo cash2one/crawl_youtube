@@ -219,7 +219,7 @@ class YouTubeCrawler(Spider):
       part = 'snippet,statistics,contentDetails'
       api = 'https://www.googleapis.com/youtube/v3/channels?part=%s&id=%s' % \
           (part, channel_id)
-      yield self._create_request(api, PageType.CHANNEL, CrawlDocType.HUB_HOME, meta={'extend_map': exmap}, dont_filter=False)
+      yield self._create_request(api, PageType.CHANNEL, CrawlDocType.HUB_HOME, meta={'extend_map': exmap}, dont_filter=True)
 
 
   def parse_home(self, response):
@@ -476,6 +476,7 @@ class YouTubeCrawler(Spider):
                                           headers=headers,
                                           dont_filter=is_pop,
                                           in_doc=doc))
+      return items
     except Exception, e:
       msg = e.message
       msg += traceback.format_exc()
