@@ -532,6 +532,8 @@ class YouTubeCrawler(Spider):
           if content_timestamp and content_timestamp not in video_follow_time:
             video_follow_time.append(content_timestamp)
             video_follow_time.sort(reverse=True)
+            if len(video_follow_time) > 100:
+              video_follow_time = video_follow_time[:100]
             self.upsert_channel_info({'channel_id': channel_id, 'video_follow_time': video_follow_time})
           self.remove_recrawl_info(url)
         else:
