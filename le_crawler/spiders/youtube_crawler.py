@@ -252,7 +252,7 @@ class YouTubeCrawler(Spider):
         part = 'snippet'
         maxResults = 50
         api = 'https://www.googleapis.com/youtube/v3/channels?part=%s&categoryId=%s&maxResults=%s' % (part, category_id, maxResults)
-        items.append(self._create_request(api, PageType.CATEGORY, CrawlDocType.HUB_CATEGORY, meta={'extend_map': exmap}, headers=headers, in_doc=doc))
+        items.append(self._create_request(api, PageType.CATEGORY, CrawlDocType.HOME, meta={'extend_map': exmap}, headers=headers, in_doc=doc))
       self.update_status(doc, CrawlStatus._VALUES_TO_NAMES.get(CrawlStatus.EXTRACTED))
       self.remove_recrawl_info(url)
       return items
@@ -283,7 +283,7 @@ class YouTubeCrawler(Spider):
         part = 'snippet'
         maxResults = 50
         api = 'https://www.googleapis.com/youtube/v3/channels?part=%s&categoryId=%s&maxResults=%s&pageToken=%s' % (part, category_id, maxResults, nextPageToken)
-        items.append(self._create_request(api, PageType.CATEGORY, CrawlDocType.HUB_CATEGORY, meta={'extend_map': exmap}, headers=headers, in_doc=doc, is_next=True))
+        items.append(self._create_request(api, PageType.CATEGORY, CrawlDocType.HOME, meta={'extend_map': exmap}, headers=headers, in_doc=doc, is_next=True))
 
       datas = rep_dict.get('items', [])
       if not datas:
