@@ -68,7 +68,7 @@ def parse_channel_detail(channel_data, extend_map=None):
   if extend_map:
     if extend_map.get('user', None):
       ret_dict['user'] = extend_map['user']
-    if extend_map.get('source', NOne):
+    if extend_map.get('source', None):
       ret_dict['source'] = extend_map['source']
     if extend_map.get('country', None) and ret_dict.get('country', None):
       ret_dict['country'] = extend_map['country']
