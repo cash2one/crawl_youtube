@@ -274,7 +274,7 @@ class YouTubeCrawler(Spider):
       page = response.body.decode(response.encoding)
       self.update_status(doc, CrawlStatus._VALUES_TO_NAMES.get(CrawlStatus.DOWNLOADED))
       extend_map = response.meta.get('extend_map', {})
-      category_id = extend_map.get('categoryId', None)
+      category_id = extend_map.get('category_id', None)
       rep_dict = json.loads(page)
       nextPageToken = rep_dict.get('nextPageToken', None)
       if nextPageToken and category_id:
