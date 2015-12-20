@@ -246,8 +246,8 @@ class YouTubeCrawler(Spider):
         exmap = {}
         exmap.update(extend_map)
         exmap['category_id'] = category_id
-        if not categoryId:
-          self.logger_.exception('Failed get categoryId, url:%s', url)
+        if not category_id:
+          self.logger_.exception('Failed get category_id, url:%s', url)
           continue
         part = 'snippet'
         maxResults = 50
