@@ -201,13 +201,13 @@ class YouTubeCrawler(Spider):
     #from profile
     for url in YouTubeCrawler.start_url_loader.get_start_urls():
       type = self.start_url_loader.get_property(url, 'type', 'video')
-      exmap = sefl.start_url_loader.get_property(url, 'extend_map', {})
-    if type == 'home':
-      yield self._create_request(url, PageType.HOME, CrawlDocType.PAGE_HOT, meta={'extend_map': exmap}, dont_filter=True)
-    elif type == 'channel':
-      yield self._create_request(url, PageType.CHANNEL, CrawlDocType.PAGE_HOT, meta={'extend_map': exmap}, dont_filter=True)
-    elif type == 'list':
-      yield self._create_request(url, PageType.HUB, CrawlDocType.PAGE_HOT, meta={'extend_map': exmap}, dont_filter=True)
+      exmap = self.start_url_loader.get_property(url, 'extend_map', {})
+      if type == 'home':
+        yield self._create_request(url, PageType.HOME, CrawlDocType.PAGE_HOT, meta={'extend_map': exmap}, dont_filter=True)
+      elif type == 'channel':
+        yield self._create_request(url, PageType.CHANNEL, CrawlDocType.PAGE_HOT, meta={'extend_map': exmap}, dont_filter=True)
+      elif type == 'list':
+        yield self._create_request(url, PageType.HUB, CrawlDocType.PAGE_HOT, meta={'extend_map': exmap}, dont_filter=True)
 
     #from mongo
     for item in self._starturl_collection.find({}):
