@@ -99,9 +99,13 @@ class YoutubeStatic(StaticExtractor):
       language_type = self.detect_video_language(html_data['title'], html_data['desc'])
       if language_type is not None:
         html_data['language_type'] = language_type
-      html_data['thumbnails'] = json.dumps(snippet.get('thumbnails', {}), ensure_ascii=False).encode('utf-8')
-      html_data['thumbnail_list'] = parse_thumbnail_list(html_data['thumbnails'])
-      html_data['poster'] = snippet.get('thumbnails', {}).get('default', {}).get('url', None)
+
+      thumbnails = snippet.get('thumbnails', {})
+      if thumbnails:
+        html_data['thumbnails'] = json.dumps(thumbnails, ensure_ascii=False).encode('utf-8')
+        html_data['thumbnail_list'] = parse_thumbnail_list(thumbnails)
+        html_data['poster'] = thumbnails.get('default', {}).get('url', None)
+
       html_data['channel_title'] = snippet.get('channelTitle', None)
       html_data['tags'] = ';'.join(snippet.get('tags', [])).strip(';')
       html_data['category_id'] = snippet.get('categoryId', None)
@@ -191,18 +195,13 @@ class YoutubeStatic(StaticExtractor):
       if thumbnails:
         original_user.thumbnails = json.dumps(thumbnails, ensure_ascii=False).encode('utf-8')
       thumbnail_list = parse_thumbnail_list(thumbnails)
-      if thumbnail_list
+      if thumbnail_list:
         original_user.thumbnail_list = thumbnail_list
 
       
-      original_user.portrait_url = channel_dict.get('portrait_url', None)
-      if not original_user.portrait_url:
-        thumbnail_dict = json.loads(thumbnails)
-        portrait_url = thumbnail_dict.get('default', {}).get('url', None)
-        if portrait_url:
-          original_user.portrait_url = portrait_url.encode('utf-8')
-      if original_user.portrait_url:
-        original_user.portrait_url = original_user.portrait_url.encode('utf-8')
+      portrait_url = channel_dict.get('portrait_url', None)
+      if portrait_url:
+        original_user.portrait_url = portrait_url.encode('utf-8')
 
       original_user.country = channel_dict.get('country', None)
       if original_user.country:
