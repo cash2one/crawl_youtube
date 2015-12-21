@@ -18,6 +18,7 @@ class ChannelRecrawler(object):
   def __init__(self):
     self.logger_ = Log('recrawl_channel', 'log/recrawl_channel.log').log
     self.client_ = SchedulerClient('65.255.32.210', 8088)
+    #self.client_ = SchedulerClient('107.155.52.89', 8088)
     self.client_.open(self.logger_)
     self.exit_ = False
     self._init_client()
@@ -29,6 +30,7 @@ class ChannelRecrawler(object):
       self._db = client.admin
       self._db.authenticate('admin', 'NzU3ZmU4YmFhZDg')
       self._collection = self._db.channel_info
+      #self._collection = self._db.debug_channel_info
     except Exception, e:
       self._collection = None
       self._logger.exception('failed to connect to mongodb...')
@@ -41,26 +43,26 @@ class ChannelRecrawler(object):
 
 
   def gen_schedule_interval(self, channel_dict):
-    schedule_interval = item.get('schedule_interval', None)
+    schedule_interval = channel_dict.get('schedule_interval', None)
     if not schedule_interval:
-      self.logger_.info('failed to get schedule_interval, channel: [%s]', item['channel_id'])
+      self.logger_.info('failed to get schedule_interval, channel: [%s]', channel_dict['channel_id'])
       return 1 * 60 * 60
 
     is_parse = channel_dict.get('is_parse', False)
     if not is_parse:
       return schedule_interval * 3 / 2
 
-    video_num = item.get('video_num', 0)
+    video_num = channel_dict.get('video_num', 0)
     if not video_num:
       return schedule_interval * 3 / 2
 
-    fans_num = item.get('fans_num', 0)
+    fans_num = channel_dict.get('fans_num', 0)
     if fans_num > 1000000:
       return 10 * 60
     elif fans_num > 100000:
       return 1 * 60 * 60
 
-    video_follow_time = item.get('video_follow_time', None)
+    video_follow_time = channel_dict.get('video_follow_time', None)
     if not video_follow_time:
       return schedule_interval * 3 / 2
     else:
@@ -89,7 +91,8 @@ class ChannelRecrawler(object):
           continue
         docs.append(pickle.loads(doc_slim.encode('utf-8')))
         schedule_interval = self.gen_schedule_interval(item)
-        update_item = UpdateOne({'channel_id': item['channel_id']},{'$set': {'next_schedule_time': time_now + schedule_interval,'schedule_interval': schedule_interval}}, upsert=True)
+        next_schedule_time = time_now + schedule_interval
+        update_item = UpdateOne({'channel_id': item['channel_id']},{'$set': {'next_schedule_time': next_schedule_time, 'schedule_interval': schedule_interval}}, upsert=True)
         update_items.append(update_item)
         self.logger_.info('recrawl channel: [%s], schedule_interval: [%s], next_schedule_time: [%s]' % (item['channel_id'], schedule_interval, self._timestamp2string(next_schedule_time)))
         if len(docs) >= 50:
