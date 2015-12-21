@@ -84,6 +84,9 @@ class YoutubeStatic(StaticExtractor):
 
     html_data = {}
 
+    if data.get('id', None):
+      html_data['external_id'] = data['id']
+
     snippet = data.get('snippet', None)
     if snippet:
       html_data['channel_id'] = snippet.get('channelId', None)

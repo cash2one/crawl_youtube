@@ -92,7 +92,7 @@ class ChannelRecrawler(object):
         docs.append(pickle.loads(doc_slim.encode('utf-8')))
         schedule_interval = self.gen_schedule_interval(item)
         next_schedule_time = time_now + schedule_interval
-        update_item = UpdateOne({'channel_id': item['channel_id']},{'$set': {'next_schedule_time': next_schedule_time, 'schedule_interval': schedule_interval}}, upsert=True)
+        update_item = UpdateOne({'channel_id': item['channel_id']},{'$set': {'next_schedule_time': next_schedule_time, 'schedule_interval': schedule_interval, 'update_time': now}}, upsert=True)
         update_items.append(update_item)
         self.logger_.info('recrawl channel: [%s], schedule_interval: [%s], next_schedule_time: [%s]' % (item['channel_id'], schedule_interval, self._timestamp2string(next_schedule_time)))
         if len(docs) >= 50:
