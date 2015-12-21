@@ -88,8 +88,3 @@ AUTOTHROTTLE_DEBUG = False
 CRAWL_DOC_WRITERS = """
 le_crawler.common.crawl_doc_writer.CrawlDocWriter
 """
-#le_crawler.common.youtube_writer.YoutubeWriter
-#le_crawler.common.txt_file_writer.CrawlDocWriter
-#le_crawler.common.lejian_writer.LejianWriter
-#le_crawler.common.sequence_file_writer.CrawlDocWriter,
-#le_crawler.common.realtime_video_writer.RealtimeVideoWriter

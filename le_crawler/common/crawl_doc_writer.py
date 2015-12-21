@@ -32,11 +32,14 @@ class CrawlDocWriter(PageWriterBase):
     self.total_items_ = 0
     self.gen_file_max_time_threshold_ = gen_max_time  # 10min
     self.max_lines_per_file_ = file_max_nums
+    self.last_flush_time_ = int(time.time())
     self.data_queue_ = Queue.LifoQueue(maxsize=10240)
     thread = threading.Thread(target=self.file_writer_manger, args=())
     thread.start()
 
   def _prepare_writer(self):
+    if self.file_fp_:
+      self._dump_file()
     self.current_file_name_ = self.gen_file_name()
     self.logger_.info('prepare file: [%s]', self.current_file_name_)
     self.file_fp_ = TxtFileWriter(self.current_file_name_)
@@ -79,37 +82,56 @@ class CrawlDocWriter(PageWriterBase):
 
   def _dump_file(self):
     try:
+      if not self.file_fp_:
+        return  False
       self.logger_.info('flush file [%s], [%s]', self.current_file_name_, self.file_fp_.item_size())
       self.file_fp_.close()
       self._prepare_writer()
     except:
       self.logger_.exception('failed dump file: [%s]', self.current_file_name_)
 
-  def _add_item(self, key, value):
-    if not key or not value:
-      return
-    # value = zlib.compress(value, zlib.Z_BEST_COMPRESSION)
-    self.file_fp_.add(key, value)
-    self.total_items_ += 1
-    if self.file_fp_.item_size() > 0 and self.file_fp_.item_size() % 10 == 0:
-      self.logger_.info('flush result with [%d]', self.file_fp_.item_size())
-      self.file_fp_.flush()
-    if self.file_fp_.item_size() >= self.max_lines_per_file_ or \
-        (self.file_fp_.item_size() > 0 and (int(time.time()) - self.last_flush_time_) >= self.gen_file_max_time_threshold_):
-      self._dump_file()
 
   def file_writer_manger(self):
     while not self.exit_ or not self.data_queue_.empty():
       item = None
       try:
-        item = self.data_queue_.get(block=True, timeout=5)
-      except:
-        self.logger_.debug('get item from queue timeout.')
-      doc = self.convert_item(item)
-      # FIXME(gaoqiang): add PAGE_TIME doc support!!
-      if not doc or not doc.response:
-        continue
-      self._add_item(doc.response.url + '&crawl', thrift_to_str(doc))
-    self._dump_file()
-    self.logger_.info('doc write manager exit normal.')
+        item = self.data_queue_.get(block=True, timeout=10)
+      except Exception, e:
+        self.logger_.exception('get item from queu timeout')
+        item = None
+      while not self.file_fp_:
+        self._prepare_writer()
+        self.logger_.info('prepare file ptr:[%s]', self.current_file_name_)
+        time.sleep(1)
 
+      if item:
+        crawldoc = self.convert_item(item)
+        if crawldoc:
+          try:
+            crawldoc_str = thrift_to_str(crawldoc)
+            if crawldoc_str:
+              self.file_fp_.add(crawldoc.response.url + '&crawl', crawldoc_str)
+              self.total_items_ += 1
+              if self.file_fp_.item_size() > 0 and self.file_fp_.item_size() % 100 == 0:
+                self.logger_.info('Flush result with [%d]', self.file_fp_.item_size())
+                self.file_fp_.flush()
+            else:
+              self.logger_.error('Can not convert thrift to str: %s', crawldoc)
+          except Exception, e:
+            import traceback
+            print traceback.format_exc()
+            print e
+            self.logger_.exception('Error while write to file[%s]', self.current_file_name_)
+
+      nows = int(time.time())
+      if self.file_fp_.item_size() >= self.max_lines_per_file_ or (self.file_fp_.item_size() > 0
+                                                                   and (
+            nows - self.last_flush_time_) >= self.gen_file_max_time_threshold_):
+        # flush file to disk
+        if not self._dump_file():
+          self.logger_.error('flush file error:[%s]', self.current_file_name_)
+        else:
+          self.logger_.info('flush file ok:[%s]', self.current_file_name_)
+
+    self.logger_.info('crawldoc write manager exit normal')
+    self._dump_file()
