@@ -36,9 +36,7 @@ from le_crawler.proto.scheduler.ttypes import CrawlDocSlim
 #fresh_docs = set(range(CrawlDocType.HUB_FRESH_MIN, CrawlDocType.HUB_FRESH_MAX))
 fresh_docs = set([CrawlDocType.PAGE_HOT])
 
-doc_type_map = {CrawlDocType.HOME: 21,
-                CrawlDocType.HUB_HOME: 22,
-                CrawlDocType.HUB_CATEGORY: 23}
+doc_type_map = {}
 
 black_regs = ['http://list.iqiyi.com/www/13/',
               'http://list.iqiyi.com/www/21/',
@@ -150,6 +148,8 @@ class CrawlerDBManger(object):
 
   def _get_db(self, url):
     dbid = query_domain_from_url(url)
+    if dbid == 'googleapis.com':
+      dbid = 'youtube.com'
     if not dbid:
       self.logger_.error('failed parse domain from url, %s', url)
       return None
