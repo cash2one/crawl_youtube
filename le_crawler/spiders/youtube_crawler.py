@@ -60,12 +60,12 @@ class YouTubeCrawler(Spider):
       self._db.authenticate('admin', 'NzU3ZmU4YmFhZDg')
       if get_project_settings()['DEBUG_MODE']:
         #print 'open debug_model ...'
-        self._starturl_collection = self._db.debug_starturl_info
+        self._starturl_collection = self._db.debug_start_channel
         self._collection = self._db.debug_schedule_info
         self._recrawl_collection = self._db.debug_recrawl_failed_info
         self._channel_collection = self._db.debug_channel_info
       else:
-        self._starturl_collection = self._db.starturl_info
+        self._starturl_collection = self._db.start_channel
         self._collection = self._db.schedule_info
         self._recrawl_collection = self._db.recrawl_failed_info
         self._channel_collection = self._db.channel_info
@@ -78,6 +78,7 @@ class YouTubeCrawler(Spider):
     #index_info = self._collection.index_information()
     #if not index_info or 'url_1' not in index_info or 'update_time_-1' not in index_info:
     from pymongo import IndexModel, ASCENDING, DESCENDING
+    self._starturl_collection.create_index('channel_id', unique=True)
     self._collection.create_index('url', unique=True)
     self._collection.create_index([('update_time', DESCENDING)])
     self._recrawl_collection.create_index('url', unique=True)

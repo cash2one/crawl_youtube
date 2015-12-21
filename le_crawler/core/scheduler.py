@@ -169,8 +169,11 @@ class CrawlDocScheduler(object):
           channel_dict = self.spider_.get_channel_info(channel_id)
           if not channel_dict or not channel_dict.get('crawl_doc_slim', None):
             return
+          schedule_interval = 1 * 60 * 60
+          #schedule_interval = 1 * 60
           channel_dict = {'channel_id': channel_id,
-                          'next_schedule_time': now + 3 * 60,
+                          'next_schedule_time': now + schedule_interval,
+                          'schedule_interval': schedule_interval,
                           'update_time': now,
                           'crawl_doc_slim': pickle.dumps(crawl_doc_slim)}
           self.spider_.upsert_channel_info(channel_dict)
