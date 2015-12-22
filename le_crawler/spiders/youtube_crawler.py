@@ -223,6 +223,7 @@ class YouTubeCrawler(Spider):
       if not channel_id:
         continue
       exmap = item
+      exmap.pop('_id', None)
       part = 'snippet,statistics,contentDetails'
       api = 'https://www.googleapis.com/youtube/v3/channels?part=%s&id=%s' % \
           (part, channel_id)
@@ -404,7 +405,7 @@ class YouTubeCrawler(Spider):
         self.upsert_channel_info(channel_dict)
 
       related_channel_urls = ['https://www.youtube.com/channel/' + channel for channel in related_channel_list]
-      channel_dict = self.get_channel_info(channel_id)
+      #channel_dict = self.get_channel_info(channel_id)
       #out_related_user = channel_dict.get('out_related_user', [])
       #out_related_user.extend(related_channel_urls)
       channel_dict = {'channel_id': channel_id, 'out_related_user': related_channel_urls}
@@ -525,6 +526,8 @@ class YouTubeCrawler(Spider):
         channel_id = datas[0].get('snippet', {}).get('channelId', None)
         channel_dict = self.get_channel_info(channel_id)
         if channel_dict and channel_dict.get('is_parse', False):
+          channel_dict.pop('_id', None)
+          channel_dict.pop('crawl_doc_slim', None)
           extend_map['channel_dict'] = channel_dict
           response.meta['extend_map'] = extend_map
           video_follow_time = channel_dict.get('video_follow_time', [])
