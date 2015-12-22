@@ -150,13 +150,14 @@ class YoutubeStatic(StaticExtractor):
     if not meta_str:
       return
     try:
-      rep_meta = pickle.loads(meta_str)
+      rep_meta = json.loads(meta_str)
       if not rep_meta:
         return
       if not isinstance(rep_meta, dict):
         return
       return rep_meta
     except:
+      sys.stderr.write('reporter:counter:map,map_meta_jsonload_error_url,1\n')
       return
 
 
