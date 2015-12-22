@@ -90,11 +90,11 @@ class YoutubeStatic(StaticExtractor):
     snippet = data.get('snippet', None)
     if snippet:
       html_data['channel_id'] = snippet.get('channelId', None)
-      if html_data['channel_id']:
-        user_url = 'https://www.youtube.com/channel/%s' % html_data['channel_id']
-        video = MediaVideo()
-        # video.user = OriginalUser(url=user_url.encode('utf-8'), channel_id=html_data['channel_id'].encode('utf-8'), update_time=crawl_doc.crawl_time)
-        crawl_doc.video = video
+      # if html_data['channel_id']:
+      #   user_url = 'https://www.youtube.com/channel/%s' % html_data['channel_id']
+      #   video = MediaVideo()
+      #   # video.user = OriginalUser(url=user_url.encode('utf-8'), channel_id=html_data['channel_id'].encode('utf-8'), update_time=crawl_doc.crawl_time)
+      #   crawl_doc.video = video
 
       html_data['showtime'] = snippet.get('publishedAt', None)
       html_data['title'] = snippet.get('title', None)
