@@ -481,7 +481,7 @@ def massage_data(data, printable=True):
       continue
     if key in ['play_total', 'voteup_count', 'votedown_count']:
       value = atoi(value)
-      if value:
+      if value is not None:
         data[key] = value
       else:
         del data[key]
