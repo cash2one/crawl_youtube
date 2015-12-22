@@ -80,7 +80,15 @@ def crawldoc_to_youtube_item(crawl_doc, response=None):
     crawl_doc.response.return_code = response.status
     crawl_doc.response.redirect_info = RedirectInfo()
     crawl_doc.response.redirect_info.redirect_urls = response.meta.get('redirect_urls')
-    crawl_doc.response.meta = pickle.dumps(response.meta)
+    #crawl_doc.response.meta = pickle.dumps(response.meta)
+    try:
+      meta_str = json.dumps(response.meta)
+    except:
+      print traceback.format_exc()
+      print 'response.meta: \n%s' % response.meta
+      meta_str = None
+    crawl_doc.response.meta = meta_str
+
 
   item = CrawlerItem()
   item['crawl_doc'] = encode_item(crawl_doc)
