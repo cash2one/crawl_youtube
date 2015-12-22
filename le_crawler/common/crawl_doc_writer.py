@@ -100,7 +100,7 @@ class CrawlDocWriter(PageWriterBase):
       try:
         item = self.data_queue_.get(block=True, timeout=10)
       except Exception, e:
-        self.logger_.exception('get item from queu timeout')
+        self.logger_.debug('get item from queue timeout')
         item = None
       while not self.file_fp_:
         self._prepare_writer()
