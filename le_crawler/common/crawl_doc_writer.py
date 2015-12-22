@@ -28,7 +28,8 @@ class CrawlDocWriter(PageWriterBase):
     self.set_name('CrawlDocWriter')
     if not os.path.isdir(self.data_dir_):
       raise Exception('%s is not dir' % self.data_dir_)
-    self._prepare_writer()
+    self.file_fp_ = None
+    #self._prepare_writer()
     self.total_items_ = 0
     self.gen_file_max_time_threshold_ = gen_max_time  # 10min
     self.max_lines_per_file_ = file_max_nums
