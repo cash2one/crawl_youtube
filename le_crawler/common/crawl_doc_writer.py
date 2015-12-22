@@ -87,7 +87,9 @@ class CrawlDocWriter(PageWriterBase):
         return  False
       self.logger_.info('flush file [%s], [%s]', self.current_file_name_, self.file_fp_.item_size())
       self.file_fp_.close()
-      self._prepare_writer()
+      #self._prepare_writer()
+      self.file_fp_ = None
+      return True
     except:
       self.logger_.exception('failed dump file: [%s]', self.current_file_name_)
 
