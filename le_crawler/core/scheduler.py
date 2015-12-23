@@ -157,10 +157,12 @@ class CrawlDocScheduler(object):
         #  self.logger_.error('no domain_id, url: %s, in_link: %s', doc.url, doc.in_links[0].url if doc.in_links else None)
         flush_docs.append(crawl_doc_slim)
         now = int(time.time())
-        self.spider_.update_recrawl_info(url=doc.url,
-                                         data={'next_schedule_time': now + 2 * 60 * 60,
-                                               'retry_times': 0,
-                                               'crawl_doc_slim': pickle.dumps(crawl_doc_slim)})
+        #if crawl_doc_slim.priority in [CrawlDocType.PAGE_PLAY, CrawlDocType.HUB_OTHER, CrawlDocType.HUB_RELATIVES]:
+        if crawl_doc_slim.priority in [CrawlDocType.HUB_OTHER, CrawlDocType.HUB_RELATIVES]:
+          self.spider_.update_recrawl_info(url=doc.url,
+                                           data={'next_schedule_time': now + 2 * 60 * 60,
+                                                 'retry_times': 0,
+                                                 'crawl_doc_slim': pickle.dumps(crawl_doc_slim)})
         if doc.page_type == PageType.CHANNEL:
           channel_id = parse_channel_id(doc.url)
           if not channel_id:

@@ -377,6 +377,7 @@ class YouTubeCrawler(Spider):
       self.logger_.error('parse_related_channel url: %s' % url)
       page = response.body.decode(response.encoding)
       self.update_status(doc, CrawlStatus._VALUES_TO_NAMES.get(CrawlStatus.DOWNLOADED))
+      self.remove_recrawl_info(url)
       extend_map = response.meta.get('extend_map', {})
       channel_id = extend_map.get('channel_id', None)
       if not channel_id:
