@@ -194,7 +194,7 @@ class YouTubeCrawler(Spider):
      crawl_doc.in_links = in_links
     meta['crawl_doc'] = crawl_doc
     crawl_status = CrawlStatus.DISCOVERED if schedule_doc_type == ScheduleDocType.NORMAL else CrawlStatus.RECRAWLED
-    self.update_status(crawl_doc, CrawlStatus._VALUES_TO_NAMES.get(crawl_status))
+    #self.update_status(crawl_doc, CrawlStatus._VALUES_TO_NAMES.get(crawl_status))
     return Request(url,
                    callback=self.callback_map_[page_type],
                    meta=meta,
@@ -402,8 +402,8 @@ class YouTubeCrawler(Spider):
           api = 'https://www.googleapis.com/youtube/v3/channels?part=%s&id=%s' % \
                 (part, related_channel)
           items.append(self._create_request(api, PageType.CHANNEL, CrawlDocType.HUB_HOME, meta={'extend_map': exmap}, headers=headers, in_doc=doc))
-        channel_dict = {'channel_id': related_channel, 'in_related_user': in_related_user}
-        self.upsert_channel_info(channel_dict)
+        #channel_dict = {'channel_id': related_channel, 'in_related_user': in_related_user}
+        #self.upsert_channel_info(channel_dict)
 
       related_channel_urls = ['https://www.youtube.com/channel/' + channel for channel in related_channel_list]
       #channel_dict = self.get_channel_info(channel_id)
