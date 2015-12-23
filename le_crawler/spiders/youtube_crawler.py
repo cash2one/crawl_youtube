@@ -241,7 +241,7 @@ class YouTubeCrawler(Spider):
       #print 'parse_category url:', url
       self.logger_.error('parse_category url: %s' % url)
       page = response.body.decode(response.encoding)
-      self.update_status(doc, CrawlStatus._VALUES_TO_NAMES.get(CrawlStatus.DOWNLOADED))
+      #self.update_status(doc, CrawlStatus._VALUES_TO_NAMES.get(CrawlStatus.DOWNLOADED))
       #self.update_recrawl_info(url, {'status': CrawlStatus._VALUES_TO_NAMES.get(CrawlStatus.DOWNLOADED)})
       extend_map = response.meta.get('extend_map', {})
       rep_dict = json.loads(page)
@@ -280,7 +280,7 @@ class YouTubeCrawler(Spider):
       #print 'parse_category url:', url
       self.logger_.error('parse_category url: %s' % url)
       page = response.body.decode(response.encoding)
-      self.update_status(doc, CrawlStatus._VALUES_TO_NAMES.get(CrawlStatus.DOWNLOADED))
+      #self.update_status(doc, CrawlStatus._VALUES_TO_NAMES.get(CrawlStatus.DOWNLOADED))
       extend_map = response.meta.get('extend_map', {})
       category_id = extend_map.get('category_id', None)
       rep_dict = json.loads(page)
@@ -325,7 +325,7 @@ class YouTubeCrawler(Spider):
       #print 'parse_channel url:', url
       self.logger_.error('parse_channel url: %s' % url)
       page = response.body.decode(response.encoding)
-      self.update_status(doc, CrawlStatus._VALUES_TO_NAMES.get(CrawlStatus.DOWNLOADED))
+      #self.update_status(doc, CrawlStatus._VALUES_TO_NAMES.get(CrawlStatus.DOWNLOADED))
       extend_map = response.meta.get('extend_map', {})
       rep_dict = json.loads(page)
       datas = rep_dict.get('items', [])
@@ -428,7 +428,7 @@ class YouTubeCrawler(Spider):
       self.logger_.error('parse_list url: %s' % url)
       doc = response.meta.get('crawl_doc')
       page = response.body.decode(response.encoding)
-      self.update_status(doc, CrawlStatus._VALUES_TO_NAMES.get(CrawlStatus.DOWNLOADED))
+      #self.update_status(doc, CrawlStatus._VALUES_TO_NAMES.get(CrawlStatus.DOWNLOADED))
       doc_type = response.meta.get('doc_type', CrawlDocType.HUB_OTHER)
       page_index = response.meta.get('page_index', 1)
       extend_map = response.meta.get('extend_map', {})
@@ -551,7 +551,7 @@ class YouTubeCrawler(Spider):
         youtube_item = crawldoc_to_youtube_item(doc, response)
         if youtube_item:
           items.append(youtube_item)
-      self.update_status(doc, CrawlStatus._VALUES_TO_NAMES.get(CrawlStatus.EXTRACTED))
+      #self.update_status(doc, CrawlStatus._VALUES_TO_NAMES.get(CrawlStatus.EXTRACTED))
       #self.remove_recrawl_info(url)
       return items
     except Exception, e:

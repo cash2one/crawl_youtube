@@ -239,7 +239,7 @@ class CrawlDocScheduler(object):
       for doc_str in docs:
         doc = CrawlDoc()
         thrift_util.str_to_thrift(doc_str, doc)
-        self.spider_.update_status(doc, CrawlStatus._VALUES_TO_NAMES.get(CrawlStatus.SCHEDULED))
+        #self.spider_.update_status(doc, CrawlStatus._VALUES_TO_NAMES.get(CrawlStatus.SCHEDULED))
         self.cache_input_.put(doc, timeout=3)
       self.scheduler_count_ += docs_len
       self.logger_.info('>>>> fetched request: %s' % docs_len)
