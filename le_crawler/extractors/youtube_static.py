@@ -217,9 +217,11 @@ class YoutubeStatic(StaticExtractor):
       original_user.comment_num = int(channel_dict.get('comment_num', '0'))
       original_user.update_time = channel_dict.get('update_time', None)
 
-      in_related_user = channel_dict.get('in_related_user', [])
-      if in_related_user:
-        original_user.in_related_user = [related_user.encode('utf-8') for related_user in in_related_user]
+      #TODO to delete
+      # in_related_user = channel_dict.get('in_related_user', [])
+      # if in_related_user:
+      #   original_user.in_related_user = [related_user.encode('utf-8') for related_user in in_related_user]
+      
 
       out_related_user = channel_dict.get('out_related_user', [])
       if out_related_user:

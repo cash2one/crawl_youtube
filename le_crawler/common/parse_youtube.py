@@ -165,3 +165,22 @@ def parse_thumbnail_list(thumbnail_dict):
   except:
     print traceback.format_exc()
     return
+
+def get_url_param(request_url, key):
+  if not request_url:
+    return None
+  try:
+    urlparse_ret = urlparse.urlparse(request_url)
+    url_query = urlparse.parse_qs(urlparse_ret.query)
+    value = url_query.get(key, [''])[0]
+    return value
+  except Exception, e:
+    return None
+
+
+
+
+
+
+
+

@@ -149,7 +149,7 @@ class CrawlDocScheduler(object):
     while not self.cache_upload_.empty():
       try:
         doc = self.cache_upload_.get(timeout=1)
-        self.spider_.update_status(doc, CrawlStatus._VALUES_TO_NAMES.get(CrawlStatus.SCHEDULING))
+        #self.spider_.update_status(doc, CrawlStatus._VALUES_TO_NAMES.get(CrawlStatus.SCHEDULING))
         crawl_doc_slim = CrawlDocSlim(url=doc.url,
                                       crawl_doc=thrift_util.thrift_to_str(doc),
                                       priority=self._cal_priority(doc))

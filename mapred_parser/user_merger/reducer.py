@@ -9,6 +9,7 @@ sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../')
 from le_crawler.proto.video.ttypes import OriginalUser
 from le_crawler.proto.crawl.ttypes import CategoryProportion, LanguageProportion, LanguageType
 from le_crawler.common.utils import str2mediavideo, thrift2str
+from le_crawler.common.parse_youtube import get_url_param
 
 
 user_merge_field = set(['user_name', 'url', 'channel_id', 'channel_title', 'channel_desc', 
@@ -57,6 +58,10 @@ class MergeItem:
                 setattr(new_user, item, old_v)
           break
     new_user.update_time = int(time.time())
+
+    #TODO to delete
+    new_user.in_related_user = None
+
     self._user = new_user
 
 
@@ -160,6 +165,14 @@ class MergeItem:
     for idx, data_group in enumerate(self._data):
       try:
         data = str2mediavideo(base64.b64decode(data_group[0]))
+
+        #TODO to delete
+        url = data.url
+        external_id = get_url_param(url, 'v')
+        if external_id:
+          video.external_id = external_id
+
+
         self.count_video(data)
         if data.category:
           self._user_category_dict[data.category] = self._user_category_dict.get(data.category, 0) + 1

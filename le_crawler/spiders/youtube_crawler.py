@@ -336,6 +336,10 @@ class YouTubeCrawler(Spider):
       exmap = {}
       exmap.update(extend_map)
       channel_dict = parse_channel_detail(data, extend_map)
+
+      #TODO to delete
+      channel_dict['in_related_user'] = None
+
       self.upsert_channel_info(channel_dict)
       channel_id = data.get('id', None)
       if not channel_id:
