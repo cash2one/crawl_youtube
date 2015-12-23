@@ -395,24 +395,14 @@ class YouTubeCrawler(Spider):
 
       for related_channel in related_channel_list:
         related_channel_dict = self.get_channel_info(related_channel)
-        if related_channel_dict:
-          in_related_user = related_channel_dict.get('in_related_user', [])
-          if url not in in_related_user:
-            in_related_user.append(url)
-        else:
+        if not related_channel_dict or not related_channel_dict.get('is_parse', False):
           exmap = {'channel_id': related_channel, 'source': 'related_channel'}
-          in_related_user = [url]
           part = 'snippet,statistics,contentDetails'
           api = 'https://www.googleapis.com/youtube/v3/channels?part=%s&id=%s' % \
                 (part, related_channel)
           items.append(self._create_request(api, PageType.CHANNEL, CrawlDocType.HUB_HOME, meta={'extend_map': exmap}, headers=headers, in_doc=doc))
-        #channel_dict = {'channel_id': related_channel, 'in_related_user': in_related_user}
-        #self.upsert_channel_info(channel_dict)
 
       related_channel_urls = ['https://www.youtube.com/channel/' + channel for channel in related_channel_list]
-      #channel_dict = self.get_channel_info(channel_id)
-      #out_related_user = channel_dict.get('out_related_user', [])
-      #out_related_user.extend(related_channel_urls)
       channel_dict = {'channel_id': channel_id, 'out_related_user': related_channel_urls}
       self.upsert_channel_info(channel_dict)
       return items
