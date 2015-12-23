@@ -133,7 +133,7 @@ def GetCharset(html):
   return charset
 
 def atoi(num_str):
-  if not num_str:
+  if num_str is None:
     return None
   if isinstance(num_str, (int, float, long)):
     return num_str
@@ -142,7 +142,7 @@ def atoi(num_str):
   try:
     return int(num_str)
   except:
-    pass
+    return None
 
   try:
     num_str = num_str if isinstance(num_str, unicode) \
