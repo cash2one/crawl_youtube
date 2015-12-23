@@ -170,7 +170,7 @@ class MergeItem:
         url = data.url
         external_id = get_url_param(url, 'v')
         if external_id:
-          video.external_id = external_id
+          data.external_id = external_id
 
 
         self.count_video(data)
