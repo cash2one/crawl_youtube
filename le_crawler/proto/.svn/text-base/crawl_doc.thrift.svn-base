@@ -25,6 +25,11 @@ enum CrawlDocState {
   NO_MD5                  = 2,
 }
 
+enum UserState {
+  NORMAL                  = 0,
+  DISABLE                 = 1,
+}
+
 enum CrawlStatus {
   DISCOVERED              = 0,
   RECRAWLED               = 1,

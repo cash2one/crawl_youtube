@@ -67,6 +67,20 @@ class CrawlDocState:
     "NO_MD5": 2,
   }
 
+class UserState:
+  NORMAL = 0
+  DISABLE = 1
+
+  _VALUES_TO_NAMES = {
+    0: "NORMAL",
+    1: "DISABLE",
+  }
+
+  _NAMES_TO_VALUES = {
+    "NORMAL": 0,
+    "DISABLE": 1,
+  }
+
 class CrawlStatus:
   DISCOVERED = 0
   RECRAWLED = 1

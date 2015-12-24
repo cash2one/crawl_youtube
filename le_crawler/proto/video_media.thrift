@@ -48,25 +48,26 @@ struct Star {
 
 //自频道用户结构
 struct OriginalUser {
-  1:  optional string                                    user_name;                      //用户名
-  2:  optional string                                    url;                            //用户频道url
-  3:  optional string                                    portrait_url;                   //用户头像
-  4:  optional i32                                       video_num;                      //视频数量
-  5:  optional i64                                       play_num;                       //视频播放数
-  6:  optional i64                                       fans_num;                       //粉丝数
-  7:  optional string                                    channel_desc;                   //频道介绍
-  8:  optional i64                                       update_time;                    //更新时间
-  9:  optional string                                    channel_id;                     //频道ID
-  10: optional string                                    channel_title;                  //标题
-  11: optional string                                    thumbnails;                     //缩略图(弃用)
-  12: optional i64                                       publish_time;                   //发布时间
-  13: optional i32                                       comment_num;                    //评论数
-  14: optional list<crawl_doc.Thumbnail>                 thumbnail_list;                 //缩略图
-  15: optional string                                    country;                        //国家
-  16: optional list<crawl_doc.CategoryProportion>        category_proportion_list;       //频道大部分视频的category所占百分比
-  17: optional list<crawl_doc.LanguageProportion>        language_proportion_list;       //频道大部分视频的语言类型所占百分比
-  18: optional list<string>                              in_related_user;                //入链相关频道的user_url
-  19: optional list<string>                              out_related_user;               //相关频道的user_url
+  1:  optional string                                    user_name;                            //用户名
+  2:  optional string                                    url;                                  //用户频道url
+  3:  optional string                                    portrait_url;                         //用户头像
+  4:  optional i32                                       video_num;                            //视频数量
+  5:  optional i64                                       play_num;                             //视频播放数
+  6:  optional i64                                       fans_num;                             //粉丝数
+  7:  optional string                                    channel_desc;                         //频道介绍
+  8:  optional i64                                       update_time;                          //更新时间
+  9:  optional string                                    channel_id;                           //频道ID
+  10: optional string                                    channel_title;                        //标题
+  11: optional string                                    thumbnails;                           //缩略图(弃用)
+  12: optional i64                                       publish_time;                         //发布时间
+  13: optional i32                                       comment_num;                          //评论数
+  14: optional list<crawl_doc.Thumbnail>                 thumbnail_list;                       //缩略图
+  15: optional string                                    country;                              //国家
+  16: optional list<crawl_doc.CategoryProportion>        category_proportion_list;             //频道大部分视频的category所占百分比
+  17: optional list<crawl_doc.LanguageProportion>        language_proportion_list;             //频道大部分视频的语言类型所占百分比
+  18: optional list<string>                              in_related_user;                      //入链相关频道的user_url
+  19: optional list<string>                              out_related_user;                     //相关频道的user_url
+  20: optional crawl_doc.UserState                       state = crawl_doc.UserState.NORMAL    //频道状态
 }
 
 //视频结构

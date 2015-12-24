@@ -445,6 +445,7 @@ class OriginalUser:
    - language_proportion_list
    - in_related_user
    - out_related_user
+   - state
   """
 
   thrift_spec = (
@@ -468,9 +469,10 @@ class OriginalUser:
     (17, TType.LIST, 'language_proportion_list', (TType.STRUCT,(le_crawler.proto.crawl.ttypes.LanguageProportion, le_crawler.proto.crawl.ttypes.LanguageProportion.thrift_spec)), None, ), # 17
     (18, TType.LIST, 'in_related_user', (TType.STRING,None), None, ), # 18
     (19, TType.LIST, 'out_related_user', (TType.STRING,None), None, ), # 19
+    (20, TType.I32, 'state', None,     0, ), # 20
   )
 
-  def __init__(self, user_name=None, url=None, portrait_url=None, video_num=None, play_num=None, fans_num=None, channel_desc=None, update_time=None, channel_id=None, channel_title=None, thumbnails=None, publish_time=None, comment_num=None, thumbnail_list=None, country=None, category_proportion_list=None, language_proportion_list=None, in_related_user=None, out_related_user=None,):
+  def __init__(self, user_name=None, url=None, portrait_url=None, video_num=None, play_num=None, fans_num=None, channel_desc=None, update_time=None, channel_id=None, channel_title=None, thumbnails=None, publish_time=None, comment_num=None, thumbnail_list=None, country=None, category_proportion_list=None, language_proportion_list=None, in_related_user=None, out_related_user=None, state=thrift_spec[20][4],):
     self.user_name = user_name
     self.url = url
     self.portrait_url = portrait_url
@@ -490,6 +492,7 @@ class OriginalUser:
     self.language_proportion_list = language_proportion_list
     self.in_related_user = in_related_user
     self.out_related_user = out_related_user
+    self.state = state
 
   def read(self, iprot):
     if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
@@ -623,6 +626,11 @@ class OriginalUser:
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
+      elif fid == 20:
+        if ftype == TType.I32:
+          self.state = iprot.readI32();
+        else:
+          iprot.skip(ftype)
       else:
         iprot.skip(ftype)
       iprot.readFieldEnd()
@@ -723,6 +731,10 @@ class OriginalUser:
       for iter43 in self.out_related_user:
         oprot.writeString(iter43)
       oprot.writeListEnd()
+      oprot.writeFieldEnd()
+    if self.state is not None:
+      oprot.writeFieldBegin('state', TType.I32, 20)
+      oprot.writeI32(self.state)
       oprot.writeFieldEnd()
     oprot.writeFieldStop()
     oprot.writeStructEnd()
