@@ -186,11 +186,6 @@ class MergeItem:
 
 
   def _print_video(self, video, data_type='video'):
-    #modify category and category_list
-    category  = youtube_category_dict.get(video.category_id, None)
-    if category:
-      video.category = category
-      video.category_list = category
 
     video_str = thrift2str(video)
     if not video_str:

@@ -59,9 +59,6 @@ class MergeItem:
           break
     new_user.update_time = int(time.time())
 
-    #TODO to delete
-    new_user.in_related_user = None
-
     self._user = new_user
 
 
@@ -165,13 +162,6 @@ class MergeItem:
     for idx, data_group in enumerate(self._data):
       try:
         data = str2mediavideo(base64.b64decode(data_group[0]))
-
-        #TODO to delete
-        url = data.url
-        external_id = get_url_param(url, 'v')
-        if external_id:
-          data.external_id = external_id
-
 
         self.count_video(data)
         if data.category:
