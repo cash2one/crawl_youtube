@@ -439,6 +439,7 @@ class YouTubeCrawler(Spider):
         maxResults = 50
         next_api = u"https://www.googleapis.com/youtube/v3/playlistItems?part=%s&maxResults=%s&pageToken=%s&playlistId=%s" % \
                 (part, maxResults, nextPageToken, playlist)
+        page_index += 1
         if page_index > 1:
           dont_filter = is_pop
           doc_type = CrawlDocType.HUB_TIME_HOME if is_pop else CrawlDocType.HUB_OTHER
@@ -449,7 +450,7 @@ class YouTubeCrawler(Spider):
                                           PageType.HUB,
                                           doc_type,
                                           meta={'doc_type': doc_type,
-                                                'page_index': page_index + 1,
+                                                'page_index': page_index,
                                                 'extend_map': exmap},
                                           headers=headers,
                                           dont_filter=dont_filter,
