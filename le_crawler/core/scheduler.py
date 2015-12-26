@@ -279,7 +279,11 @@ class SchedulerYoutube(CrawlDocScheduler):
                   'AIzaSyB2GuZcM83R6KMghwKcjIhlRxI-jvvD42M',
                   'AIzaSyDOZ1Z27GPuOTIZUyh9gK0qjCSDmunIAOg',
                   'AIzaSyA9kgTW2rKTppo69xQEFNLS2rjawKDvaHw',
-                  'AIzaSyD2mCSE6emW0o8PuVH_6UOckZqAtISRVOY']
+                  'AIzaSyD2mCSE6emW0o8PuVH_6UOckZqAtISRVOY',
+                  'AIzaSyCenkcTZhqtF5WONq2i-g9N368E1Bac8eQ',
+                  'AIzaSyBJOVWoK4x7tC15m7QlRagR7sJucXS-Y9w',
+                  'AIzaSyCj3ZS3m064vVkgzGPuvJzA7060Plu5Fv8',
+                  'AIzaSyDITZ0N3tHoMDI-W4osEX-YzhEX2LGL9Wo']
     self.cache_input_max_ = 50
     self.cache_upload_max_ = 50
 
