@@ -371,9 +371,11 @@ class YouTubeCrawler(Spider):
         self.logger_.error('failed to get channel_id, url: %s', url)
         return None
 
-      exmap['channel_id'] = channel_id
-      channel_url = 'https://www.youtube.com/channel/' + channel_id
-      items.append(self._create_request(channel_url, PageType.RELATED_CHANNEL, CrawlDocType.HUB_RELATIVES, meta={'extend_map': exmap}, headers=headers, dont_filter=False, in_doc=doc))
+      in_links = doc.in_links if doc else []
+      if not in_links or len(in_links) < 20:
+        exmap['channel_id'] = channel_id
+        channel_url = 'https://www.youtube.com/channel/' + channel_id
+        items.append(self._create_request(channel_url, PageType.RELATED_CHANNEL, CrawlDocType.HUB_RELATIVES, meta={'extend_map': exmap}, headers=headers, dont_filter=False, in_doc=doc))
 
       upload_playlist = data.get('contentDetails', {}).get('relatedPlaylists', {}).get('uploads', None)
       if not upload_playlist:
