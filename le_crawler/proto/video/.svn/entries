@@ -1,14 +1,14 @@
 10
 
 dir
-129286
+129900
 http://svn2.letv.cn/tp/search2/crawler_ver2/le_crawler/proto/video
 http://svn2.letv.cn
 
 
 
-2015-12-24T08:15:35.331372Z
-129273
+2015-12-25T09:51:25.172875Z
+129677
 zhaojincheng
 
 
@@ -32,10 +32,10 @@ file
 
 
 
-2015-12-24T08:27:18.300172Z
-97ae2662fc266cb7705d618a84da4662
-2015-12-24T08:15:35.331372Z
-129273
+2015-12-28T02:12:54.503043Z
+1e3ef25a26f6d22ae9c0f5e7c56d9d83
+2015-12-25T09:51:25.172875Z
+129677
 zhaojincheng
 
 
@@ -58,7 +58,7 @@ zhaojincheng
 
 
 
-107222
+108052
 
 __init__.py
 file

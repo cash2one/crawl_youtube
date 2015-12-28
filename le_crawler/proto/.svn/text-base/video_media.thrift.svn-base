@@ -68,6 +68,7 @@ struct OriginalUser {
   18: optional list<string>                              in_related_user;                      //入链相关频道的user_url
   19: optional list<string>                              out_related_user;                     //相关频道的user_url
   20: optional crawl_doc.UserState                       state = crawl_doc.UserState.NORMAL    //频道状态
+  21: optional list<string>                              display_countrys;                     //推荐播放的国家列表
 }
 
 //视频结构

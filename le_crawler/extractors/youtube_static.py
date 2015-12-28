@@ -211,6 +211,10 @@ class YoutubeStatic(StaticExtractor):
       if original_user.country:
         original_user.country = original_user.country.encode('utf-8')
 
+      display_countrys = channel_dict.get('display_countrys', None)
+      if display_countrys:
+        original_user.display_countrys = [country.encode('utf-8') for country in display_countrys]
+
       original_user.video_num = int(channel_dict.get('video_num', '0'))
       original_user.play_num = int(channel_dict.get('play_num', '0'))
       original_user.fans_num = int(channel_dict.get('fans_num', '0'))

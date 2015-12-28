@@ -224,6 +224,19 @@ class YouTubeCrawler(Spider):
         continue
       exmap = item
       exmap.pop('_id', None)
+      countrys = exmap.get('display_countrys', [])
+      channel_dict = self.get_channel_info(channel_id)
+      if channel_dict:
+        display_countrys = channel_dict.get('display_countrys', [])
+        for country in countrys:
+          if country not in display_countrys:
+            display_countrys.append(country)
+      else:
+        display_countrys = countrys
+      channel_dict = {'channel_id': channel_id, 'display_countrys': display_countrys}
+      self.upsert_channel_info(channel_dict)
+      exmap['channel_id'] = channel_id
+      part = 'snippet,statistics,contentDetails'
       part = 'snippet,statistics,contentDetails'
       api = 'https://www.googleapis.com/youtube/v3/channels?part=%s&id=%s' % \
           (part, channel_id)
@@ -282,6 +295,7 @@ class YouTubeCrawler(Spider):
       page = response.body.decode(response.encoding)
       #self.update_status(doc, CrawlStatus._VALUES_TO_NAMES.get(CrawlStatus.DOWNLOADED))
       extend_map = response.meta.get('extend_map', {})
+      #TODO
       category_id = extend_map.get('category_id', None)
       rep_dict = json.loads(page)
       nextPageToken = rep_dict.get('nextPageToken', None)
@@ -300,7 +314,18 @@ class YouTubeCrawler(Spider):
       for data in datas:
         exmap = {}
         exmap.update(extend_map)
+        countrys = exmap.get('display_countrys', [])
         channel_id = data.get('id', None)
+        channel_dict = self.get_channel_info(channel_id)
+        if channel_dict:
+          display_countrys = channel_dict.get('display_countrys', [])
+          for country in countrys:
+            if country not in display_countrys:
+              display_countrys.append(country)
+        else:
+          display_countrys = countrys
+        channel_dict = {'channel_id': channel_id, 'display_countrys': display_countrys}
+        self.upsert_channel_info(channel_dict)
         exmap['channel_id'] = channel_id
         part = 'snippet,statistics,contentDetails'
         api = 'https://www.googleapis.com/youtube/v3/channels?part=%s&id=%s' % \
