@@ -372,7 +372,7 @@ class YouTubeCrawler(Spider):
         return None
 
       in_links = doc.in_links if doc else []
-      if not in_links or len(in_links) < 20:
+      if not in_links or len(in_links) < 10:
         exmap['channel_id'] = channel_id
         channel_url = 'https://www.youtube.com/channel/' + channel_id
         items.append(self._create_request(channel_url, PageType.RELATED_CHANNEL, CrawlDocType.HUB_RELATIVES, meta={'extend_map': exmap}, headers=headers, dont_filter=False, in_doc=doc))
