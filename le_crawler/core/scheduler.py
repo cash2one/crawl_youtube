@@ -223,38 +223,39 @@ class CrawlDocScheduler(object):
       self.len_start_urls_ -= 1
       return None
     """
-    if self.cache_input_.empty():
-      self.logger_.info('fetching requests from scheduler service...')
-      docs = self.scheduler_client_.get_crawldocs_local(self.cache_input_.maxsize) or []
-      if not docs:
-        self.logger_.info('no docs from scheduler service')
-        self._flush_queue()
-        time.sleep(2)
-        return None
-      docs = self._mixin_list(docs)
-      docs_len = len(docs)
-      if self.cache_input_.maxsize < self.cache_input_max_:
-        self.cache_input_ = Queue.Queue(self.cache_input_.maxsize + 2)
-        self.logger_.info('cache input size updated to [%s]', self.cache_input_.maxsize)
-      for doc_str in docs:
-        doc = CrawlDoc()
-        thrift_util.str_to_thrift(doc_str, doc)
-        #self.spider_.update_status(doc, CrawlStatus._VALUES_TO_NAMES.get(CrawlStatus.SCHEDULED))
-        self.cache_input_.put(doc, timeout=3)
-      self.scheduler_count_ += docs_len
-      self.logger_.info('>>>> fetched request: %s' % docs_len)
-      self.logger_.info('current requests: %s, total requests: %s' % (docs_len, self.scheduler_count_))
-    crawl_doc = self.cache_input_.get(timeout=1)
-    request = self._decode_request(crawl_doc)
-    if not request:
-      self.logger_.error('decoded request empty, crawl_doc: %s', crawl_doc)
-      return None
-    if self.stats_:
-      self.stats_.inc_value('scheduler/dequeued/service', spider=self.spider_)
-    self.logger_.info('>>>> next request: %s', request.url)
-    self.valid_request_ += 1
-    self.spider_.update_status(crawl_doc, CrawlStatus._VALUES_TO_NAMES.get(CrawlStatus.DOWNLOADING))
-    return request
+    while True:
+      if self.cache_input_.empty():
+        self.logger_.info('fetching requests from scheduler service...')
+        docs = self.scheduler_client_.get_crawldocs_local(self.cache_input_.maxsize) or []
+        if not docs:
+          self.logger_.info('no docs from scheduler service')
+          self._flush_queue()
+          time.sleep(2)
+          return None
+        docs = self._mixin_list(docs)
+        docs_len = len(docs)
+        if self.cache_input_.maxsize < self.cache_input_max_:
+          self.cache_input_ = Queue.Queue(self.cache_input_.maxsize + 2)
+          self.logger_.info('cache input size updated to [%s]', self.cache_input_.maxsize)
+        for doc_str in docs:
+          doc = CrawlDoc()
+          thrift_util.str_to_thrift(doc_str, doc)
+          #self.spider_.update_status(doc, CrawlStatus._VALUES_TO_NAMES.get(CrawlStatus.SCHEDULED))
+          self.cache_input_.put(doc, timeout=3)
+        self.scheduler_count_ += docs_len
+        self.logger_.info('>>>> fetched request: %s' % docs_len)
+        self.logger_.info('current requests: %s, total requests: %s' % (docs_len, self.scheduler_count_))
+      crawl_doc = self.cache_input_.get(timeout=1)
+      request = self._decode_request(crawl_doc)
+      if not request:
+        self.logger_.error('decoded request empty, crawl_doc: %s', crawl_doc)
+        continue
+      if self.stats_:
+        self.stats_.inc_value('scheduler/dequeued/service', spider=self.spider_)
+      self.logger_.info('>>>> next request: %s', request.url)
+      self.valid_request_ += 1
+      self.spider_.update_status(crawl_doc, CrawlStatus._VALUES_TO_NAMES.get(CrawlStatus.DOWNLOADING))
+      return request
 
 
   def __len__(self):
