@@ -27,8 +27,8 @@ class ExtractWorker(object):
 
   def get_last_unique_dir(self):
     cmd = 'hadoop fs -ls /user/search/short_video/full | grep out_video_'
-    _, output = commands.getstatusoutput(cmd)
-    output = hdfs_utils.strip_first_line(output)
+    _, output = hdfs_utils.call_cmd(cmd)
+    #output = hdfs_utils.strip_first_line(output)
     last_dir = output.split(' ')[-1] + '/'
     logging.info('last unique directory is %s', last_dir)
     return last_dir
@@ -36,8 +36,7 @@ class ExtractWorker(object):
 
   def get_last_user_dir(self):
     cmd = 'hadoop fs -ls /user/search/short_video/full_user_info | grep out_video_'
-    _, output = commands.getstatusoutput(cmd)
-    output = hdfs_utils.strip_first_line(output)
+    _, output = call_cmd(cmd)
     last_dir = output.split(' ')[-1] + '/'
     logging.info('last unique directory is %s', last_dir)
     return last_dir
