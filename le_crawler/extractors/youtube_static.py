@@ -130,8 +130,14 @@ class YoutubeStatic(StaticExtractor):
         return la
       except:
         return
+    def preprocess_text(video_text):
+      if not video_text:
+        return
+      return re.sub(r"https?://\S*(\s|$)", "", video_text)
+
     video_la = detect_text(title)
     if not video_la or video_la == 'EN':
+      desc = preprocess_text(desc)
       desc_la = detect_text(desc)
       if desc_la:
         video_la = desc_la
