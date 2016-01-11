@@ -9,6 +9,7 @@ import os
 import sys
 import gzip
 import time
+import json
 import base64
 import letvbase
 import logging
@@ -27,9 +28,10 @@ from thrift.transport import TTransport
 from thrift.Thrift import TType
 from time_parser import TimeParser
 from duration_parser import duration2int
+from parse_youtube import parse_thumbnail_list
 from ..proto.crawl_doc.ttypes import CrawlDoc
 from ..proto.video.ttypes import MediaVideo, State, OriginalUser
-from ..proto.crawl.ttypes import CrawlDocType, Request, Response, HistoryItem, CrawlHistory, PageType
+from ..proto.crawl.ttypes import CrawlDocType, Request, Response, HistoryItem, CrawlHistory, PageType, UserState
 
 def str_unzip(buf):
   f = gzip.GzipFile(fileobj = StringIO.StringIO(buf), mode = 'rb')
@@ -305,6 +307,21 @@ def str2mediavideo(thrift_str):
     return None
 
 
+def str2user(thrift_str):
+  if not thrift_str:
+    return None
+  try:
+    trans = TTransport.TMemoryBuffer(thrift_str)
+    prot = TBinaryProtocol.TBinaryProtocol(trans)
+    thrift_ob = OriginalUser()
+    thrift_ob.read(prot)
+    thrift_ob.validate()
+    return thrift_ob
+  except:
+    logging.exception('str2user failed: %s', thrift_str)
+    return None
+
+
 def gen_docid(url):
   return letvbase.get_fingerprint_i64(url)
 
@@ -425,8 +442,6 @@ def build_video(data, crawl_doc):
       continue
     if value is not None:
       setattr(video, key, value)
-  if data.get('user_url') and not video.user:
-    video.user = OriginalUser(url=data.get('user_url'), update_time=int(time.time()))
   video.update_time = int(time.time())
   return video
 
@@ -652,4 +667,69 @@ def gen_next_schedule_time(crawl_history):
   schedule_interval = crawl_history[0]['crawl_interval'] / 2 if incr_count_hourly > 1000 \
       else crawl_history[0]['crawl_interval'] * 2
   return now + schedule_interval
+
+def build_user(channel_dict):
+  if not channel_dict:
+    return None
+  original_user = OriginalUser()
+  channel_id = channel_dict.get('channel_id', None)
+  if not channel_id:
+    return
+  original_user.channel_id = channel_id.encode('utf-8')
+  channel_url = 'https://www.youtube.com/channel/%s' % channel_id
+  original_user.url = channel_url.encode('utf-8')
+
+  original_user.user_name = channel_dict.get('user_name', None)
+  if original_user.user_name:
+    original_user.user_name = original_user.user_name.encode('utf-8')
+
+  original_user.channel_title = channel_dict.get('channel_title', None)
+  if original_user.channel_title:
+    original_user.channel_title = original_user.channel_title.encode('utf-8')
+
+  original_user.channel_desc = channel_dict.get('channel_desc', None)
+  if original_user.channel_desc:
+    original_user.channel_desc = original_user.channel_desc.encode('utf-8')
+
+  original_user.publish_time = channel_dict.get('publish_time', None)
+
+  thumbnails = channel_dict.get('thumbnails', None)
+  if thumbnails:
+    original_user.thumbnails = json.dumps(thumbnails, ensure_ascii=False).encode('utf-8')
+  thumbnail_list = parse_thumbnail_list(thumbnails)
+  if thumbnail_list:
+    original_user.thumbnail_list = thumbnail_list
+
+  
+  portrait_url = channel_dict.get('portrait_url', None)
+  if portrait_url:
+    original_user.portrait_url = portrait_url.encode('utf-8')
+
+  original_user.country = channel_dict.get('country', None)
+  if original_user.country:
+    original_user.country = original_user.country.encode('utf-8')
+
+  display_countrys = channel_dict.get('display_countrys', None)
+  if display_countrys:
+    original_user.display_countrys = [country.encode('utf-8') for country in display_countrys]
+
+  original_user.video_num = int(channel_dict.get('video_num', '0'))
+  original_user.play_num = int(channel_dict.get('play_num', '0'))
+  original_user.fans_num = int(channel_dict.get('fans_num', '0'))
+  original_user.comment_num = int(channel_dict.get('comment_num', '0'))
+  original_user.update_time = channel_dict.get('update_time', None)
+
+  #TODO to delete
+  # in_related_user = channel_dict.get('in_related_user', [])
+  # if in_related_user:
+  #   original_user.in_related_user = [related_user.encode('utf-8') for related_user in in_related_user]
+  
+  out_related_user = channel_dict.get('out_related_user', [])
+  if out_related_user:
+    original_user.out_related_user = [related_user.encode('utf-8') for related_user in out_related_user]
+
+  original_user.state = UserState.DISABLE if channel_dict.get('disabled', False) else UserState.NORMAL
+
+  return original_user
+
 

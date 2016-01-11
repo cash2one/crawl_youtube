@@ -55,7 +55,7 @@ def str2user(thrift_str):
     logging.exception('str2mediavideo failed: %s', thrift_str)
     return None
 
-fp = open('user.txt', 'r')
+fp = open('user_test.txt', 'r')
 for line in fp:
   data = line.split('\t')[-1]
   user =  str2user(base64.b64decode(data))

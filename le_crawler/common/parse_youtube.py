@@ -50,8 +50,19 @@ youtube_category_dict = {'1': 'Film & Animation',
                          '44': 'Trailers'}
 
 
-def parse_channel_detail(channel_data, extend_map=None):
+def parse_channel_detail(rep_dict, extend_map=None):
   ret_dict = {}
+  if not rep_dict:
+    return
+  datas = rep_dict.get('items', None)
+  if datas is None:
+    return
+  elif datas == []:
+    rep_dict['disabled'] = True
+    rep_dict['update_time'] = int(time.time())
+    return rep_dict
+
+  channel_data = datas[0]
   channel_id = channel_data.get('id', None)
   if channel_id is not None:
     ret_dict['channel_id'] = channel_id
@@ -103,8 +114,6 @@ def parse_channel_detail(channel_data, extend_map=None):
       ret_dict['user'] = extend_map['user']
     if extend_map.get('source', None):
       ret_dict['source'] = extend_map['source']
-    if extend_map.get('country', None) and ret_dict.get('country', None):
-      ret_dict['country'] = extend_map['country']
 
   ret_dict['is_parse'] = True
   ret_dict['update_time'] = int(time.time())
@@ -176,11 +185,4 @@ def get_url_param(request_url, key):
     return value
   except Exception, e:
     return None
-
-
-
-
-
-
-
 

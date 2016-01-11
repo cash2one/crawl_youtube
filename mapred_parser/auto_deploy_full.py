@@ -19,7 +19,6 @@ import hdfs_utils
 import python_library.utils as utils
 
 
-merge_dir = '/user/search/short_video/tmp/full_out_tmp/'
 out_final_dir = '/user/search/short_video/out/video/'
 day_tmp_dir = '/user/search/short_video/day_tmp/'
 
@@ -35,17 +34,32 @@ class ExtractWorker(object):
     return last_dir
 
 
+  def get_last_user_dir(self):
+    cmd = 'hadoop fs -ls /user/search/short_video/full_user_info | grep out_video_'
+    _, output = commands.getstatusoutput(cmd)
+    output = hdfs_utils.strip_first_line(output)
+    last_dir = output.split(' ')[-1] + '/'
+    logging.info('last unique directory is %s', last_dir)
+    return last_dir
+
+
   def run_job(self):
     cur_job_dir = self.cur_cycle_dir_ + 'parse_job/'
     logging.info('\n>> last unique directory is %s\n>> current job directory is %s',
             self.last_unique_dir_, cur_job_dir)
     if not hdfs_utils.count_file(day_tmp_dir):
       return False
+
     input_path = ' -input ' + day_tmp_dir + '*'
+
     input_file_count = hdfs_utils.count_file(self.last_unique_dir_)
     if input_file_count:
       input_path += ' -input ' + self.last_unique_dir_ 
     
+    input_file_count = hdfs_utils.count_file(self.last_user_dir_)
+    if input_file_count:
+      input_path += ' -input ' + self.last_unique_dir_ 
+
     reduce_amount = 100
     cmd = 'hadoop jar hadoop-streaming-2.6.0.jar ' \
           '-libjars custom.jar ' \
@@ -70,89 +84,18 @@ class ExtractWorker(object):
     return status == 0
 
 
-  def merge_user(self):
-    cur_job_dir = self.cur_cycle_dir_ + 'user_merge_job/'
-    logging.info('\n>> current input directory is %s\n>> current job directory is %s',
-            self.cur_cycle_dir_ + 'parse_job/user_merge/', cur_job_dir)
-    input_file_count = hdfs_utils.count_file(self.cur_cycle_dir_ + 'parse_job/user_merge/')
-    if not input_file_count:
-      return True
-    reduce_amount = input_file_count if input_file_count > 0 and input_file_count < 1000 else 1000
-    reduce_amount = 100
-    cmd = 'hadoop jar hadoop-streaming-2.6.0.jar ' \
-          '-libjars custom.jar ' \
-          '-archives hdfs://cluster/user/search/short_video/bin/mapred_parser.tar.gz#mapred_parser ' \
-          '-D mapred.reduce.tasks=%s ' \
-          '-D mapred.job.name=short_video_full_user_merger ' \
-          '-D mapred.job.priority=VERY_HIGH ' \
-          '-D mapreduce.reduce.memory.mb=8192 ' \
-          '-input %s ' \
-          '-output %s ' \
-          '-mapper ./mapred_parser/user_merger/mapper.py ' \
-          '-reducer ./mapred_parser/user_merger/reducer.py ' \
-          '-inputformat org.apache.hadoop.mapred.SequenceFileAsTextInputFormat ' \
-          '-outputformat com.custom.MultipleSequenceFileOutputFormatByKey' % \
-          (reduce_amount, self.cur_cycle_dir_ + 'parse_job/user_merge/*', cur_job_dir)
-    logging.info('start merging user...\nreduce job amount: [%s]\ncommand: %s', reduce_amount, cmd)
-    status, output = commands.getstatusoutput(cmd)
-    logging.info('Job %s, details:\n%s', 'succeeded' if status == 0 else 'failed', output)
-    if status:  # job failed
-      hdfs_utils.rm_dir(self.cur_cycle_dir_)
-      hdfs_utils.rm_file(day_tmp_dir + '*')
-      raise Exception('hadoop user merge of short video failed')
-    return  status == 0
-
-
-  def merge_file(self):
-    reduce_amount = 100
-    hdfs_utils.rm_dir(merge_dir)
-    input_path = ''
-    input_file_count = hdfs_utils.count_file(self.cur_cycle_dir_ + 'parse_job/unique/')
-    if input_file_count:
-      input_path += ' -input ' + self.cur_cycle_dir_ + 'parse_job/unique/*'
-    input_file_count = hdfs_utils.count_file(self.cur_cycle_dir_ + 'user_merge_job/unique/')
-    if input_file_count:
-      input_path += ' -input ' + self.cur_cycle_dir_ + 'user_merge_job/unique/*'
-    if not input_path:
-      hdfs_utils.rm_dir(self.cur_cycle_dir_)
-      hdfs_utils.rm_file(day_tmp_dir + '*')
-      logging.info('hadoop not has video ...')
-      #raise Exception('hadoop not has video... ')
-      return False
-    cmd = 'hadoop jar hadoop-streaming-2.6.0.jar ' \
-          '-libjars custom.jar ' \
-          '-archives hdfs://cluster/user/search/short_video/bin/mapred_parser.tar.gz#mapred_parser ' \
-          '-D mapred.reduce.tasks=%s ' \
-          '-D mapred.job.name=short_video_full_file_merger ' \
-          '-D mapred.job.priority=VERY_HIGH ' \
-          '-D mapreduce.map.memory.mb=2048 ' \
-          ' %s ' \
-          '-output %s ' \
-          '-mapper ./mapred_parser/file_merger/mapper.py ' \
-          '-reducer ./mapred_parser/file_merger/reducer.py ' \
-          '-inputformat org.apache.hadoop.mapred.SequenceFileAsTextInputFormat ' \
-          '-outputformat com.custom.MultipleSequenceFileOutputFormatByKey' % \
-          (reduce_amount, input_path, merge_dir)
-    logging.info('start merging file...\nreduce job amount: [%s]\ncommand: %s', reduce_amount, cmd)
-    status, output = commands.getstatusoutput(cmd)
-    logging.info('Job %s, details:\n%s', 'succeeded' if status == 0 else 'failed', output)
-    if status:  # job failed
-      hdfs_utils.rm_dir(self.cur_cycle_dir_)
-      hdfs_utils.rm_file(day_tmp_dir + '*')
-      raise Exception('hadoop file merge of short video failed')
-    return  status == 0
-
-
   def prepare_input(self):
     logging.info('preparing input data...')
     today = time.strftime('%Y%m%d')
     self.last_unique_dir_ = self.get_last_unique_dir()
+    self.last_user_dir_ = self.get_last_user_dir()
     self.last_day = self.last_unique_dir_.strip('/').split('_')[-1]
     self.merge_day = (datetime.strptime(self.last_day, '%Y%m%d') + timedelta(days=1)).strftime('%Y%m%d')
     self.cur_cycle_dir_ = '/user/search/short_video/tmp/full_job_%s/' % self.merge_day
     if self.merge_day < today:
       logging.info('merge_day less today, merge_day: %s, today: %s', self.merge_day, today)
       hdfs_utils.cp('/user/search/short_video/out/video/' + self.merge_day + '*', day_tmp_dir)
+      hdfs_utils.cp('/user/search/short_video/out/user_info/' + self.merge_day + '*', day_tmp_dir)
     else:
       logging.info('merge_day not less today, merge_day: %s, today: %s', self.merge_day, today)
       return False
@@ -172,8 +115,9 @@ class ExtractWorker(object):
 
     hdfs_utils.rm_file(day_tmp_dir + '*')
     out_final_dir = '/user/search/short_video/full/out_video_%s' % self.merge_day
-    hdfs_utils.mv(merge_dir + 'video', out_final_dir)
-    
+    out_user_dir = '/user/search/short_video/full_user_info/out_user_%s' % self.merge_day
+    hdfs_utils.mv(self.cur_cycle_dir_ + 'unique', out_final_dir)
+    hdfs_utils.mv(self.cur_cycle_dir_ + 'user_info', out_user_dir)
     return True
 
 

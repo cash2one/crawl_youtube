@@ -38,6 +38,20 @@ class State:
     "LONG_VIDEO": 4,
   }
 
+class DataType:
+  VIDEO = 1
+  AUDIO = 2
+
+  _VALUES_TO_NAMES = {
+    1: "VIDEO",
+    2: "AUDIO",
+  }
+
+  _NAMES_TO_VALUES = {
+    "VIDEO": 1,
+    "AUDIO": 2,
+  }
+
 
 class Star:
   """
@@ -423,6 +437,646 @@ class Star:
   def __ne__(self, other):
     return not (self == other)
 
+class Artist:
+  """
+  Attributes:
+   - id
+   - url
+   - name
+   - name_en
+   - name_cn
+   - name_origin
+   - style
+   - fans_num
+   - sex
+   - birthday
+   - poster
+   - description
+   - rating
+   - tags
+   - language
+   - nation
+   - height
+   - weight
+   - dead_date
+   - area
+   - create_time
+   - update_time
+   - album_urls
+  """
+
+  thrift_spec = (
+    None, # 0
+    (1, TType.STRING, 'id', None, None, ), # 1
+    (2, TType.STRING, 'url', None, None, ), # 2
+    (3, TType.STRING, 'name', None, None, ), # 3
+    (4, TType.STRING, 'name_en', None, None, ), # 4
+    (5, TType.STRING, 'name_cn', None, None, ), # 5
+    (6, TType.STRING, 'name_origin', None, None, ), # 6
+    (7, TType.LIST, 'style', (TType.STRING,None), None, ), # 7
+    (8, TType.I64, 'fans_num', None, None, ), # 8
+    (9, TType.I32, 'sex', None,     0, ), # 9
+    (10, TType.STRING, 'birthday', None, None, ), # 10
+    (11, TType.STRING, 'poster', None, None, ), # 11
+    (12, TType.STRING, 'description', None, None, ), # 12
+    (13, TType.DOUBLE, 'rating', None, None, ), # 13
+    (14, TType.LIST, 'tags', (TType.STRING,None), None, ), # 14
+    (15, TType.STRING, 'language', None, None, ), # 15
+    (16, TType.STRING, 'nation', None, None, ), # 16
+    (17, TType.STRING, 'height', None, None, ), # 17
+    (18, TType.STRING, 'weight', None, None, ), # 18
+    (19, TType.STRING, 'dead_date', None, None, ), # 19
+    (20, TType.STRING, 'area', None, None, ), # 20
+    (21, TType.I64, 'create_time', None, None, ), # 21
+    (22, TType.I64, 'update_time', None, None, ), # 22
+    (23, TType.LIST, 'album_urls', (TType.STRING,None), None, ), # 23
+  )
+
+  def __init__(self, id=None, url=None, name=None, name_en=None, name_cn=None, name_origin=None, style=None, fans_num=None, sex=thrift_spec[9][4], birthday=None, poster=None, description=None, rating=None, tags=None, language=None, nation=None, height=None, weight=None, dead_date=None, area=None, create_time=None, update_time=None, album_urls=None,):
+    self.id = id
+    self.url = url
+    self.name = name
+    self.name_en = name_en
+    self.name_cn = name_cn
+    self.name_origin = name_origin
+    self.style = style
+    self.fans_num = fans_num
+    self.sex = sex
+    self.birthday = birthday
+    self.poster = poster
+    self.description = description
+    self.rating = rating
+    self.tags = tags
+    self.language = language
+    self.nation = nation
+    self.height = height
+    self.weight = weight
+    self.dead_date = dead_date
+    self.area = area
+    self.create_time = create_time
+    self.update_time = update_time
+    self.album_urls = album_urls
+
+  def read(self, iprot):
+    if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
+      fastbinary.decode_binary(self, iprot.trans, (self.__class__, self.thrift_spec))
+      return
+    iprot.readStructBegin()
+    while True:
+      (fname, ftype, fid) = iprot.readFieldBegin()
+      if ftype == TType.STOP:
+        break
+      if fid == 1:
+        if ftype == TType.STRING:
+          self.id = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 2:
+        if ftype == TType.STRING:
+          self.url = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 3:
+        if ftype == TType.STRING:
+          self.name = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 4:
+        if ftype == TType.STRING:
+          self.name_en = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 5:
+        if ftype == TType.STRING:
+          self.name_cn = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 6:
+        if ftype == TType.STRING:
+          self.name_origin = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 7:
+        if ftype == TType.LIST:
+          self.style = []
+          (_etype12, _size9) = iprot.readListBegin()
+          for _i13 in xrange(_size9):
+            _elem14 = iprot.readString();
+            self.style.append(_elem14)
+          iprot.readListEnd()
+        else:
+          iprot.skip(ftype)
+      elif fid == 8:
+        if ftype == TType.I64:
+          self.fans_num = iprot.readI64();
+        else:
+          iprot.skip(ftype)
+      elif fid == 9:
+        if ftype == TType.I32:
+          self.sex = iprot.readI32();
+        else:
+          iprot.skip(ftype)
+      elif fid == 10:
+        if ftype == TType.STRING:
+          self.birthday = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 11:
+        if ftype == TType.STRING:
+          self.poster = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 12:
+        if ftype == TType.STRING:
+          self.description = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 13:
+        if ftype == TType.DOUBLE:
+          self.rating = iprot.readDouble();
+        else:
+          iprot.skip(ftype)
+      elif fid == 14:
+        if ftype == TType.LIST:
+          self.tags = []
+          (_etype18, _size15) = iprot.readListBegin()
+          for _i19 in xrange(_size15):
+            _elem20 = iprot.readString();
+            self.tags.append(_elem20)
+          iprot.readListEnd()
+        else:
+          iprot.skip(ftype)
+      elif fid == 15:
+        if ftype == TType.STRING:
+          self.language = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 16:
+        if ftype == TType.STRING:
+          self.nation = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 17:
+        if ftype == TType.STRING:
+          self.height = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 18:
+        if ftype == TType.STRING:
+          self.weight = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 19:
+        if ftype == TType.STRING:
+          self.dead_date = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 20:
+        if ftype == TType.STRING:
+          self.area = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 21:
+        if ftype == TType.I64:
+          self.create_time = iprot.readI64();
+        else:
+          iprot.skip(ftype)
+      elif fid == 22:
+        if ftype == TType.I64:
+          self.update_time = iprot.readI64();
+        else:
+          iprot.skip(ftype)
+      elif fid == 23:
+        if ftype == TType.LIST:
+          self.album_urls = []
+          (_etype24, _size21) = iprot.readListBegin()
+          for _i25 in xrange(_size21):
+            _elem26 = iprot.readString();
+            self.album_urls.append(_elem26)
+          iprot.readListEnd()
+        else:
+          iprot.skip(ftype)
+      else:
+        iprot.skip(ftype)
+      iprot.readFieldEnd()
+    iprot.readStructEnd()
+
+  def write(self, oprot):
+    if oprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and self.thrift_spec is not None and fastbinary is not None:
+      oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
+      return
+    oprot.writeStructBegin('Artist')
+    if self.id is not None:
+      oprot.writeFieldBegin('id', TType.STRING, 1)
+      oprot.writeString(self.id)
+      oprot.writeFieldEnd()
+    if self.url is not None:
+      oprot.writeFieldBegin('url', TType.STRING, 2)
+      oprot.writeString(self.url)
+      oprot.writeFieldEnd()
+    if self.name is not None:
+      oprot.writeFieldBegin('name', TType.STRING, 3)
+      oprot.writeString(self.name)
+      oprot.writeFieldEnd()
+    if self.name_en is not None:
+      oprot.writeFieldBegin('name_en', TType.STRING, 4)
+      oprot.writeString(self.name_en)
+      oprot.writeFieldEnd()
+    if self.name_cn is not None:
+      oprot.writeFieldBegin('name_cn', TType.STRING, 5)
+      oprot.writeString(self.name_cn)
+      oprot.writeFieldEnd()
+    if self.name_origin is not None:
+      oprot.writeFieldBegin('name_origin', TType.STRING, 6)
+      oprot.writeString(self.name_origin)
+      oprot.writeFieldEnd()
+    if self.style is not None:
+      oprot.writeFieldBegin('style', TType.LIST, 7)
+      oprot.writeListBegin(TType.STRING, len(self.style))
+      for iter27 in self.style:
+        oprot.writeString(iter27)
+      oprot.writeListEnd()
+      oprot.writeFieldEnd()
+    if self.fans_num is not None:
+      oprot.writeFieldBegin('fans_num', TType.I64, 8)
+      oprot.writeI64(self.fans_num)
+      oprot.writeFieldEnd()
+    if self.sex is not None:
+      oprot.writeFieldBegin('sex', TType.I32, 9)
+      oprot.writeI32(self.sex)
+      oprot.writeFieldEnd()
+    if self.birthday is not None:
+      oprot.writeFieldBegin('birthday', TType.STRING, 10)
+      oprot.writeString(self.birthday)
+      oprot.writeFieldEnd()
+    if self.poster is not None:
+      oprot.writeFieldBegin('poster', TType.STRING, 11)
+      oprot.writeString(self.poster)
+      oprot.writeFieldEnd()
+    if self.description is not None:
+      oprot.writeFieldBegin('description', TType.STRING, 12)
+      oprot.writeString(self.description)
+      oprot.writeFieldEnd()
+    if self.rating is not None:
+      oprot.writeFieldBegin('rating', TType.DOUBLE, 13)
+      oprot.writeDouble(self.rating)
+      oprot.writeFieldEnd()
+    if self.tags is not None:
+      oprot.writeFieldBegin('tags', TType.LIST, 14)
+      oprot.writeListBegin(TType.STRING, len(self.tags))
+      for iter28 in self.tags:
+        oprot.writeString(iter28)
+      oprot.writeListEnd()
+      oprot.writeFieldEnd()
+    if self.language is not None:
+      oprot.writeFieldBegin('language', TType.STRING, 15)
+      oprot.writeString(self.language)
+      oprot.writeFieldEnd()
+    if self.nation is not None:
+      oprot.writeFieldBegin('nation', TType.STRING, 16)
+      oprot.writeString(self.nation)
+      oprot.writeFieldEnd()
+    if self.height is not None:
+      oprot.writeFieldBegin('height', TType.STRING, 17)
+      oprot.writeString(self.height)
+      oprot.writeFieldEnd()
+    if self.weight is not None:
+      oprot.writeFieldBegin('weight', TType.STRING, 18)
+      oprot.writeString(self.weight)
+      oprot.writeFieldEnd()
+    if self.dead_date is not None:
+      oprot.writeFieldBegin('dead_date', TType.STRING, 19)
+      oprot.writeString(self.dead_date)
+      oprot.writeFieldEnd()
+    if self.area is not None:
+      oprot.writeFieldBegin('area', TType.STRING, 20)
+      oprot.writeString(self.area)
+      oprot.writeFieldEnd()
+    if self.create_time is not None:
+      oprot.writeFieldBegin('create_time', TType.I64, 21)
+      oprot.writeI64(self.create_time)
+      oprot.writeFieldEnd()
+    if self.update_time is not None:
+      oprot.writeFieldBegin('update_time', TType.I64, 22)
+      oprot.writeI64(self.update_time)
+      oprot.writeFieldEnd()
+    if self.album_urls is not None:
+      oprot.writeFieldBegin('album_urls', TType.LIST, 23)
+      oprot.writeListBegin(TType.STRING, len(self.album_urls))
+      for iter29 in self.album_urls:
+        oprot.writeString(iter29)
+      oprot.writeListEnd()
+      oprot.writeFieldEnd()
+    oprot.writeFieldStop()
+    oprot.writeStructEnd()
+
+  def validate(self):
+    return
+
+
+  def __repr__(self):
+    L = ['%s=%r' % (key, value)
+      for key, value in self.__dict__.iteritems()]
+    return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
+
+  def __eq__(self, other):
+    return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
+
+  def __ne__(self, other):
+    return not (self == other)
+
+class Album:
+  """
+  Attributes:
+   - id
+   - url
+   - name
+   - language
+   - description
+   - poster
+   - rating
+   - play_total
+   - record_company
+   - show_time
+   - category
+   - style
+   - tags
+   - collects_num
+   - comments_num
+   - artist_urls
+   - create_time
+   - update_time
+   - song_urls
+  """
+
+  thrift_spec = (
+    None, # 0
+    (1, TType.STRING, 'id', None, None, ), # 1
+    (2, TType.STRING, 'url', None, None, ), # 2
+    (3, TType.STRING, 'name', None, None, ), # 3
+    (4, TType.STRING, 'language', None, None, ), # 4
+    (5, TType.STRING, 'description', None, None, ), # 5
+    (6, TType.STRING, 'poster', None, None, ), # 6
+    (7, TType.DOUBLE, 'rating', None, None, ), # 7
+    (8, TType.I64, 'play_total', None, None, ), # 8
+    (9, TType.STRING, 'record_company', None, None, ), # 9
+    (10, TType.STRING, 'show_time', None, None, ), # 10
+    (11, TType.STRING, 'category', None, None, ), # 11
+    (12, TType.STRING, 'style', None, None, ), # 12
+    (13, TType.STRING, 'tags', None, None, ), # 13
+    (14, TType.I64, 'collects_num', None, None, ), # 14
+    (15, TType.I32, 'comments_num', None, None, ), # 15
+    (16, TType.LIST, 'artist_urls', (TType.STRING,None), None, ), # 16
+    (17, TType.I64, 'create_time', None, None, ), # 17
+    (18, TType.I64, 'update_time', None, None, ), # 18
+    (19, TType.LIST, 'song_urls', (TType.STRING,None), None, ), # 19
+  )
+
+  def __init__(self, id=None, url=None, name=None, language=None, description=None, poster=None, rating=None, play_total=None, record_company=None, show_time=None, category=None, style=None, tags=None, collects_num=None, comments_num=None, artist_urls=None, create_time=None, update_time=None, song_urls=None,):
+    self.id = id
+    self.url = url
+    self.name = name
+    self.language = language
+    self.description = description
+    self.poster = poster
+    self.rating = rating
+    self.play_total = play_total
+    self.record_company = record_company
+    self.show_time = show_time
+    self.category = category
+    self.style = style
+    self.tags = tags
+    self.collects_num = collects_num
+    self.comments_num = comments_num
+    self.artist_urls = artist_urls
+    self.create_time = create_time
+    self.update_time = update_time
+    self.song_urls = song_urls
+
+  def read(self, iprot):
+    if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
+      fastbinary.decode_binary(self, iprot.trans, (self.__class__, self.thrift_spec))
+      return
+    iprot.readStructBegin()
+    while True:
+      (fname, ftype, fid) = iprot.readFieldBegin()
+      if ftype == TType.STOP:
+        break
+      if fid == 1:
+        if ftype == TType.STRING:
+          self.id = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 2:
+        if ftype == TType.STRING:
+          self.url = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 3:
+        if ftype == TType.STRING:
+          self.name = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 4:
+        if ftype == TType.STRING:
+          self.language = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 5:
+        if ftype == TType.STRING:
+          self.description = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 6:
+        if ftype == TType.STRING:
+          self.poster = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 7:
+        if ftype == TType.DOUBLE:
+          self.rating = iprot.readDouble();
+        else:
+          iprot.skip(ftype)
+      elif fid == 8:
+        if ftype == TType.I64:
+          self.play_total = iprot.readI64();
+        else:
+          iprot.skip(ftype)
+      elif fid == 9:
+        if ftype == TType.STRING:
+          self.record_company = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 10:
+        if ftype == TType.STRING:
+          self.show_time = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 11:
+        if ftype == TType.STRING:
+          self.category = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 12:
+        if ftype == TType.STRING:
+          self.style = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 13:
+        if ftype == TType.STRING:
+          self.tags = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 14:
+        if ftype == TType.I64:
+          self.collects_num = iprot.readI64();
+        else:
+          iprot.skip(ftype)
+      elif fid == 15:
+        if ftype == TType.I32:
+          self.comments_num = iprot.readI32();
+        else:
+          iprot.skip(ftype)
+      elif fid == 16:
+        if ftype == TType.LIST:
+          self.artist_urls = []
+          (_etype33, _size30) = iprot.readListBegin()
+          for _i34 in xrange(_size30):
+            _elem35 = iprot.readString();
+            self.artist_urls.append(_elem35)
+          iprot.readListEnd()
+        else:
+          iprot.skip(ftype)
+      elif fid == 17:
+        if ftype == TType.I64:
+          self.create_time = iprot.readI64();
+        else:
+          iprot.skip(ftype)
+      elif fid == 18:
+        if ftype == TType.I64:
+          self.update_time = iprot.readI64();
+        else:
+          iprot.skip(ftype)
+      elif fid == 19:
+        if ftype == TType.LIST:
+          self.song_urls = []
+          (_etype39, _size36) = iprot.readListBegin()
+          for _i40 in xrange(_size36):
+            _elem41 = iprot.readString();
+            self.song_urls.append(_elem41)
+          iprot.readListEnd()
+        else:
+          iprot.skip(ftype)
+      else:
+        iprot.skip(ftype)
+      iprot.readFieldEnd()
+    iprot.readStructEnd()
+
+  def write(self, oprot):
+    if oprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and self.thrift_spec is not None and fastbinary is not None:
+      oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
+      return
+    oprot.writeStructBegin('Album')
+    if self.id is not None:
+      oprot.writeFieldBegin('id', TType.STRING, 1)
+      oprot.writeString(self.id)
+      oprot.writeFieldEnd()
+    if self.url is not None:
+      oprot.writeFieldBegin('url', TType.STRING, 2)
+      oprot.writeString(self.url)
+      oprot.writeFieldEnd()
+    if self.name is not None:
+      oprot.writeFieldBegin('name', TType.STRING, 3)
+      oprot.writeString(self.name)
+      oprot.writeFieldEnd()
+    if self.language is not None:
+      oprot.writeFieldBegin('language', TType.STRING, 4)
+      oprot.writeString(self.language)
+      oprot.writeFieldEnd()
+    if self.description is not None:
+      oprot.writeFieldBegin('description', TType.STRING, 5)
+      oprot.writeString(self.description)
+      oprot.writeFieldEnd()
+    if self.poster is not None:
+      oprot.writeFieldBegin('poster', TType.STRING, 6)
+      oprot.writeString(self.poster)
+      oprot.writeFieldEnd()
+    if self.rating is not None:
+      oprot.writeFieldBegin('rating', TType.DOUBLE, 7)
+      oprot.writeDouble(self.rating)
+      oprot.writeFieldEnd()
+    if self.play_total is not None:
+      oprot.writeFieldBegin('play_total', TType.I64, 8)
+      oprot.writeI64(self.play_total)
+      oprot.writeFieldEnd()
+    if self.record_company is not None:
+      oprot.writeFieldBegin('record_company', TType.STRING, 9)
+      oprot.writeString(self.record_company)
+      oprot.writeFieldEnd()
+    if self.show_time is not None:
+      oprot.writeFieldBegin('show_time', TType.STRING, 10)
+      oprot.writeString(self.show_time)
+      oprot.writeFieldEnd()
+    if self.category is not None:
+      oprot.writeFieldBegin('category', TType.STRING, 11)
+      oprot.writeString(self.category)
+      oprot.writeFieldEnd()
+    if self.style is not None:
+      oprot.writeFieldBegin('style', TType.STRING, 12)
+      oprot.writeString(self.style)
+      oprot.writeFieldEnd()
+    if self.tags is not None:
+      oprot.writeFieldBegin('tags', TType.STRING, 13)
+      oprot.writeString(self.tags)
+      oprot.writeFieldEnd()
+    if self.collects_num is not None:
+      oprot.writeFieldBegin('collects_num', TType.I64, 14)
+      oprot.writeI64(self.collects_num)
+      oprot.writeFieldEnd()
+    if self.comments_num is not None:
+      oprot.writeFieldBegin('comments_num', TType.I32, 15)
+      oprot.writeI32(self.comments_num)
+      oprot.writeFieldEnd()
+    if self.artist_urls is not None:
+      oprot.writeFieldBegin('artist_urls', TType.LIST, 16)
+      oprot.writeListBegin(TType.STRING, len(self.artist_urls))
+      for iter42 in self.artist_urls:
+        oprot.writeString(iter42)
+      oprot.writeListEnd()
+      oprot.writeFieldEnd()
+    if self.create_time is not None:
+      oprot.writeFieldBegin('create_time', TType.I64, 17)
+      oprot.writeI64(self.create_time)
+      oprot.writeFieldEnd()
+    if self.update_time is not None:
+      oprot.writeFieldBegin('update_time', TType.I64, 18)
+      oprot.writeI64(self.update_time)
+      oprot.writeFieldEnd()
+    if self.song_urls is not None:
+      oprot.writeFieldBegin('song_urls', TType.LIST, 19)
+      oprot.writeListBegin(TType.STRING, len(self.song_urls))
+      for iter43 in self.song_urls:
+        oprot.writeString(iter43)
+      oprot.writeListEnd()
+      oprot.writeFieldEnd()
+    oprot.writeFieldStop()
+    oprot.writeStructEnd()
+
+  def validate(self):
+    return
+
+
+  def __repr__(self):
+    L = ['%s=%r' % (key, value)
+      for key, value in self.__dict__.iteritems()]
+    return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
+
+  def __eq__(self, other):
+    return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
+
+  def __ne__(self, other):
+    return not (self == other)
+
 class OriginalUser:
   """
   Attributes:
@@ -574,11 +1228,11 @@ class OriginalUser:
       elif fid == 14:
         if ftype == TType.LIST:
           self.thumbnail_list = []
-          (_etype12, _size9) = iprot.readListBegin()
-          for _i13 in xrange(_size9):
-            _elem14 = le_crawler.proto.crawl.ttypes.Thumbnail()
-            _elem14.read(iprot)
-            self.thumbnail_list.append(_elem14)
+          (_etype47, _size44) = iprot.readListBegin()
+          for _i48 in xrange(_size44):
+            _elem49 = le_crawler.proto.crawl.ttypes.Thumbnail()
+            _elem49.read(iprot)
+            self.thumbnail_list.append(_elem49)
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
@@ -590,42 +1244,42 @@ class OriginalUser:
       elif fid == 16:
         if ftype == TType.LIST:
           self.category_proportion_list = []
-          (_etype18, _size15) = iprot.readListBegin()
-          for _i19 in xrange(_size15):
-            _elem20 = le_crawler.proto.crawl.ttypes.CategoryProportion()
-            _elem20.read(iprot)
-            self.category_proportion_list.append(_elem20)
+          (_etype53, _size50) = iprot.readListBegin()
+          for _i54 in xrange(_size50):
+            _elem55 = le_crawler.proto.crawl.ttypes.CategoryProportion()
+            _elem55.read(iprot)
+            self.category_proportion_list.append(_elem55)
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
       elif fid == 17:
         if ftype == TType.LIST:
           self.language_proportion_list = []
-          (_etype24, _size21) = iprot.readListBegin()
-          for _i25 in xrange(_size21):
-            _elem26 = le_crawler.proto.crawl.ttypes.LanguageProportion()
-            _elem26.read(iprot)
-            self.language_proportion_list.append(_elem26)
+          (_etype59, _size56) = iprot.readListBegin()
+          for _i60 in xrange(_size56):
+            _elem61 = le_crawler.proto.crawl.ttypes.LanguageProportion()
+            _elem61.read(iprot)
+            self.language_proportion_list.append(_elem61)
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
       elif fid == 18:
         if ftype == TType.LIST:
           self.in_related_user = []
-          (_etype30, _size27) = iprot.readListBegin()
-          for _i31 in xrange(_size27):
-            _elem32 = iprot.readString();
-            self.in_related_user.append(_elem32)
+          (_etype65, _size62) = iprot.readListBegin()
+          for _i66 in xrange(_size62):
+            _elem67 = iprot.readString();
+            self.in_related_user.append(_elem67)
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
       elif fid == 19:
         if ftype == TType.LIST:
           self.out_related_user = []
-          (_etype36, _size33) = iprot.readListBegin()
-          for _i37 in xrange(_size33):
-            _elem38 = iprot.readString();
-            self.out_related_user.append(_elem38)
+          (_etype71, _size68) = iprot.readListBegin()
+          for _i72 in xrange(_size68):
+            _elem73 = iprot.readString();
+            self.out_related_user.append(_elem73)
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
@@ -637,10 +1291,10 @@ class OriginalUser:
       elif fid == 21:
         if ftype == TType.LIST:
           self.display_countrys = []
-          (_etype42, _size39) = iprot.readListBegin()
-          for _i43 in xrange(_size39):
-            _elem44 = iprot.readString();
-            self.display_countrys.append(_elem44)
+          (_etype77, _size74) = iprot.readListBegin()
+          for _i78 in xrange(_size74):
+            _elem79 = iprot.readString();
+            self.display_countrys.append(_elem79)
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
@@ -709,8 +1363,8 @@ class OriginalUser:
     if self.thumbnail_list is not None:
       oprot.writeFieldBegin('thumbnail_list', TType.LIST, 14)
       oprot.writeListBegin(TType.STRUCT, len(self.thumbnail_list))
-      for iter45 in self.thumbnail_list:
-        iter45.write(oprot)
+      for iter80 in self.thumbnail_list:
+        iter80.write(oprot)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.country is not None:
@@ -720,29 +1374,29 @@ class OriginalUser:
     if self.category_proportion_list is not None:
       oprot.writeFieldBegin('category_proportion_list', TType.LIST, 16)
       oprot.writeListBegin(TType.STRUCT, len(self.category_proportion_list))
-      for iter46 in self.category_proportion_list:
-        iter46.write(oprot)
+      for iter81 in self.category_proportion_list:
+        iter81.write(oprot)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.language_proportion_list is not None:
       oprot.writeFieldBegin('language_proportion_list', TType.LIST, 17)
       oprot.writeListBegin(TType.STRUCT, len(self.language_proportion_list))
-      for iter47 in self.language_proportion_list:
-        iter47.write(oprot)
+      for iter82 in self.language_proportion_list:
+        iter82.write(oprot)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.in_related_user is not None:
       oprot.writeFieldBegin('in_related_user', TType.LIST, 18)
       oprot.writeListBegin(TType.STRING, len(self.in_related_user))
-      for iter48 in self.in_related_user:
-        oprot.writeString(iter48)
+      for iter83 in self.in_related_user:
+        oprot.writeString(iter83)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.out_related_user is not None:
       oprot.writeFieldBegin('out_related_user', TType.LIST, 19)
       oprot.writeListBegin(TType.STRING, len(self.out_related_user))
-      for iter49 in self.out_related_user:
-        oprot.writeString(iter49)
+      for iter84 in self.out_related_user:
+        oprot.writeString(iter84)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.state is not None:
@@ -752,8 +1406,8 @@ class OriginalUser:
     if self.display_countrys is not None:
       oprot.writeFieldBegin('display_countrys', TType.LIST, 21)
       oprot.writeListBegin(TType.STRING, len(self.display_countrys))
-      for iter50 in self.display_countrys:
-        oprot.writeString(iter50)
+      for iter85 in self.display_countrys:
+        oprot.writeString(iter85)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     oprot.writeFieldStop()
@@ -874,6 +1528,15 @@ class MediaVideo:
    - inlink_history
    - region_strategy
    - external_id
+   - user_url
+   - artists
+   - album
+   - author
+   - composer
+   - arranger
+   - lyrics
+   - share_num
+   - data_type
   """
 
   thrift_spec = (
@@ -976,9 +1639,18 @@ class MediaVideo:
     (96, TType.LIST, 'inlink_history', (TType.LIST,(TType.STRUCT,(le_crawler.proto.crawl.ttypes.Anchor, le_crawler.proto.crawl.ttypes.Anchor.thrift_spec))), None, ), # 96
     (97, TType.STRUCT, 'region_strategy', (le_crawler.proto.crawl.ttypes.RegionStrategy, le_crawler.proto.crawl.ttypes.RegionStrategy.thrift_spec), None, ), # 97
     (98, TType.STRING, 'external_id', None, None, ), # 98
+    (99, TType.STRING, 'user_url', None, None, ), # 99
+    (100, TType.LIST, 'artists', (TType.STRUCT,(Artist, Artist.thrift_spec)), None, ), # 100
+    (101, TType.STRUCT, 'album', (Album, Album.thrift_spec), None, ), # 101
+    (102, TType.LIST, 'author', (TType.STRUCT,(Artist, Artist.thrift_spec)), None, ), # 102
+    (103, TType.LIST, 'composer', (TType.STRUCT,(Artist, Artist.thrift_spec)), None, ), # 103
+    (104, TType.LIST, 'arranger', (TType.STRUCT,(Artist, Artist.thrift_spec)), None, ), # 104
+    (105, TType.STRING, 'lyrics', None, None, ), # 105
+    (106, TType.I32, 'share_num', None, None, ), # 106
+    (107, TType.I32, 'data_type', None,     1, ), # 107
   )
 
-  def __init__(self, id=None, domain=None, domain_id=None, category=None, category_id=None, title=None, subtitle=None, title_other=None, title_en=None, actor=None, actor_id=None, director=None, director_id=None, writer=None, writer_id=None, showtime=None, showyear=None, area=None, subcategory=None, subcategory_id=None, language=None, language_id=None, fit_age=None, fit_age_id=None, short_desc=None, desc=None, tags=None, poster=None, collects=None, rating=None, commentator=None, episodes=None, is_end=None, url=None, quality=None, duration=None, copyright=None, state=None, type=None, type_id=None, version=None, version_id=None, is_pay=None, play_day_total=None, play_week_total=None, play_month_total=None, play_season_total=None, play_year_total=None, play_total=None, create_time=None, update_time=None, delete_time=None, platform_download=None, platform_play=None, platform_pay=None, publish_status=None, douban_id=None, resolution=None, is_edit=None, extend=None, episode=None, porder=None, dup=thrift_spec[64][4], is_404=thrift_spec[65][4], is_soft404=thrift_spec[66][4], area_id=None, voteup_count=thrift_spec[68][4], votedown_count=thrift_spec[69][4], play_trends=None, category_list=None, crumbs=None, crawl_time=None, content_timestamp=None, duration_seconds=None, OBSOLETE_inlink=None, OBSOLETE_outlink=None, page_state=thrift_spec[78][4], crawl_history=None, doc_id=None, discover_time=None, in_links=None, user=None, playlist=None, dimension=None, caption=None, comment_num=None, source_type=None, thumbnails=None, content_quality=None, player=None, thumbnail_list=None, dead_link=thrift_spec[93][4], stream_url=None, language_type=None, inlink_history=None, region_strategy=None, external_id=None,):
+  def __init__(self, id=None, domain=None, domain_id=None, category=None, category_id=None, title=None, subtitle=None, title_other=None, title_en=None, actor=None, actor_id=None, director=None, director_id=None, writer=None, writer_id=None, showtime=None, showyear=None, area=None, subcategory=None, subcategory_id=None, language=None, language_id=None, fit_age=None, fit_age_id=None, short_desc=None, desc=None, tags=None, poster=None, collects=None, rating=None, commentator=None, episodes=None, is_end=None, url=None, quality=None, duration=None, copyright=None, state=None, type=None, type_id=None, version=None, version_id=None, is_pay=None, play_day_total=None, play_week_total=None, play_month_total=None, play_season_total=None, play_year_total=None, play_total=None, create_time=None, update_time=None, delete_time=None, platform_download=None, platform_play=None, platform_pay=None, publish_status=None, douban_id=None, resolution=None, is_edit=None, extend=None, episode=None, porder=None, dup=thrift_spec[64][4], is_404=thrift_spec[65][4], is_soft404=thrift_spec[66][4], area_id=None, voteup_count=thrift_spec[68][4], votedown_count=thrift_spec[69][4], play_trends=None, category_list=None, crumbs=None, crawl_time=None, content_timestamp=None, duration_seconds=None, OBSOLETE_inlink=None, OBSOLETE_outlink=None, page_state=thrift_spec[78][4], crawl_history=None, doc_id=None, discover_time=None, in_links=None, user=None, playlist=None, dimension=None, caption=None, comment_num=None, source_type=None, thumbnails=None, content_quality=None, player=None, thumbnail_list=None, dead_link=thrift_spec[93][4], stream_url=None, language_type=None, inlink_history=None, region_strategy=None, external_id=None, user_url=None, artists=None, album=None, author=None, composer=None, arranger=None, lyrics=None, share_num=None, data_type=thrift_spec[107][4],):
     self.id = id
     self.domain = domain
     self.domain_id = domain_id
@@ -1076,6 +1748,15 @@ class MediaVideo:
     self.inlink_history = inlink_history
     self.region_strategy = region_strategy
     self.external_id = external_id
+    self.user_url = user_url
+    self.artists = artists
+    self.album = album
+    self.author = author
+    self.composer = composer
+    self.arranger = arranger
+    self.lyrics = lyrics
+    self.share_num = share_num
+    self.data_type = data_type
 
   def read(self, iprot):
     if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
@@ -1384,11 +2065,11 @@ class MediaVideo:
       elif fid == 61:
         if ftype == TType.MAP:
           self.extend = {}
-          (_ktype52, _vtype53, _size51 ) = iprot.readMapBegin()
-          for _i55 in xrange(_size51):
-            _key56 = iprot.readString();
-            _val57 = iprot.readString();
-            self.extend[_key56] = _val57
+          (_ktype87, _vtype88, _size86 ) = iprot.readMapBegin()
+          for _i90 in xrange(_size86):
+            _key91 = iprot.readString();
+            _val92 = iprot.readString();
+            self.extend[_key91] = _val92
           iprot.readMapEnd()
         else:
           iprot.skip(ftype)
@@ -1465,20 +2146,20 @@ class MediaVideo:
       elif fid == 76:
         if ftype == TType.LIST:
           self.OBSOLETE_inlink = []
-          (_etype61, _size58) = iprot.readListBegin()
-          for _i62 in xrange(_size58):
-            _elem63 = iprot.readString();
-            self.OBSOLETE_inlink.append(_elem63)
+          (_etype96, _size93) = iprot.readListBegin()
+          for _i97 in xrange(_size93):
+            _elem98 = iprot.readString();
+            self.OBSOLETE_inlink.append(_elem98)
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
       elif fid == 77:
         if ftype == TType.LIST:
           self.OBSOLETE_outlink = []
-          (_etype67, _size64) = iprot.readListBegin()
-          for _i68 in xrange(_size64):
-            _elem69 = iprot.readString();
-            self.OBSOLETE_outlink.append(_elem69)
+          (_etype102, _size99) = iprot.readListBegin()
+          for _i103 in xrange(_size99):
+            _elem104 = iprot.readString();
+            self.OBSOLETE_outlink.append(_elem104)
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
@@ -1506,11 +2187,11 @@ class MediaVideo:
       elif fid == 82:
         if ftype == TType.LIST:
           self.in_links = []
-          (_etype73, _size70) = iprot.readListBegin()
-          for _i74 in xrange(_size70):
-            _elem75 = le_crawler.proto.crawl.ttypes.Anchor()
-            _elem75.read(iprot)
-            self.in_links.append(_elem75)
+          (_etype108, _size105) = iprot.readListBegin()
+          for _i109 in xrange(_size105):
+            _elem110 = le_crawler.proto.crawl.ttypes.Anchor()
+            _elem110.read(iprot)
+            self.in_links.append(_elem110)
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
@@ -1563,11 +2244,11 @@ class MediaVideo:
       elif fid == 92:
         if ftype == TType.LIST:
           self.thumbnail_list = []
-          (_etype79, _size76) = iprot.readListBegin()
-          for _i80 in xrange(_size76):
-            _elem81 = le_crawler.proto.crawl.ttypes.Thumbnail()
-            _elem81.read(iprot)
-            self.thumbnail_list.append(_elem81)
+          (_etype114, _size111) = iprot.readListBegin()
+          for _i115 in xrange(_size111):
+            _elem116 = le_crawler.proto.crawl.ttypes.Thumbnail()
+            _elem116.read(iprot)
+            self.thumbnail_list.append(_elem116)
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
@@ -1589,16 +2270,16 @@ class MediaVideo:
       elif fid == 96:
         if ftype == TType.LIST:
           self.inlink_history = []
-          (_etype85, _size82) = iprot.readListBegin()
-          for _i86 in xrange(_size82):
-            _elem87 = []
-            (_etype91, _size88) = iprot.readListBegin()
-            for _i92 in xrange(_size88):
-              _elem93 = le_crawler.proto.crawl.ttypes.Anchor()
-              _elem93.read(iprot)
-              _elem87.append(_elem93)
+          (_etype120, _size117) = iprot.readListBegin()
+          for _i121 in xrange(_size117):
+            _elem122 = []
+            (_etype126, _size123) = iprot.readListBegin()
+            for _i127 in xrange(_size123):
+              _elem128 = le_crawler.proto.crawl.ttypes.Anchor()
+              _elem128.read(iprot)
+              _elem122.append(_elem128)
             iprot.readListEnd()
-            self.inlink_history.append(_elem87)
+            self.inlink_history.append(_elem122)
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
@@ -1611,6 +2292,76 @@ class MediaVideo:
       elif fid == 98:
         if ftype == TType.STRING:
           self.external_id = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 99:
+        if ftype == TType.STRING:
+          self.user_url = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 100:
+        if ftype == TType.LIST:
+          self.artists = []
+          (_etype132, _size129) = iprot.readListBegin()
+          for _i133 in xrange(_size129):
+            _elem134 = Artist()
+            _elem134.read(iprot)
+            self.artists.append(_elem134)
+          iprot.readListEnd()
+        else:
+          iprot.skip(ftype)
+      elif fid == 101:
+        if ftype == TType.STRUCT:
+          self.album = Album()
+          self.album.read(iprot)
+        else:
+          iprot.skip(ftype)
+      elif fid == 102:
+        if ftype == TType.LIST:
+          self.author = []
+          (_etype138, _size135) = iprot.readListBegin()
+          for _i139 in xrange(_size135):
+            _elem140 = Artist()
+            _elem140.read(iprot)
+            self.author.append(_elem140)
+          iprot.readListEnd()
+        else:
+          iprot.skip(ftype)
+      elif fid == 103:
+        if ftype == TType.LIST:
+          self.composer = []
+          (_etype144, _size141) = iprot.readListBegin()
+          for _i145 in xrange(_size141):
+            _elem146 = Artist()
+            _elem146.read(iprot)
+            self.composer.append(_elem146)
+          iprot.readListEnd()
+        else:
+          iprot.skip(ftype)
+      elif fid == 104:
+        if ftype == TType.LIST:
+          self.arranger = []
+          (_etype150, _size147) = iprot.readListBegin()
+          for _i151 in xrange(_size147):
+            _elem152 = Artist()
+            _elem152.read(iprot)
+            self.arranger.append(_elem152)
+          iprot.readListEnd()
+        else:
+          iprot.skip(ftype)
+      elif fid == 105:
+        if ftype == TType.STRING:
+          self.lyrics = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 106:
+        if ftype == TType.I32:
+          self.share_num = iprot.readI32();
+        else:
+          iprot.skip(ftype)
+      elif fid == 107:
+        if ftype == TType.I32:
+          self.data_type = iprot.readI32();
         else:
           iprot.skip(ftype)
       else:
@@ -1862,9 +2613,9 @@ class MediaVideo:
     if self.extend is not None:
       oprot.writeFieldBegin('extend', TType.MAP, 61)
       oprot.writeMapBegin(TType.STRING, TType.STRING, len(self.extend))
-      for kiter94,viter95 in self.extend.items():
-        oprot.writeString(kiter94)
-        oprot.writeString(viter95)
+      for kiter153,viter154 in self.extend.items():
+        oprot.writeString(kiter153)
+        oprot.writeString(viter154)
       oprot.writeMapEnd()
       oprot.writeFieldEnd()
     if self.episode is not None:
@@ -1926,15 +2677,15 @@ class MediaVideo:
     if self.OBSOLETE_inlink is not None:
       oprot.writeFieldBegin('OBSOLETE_inlink', TType.LIST, 76)
       oprot.writeListBegin(TType.STRING, len(self.OBSOLETE_inlink))
-      for iter96 in self.OBSOLETE_inlink:
-        oprot.writeString(iter96)
+      for iter155 in self.OBSOLETE_inlink:
+        oprot.writeString(iter155)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.OBSOLETE_outlink is not None:
       oprot.writeFieldBegin('OBSOLETE_outlink', TType.LIST, 77)
       oprot.writeListBegin(TType.STRING, len(self.OBSOLETE_outlink))
-      for iter97 in self.OBSOLETE_outlink:
-        oprot.writeString(iter97)
+      for iter156 in self.OBSOLETE_outlink:
+        oprot.writeString(iter156)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.page_state is not None:
@@ -1956,8 +2707,8 @@ class MediaVideo:
     if self.in_links is not None:
       oprot.writeFieldBegin('in_links', TType.LIST, 82)
       oprot.writeListBegin(TType.STRUCT, len(self.in_links))
-      for iter98 in self.in_links:
-        iter98.write(oprot)
+      for iter157 in self.in_links:
+        iter157.write(oprot)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.user is not None:
@@ -1999,8 +2750,8 @@ class MediaVideo:
     if self.thumbnail_list is not None:
       oprot.writeFieldBegin('thumbnail_list', TType.LIST, 92)
       oprot.writeListBegin(TType.STRUCT, len(self.thumbnail_list))
-      for iter99 in self.thumbnail_list:
-        iter99.write(oprot)
+      for iter158 in self.thumbnail_list:
+        iter158.write(oprot)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.dead_link is not None:
@@ -2018,10 +2769,10 @@ class MediaVideo:
     if self.inlink_history is not None:
       oprot.writeFieldBegin('inlink_history', TType.LIST, 96)
       oprot.writeListBegin(TType.LIST, len(self.inlink_history))
-      for iter100 in self.inlink_history:
-        oprot.writeListBegin(TType.STRUCT, len(iter100))
-        for iter101 in iter100:
-          iter101.write(oprot)
+      for iter159 in self.inlink_history:
+        oprot.writeListBegin(TType.STRUCT, len(iter159))
+        for iter160 in iter159:
+          iter160.write(oprot)
         oprot.writeListEnd()
       oprot.writeListEnd()
       oprot.writeFieldEnd()
@@ -2032,6 +2783,54 @@ class MediaVideo:
     if self.external_id is not None:
       oprot.writeFieldBegin('external_id', TType.STRING, 98)
       oprot.writeString(self.external_id)
+      oprot.writeFieldEnd()
+    if self.user_url is not None:
+      oprot.writeFieldBegin('user_url', TType.STRING, 99)
+      oprot.writeString(self.user_url)
+      oprot.writeFieldEnd()
+    if self.artists is not None:
+      oprot.writeFieldBegin('artists', TType.LIST, 100)
+      oprot.writeListBegin(TType.STRUCT, len(self.artists))
+      for iter161 in self.artists:
+        iter161.write(oprot)
+      oprot.writeListEnd()
+      oprot.writeFieldEnd()
+    if self.album is not None:
+      oprot.writeFieldBegin('album', TType.STRUCT, 101)
+      self.album.write(oprot)
+      oprot.writeFieldEnd()
+    if self.author is not None:
+      oprot.writeFieldBegin('author', TType.LIST, 102)
+      oprot.writeListBegin(TType.STRUCT, len(self.author))
+      for iter162 in self.author:
+        iter162.write(oprot)
+      oprot.writeListEnd()
+      oprot.writeFieldEnd()
+    if self.composer is not None:
+      oprot.writeFieldBegin('composer', TType.LIST, 103)
+      oprot.writeListBegin(TType.STRUCT, len(self.composer))
+      for iter163 in self.composer:
+        iter163.write(oprot)
+      oprot.writeListEnd()
+      oprot.writeFieldEnd()
+    if self.arranger is not None:
+      oprot.writeFieldBegin('arranger', TType.LIST, 104)
+      oprot.writeListBegin(TType.STRUCT, len(self.arranger))
+      for iter164 in self.arranger:
+        iter164.write(oprot)
+      oprot.writeListEnd()
+      oprot.writeFieldEnd()
+    if self.lyrics is not None:
+      oprot.writeFieldBegin('lyrics', TType.STRING, 105)
+      oprot.writeString(self.lyrics)
+      oprot.writeFieldEnd()
+    if self.share_num is not None:
+      oprot.writeFieldBegin('share_num', TType.I32, 106)
+      oprot.writeI32(self.share_num)
+      oprot.writeFieldEnd()
+    if self.data_type is not None:
+      oprot.writeFieldBegin('data_type', TType.I32, 107)
+      oprot.writeI32(self.data_type)
       oprot.writeFieldEnd()
     oprot.writeFieldStop()
     oprot.writeStructEnd()
@@ -2699,11 +3498,11 @@ class MediaAlbum:
       elif fid == 58:
         if ftype == TType.LIST:
           self.videos = []
-          (_etype105, _size102) = iprot.readListBegin()
-          for _i106 in xrange(_size102):
-            _elem107 = MediaVideoAbstract()
-            _elem107.read(iprot)
-            self.videos.append(_elem107)
+          (_etype168, _size165) = iprot.readListBegin()
+          for _i169 in xrange(_size165):
+            _elem170 = MediaVideoAbstract()
+            _elem170.read(iprot)
+            self.videos.append(_elem170)
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
@@ -2720,11 +3519,11 @@ class MediaAlbum:
       elif fid == 61:
         if ftype == TType.MAP:
           self.extend = {}
-          (_ktype109, _vtype110, _size108 ) = iprot.readMapBegin()
-          for _i112 in xrange(_size108):
-            _key113 = iprot.readString();
-            _val114 = iprot.readString();
-            self.extend[_key113] = _val114
+          (_ktype172, _vtype173, _size171 ) = iprot.readMapBegin()
+          for _i175 in xrange(_size171):
+            _key176 = iprot.readString();
+            _val177 = iprot.readString();
+            self.extend[_key176] = _val177
           iprot.readMapEnd()
         else:
           iprot.skip(ftype)
@@ -2994,8 +3793,8 @@ class MediaAlbum:
     if self.videos is not None:
       oprot.writeFieldBegin('videos', TType.LIST, 58)
       oprot.writeListBegin(TType.STRUCT, len(self.videos))
-      for iter115 in self.videos:
-        iter115.write(oprot)
+      for iter178 in self.videos:
+        iter178.write(oprot)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.play_stream is not None:
@@ -3009,9 +3808,9 @@ class MediaAlbum:
     if self.extend is not None:
       oprot.writeFieldBegin('extend', TType.MAP, 61)
       oprot.writeMapBegin(TType.STRING, TType.STRING, len(self.extend))
-      for kiter116,viter117 in self.extend.items():
-        oprot.writeString(kiter116)
-        oprot.writeString(viter117)
+      for kiter179,viter180 in self.extend.items():
+        oprot.writeString(kiter179)
+        oprot.writeString(viter180)
       oprot.writeMapEnd()
       oprot.writeFieldEnd()
     if self.now_episode is not None:

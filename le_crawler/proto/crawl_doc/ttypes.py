@@ -20,6 +20,198 @@ except:
 
 
 
+class ExtendMap:
+  """
+  Attributes:
+   - raw_url
+   - page_index
+   - position
+   - sub_category_num
+   - doc_type
+   - users
+   - videos
+   - albums
+   - artists
+  """
+
+  thrift_spec = (
+    None, # 0
+    (1, TType.STRING, 'raw_url', None, None, ), # 1
+    (2, TType.I32, 'page_index', None, 1, ), # 2
+    (3, TType.I32, 'position', None, 0, ), # 3
+    (4, TType.I32, 'sub_category_num', None, -1, ), # 4
+    (5, TType.I32, 'doc_type', None, None, ), # 5
+    (6, TType.LIST, 'users', (TType.STRUCT,(le_crawler.proto.video.ttypes.OriginalUser, le_crawler.proto.video.ttypes.OriginalUser.thrift_spec)), None, ), # 6
+    (7, TType.LIST, 'videos', (TType.STRUCT,(le_crawler.proto.video.ttypes.MediaVideo, le_crawler.proto.video.ttypes.MediaVideo.thrift_spec)), None, ), # 7
+    (8, TType.LIST, 'albums', (TType.STRUCT,(le_crawler.proto.video.ttypes.Album, le_crawler.proto.video.ttypes.Album.thrift_spec)), None, ), # 8
+    (9, TType.LIST, 'artists', (TType.STRUCT,(le_crawler.proto.video.ttypes.Artist, le_crawler.proto.video.ttypes.Artist.thrift_spec)), None, ), # 9
+  )
+
+  def __init__(self, raw_url=None, page_index=thrift_spec[2][4], position=thrift_spec[3][4], sub_category_num=thrift_spec[4][4], doc_type=None, users=None, videos=None, albums=None, artists=None,):
+    self.raw_url = raw_url
+    self.page_index = page_index
+    self.position = position
+    self.sub_category_num = sub_category_num
+    self.doc_type = doc_type
+    self.users = users
+    self.videos = videos
+    self.albums = albums
+    self.artists = artists
+
+  def read(self, iprot):
+    if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
+      fastbinary.decode_binary(self, iprot.trans, (self.__class__, self.thrift_spec))
+      return
+    iprot.readStructBegin()
+    while True:
+      (fname, ftype, fid) = iprot.readFieldBegin()
+      if ftype == TType.STOP:
+        break
+      if fid == 1:
+        if ftype == TType.STRING:
+          self.raw_url = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 2:
+        if ftype == TType.I32:
+          self.page_index = iprot.readI32();
+        else:
+          iprot.skip(ftype)
+      elif fid == 3:
+        if ftype == TType.I32:
+          self.position = iprot.readI32();
+        else:
+          iprot.skip(ftype)
+      elif fid == 4:
+        if ftype == TType.I32:
+          self.sub_category_num = iprot.readI32();
+        else:
+          iprot.skip(ftype)
+      elif fid == 5:
+        if ftype == TType.I32:
+          self.doc_type = iprot.readI32();
+        else:
+          iprot.skip(ftype)
+      elif fid == 6:
+        if ftype == TType.LIST:
+          self.users = []
+          (_etype3, _size0) = iprot.readListBegin()
+          for _i4 in xrange(_size0):
+            _elem5 = le_crawler.proto.video.ttypes.OriginalUser()
+            _elem5.read(iprot)
+            self.users.append(_elem5)
+          iprot.readListEnd()
+        else:
+          iprot.skip(ftype)
+      elif fid == 7:
+        if ftype == TType.LIST:
+          self.videos = []
+          (_etype9, _size6) = iprot.readListBegin()
+          for _i10 in xrange(_size6):
+            _elem11 = le_crawler.proto.video.ttypes.MediaVideo()
+            _elem11.read(iprot)
+            self.videos.append(_elem11)
+          iprot.readListEnd()
+        else:
+          iprot.skip(ftype)
+      elif fid == 8:
+        if ftype == TType.LIST:
+          self.albums = []
+          (_etype15, _size12) = iprot.readListBegin()
+          for _i16 in xrange(_size12):
+            _elem17 = le_crawler.proto.video.ttypes.Album()
+            _elem17.read(iprot)
+            self.albums.append(_elem17)
+          iprot.readListEnd()
+        else:
+          iprot.skip(ftype)
+      elif fid == 9:
+        if ftype == TType.LIST:
+          self.artists = []
+          (_etype21, _size18) = iprot.readListBegin()
+          for _i22 in xrange(_size18):
+            _elem23 = le_crawler.proto.video.ttypes.Artist()
+            _elem23.read(iprot)
+            self.artists.append(_elem23)
+          iprot.readListEnd()
+        else:
+          iprot.skip(ftype)
+      else:
+        iprot.skip(ftype)
+      iprot.readFieldEnd()
+    iprot.readStructEnd()
+
+  def write(self, oprot):
+    if oprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and self.thrift_spec is not None and fastbinary is not None:
+      oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
+      return
+    oprot.writeStructBegin('ExtendMap')
+    if self.raw_url is not None:
+      oprot.writeFieldBegin('raw_url', TType.STRING, 1)
+      oprot.writeString(self.raw_url)
+      oprot.writeFieldEnd()
+    if self.page_index is not None:
+      oprot.writeFieldBegin('page_index', TType.I32, 2)
+      oprot.writeI32(self.page_index)
+      oprot.writeFieldEnd()
+    if self.position is not None:
+      oprot.writeFieldBegin('position', TType.I32, 3)
+      oprot.writeI32(self.position)
+      oprot.writeFieldEnd()
+    if self.sub_category_num is not None:
+      oprot.writeFieldBegin('sub_category_num', TType.I32, 4)
+      oprot.writeI32(self.sub_category_num)
+      oprot.writeFieldEnd()
+    if self.doc_type is not None:
+      oprot.writeFieldBegin('doc_type', TType.I32, 5)
+      oprot.writeI32(self.doc_type)
+      oprot.writeFieldEnd()
+    if self.users is not None:
+      oprot.writeFieldBegin('users', TType.LIST, 6)
+      oprot.writeListBegin(TType.STRUCT, len(self.users))
+      for iter24 in self.users:
+        iter24.write(oprot)
+      oprot.writeListEnd()
+      oprot.writeFieldEnd()
+    if self.videos is not None:
+      oprot.writeFieldBegin('videos', TType.LIST, 7)
+      oprot.writeListBegin(TType.STRUCT, len(self.videos))
+      for iter25 in self.videos:
+        iter25.write(oprot)
+      oprot.writeListEnd()
+      oprot.writeFieldEnd()
+    if self.albums is not None:
+      oprot.writeFieldBegin('albums', TType.LIST, 8)
+      oprot.writeListBegin(TType.STRUCT, len(self.albums))
+      for iter26 in self.albums:
+        iter26.write(oprot)
+      oprot.writeListEnd()
+      oprot.writeFieldEnd()
+    if self.artists is not None:
+      oprot.writeFieldBegin('artists', TType.LIST, 9)
+      oprot.writeListBegin(TType.STRUCT, len(self.artists))
+      for iter27 in self.artists:
+        iter27.write(oprot)
+      oprot.writeListEnd()
+      oprot.writeFieldEnd()
+    oprot.writeFieldStop()
+    oprot.writeStructEnd()
+
+  def validate(self):
+    return
+
+
+  def __repr__(self):
+    L = ['%s=%r' % (key, value)
+      for key, value in self.__dict__.iteritems()]
+    return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
+
+  def __eq__(self, other):
+    return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
+
+  def __ne__(self, other):
+    return not (self == other)
+
 class CrawlDoc:
   """
   Attributes:
@@ -41,6 +233,7 @@ class CrawlDoc:
    - domain
    - domain_id
    - videos
+   - extend_map
   """
 
   thrift_spec = (
@@ -67,9 +260,87 @@ class CrawlDoc:
     (20, TType.STRING, 'domain', None, None, ), # 20
     (21, TType.I32, 'domain_id', None, None, ), # 21
     (22, TType.LIST, 'videos', (TType.STRUCT,(le_crawler.proto.video.ttypes.MediaVideo, le_crawler.proto.video.ttypes.MediaVideo.thrift_spec)), None, ), # 22
+    None, # 23
+    None, # 24
+    None, # 25
+    None, # 26
+    None, # 27
+    None, # 28
+    None, # 29
+    None, # 30
+    None, # 31
+    None, # 32
+    None, # 33
+    None, # 34
+    None, # 35
+    None, # 36
+    None, # 37
+    None, # 38
+    None, # 39
+    None, # 40
+    None, # 41
+    None, # 42
+    None, # 43
+    None, # 44
+    None, # 45
+    None, # 46
+    None, # 47
+    None, # 48
+    None, # 49
+    None, # 50
+    None, # 51
+    None, # 52
+    None, # 53
+    None, # 54
+    None, # 55
+    None, # 56
+    None, # 57
+    None, # 58
+    None, # 59
+    None, # 60
+    None, # 61
+    None, # 62
+    None, # 63
+    None, # 64
+    None, # 65
+    None, # 66
+    None, # 67
+    None, # 68
+    None, # 69
+    None, # 70
+    None, # 71
+    None, # 72
+    None, # 73
+    None, # 74
+    None, # 75
+    None, # 76
+    None, # 77
+    None, # 78
+    None, # 79
+    None, # 80
+    None, # 81
+    None, # 82
+    None, # 83
+    None, # 84
+    None, # 85
+    None, # 86
+    None, # 87
+    None, # 88
+    None, # 89
+    None, # 90
+    None, # 91
+    None, # 92
+    None, # 93
+    None, # 94
+    None, # 95
+    None, # 96
+    None, # 97
+    None, # 98
+    None, # 99
+    (100, TType.STRUCT, 'extend_map', (ExtendMap, ExtendMap.thrift_spec), None, ), # 100
   )
 
-  def __init__(self, id=None, discover_time=None, schedule_time=None, crawl_time=None, schedule_doc_type=thrift_spec[8][4], page_type=None, doc_type=None, request=None, response=None, url=None, in_links=None, out_links=None, crawl_history=None, page_state=thrift_spec[18][4], video=None, domain=None, domain_id=None, videos=None,):
+  def __init__(self, id=None, discover_time=None, schedule_time=None, crawl_time=None, schedule_doc_type=thrift_spec[8][4], page_type=None, doc_type=None, request=None, response=None, url=None, in_links=None, out_links=None, crawl_history=None, page_state=thrift_spec[18][4], video=None, domain=None, domain_id=None, videos=None, extend_map=None,):
     self.id = id
     self.discover_time = discover_time
     self.schedule_time = schedule_time
@@ -88,6 +359,7 @@ class CrawlDoc:
     self.domain = domain
     self.domain_id = domain_id
     self.videos = videos
+    self.extend_map = extend_map
 
   def read(self, iprot):
     if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
@@ -153,22 +425,22 @@ class CrawlDoc:
       elif fid == 15:
         if ftype == TType.LIST:
           self.in_links = []
-          (_etype3, _size0) = iprot.readListBegin()
-          for _i4 in xrange(_size0):
-            _elem5 = le_crawler.proto.crawl.ttypes.Anchor()
-            _elem5.read(iprot)
-            self.in_links.append(_elem5)
+          (_etype31, _size28) = iprot.readListBegin()
+          for _i32 in xrange(_size28):
+            _elem33 = le_crawler.proto.crawl.ttypes.Anchor()
+            _elem33.read(iprot)
+            self.in_links.append(_elem33)
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
       elif fid == 16:
         if ftype == TType.LIST:
           self.out_links = []
-          (_etype9, _size6) = iprot.readListBegin()
-          for _i10 in xrange(_size6):
-            _elem11 = le_crawler.proto.crawl.ttypes.Anchor()
-            _elem11.read(iprot)
-            self.out_links.append(_elem11)
+          (_etype37, _size34) = iprot.readListBegin()
+          for _i38 in xrange(_size34):
+            _elem39 = le_crawler.proto.crawl.ttypes.Anchor()
+            _elem39.read(iprot)
+            self.out_links.append(_elem39)
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
@@ -202,12 +474,18 @@ class CrawlDoc:
       elif fid == 22:
         if ftype == TType.LIST:
           self.videos = []
-          (_etype15, _size12) = iprot.readListBegin()
-          for _i16 in xrange(_size12):
-            _elem17 = le_crawler.proto.video.ttypes.MediaVideo()
-            _elem17.read(iprot)
-            self.videos.append(_elem17)
+          (_etype43, _size40) = iprot.readListBegin()
+          for _i44 in xrange(_size40):
+            _elem45 = le_crawler.proto.video.ttypes.MediaVideo()
+            _elem45.read(iprot)
+            self.videos.append(_elem45)
           iprot.readListEnd()
+        else:
+          iprot.skip(ftype)
+      elif fid == 100:
+        if ftype == TType.STRUCT:
+          self.extend_map = ExtendMap()
+          self.extend_map.read(iprot)
         else:
           iprot.skip(ftype)
       else:
@@ -263,15 +541,15 @@ class CrawlDoc:
     if self.in_links is not None:
       oprot.writeFieldBegin('in_links', TType.LIST, 15)
       oprot.writeListBegin(TType.STRUCT, len(self.in_links))
-      for iter18 in self.in_links:
-        iter18.write(oprot)
+      for iter46 in self.in_links:
+        iter46.write(oprot)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.out_links is not None:
       oprot.writeFieldBegin('out_links', TType.LIST, 16)
       oprot.writeListBegin(TType.STRUCT, len(self.out_links))
-      for iter19 in self.out_links:
-        iter19.write(oprot)
+      for iter47 in self.out_links:
+        iter47.write(oprot)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.crawl_history is not None:
@@ -297,9 +575,13 @@ class CrawlDoc:
     if self.videos is not None:
       oprot.writeFieldBegin('videos', TType.LIST, 22)
       oprot.writeListBegin(TType.STRUCT, len(self.videos))
-      for iter20 in self.videos:
-        iter20.write(oprot)
+      for iter48 in self.videos:
+        iter48.write(oprot)
       oprot.writeListEnd()
+      oprot.writeFieldEnd()
+    if self.extend_map is not None:
+      oprot.writeFieldBegin('extend_map', TType.STRUCT, 100)
+      self.extend_map.write(oprot)
       oprot.writeFieldEnd()
     oprot.writeFieldStop()
     oprot.writeStructEnd()

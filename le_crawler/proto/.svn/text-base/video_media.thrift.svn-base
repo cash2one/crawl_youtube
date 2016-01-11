@@ -15,6 +15,11 @@ enum State {
   LONG_VIDEO = 4,
 }
 
+enum DataType {
+  VIDEO = 1,
+  AUDIO = 2,
+}
+
 //明星结构
 struct Star {
   1:required string id;
@@ -44,6 +49,55 @@ struct Star {
   25:i64 create_time;
   26:i64 update_time;
   27:map<string, string> extend;
+}
+
+struct Artist {
+  1:  optional  string                    id;                                                // 艺人ID
+  2:  optional  string                    url;                                               // 艺人详情页面url
+  3:  optional  string                    name;                                              // 名字
+  4:  optional  string                    name_en;                                           // 英文名
+  5:  optional  string                    name_cn;                                           // 中文名
+  6:  optional  string                    name_origin;                                       // 原名
+  7:  optional  list<string>              style;                                             // 演唱风格
+  8:  optional  i64                       fans_num;                                          // 粉丝数
+  9:  optional  crawl_doc.Sex             sex = crawl_doc.Sex.UNKNOWN;                       // 性别
+  10: optional  string                    birthday;                                          // 生日
+  11: optional  string                    poster;                                            // 海报url
+  12: optional  string                    description;                                       // 简介
+  13: optional  double                    rating;                                            // 评分
+  14: optional  list<string>              tags;                                              // 标签
+  15: optional  string                    language;                                          // 语种
+  16: optional  string                    nation;                                            // 国籍
+  17: optional  string                    height;                                            // 身高
+  18: optional  string                    weight;                                            // 体重
+  19: optional  string                    dead_date;                                         // 死亡日期
+  20: optional  string                    area;                                              // 地区
+  21: optional  i64                       create_time;                                       // 创建时间
+  22: optional  i64                       update_time;                                       // 更新时间
+  23: optional  list<string>              album_urls;                                        // 艺人下的专辑列表
+}
+
+//专辑结构
+struct Album {
+  1:  optional  string                     id;                          // 主键
+  2:  optional  string                     url;                         // 专辑页面url
+  3:  optional  string                     name;                        // 名称
+  4:  optional  string                     language;                    // 语种
+  5:  optional  string                     description;                 // 简介
+  6:  optional  string                     poster;                      // 海报url
+  7:  optional  double                     rating;                      // 评分
+  8:  optional  i64                        play_total;                  // 专辑播放次数
+  9:  optional  string                     record_company;              // 唱片公司
+  10: optional  string                     show_time;                   // 发行时间
+  11: optional  string                     category;                    // 专辑类别
+  12: optional  string                     style;                       // 专辑风格
+  13: optional  string                     tags;                        // 标签
+  14: optional  i64                        collects_num;                // 收藏数
+  15: optional  i32                        comments_num;                // 评论数
+  16: optional  list<string>               artist_urls;                 // 艺人
+  17: optional  i64                        create_time;                 // 创建时间
+  18: optional  i64                        update_time;                 // 更新时间
+  19: optional  list<string>               song_urls;                   // 专辑歌曲
 }
 
 //自频道用户结构
@@ -170,6 +224,15 @@ struct MediaVideo {
   96: optional list<list<crawl_doc.Anchor>>   inlink_history;                 //爬取路径
   97: optional crawl_doc.RegionStrategy       region_strategy;                //地域策略
   98: optional string                         external_id;                    //单视频的video_id
+  99: optional string                         user_url;                       //原创用户的url
+  100:optional list<Artist>                   artists;                        //艺人
+  101:optional Album                          album;                          //所属专辑
+  102:optional list<Artist>                   author;                         //作词
+  103:optional list<Artist>                   composer;                       //作曲
+  104:optional list<Artist>                   arranger;                       //编曲
+  105:optional string                         lyrics;                         //歌词
+  106:optional i32                            share_num;                      //分享数 
+  107:optional DataType                       data_type = DataType.VIDEO;     //数据类型
 }
 
 //专辑下的视频列表。尽量不存冗余，只存用于排序，筛选的字段.

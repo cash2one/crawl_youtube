@@ -57,6 +57,7 @@ class VideoAdaptor(object):
       "hexun.com": HexunStatic(xpather, deadlinks),
       "soku.com": SokuStatic(xpather, deadlinks),
       "youtube.com": YoutubeStatic(xpather, deadlinks),
+      "googleapis.com": YoutubeStatic(xpather, deadlinks),
     }
 
   def get_static(self, crawler_doc):

@@ -11,7 +11,7 @@ import base64
 
 from le_crawler.proto.video.ttypes import OriginalUser
 from le_crawler.proto.crawl.ttypes import CrawlHistory, HistoryItem
-from le_crawler.common.utils import str2mediavideo, thrift2str, multi_key_fields, compress_play_trends #, int_typeids
+from le_crawler.common.utils import str2mediavideo, thrift2str, multi_key_fields, compress_play_trends, str2user #, int_typeids
 from le_crawler.common.parse_youtube import youtube_category_dict
 
 merged_fields = set(['crawl_history', 'play_trends', 'in_links', 'user', 'page_state', 'inlink_history'])
@@ -23,43 +23,35 @@ class MergeItem:
   def __init__(self):
     self.reset('')
 
-
   def reset(self, url=None):
-    self._all_error = True
     self._data = []
     self._url = url
-    self._crawldoc_base64 = ''
     self.merged_ = False
     self.crawled_ = True
     self._user_url = None
-
+    self._data_type = None
 
   def get_url(self):
     return self._url
 
 
-  def add_item(self, user_url, data_source, data_type, data_str, data_base64):
-    self._crawldoc_base64 = data_base64
-    if data_source == 'error':
+  def add_item(self, user_url, data_source, data_type, data_str):
+    if self._data_type is None:
+      self._data_type = data_type
+    if self._data_type != data_type:
+      sys.stderr.write('reporter:counter:reduce_error,data_type_error,1\n')
       return
+
     if not self._url:
       sys.stderr.write('reporter:counter:reduce_error,reduce_url_empty,1\n')
       return
 
     if self.crawled_ and data_source != 'crawl':
       self.crawled_ = False
+
     if user_url != 'None':
       self._user_url = user_url
-    self._all_error = False
     self._data.append(data_str)
-
-  def _test_print(self, video):
-    print '=' * 40
-    print '--> Merged:', self.merged_
-    for k, v in video.__dict__.iteritems():
-      if v:
-        print '%-20s ->' % k, v
-    print '=' * 40
 
 
   def _merge_history_trends(self, videos):
@@ -126,17 +118,27 @@ class MergeItem:
     videos[0].inlink_history = inlink_history
 
 
-  def _merge_user(self, videos):
+  def _merge_user(self, users):
+    if not users:
+      return
     new_user = OriginalUser()
     for k, v in new_user.__dict__.iteritems():
-      for video in videos:
-        if not video.user:
-          continue
-        old_v = getattr(video.user, k)
-        if old_v:
-          setattr(new_user, k, old_v)
-          break
-    videos[0].user = new_user
+      if k == 'display_countrys':
+        display_countrys_set = set([])
+        for user in users:
+          old_v = getattr(user, k)
+          if not old_v:
+            continue
+          display_countrys_set += set(old_v)
+        if display_countrys_set:
+          setattr(new_user, k, list(display_countrys_set))
+      else:
+        for user in users:
+          old_v = getattr(user, k)
+          if old_v is not None:
+            setattr(new_user, k, old_v)
+            break
+    return new_user
 
 
   def _merge_data(self, src, dst):
@@ -173,7 +175,7 @@ class MergeItem:
     self._merge_in_links(videos)
     self._merge_inlink_history(videos)
     if self._user_url:
-      self._merge_user(videos)
+      videos[0].user = None
     # first merge crawled data
     for video in videos[1:-1]:
       self._merge_data(video, videos[0])
@@ -184,9 +186,20 @@ class MergeItem:
       videos[0].update_time = int(time.time())
 
 
+  def _print_user(self, user):
+    user_str = thrift2str(user)
+    if not user_str:
+      sys.stderr.write('reporter:counter:reduce_error,reduce_thrift2str_failed,1\n')
+      return
+    user_base64 = base64.b64encode(user_str)
+    if not user_base64:
+      sys.stderr.write('reporter:counter:reduce_error,reduce_base64encode_failed,1\n')
+      return
+    sys.stderr.write('reporter:counter:reduce,user_total,1\n')
+    print 'user_info' + '\t' + self._url + '\t' + user_base64
 
-  def _print_video(self, video, data_type='video'):
 
+  def _print_video(self, video):
     video_str = thrift2str(video)
     if not video_str:
       sys.stderr.write('reporter:counter:reduce_error,reduce_thrift2str_failed,1\n')
@@ -196,63 +209,60 @@ class MergeItem:
       sys.stderr.write('reporter:counter:reduce_error,reduce_base64encode_failed,1\n')
       return
     sys.stderr.write('reporter:counter:reduce,video_total,1\n')
+    print 'unique' + '\t' + self._url + '\t' + self._user_url + '\t' + video_base64
     if self.crawled_:
       sys.stderr.write('reporter:counter:statistic,video_new,1\n')
-    if self._user_url:
-      out_type = 'video' if self.merged_ else 'unique'
-      print 'user_merge' + '\t' + self._user_url + '\t' + self._url + '\t' + out_type + '\t' + video_base64
-      return
-    if self.merged_:
-      print data_type + '\t' + self._url + '\t' + str(self._user_url) + '\t' + video_base64
-    print 'unique' + '\t' + self._url + '\t' + str(self._user_url) + '\t' + video_base64
+      print 'video' + '\t' + self._url + '\t' + self._user_url + '\t' + video_base64
+    return
 
 
   def print_item(self):
     if not self._data:
       return
-    if self._all_error:
-      print 'error' + '\t' + self._url + '&error\t' + self._crawldoc_base64
-      sys.stderr.write('reporter:counter:reduce,reduce_error_out,1\n')
-      return
     if len(self._data) == 1:
-      sys.stderr.write('reporter:counter:reduce,video_total,1\n')
-      if self._user_url:
-        out_type = 'video' if self.crawled_ else 'unique'
-        print 'user_merge' + '\t' + self._user_url + '\t' + self._url + '\t' + out_type + '\t' + self._data[0]
+      if self._data_type == 'video':
+        sys.stderr.write('reporter:counter:reduce,video_total,1\n')
+        print 'unique' + '\t' + self._url + '\t' + self._user_url + '\t' + self._data[0]
+        if self.crawled_:
+          print 'video' + '\t' + self._url + '\t' + self._user_url + '\t' + self._data[0]
         #print '%s\t%s' % (self._user_url, str2mediavideo(base64.b64decode(self._data[0])))
         if self.crawled_:
           sys.stderr.write('reporter:counter:statistic,video_new,1\n')
-        return
-      print 'unique' + '\t' + self._url + '\t' + str(self._user_url) + '\t' + self._data[0]
-      if self.crawled_:
-        print 'video' + '\t' + self._url + '\t' + str(self._user_url) + '\t' + self._data[0]
-        sys.stderr.write('reporter:counter:statistic,video_new,1\n')
+      elif self._data_type == 'user':
+        sys.stderr.write('reporter:counter:reduce,user_total,1\n')
+        print 'user_info' + '\t' + self._url + '\t' + self._data[0]
       return
+
     for idx, data_str in enumerate(self._data):
       try:
         data = base64.b64decode(data_str)
       except:
         sys.stderr.write('reporter:counter:reduce_error,reduce_json_failed,1\n')
-      data = str2mediavideo(data)
-      if not data:
-        sys.stderr.write('reporter:counter:reduce_error,reduce_str_to_video,1\n')
-      self._data[idx] = data
+      if self._data_type == 'video':
+        data = str2mediavideo(data)
+        if not data:
+          sys.stderr.write('reporter:counter:reduce_error,reduce_str_to_video,1\n')
+        self._data[idx] = data
+      elif self._data_type == 'user':
+        data = str2user(data)
+        if not data:
+          sys.stderr.write('reporter:counter:reduce_error,reduce_str_to_user,1\n')
+        self._data[idx] = data
+      else:
+        sys.stderr.write('reporter:counter:reduce_error,data_type_error,1\n')
+        return
     self._data = [item for item in self._data if item]
-    self._data.sort(cmp=lambda x, y: (y.create_time or 0) - (x.create_time or 0))
-    self._merge_video(self._data)
-    self._print_video(self._data[0])
-
-
-def preprocess(data_type, data, url):
-  if data_type == 'debug':
-    if url and data:
-      print 'debug' + '\t' + url + '\t' + data
-    return True
-  if data_type == 'no_md5':
-    if url and data:
-      print 'no_md5' + '\t' + url + '\t' + data
-    return True
-  return False
+    if not self._data:
+      sys.stderr.write('reporter:counter:reduce_error,not_datas,1\n')
+      return
+    if self._data_type == 'video':
+      self._data.sort(cmp=lambda x, y: (y.create_time or 0) - (x.create_time or 0))
+      self._merge_video(self._data)
+      self._print_video(self._data[0])
+    elif self._data_type == 'user':
+      self._data.sort(cmp=lambda x, y: (y.update_time or 0) - (x.update_time or 0))
+      self._data[0] = self._merge_user(self._data)
+      self._print_user(self._data[0])
 
 
 def main():
@@ -263,20 +273,18 @@ def main():
     if not line:
       break
 
-    line_data = line.strip().split('\t', 5)
-    if len(line_data) != 6:
-      sys.stderr.write('reporter:counter:reduce_error,reduce_input_not_len_6,1\n')
+    line_data = line.strip().split('\t', 4)
+    if len(line_data) != 5:
+      sys.stderr.write('reporter:counter:reduce_error,reduce_input_not_len_5,1\n')
       continue
 
-    url, user_url, data_source, data_type, data, data_base64 = line_data
-    if preprocess(data_type, data, url):
-      continue
+    url, user_url, data_source, data_type, data = line_data
     if url == merge_item.get_url():
-      merge_item.add_item(user_url, data_source, data_type, data, data_base64)
+      merge_item.add_item(user_url, data_source, data_type, data)
     else:
       merge_item.print_item()
       merge_item.reset(url)
-      merge_item.add_item(user_url, data_source, data_type, data, data_base64)
+      merge_item.add_item(user_url, data_source, data_type, data)
   merge_item.print_item()
 
 

@@ -16,9 +16,13 @@ class StaticExtractor:
     self._deadlink_urls = deadlinks
     self._valid_video = []
     self._lists = []
+    self._users = []
     self._web_name = ''
 
   def _is_invalid_page(self, url):
+    for vlist in self._users:
+      if re.search(vlist, url):
+        return True, 'user'
     for vlist in self._lists:
       if re.search(vlist, url):
         return True, 'list'
@@ -26,7 +30,7 @@ class StaticExtractor:
 
 
   def _filter_long_video(self, html_data, url_type):
-    if url_type == 'list':
+    if url_type in ['list', 'user']:
       return html_data
     elif url_type == 'video':
       category = html_data.get('category', '').encode('utf-8', 'ignore')

@@ -26,6 +26,8 @@ from ..core.url_filter_client import UrlFilterClient
 from ..common.parse_youtube import parse_channel_detail
 from ..common.start_url_loads import StartUrlsLoader
 from ..common.time_parser import TimeParser
+from ..common.parse_youtube import gen_youtube_video_url, get_url_param
+
 
 
 time_parser = TimeParser()
@@ -81,6 +83,7 @@ class YouTubeCrawler(Spider):
     self._starturl_collection.create_index('channel_id', unique=True)
     self._collection.create_index('url', unique=True)
     self._collection.create_index([('update_time', DESCENDING)])
+    self._recrawl_collection.create_index('url', unique=True)
     self._recrawl_collection.create_index('url', unique=True)
     self._recrawl_collection.create_index([('next_schedule_time', DESCENDING)])
     self._channel_collection.create_index('channel_id', unique=True)
@@ -347,29 +350,39 @@ class YouTubeCrawler(Spider):
       url = response.url.strip()
       headers = {'Referer': url}
       doc = response.meta.get('crawl_doc')
+
+      doc.url = self._strip_key(doc.url)
+      youtube_item = crawldoc_to_youtube_item(doc, response)
+      if youtube_item:
+        items.append(youtube_item)
       #print 'parse_channel url:', url
       self.logger_.error('parse_channel url: %s' % url)
       page = response.body.decode(response.encoding)
       #self.update_status(doc, CrawlStatus._VALUES_TO_NAMES.get(CrawlStatus.DOWNLOADED))
       extend_map = response.meta.get('extend_map', {})
+      
       rep_dict = json.loads(page)
-      datas = rep_dict.get('items', [])
-      if not datas:
-        self.logger_.error('parse channel failed, url: [%s]' % url)
-        return None
-      data = datas[0]
       exmap = {}
       exmap.update(extend_map)
-      channel_dict = parse_channel_detail(data, extend_map)
-
-      #TODO to delete
-      channel_dict['in_related_user'] = None
-
+      channel_dict = parse_channel_detail(rep_dict, extend_map)
+      if not channel_dict.get('channel_id', None):
+        channel_id = get_url_param(doc.url, 'id')
+        if not channel_id:
+          self.logger_.error('failed to parsed channel_id, url: %s' % url)
+          return
+        channel_dict['channel_id'] = channel_id
       self.upsert_channel_info(channel_dict)
+
+      datas = rep_dict.get('items', None)
+      if not datas:
+        self.logger_.error('parse channel failed, url: [%s]' % url)
+        return items
+      data = datas[0]
+
       channel_id = data.get('id', None)
       if not channel_id:
         self.logger_.error('failed to get channel_id, url: %s', url)
-        return None
+        return items
 
       in_links = doc.in_links if doc else []
       if not in_links or len(in_links) < 10:
@@ -379,7 +392,7 @@ class YouTubeCrawler(Spider):
 
       upload_playlist = data.get('contentDetails', {}).get('relatedPlaylists', {}).get('uploads', None)
       if not upload_playlist:
-        return None
+        return items
       exmap['playlist'] = upload_playlist
       part = 'snippet'
       maxResults = 50
@@ -404,6 +417,12 @@ class YouTubeCrawler(Spider):
       url = response.url.strip()
       headers = {'Referer': url}
       doc = response.meta.get('crawl_doc')
+
+      doc.url = self._strip_key(doc.url)
+      youtube_item = crawldoc_to_youtube_item(doc, response)
+      if youtube_item:
+        items.append(youtube_item)
+
       #print 'parse_channel url:', url
       self.logger_.error('parse_related_channel url: %s' % url)
       page = response.body.decode(response.encoding)
@@ -413,12 +432,12 @@ class YouTubeCrawler(Spider):
       channel_id = extend_map.get('channel_id', None)
       if not channel_id:
         self.logger_.error('lost channel_id, url: %s', url)
-        return
+        return items
       sel = Selector(text=page, type='html')
       related_channel_list = sel.xpath('//li[contains(@class, "branded-page-related-channels-item")]/@data-external-id').extract()
       if not related_channel_list:
         self.logger_.info('failed to get related_channel, url: %s', url)
-        return
+        return items
 
       for related_channel in related_channel_list:
         related_channel_dict = self.get_channel_info(related_channel)
@@ -517,7 +536,6 @@ class YouTubeCrawler(Spider):
 
   def parse_page(self, response):
     try:
-      items = []
       url = response.url.strip()
       headers = {'Referer': url}
       doc = response.meta.get('crawl_doc')
@@ -570,6 +588,7 @@ class YouTubeCrawler(Spider):
                 (part, channel_id)
           items.append(self._create_request(api, PageType.CHANNEL, CrawlDocType.HUB_HOME, meta={'extend_map': exmap}, headers=headers, in_doc=doc))
           
+        doc.url = gen_youtube_video_url(url)  
         youtube_item = crawldoc_to_youtube_item(doc, response)
         if youtube_item:
           items.append(youtube_item)

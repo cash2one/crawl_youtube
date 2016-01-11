@@ -7,6 +7,13 @@
 namespace cpp pipeline
 namespace py le_crawler.proto.crawl
 
+
+enum Sex {
+  UNKNOWN = 0,
+  MALE = 1,
+  FEMALE = 2,
+}
+
 enum CrawlPriority {
   HIGHT = 1,
   NORMAL = 2,
@@ -47,7 +54,11 @@ enum CrawlDocType {
   PAGE_PLAY               = 30,
   HOME                    = 50    # 首页更新
   HUB_HOME                = 60,   # list页各频道首页
+  HUB_USER_RANK_HOME      = 65,
   HUB_CATEGORY            = 70,
+  HUB_USER_CATEGORY       = 72,
+  HUB_ORDER               = 75,   # 排序类型(时间、热度)
+  HUB_USER_VIDEO_LIST     = 77,
   HUB_FRESH_MIN           = 80,
   HUB_TIME_HOME           = 85,   # fresh page should between 80 and 100
   HUB_HOT_HOME            = 95,
@@ -56,8 +67,9 @@ enum CrawlDocType {
   DEFAULT_DOC             = 150,
   HUB_OTHER               = 180,
   HUB_OLD                 = 200,
-  HUB_USER_RANK           = 250,
-  HUB_USER_VIDEOS         = 260,
+  HUB_USER_RANK           = 250,  # [OBSOLETE]
+  HUB_USER_VIDEOS         = 260,  # [OBSOLETE]
+  HUB_CATEGORY_COLD       = 300,  # 冷门类别
 }
 
 enum PageType {

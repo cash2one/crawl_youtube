@@ -16,6 +16,23 @@ except:
   fastbinary = None
 
 
+class Sex:
+  UNKNOWN = 0
+  MALE = 1
+  FEMALE = 2
+
+  _VALUES_TO_NAMES = {
+    0: "UNKNOWN",
+    1: "MALE",
+    2: "FEMALE",
+  }
+
+  _NAMES_TO_VALUES = {
+    "UNKNOWN": 0,
+    "MALE": 1,
+    "FEMALE": 2,
+  }
+
 class CrawlPriority:
   HIGHT = 1
   NORMAL = 2
@@ -119,7 +136,11 @@ class CrawlDocType:
   PAGE_PLAY = 30
   HOME = 50
   HUB_HOME = 60
+  HUB_USER_RANK_HOME = 65
   HUB_CATEGORY = 70
+  HUB_USER_CATEGORY = 72
+  HUB_ORDER = 75
+  HUB_USER_VIDEO_LIST = 77
   HUB_FRESH_MIN = 80
   HUB_TIME_HOME = 85
   HUB_HOT_HOME = 95
@@ -130,6 +151,7 @@ class CrawlDocType:
   HUB_OLD = 200
   HUB_USER_RANK = 250
   HUB_USER_VIDEOS = 260
+  HUB_CATEGORY_COLD = 300
 
   _VALUES_TO_NAMES = {
     10: "PAGE_TIME",
@@ -137,7 +159,11 @@ class CrawlDocType:
     30: "PAGE_PLAY",
     50: "HOME",
     60: "HUB_HOME",
+    65: "HUB_USER_RANK_HOME",
     70: "HUB_CATEGORY",
+    72: "HUB_USER_CATEGORY",
+    75: "HUB_ORDER",
+    77: "HUB_USER_VIDEO_LIST",
     80: "HUB_FRESH_MIN",
     85: "HUB_TIME_HOME",
     95: "HUB_HOT_HOME",
@@ -148,6 +174,7 @@ class CrawlDocType:
     200: "HUB_OLD",
     250: "HUB_USER_RANK",
     260: "HUB_USER_VIDEOS",
+    300: "HUB_CATEGORY_COLD",
   }
 
   _NAMES_TO_VALUES = {
@@ -156,7 +183,11 @@ class CrawlDocType:
     "PAGE_PLAY": 30,
     "HOME": 50,
     "HUB_HOME": 60,
+    "HUB_USER_RANK_HOME": 65,
     "HUB_CATEGORY": 70,
+    "HUB_USER_CATEGORY": 72,
+    "HUB_ORDER": 75,
+    "HUB_USER_VIDEO_LIST": 77,
     "HUB_FRESH_MIN": 80,
     "HUB_TIME_HOME": 85,
     "HUB_HOT_HOME": 95,
@@ -167,6 +198,7 @@ class CrawlDocType:
     "HUB_OLD": 200,
     "HUB_USER_RANK": 250,
     "HUB_USER_VIDEOS": 260,
+    "HUB_CATEGORY_COLD": 300,
   }
 
 class PageType:

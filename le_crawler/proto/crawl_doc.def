@@ -7,27 +7,40 @@ include "crawl_doc.thrift"
 namespace cpp pipeline
 namespace py le_crawler.proto.crawl_doc
 
+struct ExtendMap {
+  1:  optional string                               raw_url;
+  2:  optional i32                                  page_index = 1;
+  3:  optional i32                                  position = 0;
+  4:  optional i32                                  sub_category_num = -1;
+  5:  optional crawl_doc.CrawlDocType               doc_type;
+  6:  optional list<video_media.OriginalUser>       users;
+  7:  optional list<video_media.MediaVideo>         videos;
+  8:  optional list<video_media.Album>              albums;
+  9:  optional list<video_media.Artist>             artists;
+}
 
 struct CrawlDoc {
-  1:  optional i64                                 id;
-  2:  optional i64                                 discover_time;
-  3:  optional i64                                 schedule_time;
-  4:  optional i64                                 crawl_time;
+  1:   optional i64                                 id;
+  2:   optional i64                                 discover_time;
+  3:   optional i64                                 schedule_time;
+  4:   optional i64                                 crawl_time;
 
-  8:  optional crawl_doc.ScheduleDocType           schedule_doc_type = ScheduleDocType.NORMAL;
-  9:  optional crawl_doc.PageType                  page_type;
-  10: optional crawl_doc.CrawlDocType              doc_type;
-  11: optional crawl_doc.Request                   request;
-  12: optional crawl_doc.Response                  response;
-  14: optional string                              url;
-  15: optional list<crawl_doc.Anchor>              in_links;
-  16: optional list<crawl_doc.Anchor>              out_links;
-  17: optional crawl_doc.CrawlHistory              crawl_history;
-  18: optional crawl_doc.CrawlDocState             page_state = CrawlDocState.NORMAL;
-  19: optional video_media.MediaVideo              video;
-  20: optional string                              domain;
-  21: optional i32                                 domain_id;
-  22: optional list<video_media.MediaVideo>        videos;
+  8:   optional crawl_doc.ScheduleDocType           schedule_doc_type = ScheduleDocType.NORMAL;
+  9:   optional crawl_doc.PageType                  page_type;
+  10:  optional crawl_doc.CrawlDocType              doc_type;
+  11:  optional crawl_doc.Request                   request;
+  12:  optional crawl_doc.Response                  response;
+  14:  optional string                              url;
+  15:  optional list<crawl_doc.Anchor>              in_links;
+  16:  optional list<crawl_doc.Anchor>              out_links;
+  17:  optional crawl_doc.CrawlHistory              crawl_history;
+  18:  optional crawl_doc.CrawlDocState             page_state = CrawlDocState.NORMAL;
+  19:  optional video_media.MediaVideo              video;          //[DEPRECATED]
+  20:  optional string                              domain;
+  21:  optional i32                                 domain_id;
+  22:  optional list<video_media.MediaVideo>        videos;         //[DEPRECATED]
+
+  100: optional ExtendMap                           extend_map;
 }
 
 

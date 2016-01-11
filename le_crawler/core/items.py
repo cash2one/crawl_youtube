@@ -68,7 +68,6 @@ def crawldoc_to_youtube_item(crawl_doc, response=None):
   crawl_doc.crawl_time = int(time.time())
   if response:
     response.meta.pop('crawl_doc', None)
-    crawl_doc.url = gen_youtube_video_url(response.url)
     crawl_doc.id = gen_docid(crawl_doc.url)
     crawl_doc.request = Request()
     crawl_doc.request.raw_url = response.request.meta.get('Rawurl')
