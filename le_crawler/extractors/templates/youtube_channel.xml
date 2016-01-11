@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<template>
+  <url_pattern>https://.*.youtube.com/channel.*</url_pattern>
+  <match target='out_related_user'>
+    <xpath>//li[contains(@class, "branded-page-related-channels-item")]/@data-external-id</xpath>
+  </match>
+</template>
