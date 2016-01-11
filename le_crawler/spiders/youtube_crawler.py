@@ -536,6 +536,7 @@ class YouTubeCrawler(Spider):
 
   def parse_page(self, response):
     try:
+      items = []
       url = response.url.strip()
       headers = {'Referer': url}
       doc = response.meta.get('crawl_doc')
