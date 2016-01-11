@@ -110,8 +110,8 @@ def parse_channel_detail(rep_dict, extend_map=None):
     ret_dict['comment_num'] = int(comment_num)
 
   if extend_map:
-    if extend_map.get('user', None):
-      ret_dict['user'] = extend_map['user']
+    if extend_map.get('user_name', None):
+      ret_dict['user_name'] = extend_map['user_name']
     if extend_map.get('source', None):
       ret_dict['source'] = extend_map['source']
 
