@@ -384,11 +384,9 @@ class YouTubeCrawler(Spider):
         self.logger_.error('failed to get channel_id, url: %s', url)
         return items
 
-      in_links = doc.in_links if doc else []
-      if not in_links or len(in_links) < 10:
-        exmap['channel_id'] = channel_id
-        channel_url = 'https://www.youtube.com/channel/' + channel_id
-        items.append(self._create_request(channel_url, PageType.RELATED_CHANNEL, CrawlDocType.HUB_RELATIVES, meta={'extend_map': exmap}, headers=headers, dont_filter=False, in_doc=doc))
+      exmap['channel_id'] = channel_id
+      channel_url = 'https://www.youtube.com/channel/' + channel_id
+      items.append(self._create_request(channel_url, PageType.RELATED_CHANNEL, CrawlDocType.HUB_RELATIVES, meta={'extend_map': exmap}, headers=headers, dont_filter=True, in_doc=doc))
 
       upload_playlist = data.get('contentDetails', {}).get('relatedPlaylists', {}).get('uploads', None)
       if not upload_playlist:
@@ -439,14 +437,16 @@ class YouTubeCrawler(Spider):
         self.logger_.info('failed to get related_channel, url: %s', url)
         return items
 
-      for related_channel in related_channel_list:
-        related_channel_dict = self.get_channel_info(related_channel)
-        if not related_channel_dict or not related_channel_dict.get('is_parse', False):
-          exmap = {'channel_id': related_channel, 'source': 'related_channel'}
-          part = 'snippet,statistics,contentDetails'
-          api = 'https://www.googleapis.com/youtube/v3/channels?part=%s&id=%s' % \
-                (part, related_channel)
-          items.append(self._create_request(api, PageType.CHANNEL, CrawlDocType.HUB_HOME, meta={'extend_map': exmap}, headers=headers, in_doc=doc))
+      in_links = doc.in_links if doc else []
+      if in_links and len(in_links) < 10:
+        for related_channel in related_channel_list:
+          related_channel_dict = self.get_channel_info(related_channel)
+          if not related_channel_dict or not related_channel_dict.get('is_parse', False):
+            exmap = {'channel_id': related_channel, 'source': 'related_channel'}
+            part = 'snippet,statistics,contentDetails'
+            api = 'https://www.googleapis.com/youtube/v3/channels?part=%s&id=%s' % \
+                  (part, related_channel)
+            items.append(self._create_request(api, PageType.CHANNEL, CrawlDocType.HUB_HOME, meta={'extend_map': exmap}, headers=headers, in_doc=doc))
 
       related_channel_urls = ['https://www.youtube.com/channel/' + channel for channel in related_channel_list]
       channel_dict = {'channel_id': channel_id, 'out_related_user': related_channel_urls}
