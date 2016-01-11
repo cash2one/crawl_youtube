@@ -129,7 +129,7 @@ class MergeItem:
           old_v = getattr(user, k)
           if not old_v:
             continue
-          display_countrys_set += set(old_v)
+          display_countrys_set = display_countrys_set | set(old_v)
         if display_countrys_set:
           setattr(new_user, k, list(display_countrys_set))
       else:

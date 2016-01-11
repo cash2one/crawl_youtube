@@ -5,6 +5,7 @@ import sys
 import json
 import time
 import re
+import urlparse
 from static_extractor import StaticExtractor
 from ..common.utils import multi_key_fields, source_set, safe_eval, build_user
 from ..common.parse_youtube import youtube_category_dict, parse_thumbnail_list, parse_channel_detail, get_url_param
@@ -43,6 +44,8 @@ class YoutubeStatic(StaticExtractor):
     if url_type == 'user':
       if url.startswith('https://www.youtube.com/channel/'):
         html_data = self.parse_user_html(crawl_doc)
+        html_data['url'] = url
+        html_data['channel_id'] = self.parse_channel_id(url)
       elif url.startswith('https://www.googleapis.com/youtube/v3/channels'):
         channel_id = get_url_param(url, 'id')
         html_data = self.parse_user_api(crawl_doc)
@@ -72,10 +75,30 @@ class YoutubeStatic(StaticExtractor):
     html_data['page_state'] = crawl_doc.page_state
     return self._filter_long_video(html_data, url_type)
 
+  def parse_channel_id(self, channel_url):
+    if not channel_url:
+      return
+    urlparse_ret = urlparse.urlparse(channel_url)
+    path_list = urlparse_ret.path.strip('/').split('/')
+    if not path_list:
+      return
+    if 'channel' != path_list[0]:
+      return
+    channel_id = path_list[1]
+    return channel_id
+
+
   def parse_user_html(self, crawl_doc):
     if not crawl_doc or not crawl_doc.url or not crawl_doc.response:
       return
     html_data = self._xpather.parse(crawl_doc.url, crawl_doc.response.body)
+    if html_data.get('out_related_user', None):
+      related_channel_urls = []
+      for related_user in html_data['out_related_user']:
+        if 'http' not in related_user:
+          related_user = 'https://www.youtube.com/channel/' + related_user
+        related_channel_urls.append(related_user)
+      html_data['out_related_user'] = related_channel_urls
     return html_data
 
   def parse_user_api(self, crawl_doc):
@@ -141,7 +164,8 @@ class YoutubeStatic(StaticExtractor):
       return html_data
     datas = rep_dict.get('items', [])
     if not datas:
-      return
+      html_data['dead_link'] = True
+      return html_data
     data = datas[0]
 
     if data.get('id', None):
