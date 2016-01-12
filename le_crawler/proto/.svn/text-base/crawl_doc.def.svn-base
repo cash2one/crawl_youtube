@@ -35,10 +35,10 @@ struct CrawlDoc {
   16:  optional list<crawl_doc.Anchor>              out_links;
   17:  optional crawl_doc.CrawlHistory              crawl_history;
   18:  optional crawl_doc.CrawlDocState             page_state = CrawlDocState.NORMAL;
-  19:  optional video_media.MediaVideo              video;          //[DEPRECATED]
+  19:  optional video_media.MediaVideo              video;          # [DEPRECATED]
   20:  optional string                              domain;
   21:  optional i32                                 domain_id;
-  22:  optional list<video_media.MediaVideo>        videos;         //[DEPRECATED]
+  22:  optional list<video_media.MediaVideo>        videos;         # [DEPRECATED]
 
   100: optional ExtendMap                           extend_map;
 }

@@ -1529,6 +1529,7 @@ class MediaVideo:
    - region_strategy
    - external_id
    - user_url
+   - global_id
    - artists
    - album
    - author
@@ -1640,17 +1641,18 @@ class MediaVideo:
     (97, TType.STRUCT, 'region_strategy', (le_crawler.proto.crawl.ttypes.RegionStrategy, le_crawler.proto.crawl.ttypes.RegionStrategy.thrift_spec), None, ), # 97
     (98, TType.STRING, 'external_id', None, None, ), # 98
     (99, TType.STRING, 'user_url', None, None, ), # 99
-    (100, TType.LIST, 'artists', (TType.STRUCT,(Artist, Artist.thrift_spec)), None, ), # 100
-    (101, TType.STRUCT, 'album', (Album, Album.thrift_spec), None, ), # 101
-    (102, TType.LIST, 'author', (TType.STRUCT,(Artist, Artist.thrift_spec)), None, ), # 102
-    (103, TType.LIST, 'composer', (TType.STRUCT,(Artist, Artist.thrift_spec)), None, ), # 103
-    (104, TType.LIST, 'arranger', (TType.STRUCT,(Artist, Artist.thrift_spec)), None, ), # 104
-    (105, TType.STRING, 'lyrics', None, None, ), # 105
-    (106, TType.I32, 'share_num', None, None, ), # 106
-    (107, TType.I32, 'data_type', None,     1, ), # 107
+    (100, TType.STRING, 'global_id', None, None, ), # 100
+    (101, TType.LIST, 'artists', (TType.STRUCT,(Artist, Artist.thrift_spec)), None, ), # 101
+    (102, TType.STRUCT, 'album', (Album, Album.thrift_spec), None, ), # 102
+    (103, TType.LIST, 'author', (TType.STRUCT,(Artist, Artist.thrift_spec)), None, ), # 103
+    (104, TType.LIST, 'composer', (TType.STRUCT,(Artist, Artist.thrift_spec)), None, ), # 104
+    (105, TType.LIST, 'arranger', (TType.STRUCT,(Artist, Artist.thrift_spec)), None, ), # 105
+    (106, TType.STRING, 'lyrics', None, None, ), # 106
+    (107, TType.I32, 'share_num', None, None, ), # 107
+    (108, TType.I32, 'data_type', None,     1, ), # 108
   )
 
-  def __init__(self, id=None, domain=None, domain_id=None, category=None, category_id=None, title=None, subtitle=None, title_other=None, title_en=None, actor=None, actor_id=None, director=None, director_id=None, writer=None, writer_id=None, showtime=None, showyear=None, area=None, subcategory=None, subcategory_id=None, language=None, language_id=None, fit_age=None, fit_age_id=None, short_desc=None, desc=None, tags=None, poster=None, collects=None, rating=None, commentator=None, episodes=None, is_end=None, url=None, quality=None, duration=None, copyright=None, state=None, type=None, type_id=None, version=None, version_id=None, is_pay=None, play_day_total=None, play_week_total=None, play_month_total=None, play_season_total=None, play_year_total=None, play_total=None, create_time=None, update_time=None, delete_time=None, platform_download=None, platform_play=None, platform_pay=None, publish_status=None, douban_id=None, resolution=None, is_edit=None, extend=None, episode=None, porder=None, dup=thrift_spec[64][4], is_404=thrift_spec[65][4], is_soft404=thrift_spec[66][4], area_id=None, voteup_count=thrift_spec[68][4], votedown_count=thrift_spec[69][4], play_trends=None, category_list=None, crumbs=None, crawl_time=None, content_timestamp=None, duration_seconds=None, OBSOLETE_inlink=None, OBSOLETE_outlink=None, page_state=thrift_spec[78][4], crawl_history=None, doc_id=None, discover_time=None, in_links=None, user=None, playlist=None, dimension=None, caption=None, comment_num=None, source_type=None, thumbnails=None, content_quality=None, player=None, thumbnail_list=None, dead_link=thrift_spec[93][4], stream_url=None, language_type=None, inlink_history=None, region_strategy=None, external_id=None, user_url=None, artists=None, album=None, author=None, composer=None, arranger=None, lyrics=None, share_num=None, data_type=thrift_spec[107][4],):
+  def __init__(self, id=None, domain=None, domain_id=None, category=None, category_id=None, title=None, subtitle=None, title_other=None, title_en=None, actor=None, actor_id=None, director=None, director_id=None, writer=None, writer_id=None, showtime=None, showyear=None, area=None, subcategory=None, subcategory_id=None, language=None, language_id=None, fit_age=None, fit_age_id=None, short_desc=None, desc=None, tags=None, poster=None, collects=None, rating=None, commentator=None, episodes=None, is_end=None, url=None, quality=None, duration=None, copyright=None, state=None, type=None, type_id=None, version=None, version_id=None, is_pay=None, play_day_total=None, play_week_total=None, play_month_total=None, play_season_total=None, play_year_total=None, play_total=None, create_time=None, update_time=None, delete_time=None, platform_download=None, platform_play=None, platform_pay=None, publish_status=None, douban_id=None, resolution=None, is_edit=None, extend=None, episode=None, porder=None, dup=thrift_spec[64][4], is_404=thrift_spec[65][4], is_soft404=thrift_spec[66][4], area_id=None, voteup_count=thrift_spec[68][4], votedown_count=thrift_spec[69][4], play_trends=None, category_list=None, crumbs=None, crawl_time=None, content_timestamp=None, duration_seconds=None, OBSOLETE_inlink=None, OBSOLETE_outlink=None, page_state=thrift_spec[78][4], crawl_history=None, doc_id=None, discover_time=None, in_links=None, user=None, playlist=None, dimension=None, caption=None, comment_num=None, source_type=None, thumbnails=None, content_quality=None, player=None, thumbnail_list=None, dead_link=thrift_spec[93][4], stream_url=None, language_type=None, inlink_history=None, region_strategy=None, external_id=None, user_url=None, global_id=None, artists=None, album=None, author=None, composer=None, arranger=None, lyrics=None, share_num=None, data_type=thrift_spec[108][4],):
     self.id = id
     self.domain = domain
     self.domain_id = domain_id
@@ -1749,6 +1751,7 @@ class MediaVideo:
     self.region_strategy = region_strategy
     self.external_id = external_id
     self.user_url = user_url
+    self.global_id = global_id
     self.artists = artists
     self.album = album
     self.author = author
@@ -2300,6 +2303,11 @@ class MediaVideo:
         else:
           iprot.skip(ftype)
       elif fid == 100:
+        if ftype == TType.STRING:
+          self.global_id = iprot.readString();
+        else:
+          iprot.skip(ftype)
+      elif fid == 101:
         if ftype == TType.LIST:
           self.artists = []
           (_etype132, _size129) = iprot.readListBegin()
@@ -2310,13 +2318,13 @@ class MediaVideo:
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
-      elif fid == 101:
+      elif fid == 102:
         if ftype == TType.STRUCT:
           self.album = Album()
           self.album.read(iprot)
         else:
           iprot.skip(ftype)
-      elif fid == 102:
+      elif fid == 103:
         if ftype == TType.LIST:
           self.author = []
           (_etype138, _size135) = iprot.readListBegin()
@@ -2327,7 +2335,7 @@ class MediaVideo:
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
-      elif fid == 103:
+      elif fid == 104:
         if ftype == TType.LIST:
           self.composer = []
           (_etype144, _size141) = iprot.readListBegin()
@@ -2338,7 +2346,7 @@ class MediaVideo:
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
-      elif fid == 104:
+      elif fid == 105:
         if ftype == TType.LIST:
           self.arranger = []
           (_etype150, _size147) = iprot.readListBegin()
@@ -2349,17 +2357,17 @@ class MediaVideo:
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
-      elif fid == 105:
+      elif fid == 106:
         if ftype == TType.STRING:
           self.lyrics = iprot.readString();
         else:
           iprot.skip(ftype)
-      elif fid == 106:
+      elif fid == 107:
         if ftype == TType.I32:
           self.share_num = iprot.readI32();
         else:
           iprot.skip(ftype)
-      elif fid == 107:
+      elif fid == 108:
         if ftype == TType.I32:
           self.data_type = iprot.readI32();
         else:
@@ -2788,48 +2796,52 @@ class MediaVideo:
       oprot.writeFieldBegin('user_url', TType.STRING, 99)
       oprot.writeString(self.user_url)
       oprot.writeFieldEnd()
+    if self.global_id is not None:
+      oprot.writeFieldBegin('global_id', TType.STRING, 100)
+      oprot.writeString(self.global_id)
+      oprot.writeFieldEnd()
     if self.artists is not None:
-      oprot.writeFieldBegin('artists', TType.LIST, 100)
+      oprot.writeFieldBegin('artists', TType.LIST, 101)
       oprot.writeListBegin(TType.STRUCT, len(self.artists))
       for iter161 in self.artists:
         iter161.write(oprot)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.album is not None:
-      oprot.writeFieldBegin('album', TType.STRUCT, 101)
+      oprot.writeFieldBegin('album', TType.STRUCT, 102)
       self.album.write(oprot)
       oprot.writeFieldEnd()
     if self.author is not None:
-      oprot.writeFieldBegin('author', TType.LIST, 102)
+      oprot.writeFieldBegin('author', TType.LIST, 103)
       oprot.writeListBegin(TType.STRUCT, len(self.author))
       for iter162 in self.author:
         iter162.write(oprot)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.composer is not None:
-      oprot.writeFieldBegin('composer', TType.LIST, 103)
+      oprot.writeFieldBegin('composer', TType.LIST, 104)
       oprot.writeListBegin(TType.STRUCT, len(self.composer))
       for iter163 in self.composer:
         iter163.write(oprot)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.arranger is not None:
-      oprot.writeFieldBegin('arranger', TType.LIST, 104)
+      oprot.writeFieldBegin('arranger', TType.LIST, 105)
       oprot.writeListBegin(TType.STRUCT, len(self.arranger))
       for iter164 in self.arranger:
         iter164.write(oprot)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.lyrics is not None:
-      oprot.writeFieldBegin('lyrics', TType.STRING, 105)
+      oprot.writeFieldBegin('lyrics', TType.STRING, 106)
       oprot.writeString(self.lyrics)
       oprot.writeFieldEnd()
     if self.share_num is not None:
-      oprot.writeFieldBegin('share_num', TType.I32, 106)
+      oprot.writeFieldBegin('share_num', TType.I32, 107)
       oprot.writeI32(self.share_num)
       oprot.writeFieldEnd()
     if self.data_type is not None:
-      oprot.writeFieldBegin('data_type', TType.I32, 107)
+      oprot.writeFieldBegin('data_type', TType.I32, 108)
       oprot.writeI32(self.data_type)
       oprot.writeFieldEnd()
     oprot.writeFieldStop()

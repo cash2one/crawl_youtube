@@ -225,14 +225,15 @@ struct MediaVideo {
   97: optional crawl_doc.RegionStrategy       region_strategy;                //地域策略
   98: optional string                         external_id;                    //单视频的video_id
   99: optional string                         user_url;                       //原创用户的url
-  100:optional list<Artist>                   artists;                        //艺人
-  101:optional Album                          album;                          //所属专辑
-  102:optional list<Artist>                   author;                         //作词
-  103:optional list<Artist>                   composer;                       //作曲
-  104:optional list<Artist>                   arranger;                       //编曲
-  105:optional string                         lyrics;                         //歌词
-  106:optional i32                            share_num;                      //分享数 
-  107:optional DataType                       data_type = DataType.VIDEO;     //数据类型
+  100:optional string                         global_id;
+  101:optional list<Artist>                   artists;                        //艺人
+  102:optional Album                          album;                          //所属专辑
+  103:optional list<Artist>                   author;                         //作词
+  104:optional list<Artist>                   composer;                       //作曲
+  105:optional list<Artist>                   arranger;                       //编曲
+  106:optional string                         lyrics;                         //歌词
+  107:optional i32                            share_num;                      //分享数 
+  108:optional DataType                       data_type = DataType.VIDEO;     //数据类型
 }
 
 //专辑下的视频列表。尽量不存冗余，只存用于排序，筛选的字段.
