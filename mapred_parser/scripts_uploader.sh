@@ -18,6 +18,7 @@ rm -rf ../le_crawler/common/lxml && \
 cp -r ../util/lxml/ ../le_crawler/common/ && \
 cp -r ../le_crawler/common le_crawler && cp -r ../le_crawler/proto le_crawler && \
 cp -r ../le_crawler/extractors le_crawler && \
+cp -r ../le_crawler/core le_crawler && \
 echo 'remove *.pyc' && find ../parse_copy -type f -name "*.pyc" | xargs rm -f && \
 echo 'remove .svn' && find ../parse_copy -type d -name "*.svn" | xargs rm -rf && \
 

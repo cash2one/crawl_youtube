@@ -13,17 +13,11 @@ def call_cmd(cmd):
   pro = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
   return pro.returncode, pro.stdout.read()
 
-def strip_first_line(output):
-  line_list = output.split('\n')
-  line_list = line_list[1:]
-  output = '\n'.join(line_list)
-  return output
-
 def list_files(path):
   cmd = fs_cmd % '-ls ' + path
   logging.debug('listing files: %s', cmd)
   status, files = call_cmd(cmd)
-  #files = strip_first_line(files)
+  files = files.strip()
   if status:
     logging.error('failed to run command [%s]', fs_cmd % '-ls ' + path)
     return []
@@ -89,6 +83,7 @@ def count_file(path):
   cmd = fs_cmd % '-count %s' % path
   logging.debug('counting files of input folder: %s', cmd)
   status, output = call_cmd(cmd)
+  output = output.strip()
   #output = strip_first_line(output)
   if status:
     logging.error('failed to run command: %s', cmd)
@@ -104,6 +99,7 @@ def file_size(path):
   cmd = fs_cmd % '-count %s' % path
   logging.debug('calculating file size: %s', cmd)
   status, output = call_cmd(cmd)
+  output = output.strip()
   #output = strip_first_line(output)
   if status:
     logging.error('failed to run command: %s', cmd)

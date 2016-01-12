@@ -28,15 +28,16 @@ class ExtractWorker(object):
   def get_last_unique_dir(self):
     cmd = 'hadoop fs -ls /user/search/short_video/full | grep out_video_'
     _, output = hdfs_utils.call_cmd(cmd)
-    #output = hdfs_utils.strip_first_line(output)
+    output = output.strip()
     last_dir = output.split(' ')[-1] + '/'
     logging.info('last unique directory is %s', last_dir)
     return last_dir
 
 
   def get_last_user_dir(self):
-    cmd = 'hadoop fs -ls /user/search/short_video/full_user_info | grep out_video_'
-    _, output = call_cmd(cmd)
+    cmd = 'hadoop fs -ls /user/search/short_video/full_user_info | grep out_user_'
+    _, output = hdfs_utils.call_cmd(cmd)
+    output = output.strip()
     last_dir = output.split(' ')[-1] + '/'
     logging.info('last unique directory is %s', last_dir)
     return last_dir
@@ -66,8 +67,8 @@ class ExtractWorker(object):
           '-D mapred.reduce.tasks=%s ' \
           '-D mapred.job.name=short_video_full_parser ' \
           '-D mapred.job.priority=VERY_HIGH ' \
-          '-D mapreduce.map.memory.mb=1024 ' \
-          '-D mapreduce.reduce.memory.mb=1024 ' \
+          '-D mapreduce.map.memory.mb=2048 ' \
+          '-D mapreduce.reduce.memory.mb=2048 ' \
           ' %s ' \
           '-output %s ' \
           '-mapper ./mapred_parser/mapper.py ' \
