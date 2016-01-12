@@ -66,6 +66,8 @@ class ExtractWorker(object):
           '-D mapred.reduce.tasks=%s ' \
           '-D mapred.job.name=short_video_full_parser ' \
           '-D mapred.job.priority=VERY_HIGH ' \
+          '-D mapreduce.map.memory.mb=1024 ' \
+          '-D mapreduce.reduce.memory.mb=1024 ' \
           ' %s ' \
           '-output %s ' \
           '-mapper ./mapred_parser/mapper.py ' \

@@ -68,12 +68,14 @@ class YoutubeStatic(StaticExtractor):
     crawl_doc.id = gen_docid(crawl_doc.url)
     html_data['doc_id'] = crawl_doc.id
     html_data['id'] = str(crawl_doc.id)
+    html_data['global_id'] = '202_' + html_data['id']
     html_data['crawl_time'] = html_data['create_time'] = crawl_doc.crawl_time
     html_data['discover_time'] = crawl_doc.discover_time
     html_data['domain'] = self._web_name
     html_data['domain_id'] = source_set[self._web_name]
     html_data['page_state'] = crawl_doc.page_state
     return self._filter_long_video(html_data, url_type)
+
 
   def parse_channel_id(self, channel_url):
     if not channel_url:

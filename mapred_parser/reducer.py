@@ -174,13 +174,16 @@ class MergeItem:
     self._merge_history_trends(videos)
     self._merge_in_links(videos)
     self._merge_inlink_history(videos)
-    if self._user_url:
-      videos[0].user = None
     # first merge crawled data
     for video in videos[1:-1]:
       self._merge_data(video, videos[0])
     # then merge the latest video and the original video
     self.merged_ = self._merge_data(videos[-1], videos[0])
+
+    #TODO to delete
+    if self._user_url:
+      videos[0].user = None
+
     if self.merged_:
       sys.stderr.write('reporter:counter:reduce,video_updated,1\n')
       videos[0].update_time = int(time.time())
