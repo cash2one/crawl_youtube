@@ -563,6 +563,7 @@ class YouTubeCrawler(Spider):
           #TODO to delete
           countrys = extend_map.get('display_countrys', [])
           if countrys:
+            channel_dict = self.get_channel_info(channel_id)
             if channel_dict:
               display_countrys = channel_dict.get('display_countrys', [])
               for country in countrys:
