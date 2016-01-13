@@ -385,8 +385,9 @@ class YouTubeCrawler(Spider):
         return items
 
       exmap['channel_id'] = channel_id
+      exmap['fans_num'] = channel_dict.get('fans_num', None)
       channel_url = 'https://www.youtube.com/channel/' + channel_id
-      items.append(self._create_request(channel_url, PageType.RELATED_CHANNEL, CrawlDocType.HUB_RELATIVES, meta={'extend_map': exmap}, headers=headers, dont_filter=True, in_doc=doc))
+      items.append(self._create_request(channel_url, PageType.RELATED_CHANNEL, CrawlDocType.HUB_RELATIVES, meta={'extend_map': exmap}, headers=headers, dont_filter=False, in_doc=doc))
 
       upload_playlist = data.get('contentDetails', {}).get('relatedPlaylists', {}).get('uploads', None)
       if not upload_playlist:
@@ -428,6 +429,7 @@ class YouTubeCrawler(Spider):
       self.remove_recrawl_info(url)
       extend_map = response.meta.get('extend_map', {})
       channel_id = extend_map.get('channel_id', None)
+      fans_num = extend_map.get('fans_num', None)
       if not channel_id:
         self.logger_.error('lost channel_id, url: %s', url)
         return items
@@ -436,9 +438,9 @@ class YouTubeCrawler(Spider):
       if not related_channel_list:
         self.logger_.info('failed to get related_channel, url: %s', url)
         return items
-
+      
       in_links = doc.in_links if doc else []
-      if in_links and len(in_links) < 10:
+      if fans_num and fans_num > 10000 and in_links and len(in_links) < 10:
         for related_channel in related_channel_list:
           related_channel_dict = self.get_channel_info(related_channel)
           if not related_channel_dict or not related_channel_dict.get('is_parse', False):
@@ -557,13 +559,28 @@ class YouTubeCrawler(Spider):
           if not channel_id:
             self.logger_.error('failed to get channel_id, url: [%s]', url)
             continue
-          channel_dict = self.get_channel_info(channel_id)
-          if not  channel_dict or not channel_dict.get('is_parse', False):
-            exmap = {'channel_id': channel_id, 'source': 'youtube'}
-            part = 'snippet,statistics,contentDetails'
-            api = 'https://www.googleapis.com/youtube/v3/channels?part=%s&id=%s' % \
-                  (part, channel_id)
-            items.append(self._create_request(api, PageType.CHANNEL, CrawlDocType.HUB_HOME, meta={'extend_map': exmap}, headers=headers, in_doc=doc))
+
+          #TODO to delete
+          countrys = extend_map.get('display_countrys', [])
+          if countrys:
+            if channel_dict:
+              display_countrys = channel_dict.get('display_countrys', [])
+              for country in countrys:
+                if country not in display_countrys:
+                  display_countrys.append(country)
+            else:
+              display_countrys = countrys
+            channel_dict = {'channel_id': channel_id, 'display_countrys': display_countrys}
+            self.upsert_channel_info(channel_dict)
+
+          exmap = {'channel_id': channel_id, 'source': 'youtube'}
+          if countrys:
+            exmap['display_countrys'] = countrys
+          part = 'snippet,statistics,contentDetails'
+          api = 'https://www.googleapis.com/youtube/v3/channels?part=%s&id=%s' % \
+                (part, channel_id)
+          items.append(self._create_request(api, PageType.CHANNEL, CrawlDocType.HUB_HOME, meta={'extend_map': exmap}, headers=headers, dont_filter=False, in_doc=doc))
+
       else:
         channel_id = datas[0].get('snippet', {}).get('channelId', None)
         channel_dict = self.get_channel_info(channel_id)
