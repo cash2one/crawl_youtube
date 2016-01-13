@@ -115,7 +115,7 @@ class ExtractWorker(object):
   def run(self):
     logging.info('starting new cycle.')
     self.cur_cycle_dir_ = '/user/search/short_video/job_tmp/out_video_%s/' % time.strftime('%Y%m%d_%H%M%S')
-    self.prepare_input() and self.run_job() and self.merge_user() and self.merge_file() and self.gen_output()
+    self.prepare_input() and self.run_job() and self.gen_output()
     logging.info('finished one cycle.')
 
 

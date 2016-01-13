@@ -32,7 +32,7 @@ def get_url_type(url):
 
 def print_video(data_source, data, url, crawl_doc):
   if not url or not data_source:
-    sys.stderr.write('reporter:counter:map_error,invalid_data,1\n')
+    sys.stderr.write('reporter:counter:map,invalid_data,1\n')
     return
   massage_data(data, printable=False)
   video = build_video(data, crawl_doc)
@@ -45,22 +45,22 @@ def print_video(data_source, data, url, crawl_doc):
 
   data = thrift2str(video)
   if not data:
-    sys.stderr.write('reporter:counter:map_error,map_thrift2str,1\n')
+    sys.stderr.write('reporter:counter:map,map_thrift2str,1\n')
     return
   print url + '\t' + user_url + '\t' + data_source + '\t' + 'video' + '\t' + base64.b64encode(data)
 
 
 def print_user(data_source, original_user):
   if not data_source or not original_user:
-    sys.stderr.write('reporter:counter:map_error,invalid_user,1\n')
+    sys.stderr.write('reporter:counter:map,invalid_user,1\n')
     return
   user_url = original_user.url
   if not user_url:
-    sys.stderr.write('reporter:counter:map_error,miss_user_url,1\n')
+    sys.stderr.write('reporter:counter:map,miss_user_url,1\n')
     return
   user_str = thrift2str(original_user)
   if not user_str:
-    sys.stderr.write('reporter:counter:map_error,map_user2str,1\n')
+    sys.stderr.write('reporter:counter:map,map_user2str,1\n')
     return
   print user_url + '\t' + user_url + '\t' + data_source + '\t' + 'user' + '\t' + base64.b64encode(user_str)
 
@@ -99,7 +99,7 @@ if __name__ == '__main__':
     if len(line_data) == 3:
       user_url = line_data.pop(1)
     if len(line_data) != 2:
-      sys.stderr.write('reporter:counter:map_error,map_input_not_2,1\n')
+      sys.stderr.write('reporter:counter:map,map_input_not_2,1\n')
       continue
 
     url, data_base64 = line_data
@@ -119,7 +119,7 @@ if __name__ == '__main__':
     try:
       data_str = base64.b64decode(data_base64)
     except:
-      sys.stderr.write('reporter:counter:map_error,map_decode_failed,1\n')
+      sys.stderr.write('reporter:counter:map,map_decode_failed,1\n')
       continue
 
     if data_source == 'crawl':
@@ -128,18 +128,18 @@ if __name__ == '__main__':
     try:
       crawl_doc = str2crawldoc(data_str)
     except:
-      sys.stderr.write('reporter:counter:map_error,map_error_crawldoc,1\n')
+      sys.stderr.write('reporter:counter:map,map_error_crawldoc,1\n')
       continue
 
     parsed_data = video_adaptor.get_static(crawl_doc)
     if not parsed_data:
-      sys.stderr.write('reporter:counter:map_error,map_parse_failed,1\n')
+      sys.stderr.write('reporter:counter:map,map_parse_failed,1\n')
       continue
 
     if url_type == 'user':
       original_user = build_user(parsed_data)
       if not original_user:
-        sys.stderr.write('reporter:counter:map_error,build_user,1\n')
+        sys.stderr.write('reporter:counter:map,build_user,1\n')
       print_user(data_source, original_user)
     elif url_type == 'video':
       print_video(data_source, parsed_data, url, crawl_doc)

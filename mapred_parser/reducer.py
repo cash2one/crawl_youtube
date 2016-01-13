@@ -39,11 +39,11 @@ class MergeItem:
     if self._data_type is None:
       self._data_type = data_type
     if self._data_type != data_type:
-      sys.stderr.write('reporter:counter:reduce_error,data_type_error,1\n')
+      sys.stderr.write('reporter:counter:reduce,data_type_error,1\n')
       return
 
     if not self._url:
-      sys.stderr.write('reporter:counter:reduce_error,reduce_url_empty,1\n')
+      sys.stderr.write('reporter:counter:reduce,reduce_url_empty,1\n')
       return
 
     if self.crawled_ and data_source != 'crawl':
@@ -192,11 +192,11 @@ class MergeItem:
   def _print_user(self, user):
     user_str = thrift2str(user)
     if not user_str:
-      sys.stderr.write('reporter:counter:reduce_error,reduce_thrift2str_failed,1\n')
+      sys.stderr.write('reporter:counter:reduce,reduce_thrift2str_failed,1\n')
       return
     user_base64 = base64.b64encode(user_str)
     if not user_base64:
-      sys.stderr.write('reporter:counter:reduce_error,reduce_base64encode_failed,1\n')
+      sys.stderr.write('reporter:counter:reduce,reduce_base64encode_failed,1\n')
       return
     sys.stderr.write('reporter:counter:reduce,user_total,1\n')
     print 'user_info' + '\t' + self._url + '\t' + user_base64
@@ -205,11 +205,11 @@ class MergeItem:
   def _print_video(self, video):
     video_str = thrift2str(video)
     if not video_str:
-      sys.stderr.write('reporter:counter:reduce_error,reduce_thrift2str_failed,1\n')
+      sys.stderr.write('reporter:counter:reduce,reduce_thrift2str_failed,1\n')
       return
     video_base64 = base64.b64encode(video_str)
     if not video_base64:
-      sys.stderr.write('reporter:counter:reduce_error,reduce_base64encode_failed,1\n')
+      sys.stderr.write('reporter:counter:reduce,reduce_base64encode_failed,1\n')
       return
     sys.stderr.write('reporter:counter:reduce,video_total,1\n')
     print 'unique' + '\t' + self._url + '\t' + self._user_url + '\t' + video_base64
@@ -240,23 +240,23 @@ class MergeItem:
       try:
         data = base64.b64decode(data_str)
       except:
-        sys.stderr.write('reporter:counter:reduce_error,reduce_json_failed,1\n')
+        sys.stderr.write('reporter:counter:reduce,reduce_json_failed,1\n')
       if self._data_type == 'video':
         data = str2mediavideo(data)
         if not data:
-          sys.stderr.write('reporter:counter:reduce_error,reduce_str_to_video,1\n')
+          sys.stderr.write('reporter:counter:reduce,reduce_str_to_video,1\n')
         self._data[idx] = data
       elif self._data_type == 'user':
         data = str2user(data)
         if not data:
-          sys.stderr.write('reporter:counter:reduce_error,reduce_str_to_user,1\n')
+          sys.stderr.write('reporter:counter:reduce,reduce_str_to_user,1\n')
         self._data[idx] = data
       else:
-        sys.stderr.write('reporter:counter:reduce_error,data_type_error,1\n')
+        sys.stderr.write('reporter:counter:reduce,data_type_error,1\n')
         return
     self._data = [item for item in self._data if item]
     if not self._data:
-      sys.stderr.write('reporter:counter:reduce_error,not_datas,1\n')
+      sys.stderr.write('reporter:counter:reduce,not_datas,1\n')
       return
     if self._data_type == 'video':
       self._data.sort(cmp=lambda x, y: (y.create_time or 0) - (x.create_time or 0))
@@ -278,7 +278,7 @@ def main():
 
     line_data = line.strip().split('\t', 4)
     if len(line_data) != 5:
-      sys.stderr.write('reporter:counter:reduce_error,reduce_input_not_len_5,1\n')
+      sys.stderr.write('reporter:counter:reduce,reduce_input_not_len_5,1\n')
       continue
 
     url, user_url, data_source, data_type, data = line_data

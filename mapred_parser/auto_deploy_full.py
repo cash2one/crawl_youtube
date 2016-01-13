@@ -67,8 +67,6 @@ class ExtractWorker(object):
           '-D mapred.reduce.tasks=%s ' \
           '-D mapred.job.name=short_video_full_parser ' \
           '-D mapred.job.priority=VERY_HIGH ' \
-          '-D mapreduce.map.memory.mb=2048 ' \
-          '-D mapreduce.reduce.memory.mb=2048 ' \
           ' %s ' \
           '-output %s ' \
           '-mapper ./mapred_parser/mapper.py ' \
@@ -125,7 +123,7 @@ class ExtractWorker(object):
 
   def run(self):
     logging.info('starting new cycle.')
-    self.prepare_input() and self.run_job() and self.merge_user() and self.merge_file() and self.gen_output()
+    self.prepare_input() and self.run_job() and self.gen_output()
     logging.info('finished one cycle.')
 
 
