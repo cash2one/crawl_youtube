@@ -52,10 +52,10 @@ class StatisticWorker(object):
     logging.info('out dir: %s', self.job_out_dir_)
     cmd = 'hadoop jar hadoop-streaming-2.6.0.jar ' \
           '-libjars custom.jar ' \
-          '-archives hdfs://cluster/user/search/short_video/bin/youtube_ranking/mapred_parser.tar.gz#mapred_parser ' \
+          '-archives hdfs://cluster/user/search/short_video/bin/mapred_parser.tar.gz#mapred_parser ' \
           '-D mapreduce.job.output.key.comparator.class=org.apache.hadoop.mapred.lib.KeyFieldBasedComparator ' \
           '-D mapreduce.job.reduces=%s ' \
-          '-D mapreduce.job.name=youtube_ranking ' \
+          '-D mapreduce.job.name=youtube_statistic ' \
           '-D mapreduce.job.priority=HIGH ' \
           '-D mapreduce.output.fileoutputformat.compress=0 ' \
           '-D stream.num.map.output.key.fields=2 ' \
@@ -63,12 +63,12 @@ class StatisticWorker(object):
           '-D mapreduce.partition.keycomparator.options="-k1,2" ' \
           ' %s ' \
           '-output %s ' \
-          '-mapper ./mapred_parser/user_statistic/mapper.py ' \
-          '-reducer ./mapred_parser/user_statistic/reducer.py ' \
+          '-mapper ./mapred_parser/user_statics/mapper.py ' \
+          '-reducer ./mapred_parser/user_statics/reducer.py ' \
           '-partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner ' \
           '-inputformat org.apache.hadoop.mapred.SequenceFileAsTextInputFormat ' \
           '-outputformat com.custom.MultipleTextOutputFormatByKey' % \
-          (reduce_amount, input_path, self.job_out_dir_)
+          (reduce_amount, input_paths, self.job_out_dir_)
     logging.info('start running statistic job...\nreduce job amount: [%s]\ncommand: %s', reduce_amount, cmd)
     status, output = commands.getstatusoutput(cmd)
     logging.info('Job %s, details:\n%s', 'succeeded' if status == 0 else 'failed', output)

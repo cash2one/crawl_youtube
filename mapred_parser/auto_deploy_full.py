@@ -50,7 +50,9 @@ class ExtractWorker(object):
     if not hdfs_utils.count_file(day_tmp_dir):
       return False
 
-    input_path = ' -input ' + day_tmp_dir + '*'
+    #input_path = ' -input ' + day_tmp_dir + '*'
+    input_path = ' -input /user/search/short_video/out/video/' + self.merge_day + '*'
+    input_path += ' -input /user/search/short_video/out/user_info/' + self.merge_day + '*'
 
     input_file_count = hdfs_utils.count_file(self.last_unique_dir_)
     if input_file_count:
@@ -94,8 +96,8 @@ class ExtractWorker(object):
     self.cur_cycle_dir_ = '/user/search/short_video/tmp/full_job_%s/' % self.merge_day
     if self.merge_day < today:
       logging.info('merge_day less today, merge_day: %s, today: %s', self.merge_day, today)
-      hdfs_utils.cp('/user/search/short_video/out/video/' + self.merge_day + '*', day_tmp_dir)
-      hdfs_utils.cp('/user/search/short_video/out/user_info/' + self.merge_day + '*', day_tmp_dir)
+      #hdfs_utils.cp('/user/search/short_video/out/video/' + self.merge_day + '*', day_tmp_dir)
+      #hdfs_utils.cp('/user/search/short_video/out/user_info/' + self.merge_day + '*', day_tmp_dir)
     else:
       logging.info('merge_day not less today, merge_day: %s, today: %s', self.merge_day, today)
       return False
