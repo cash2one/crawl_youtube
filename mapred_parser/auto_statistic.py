@@ -28,7 +28,7 @@ def get_input_paths():
   output = output.strip()
   time_str = output.split(' ')[-1].split('/')[-1][:8]
   paths += ' -input ' + out_video_dir + time_str + '*'
-  paths += ' -input ' + out_video_dir + str(int(time_str) - 1) + '*'
+  #paths += ' -input ' + out_video_dir + str(int(time_str) - 1) + '*'
   #paths += ' -input ' + out_video_dir + str(int(time_str) - 2) + '*'
 
   cmd = 'hadoop fs -ls %s | tail -n 1' % out_user_dir
@@ -36,7 +36,7 @@ def get_input_paths():
   output = output.strip()
   time_str = output.split(' ')[-1].split('/')[-1][:8]
   paths += ' -input ' + out_user_dir + time_str + '*'
-  paths += ' -input ' + out_user_dir + str(int(time_str) - 1) + '*'
+  #paths += ' -input ' + out_user_dir + str(int(time_str) - 1) + '*'
   #paths += ' -input ' + out_user_dir + str(int(time_str) - 2) + '*'
   logging.info('input paths are %s', paths)
   return paths
@@ -58,9 +58,9 @@ class StatisticWorker(object):
           '-D mapreduce.job.name=youtube_statistic ' \
           '-D mapreduce.job.priority=HIGH ' \
           '-D mapreduce.output.fileoutputformat.compress=0 ' \
-          '-D stream.num.map.output.key.fields=2 ' \
+          '-D stream.num.map.output.key.fields=3 ' \
           '-D mapreduce.partition.keypartitioner.options=-k1,1 ' \
-          '-D mapreduce.partition.keycomparator.options="-k1,2" ' \
+          '-D mapreduce.partition.keycomparator.options="-k1,3" ' \
           ' %s ' \
           '-output %s ' \
           '-mapper ./mapred_parser/user_statics/mapper.py ' \

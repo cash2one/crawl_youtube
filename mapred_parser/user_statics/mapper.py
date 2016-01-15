@@ -65,12 +65,14 @@ if __name__ == '__main__':
       data_base64 = line_data[2]
       if user_url == 'None':
         sys.stderr.write('reporter:counter:statistic,video_not_user,1\n')
-        sys.stderr.write('reporter:counter:statistic,video_total,1\n')
+        #sys.stderr.write('reporter:counter:statistic,video_total,1\n')
+        """
         try:
           video = str2mediavideo(base64.b64decode(data_base64))
           count_video(video)
         except:
           sys.stderr.write('reporter:counter:map,failed_2_video,1\n')
+        """
       else:
         print user_url + '\t1_video\t' + url + '\t' + data_base64
     elif data_type == 'user':

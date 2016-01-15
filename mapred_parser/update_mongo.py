@@ -124,7 +124,7 @@ def gen_next_schedule_time(crawl_time, content_timestamp, play_total):
   	return
   if not play_total:
     if crawl_time - content_timestamp > 0 and crawl_time - content_timestamp < 86400:
-  	  return now + 10800
+  	  return crawl_time + 10800
     else:
       return
   time_delta = crawl_time - content_timestamp
@@ -132,19 +132,19 @@ def gen_next_schedule_time(crawl_time, content_timestamp, play_total):
   	return
   next_delta = None
   now = int(time.time())
-  if time_delta < 3600:
+  if time_delta < 10800:
     next_delta = 3600
   elif time_delta < 86400:
-  	next_delta = time_delta * 60 * 60 / play_total
+  	next_delta = time_delta * 60 * 60 / play_total / 5
   	next_delta = max(next_delta, 3600)
   	next_delta = min(next_delta, 43200)
   elif time_delta < 604800:
-  	next_delta = time_delta * 60 * 60 * 24 / play_total
-  	next_delta = max(next_delta, 86400)
+  	next_delta = time_delta * 60 * 60 * 24 / play_total / 5
+  	next_delta = max(next_delta, 43200)
   	next_delta = min(next_delta, 604800)
   if not next_delta:
   	return
-  return now + next_delta
+  return crawl_time + next_delta
 
 
 def bulk_write_request(requests, collection, ordered=False):
@@ -204,12 +204,15 @@ def db_videos(file_path, db):
 
       update_time = int(time.time())
       attr_state = get_video_attr_state(video)
+      time_now = int(time.time())
+      # if content_timestamp and (time_now - content_timestamp) < 604800:
       rst_dict = {'doc_id':doc_id, 'url':url, 'crawl_history':crawl_history, 'update_time':update_time,
                   'title':title, 'content_timestamp':content_timestamp, 'status': default_status, 'attr_state': attr_state}
       requests.append(UpdateOne({'url':url}, {'$set':rst_dict}, upsert=True))
       next_schedule_time = gen_next_schedule_time(crawl_time, content_timestamp, play_total)
       if next_schedule_time:
         recrawl_dict = {'url': url, 
+                        'crawl_time': crawl_time,
                         'content_timestamp': content_timestamp,
                         'crawl_history': crawl_history,
                         'play_total': play_total,

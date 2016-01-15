@@ -131,7 +131,7 @@ if __name__ == '__main__':
       exit(1)
     logging.info('deploy complete.')
     """
-    utils.cycle_run(worker.run, 30 * 60)
+    utils.cycle_run(worker.run, 10 * 60)
   except:
     logging.exception('failed deploy hadoop job')
     send_message('hadoop parse job failed, please take a look ASAP!')

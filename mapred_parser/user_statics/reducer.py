@@ -22,6 +22,7 @@ class MergeItem:
     self._user_url = user_url
     self._user = None
     self._is_india_user = False
+    self._url = None
 
 
   def get_user_url(self):
@@ -39,13 +40,15 @@ class MergeItem:
       except:
         sys.stderr.write('reporter:counter:statistic,failed_2_user,1\n')
     elif data_type == 'video':
-      try:
-        if not self._user:
-          sys.stderr.write('reporter:counter:statistic,video_not_user,1\n')
-        video = str2mediavideo(base64.b64decode(data_base64))
-        self.count_video(video)
-      except:
-        sys.stderr.write('reporter:counter:reduce,failed_2_video,1\n')
+      if url != self._url:
+        self._url = url
+        try:
+          if not self._user:
+            sys.stderr.write('reporter:counter:statistic,video_not_user,1\n')
+          video = str2mediavideo(base64.b64decode(data_base64))
+          self.count_video(video)
+        except:
+          sys.stderr.write('reporter:counter:reduce,failed_2_video,1\n')
 
 
   def count_video(self, video):

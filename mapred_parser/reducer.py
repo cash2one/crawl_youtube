@@ -212,10 +212,11 @@ class MergeItem:
       sys.stderr.write('reporter:counter:reduce,reduce_base64encode_failed,1\n')
       return
     sys.stderr.write('reporter:counter:reduce,video_total,1\n')
-    print 'unique' + '\t' + self._url + '\t' + self._user_url + '\t' + video_base64
+    user_url = self._user_url if self._user_url else 'None'
+    print 'unique' + '\t' + self._url + '\t' + user_url + '\t' + video_base64
     if self.crawled_:
       sys.stderr.write('reporter:counter:statistic,video_new,1\n')
-      print 'video' + '\t' + self._url + '\t' + self._user_url + '\t' + video_base64
+      print 'video' + '\t' + self._url + '\t' + user_url + '\t' + video_base64
     return
 
 
@@ -225,9 +226,10 @@ class MergeItem:
     if len(self._data) == 1:
       if self._data_type == 'video':
         sys.stderr.write('reporter:counter:reduce,video_total,1\n')
-        print 'unique' + '\t' + self._url + '\t' + self._user_url + '\t' + self._data[0]
+        user_url = self._user_url if self._user_url else 'None'
+        print 'unique' + '\t' + self._url + '\t' + user_url + '\t' + self._data[0]
         if self.crawled_:
-          print 'video' + '\t' + self._url + '\t' + self._user_url + '\t' + self._data[0]
+          print 'video' + '\t' + self._url + '\t' + user_url + '\t' + self._data[0]
         #print '%s\t%s' % (self._user_url, str2mediavideo(base64.b64decode(self._data[0])))
         if self.crawled_:
           sys.stderr.write('reporter:counter:statistic,video_new,1\n')
@@ -282,6 +284,9 @@ def main():
       continue
 
     url, user_url, data_source, data_type, data = line_data
+    if not url:
+      sys.stderr.write('reporter:counter:reduce,miss_url,1\n')
+      continue
     if url == merge_item.get_url():
       merge_item.add_item(user_url, data_source, data_type, data)
     else:
