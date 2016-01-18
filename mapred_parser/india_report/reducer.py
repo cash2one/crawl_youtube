@@ -68,7 +68,9 @@ class MergeItem:
     time_delta = now - content_timestamp
     if time_delta > 0 and time_delta < 172800:
       sys.stderr.write('reporter:counter:statistic,india_video_48h,1\n')
-      print '%s/t%s/t%s/t%s/t%s/t%s' % (category, video.play_total, video.url, video.title, video.crawl_time, video.content_timestamp)
+      if time_delta < 86400:
+        sys.stderr.write('reporter:counter:statistic,24h_india_%s,1\n' % category)
+      print 'india_video\t%s\t%s\t%s\t%s\t%s\t%s' % (category, video.play_total, video.url, video.title, video.crawl_time, video.content_timestamp)
       
 
 

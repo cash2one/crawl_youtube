@@ -72,18 +72,6 @@ def process_old_video(data_source, data_str, url, user_url, url_type):
     sys.stderr.write('reporter:counter:map,old_user,1\n')
   elif url_type == 'video':
     sys.stderr.write('reporter:counter:map,old_video,1\n')
-    #TODO to delete
-    try:
-      video_str = base64.b64decode(data_str)
-      video = str2mediavideo(video_str)
-      video.global_id = '202_' + video.id
-      if video.user:
-        video.user_url = video.user.url
-        video.user = None
-      video_str = thrift2str(video)
-      data_str = base64.b64encode(video_str)
-    except:
-      sys.stderr.write('reporter:counter:map,process_old_video_failed,1\n')
   print url + '\t' + user_url + '\t' + 'old_data' + '\t' + url_type + '\t' + data_str 
   return True
 

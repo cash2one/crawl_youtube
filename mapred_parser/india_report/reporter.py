@@ -19,14 +19,16 @@ log_name = 'india_ranking.error'
 logging.basicConfig(format="[%(levelname)s %(asctime)s %(filename)s:%(lineno)d] %(message)s",
                     filename=log_name, level=logging.DEBUG)
 
+out_video_dir = '/user/search/short_video/out/video/'
+out_user_dir = '/user/search/short_video/out/user_info/'
 
 HTML_TEXT = '''<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<title>Crawler Ranking</title>
+<title>India Ranking</title>
 </head>
 <body>
-<h2>Youtube Ranking</h2>
+<h2>India Ranking</h2>
 <h3>last updated: %s</h3>
 <hr>
 <br>
@@ -46,6 +48,7 @@ def get_input_paths():
   paths += ' -input ' + out_video_dir + time_str + '*'
   paths += ' -input ' + out_video_dir + str(int(time_str) - 1) + '*'
   paths += ' -input ' + out_video_dir + str(int(time_str) - 2) + '*'
+  #paths += ' -input ' + out_video_dir + str(int(time_str) - 3) + '*'
 
   cmd = 'hadoop fs -ls %s | tail -n 1' % out_user_dir
   _, output = hdfs_utils.call_cmd(cmd)
@@ -54,24 +57,27 @@ def get_input_paths():
   paths += ' -input ' + out_user_dir + time_str + '*'
   paths += ' -input ' + out_user_dir + str(int(time_str) - 1) + '*'
   paths += ' -input ' + out_user_dir + str(int(time_str) - 2) + '*'
+  #paths += ' -input ' + out_user_dir + str(int(time_str) - 3) + '*'
   logging.info('input paths are %s', paths)
   return paths
 
 class CacheManager:
   def __init__(self):
+    logging.info('cache_manager init ...')
     self._cache = None
     self.job_out_dir_ = '/user/search/short_video/india_job_tmp'
     threading.Thread(target=self._load_data, args=()).start()
 
 
   def _load_data(self):
+    logging.info('load data ...')
     utils.cycle_run(self._load_data_internal, 12 * 60 * 60)
 
 
   def run_job(self):
     hdfs_utils.rm_dir(self.job_out_dir_)
     input_paths = get_input_paths()
-    reduce_amount = 10
+    reduce_amount = 1
     logging.info('out dir: %s', self.job_out_dir_)
     cmd = 'hadoop jar hadoop-streaming-2.6.0.jar ' \
           '-libjars custom.jar ' \
@@ -86,8 +92,8 @@ class CacheManager:
           '-D mapreduce.partition.keycomparator.options="-k1,3" ' \
           ' %s ' \
           '-output %s ' \
-          '-mapper ./mapred_parser/india_reporter/mapper.py ' \
-          '-reducer ./mapred_parser/india_reporter/reducer.py ' \
+          '-mapper ./mapred_parser/india_report/mapper.py ' \
+          '-reducer ./mapred_parser/india_report/reducer.py ' \
           '-partitioner org.apache.hadoop.mapred.lib.KeyFieldBasedPartitioner ' \
           '-inputformat org.apache.hadoop.mapred.SequenceFileAsTextInputFormat ' \
           '-outputformat com.custom.MultipleTextOutputFormatByKey' % \
@@ -99,12 +105,14 @@ class CacheManager:
 
 
   def _load_data_internal(self):
+    logging.info('load data internal ...')
     self.run_job()
+    logging.info('finish run job ...')
     try:
       filename = 'part-00000'
       if os.path.isfile(filename):
         os.remove(filename)
-      cmd = 'hadoop fs -get %s/india_video/%s' %s (self.job_out_dir_, filename)
+      cmd = 'hadoop fs -get %s/india_video/%s' % (self.job_out_dir_, filename)
       logging.info('cmd: %s', cmd)
       commands.getoutput(cmd)
       logging.info('end to dump file')
@@ -119,7 +127,7 @@ class CacheManager:
           if len(line_data) != 6:
             logging.error('not len of line_data 6, line_data: %s', line_data)
           category, play_total, url, title, crawl_time, content_timestamp = line_data
-          crawl_interval = crawl_time - content_timestamp
+          crawl_interval = int(crawl_time) - int(content_timestamp)
           if play_total == 'None':
             play_total = 0
           play_per_sec = float(play_total) / crawl_interval
@@ -151,12 +159,12 @@ class CacheManager:
     return self._cache
 
 
-cache_manager = CacheManager()
 
 urls = ('/india_ranking', 'Monitor')
 
 web.config.debug = True
 app = web.application(urls, globals())
+cache_manager = CacheManager()
 
 class Monitor:
   def GET(self):

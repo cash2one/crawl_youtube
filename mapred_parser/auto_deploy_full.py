@@ -60,7 +60,7 @@ class ExtractWorker(object):
     
     input_file_count = hdfs_utils.count_file(self.last_user_dir_)
     if input_file_count:
-      input_path += ' -input ' + self.last_unique_dir_ 
+      input_path += ' -input ' + self.last_user_dir_ 
 
     reduce_amount = 100
     cmd = 'hadoop jar hadoop-streaming-2.6.0.jar ' \
