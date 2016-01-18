@@ -449,7 +449,7 @@ class YouTubeCrawler(Spider):
             part = 'snippet,statistics,contentDetails'
             api = 'https://www.googleapis.com/youtube/v3/channels?part=%s&id=%s' % \
                   (part, related_channel)
-            items.append(self._create_request(api, PageType.CHANNEL, CrawlDocType.HUB_HOME, meta={'extend_map': exmap}, headers=headers, in_doc=doc))
+            items.append(self._create_request(api, PageType.CHANNEL, CrawlDocType.HUB_HOME, meta={'extend_map': exmap}, headers=headers, dont_filter=False, in_doc=doc))
 
       related_channel_urls = ['https://www.youtube.com/channel/' + channel for channel in related_channel_list]
       channel_dict = {'channel_id': channel_id, 'out_related_user': related_channel_urls}
