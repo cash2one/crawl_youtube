@@ -21,7 +21,6 @@ class PageWriterManager(threading.Thread):
     threading.Thread.__init__(self)
     self.data_queue_ = Queue.LifoQueue(maxsize=queue_max_size)
     self.exit_ = False
-    # base on PageWriter
     self.writers_ = {}
     self.spider_ = spider
     self.logger_ = spider.logger_
@@ -44,7 +43,6 @@ class PageWriterManager(threading.Thread):
     for w in writers:
       obj = load_object(w)(self.spider_)
       self.writers_[obj.name] = obj
-      obj._initialize()
       self.logger_.info('create writer [%s]', obj.name)
 
 
@@ -86,7 +84,7 @@ class PageWriterManager(threading.Thread):
     self.all_exited_ = True
 
   def process_items(self):
-    self.logger_.info('Page writer manager consumer start...')
+    self.logger_.info('page writer manager processor start...')
     while not self.exit_ or not self.data_queue_.empty():
       try:
         item = self.data_queue_.get(block=True, timeout=10)
@@ -94,11 +92,11 @@ class PageWriterManager(threading.Thread):
         continue
       if not item:
         continue
-      for name, writer in self.writers_.items():
+      for name, writer in self.writers_.iteritems():
         try:
           writer.process_item(item)
         except:
-          self.logger_.exception('error while using [%s] writer', name)
+          self.logger_.exception('writer failed [%s]', name)
           continue
     self.process_exit_ = True
     self.logger_.info('Page writer manager exit normal')
