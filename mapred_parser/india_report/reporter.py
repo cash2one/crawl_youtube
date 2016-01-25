@@ -86,9 +86,19 @@ class CacheManager:
     utils.cycle_run(self._load_data_internal, 12 * 60 * 60)
 
 
+  def get_last_user_dir(self):
+    cmd = 'hadoop fs -ls /user/search/short_video/full_user_info | grep out_user_'
+    _, output = hdfs_utils.call_cmd(cmd)
+    output = output.strip()
+    last_dir = output.split(' ')[-1] + '/'
+    logging.info('last unique directory is %s', last_dir)
+    return last_dir
+
+
   def run_job(self):
     hdfs_utils.rm_dir(self.job_out_dir_)
     input_paths = get_input_paths()
+    input_paths += ' -input ' + self.get_last_user_dir()
     reduce_amount = 1
     logging.info('out dir: %s', self.job_out_dir_)
     cmd = 'hadoop jar hadoop-streaming-2.6.0.jar ' \

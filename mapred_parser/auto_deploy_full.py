@@ -20,7 +20,6 @@ import python_library.utils as utils
 
 
 out_final_dir = '/user/search/short_video/out/video/'
-day_tmp_dir = '/user/search/short_video/day_tmp/'
 
 
 class ExtractWorker(object):
@@ -47,10 +46,7 @@ class ExtractWorker(object):
     cur_job_dir = self.cur_cycle_dir_ + 'parse_job/'
     logging.info('\n>> last unique directory is %s\n>> current job directory is %s',
             self.last_unique_dir_, cur_job_dir)
-    #if not hdfs_utils.count_file(day_tmp_dir):
-    #  return False
 
-    #input_path = ' -input ' + day_tmp_dir + '*'
     input_path = ' -input /user/search/short_video/out/video/' + self.merge_day + '*'
     input_path += ' -input /user/search/short_video/out/user_info/' + self.merge_day + '*'
 
@@ -81,7 +77,6 @@ class ExtractWorker(object):
     logging.info('Job %s, details:\n%s', 'succeeded' if status == 0 else 'failed', output)
     if status:
       hdfs_utils.rm_dir(self.cur_cycle_dir_)
-      hdfs_utils.rm_file(day_tmp_dir + '*')
       raise Exception('hadoop parse job of short video failed')
     return status == 0
 
@@ -96,13 +91,9 @@ class ExtractWorker(object):
     self.cur_cycle_dir_ = '/user/search/short_video/tmp/full_job_%s/' % self.merge_day
     if self.merge_day < today:
       logging.info('merge_day less today, merge_day: %s, today: %s', self.merge_day, today)
-      #hdfs_utils.cp('/user/search/short_video/out/video/' + self.merge_day + '*', day_tmp_dir)
-      #hdfs_utils.cp('/user/search/short_video/out/user_info/' + self.merge_day + '*', day_tmp_dir)
     else:
       logging.info('merge_day not less today, merge_day: %s, today: %s', self.merge_day, today)
       return False
-    #if not hdfs_utils.count_file(day_tmp_dir):
-    #  return False
     logging.debug('finished preparing input data.')
 
     logging.info('creating current job directory...')
@@ -111,21 +102,64 @@ class ExtractWorker(object):
     logging.info('current job directory is %s' % self.cur_cycle_dir_)
     return True
 
+  def run_user_job(self, 
+                   input_path, 
+                   out_path, 
+                   mapper_path='./mapred_parser/user_analysis/mapper.py', 
+                   reducer_path='./mapred_parser/user_analysis/reducer_test.py'):
+    reduce_amount = 10
+    cmd = 'hadoop jar hadoop-streaming-2.6.0.jar ' \
+          '-libjars custom.jar ' \
+          '-archives hdfs://cluster/user/search/short_video/bin/mapred_parser.tar.gz#mapred_parser ' \
+          '-D mapreduce.job.reduces=%s ' \
+          '-D mapreduce.job.name=short_video_user_analysis ' \
+          '-D mapreduce.job.priority=HIGH ' \
+          '-input %s ' \
+          '-output %s ' \
+          '-mapper %s ' \
+          '-reducer %s ' \
+          '-inputformat org.apache.hadoop.mapred.SequenceFileAsTextInputFormat ' \
+          '-outputformat com.custom.MultipleSequenceFileOutputFormatByKey' % \
+          (reduce_amount, input_path,  out_path, mapper_path, reducer_path)
+    logging.info('start running analysis job...\nreduce job amount: [%s]\ncommand: %s', reduce_amount, cmd)
+    status, output = commands.getstatusoutput(cmd)
+    logging.info('Job %s, details:\n%s', 'succeeded' if status == 0 else 'failed', output)
+    if status:
+      hdfs_utils.rm_dir(self.cur_cycle_dir_)
+      raise Exception('hadoop user analysis job of short video failed')
+    return status == 0
+
+
+  def run_user_analysis(self):
+    hdfs_utils.rm_dir('/user/search/short_video/tmp/full_user_analysis/*')
+    user_input = self.cur_cycle_dir_ + '/parse_job/user_info'
+    user_outpath = '%s/user_analysis_%s' % (self.cur_cycle_dir_, 8)
+    mapper_path='./mapred_parser/user_analysis/mapper_once.py'
+    reducer_path='./mapred_parser/user_analysis/reducer_8.py'
+    self.run_user_job(user_input, user_outpath, mapper_path, reducer_path)
+    for i in range(7, 1, -1):
+      user_input = '/user/search/short_video/tmp/full_user_analysis/user_analysis_%s/user_info/*' % (i + 1)
+      user_input = '%s/user_analysis_%s/user_info/*' % (self.cur_cycle_dir_, i + 1)
+      user_outpath = '/user/search/short_video/tmp/full_user_analysis/user_analysis_%s' % i
+      user_outpath = '%s/user_analysis_%s' % (self.cur_cycle_dir_, i)
+      reducer_path = './mapred_parser/user_analysis/reducer_%s.py' % i
+      run_job(user_input, user_outpath, reducer_path)
+    return True
+
 
   def gen_output(self):
     logging.info('moving output data into final folder...')
 
-    hdfs_utils.rm_file(day_tmp_dir + '*')
     out_final_dir = '/user/search/short_video/full/out_video_%s' % self.merge_day
     out_user_dir = '/user/search/short_video/full_user_info/out_user_%s' % self.merge_day
     hdfs_utils.mv(self.cur_cycle_dir_ + '/parse_job/unique', out_final_dir)
-    hdfs_utils.mv(self.cur_cycle_dir_ + '/parse_job/user_info', out_user_dir)
+    hdfs_utils.mv(self.cur_cycle_dir_ + '/user_analysi_2/user_info', out_user_dir)
     return True
 
 
   def run(self):
     logging.info('starting new cycle.')
-    self.prepare_input() and self.run_job() and self.gen_output()
+    self.prepare_input() and self.run_job() and self.run_user_analysis() and self.gen_output()
     logging.info('finished one cycle.')
 
 

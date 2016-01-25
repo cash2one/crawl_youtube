@@ -35,7 +35,7 @@ class MergeItem:
         original_user = str2user(base64.b64decode(data_base64))
         self._user = original_user
         if self._user:
-          if (self._user.country == 'IN') or (self._user.display_countrys and 'IN' in self._user.display_countrys):
+          if (self._user.country == 'IN') or (self._user.mined_countrys and 'IN' in self._user.mined_countrys):
             self._is_india_user = True
       except:
         sys.stderr.write('reporter:counter:statistic,failed_2_user,1\n')
