@@ -34,7 +34,7 @@ if __name__ == '__main__':
       sys.stderr.write('reporter:counter:map,india_user,1\n')
     if not original_user.out_related_user:
       continue
-    countrys = original_user.mined_countrys if original_user.mined_countrys else []
+    countrys = []
     if original_user.country == 'IN':
       sys.stderr.write('reporter:counter:map,india_user_selected,1\n')
 

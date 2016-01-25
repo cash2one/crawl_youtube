@@ -39,7 +39,7 @@ class ExtendMap:
     (1, TType.STRING, 'raw_url', None, None, ), # 1
     (2, TType.I32, 'page_index', None, 1, ), # 2
     (3, TType.I32, 'position', None, 0, ), # 3
-    (4, TType.I32, 'sub_category_num', None, -1, ), # 4
+    (4, TType.I32, 'sub_category_num', None, 0, ), # 4
     (5, TType.I32, 'doc_type', None, None, ), # 5
     (6, TType.LIST, 'users', (TType.STRUCT,(le_crawler.proto.video.ttypes.OriginalUser, le_crawler.proto.video.ttypes.OriginalUser.thrift_spec)), None, ), # 6
     (7, TType.LIST, 'videos', (TType.STRUCT,(le_crawler.proto.video.ttypes.MediaVideo, le_crawler.proto.video.ttypes.MediaVideo.thrift_spec)), None, ), # 7

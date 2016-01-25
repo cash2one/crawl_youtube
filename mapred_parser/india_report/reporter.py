@@ -62,6 +62,18 @@ def get_input_paths():
   return paths
 
 class CacheManager:
+  _instance = None
+  _instance_lock = threading.Lock()
+
+  @staticmethod
+  def get_instance():
+    CacheManager._instance_lock.acquire()
+    if not CacheManager._instance:
+      CacheManager._instance = CacheManager()
+    CacheManager._instance_lock.release()
+    return CacheManager._instance
+  
+
   def __init__(self):
     logging.info('cache_manager init ...')
     self._cache = None
@@ -84,7 +96,7 @@ class CacheManager:
           '-archives hdfs://cluster/user/search/short_video/bin/mapred_parser.tar.gz#mapred_parser ' \
           '-D mapreduce.job.output.key.comparator.class=org.apache.hadoop.mapred.lib.KeyFieldBasedComparator ' \
           '-D mapreduce.job.reduces=%s ' \
-          '-D mapreduce.job.name=youtube_statistic ' \
+          '-D mapreduce.job.name=india_youtube_statistic ' \
           '-D mapreduce.job.priority=HIGH ' \
           '-D mapreduce.output.fileoutputformat.compress=0 ' \
           '-D stream.num.map.output.key.fields=3 ' \
@@ -162,9 +174,9 @@ class CacheManager:
 
 urls = ('/india_ranking', 'Monitor')
 
-web.config.debug = True
+web.config.debug = False
 app = web.application(urls, globals())
-cache_manager = CacheManager()
+cache_manager = CacheManager.get_instance()
 
 class Monitor:
   def GET(self):

@@ -47,8 +47,8 @@ class ExtractWorker(object):
     cur_job_dir = self.cur_cycle_dir_ + 'parse_job/'
     logging.info('\n>> last unique directory is %s\n>> current job directory is %s',
             self.last_unique_dir_, cur_job_dir)
-    if not hdfs_utils.count_file(day_tmp_dir):
-      return False
+    #if not hdfs_utils.count_file(day_tmp_dir):
+    #  return False
 
     #input_path = ' -input ' + day_tmp_dir + '*'
     input_path = ' -input /user/search/short_video/out/video/' + self.merge_day + '*'
@@ -101,8 +101,8 @@ class ExtractWorker(object):
     else:
       logging.info('merge_day not less today, merge_day: %s, today: %s', self.merge_day, today)
       return False
-    if not hdfs_utils.count_file(day_tmp_dir):
-      return False
+    #if not hdfs_utils.count_file(day_tmp_dir):
+    #  return False
     logging.debug('finished preparing input data.')
 
     logging.info('creating current job directory...')
@@ -118,8 +118,8 @@ class ExtractWorker(object):
     hdfs_utils.rm_file(day_tmp_dir + '*')
     out_final_dir = '/user/search/short_video/full/out_video_%s' % self.merge_day
     out_user_dir = '/user/search/short_video/full_user_info/out_user_%s' % self.merge_day
-    hdfs_utils.mv(self.cur_cycle_dir_ + 'unique', out_final_dir)
-    hdfs_utils.mv(self.cur_cycle_dir_ + 'user_info', out_user_dir)
+    hdfs_utils.mv(self.cur_cycle_dir_ + '/parse_job/unique', out_final_dir)
+    hdfs_utils.mv(self.cur_cycle_dir_ + '/parse_job/user_info', out_user_dir)
     return True
 
 

@@ -104,10 +104,10 @@ class ExtractWorker(object):
     logging.info('moving output data into final folder...')
     hdfs_utils.ensure_dir(done_dir)
     hdfs_utils.ensure_dir(out_md5_dir)
-    hdfs_utils.mv(in_tmp_dir + '*.seq', done_dir)
     hdfs_utils.cp_or_mv_with_timestamp(self.cur_cycle_dir_ + 'parse_job/video/*', out_video_dir, 'mv')
     hdfs_utils.cp_or_mv_with_timestamp(self.cur_cycle_dir_ + 'parse_job/user_info/*', out_user_dir, 'mv')
     hdfs_utils.cp_or_mv_with_timestamp(self.cur_cycle_dir_ + 'parse_job/no_md5/*', out_md5_dir, 'mv')
+    hdfs_utils.mv(in_tmp_dir + '*.seq', done_dir)
     logging.info('finished moving.')
     return True
 
