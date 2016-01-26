@@ -46,7 +46,8 @@ class YouTubeCrawler(Spider):
                           PageType.CATEGORY:              self.parse_category,
                           PageType.CHANNEL:               self.parse_channel,
                           PageType.PLAY:                  self.parse_page,
-                          PageType.RELATED_CHANNEL:       self.parse_related_channel}
+                          PageType.RELATED_CHANNEL:       self.parse_related_channel,
+                          PageType.QUERY_SEARCH:          self.parse_query_search}
     self._init_client()
     self.start_size = len(YouTubeCrawler.start_url_loader.get_start_urls()) + self._starturl_collection.count()
     self._sub_key_pattern = re.compile(r"&key=.*")
@@ -66,11 +67,13 @@ class YouTubeCrawler(Spider):
         self._collection = self._db.debug_schedule_info
         self._recrawl_collection = self._db.debug_recrawl_failed_info
         self._channel_collection = self._db.debug_channel_info
+        self._query_collection = self._db.debug_query_info
       else:
         self._starturl_collection = self._db.start_channel
         self._collection = self._db.schedule_info
         self._recrawl_collection = self._db.recrawl_failed_info
         self._channel_collection = self._db.channel_info
+        self._query_collection = self._db.query_info
       self._ensure_indexs()
     except Exception, e:
       self._collection = None
@@ -88,6 +91,7 @@ class YouTubeCrawler(Spider):
     self._recrawl_collection.create_index([('next_schedule_time', DESCENDING)])
     self._channel_collection.create_index('channel_id', unique=True)
     self._channel_collection.create_index([('next_schedule_time', DESCENDING)])
+    self._query_collection.create_index('query', unique=True)
 
   def _strip_key(self, url):
     if not url:
@@ -240,10 +244,61 @@ class YouTubeCrawler(Spider):
       self.upsert_channel_info(channel_dict)
       exmap['channel_id'] = channel_id
       part = 'snippet,statistics,contentDetails'
-      part = 'snippet,statistics,contentDetails'
       api = 'https://www.googleapis.com/youtube/v3/channels?part=%s&id=%s' % \
           (part, channel_id)
       yield self._create_request(api, PageType.CHANNEL, CrawlDocType.HUB_HOME, meta={'extend_map': exmap}, dont_filter=True)
+
+    #from query
+    for item in self._query_collection.find({}):
+      query = item.get('query', None)
+      if not query:
+        continue
+      part = 'snippet'
+      maxResults = 50
+      api = 'https://www.googleapis.com/youtube/v3/search?part=%s&maxResults=%s&order=date&q=%s' % (part, maxResults, query)
+      yield self._create_request(api, PageType.QUERY_SEARCH, CrawlDocType.PAGE_HOT, dont_filter=True)
+
+
+  def parse_query_search(self, repsponse):
+    try:
+      items = []
+      if not response:
+        return
+      url = response.url.strip()
+      headers = {'Referer': url}
+      doc = response.meta.get('crawl_doc')
+      #print 'parse_query_search url:', url
+      self.logger_.info('parse_query_search url: %s' % url)
+      page = response.body.decode(response.encoding)
+      #self.update_status(doc, CrawlStatus._VALUES_TO_NAMES.get(CrawlStatus.DOWNLOADED))
+      extend_map = response.meta.get('extend_map', {})
+      rep_dict = json.loads(page)
+      query = get_url_param(url, 'q')
+      nextPageToken = rep_dict.get('nextPageToken', None)
+      if nextPageToken and query:
+        part = 'snippet'
+        maxResults = 50
+        api = 'https://www.googleapis.com/youtube/v3/search?part=%s&maxResults=%s&order=date&pageToken=%s&q=%s' % (part, maxResults, nextPageToken, query)
+        yield self._create_request(api, PageType.QUERY_SEARCH, CrawlDocType.HUB_CATEGORY, dont_filter=True)
+      for item in rep_dict.get('items', []):
+        if item.get('id', {}).get('kind', None) not in ['youtube#channel', 'youtube#video']:
+          continue
+        channel_id = item.get('snippet', {}).get('channelId', None)
+        if not channel_id:
+          continue
+        exmap = {'channel_id': channel_id}
+        part = 'snippet,statistics,contentDetails'
+        api = 'https://www.googleapis.com/youtube/v3/channels?part=%s&id=%s' % \
+            (part, channel_id)
+        items.append(self._create_request(api, PageType.CHANNEL, CrawlDocType.HUB_HOME, meta={'extend_map': exmap}, headers=headers, dont_filter=False, in_doc=doc))
+      self.update_status(doc, CrawlStatus._VALUES_TO_NAMES.get(CrawlStatus.EXTRACTED))
+      self.remove_recrawl_info(url)
+      return items
+    except Exception, e:
+      msg = e.message
+      msg += traceback.format_exc()
+      print msg
+      self.logger_.exception('Failed parse_query_search:%s, url:%s' % (msg, url))
 
 
   def parse_home(self, response):

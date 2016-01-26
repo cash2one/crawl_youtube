@@ -210,6 +210,7 @@ class PageType:
   RELATED_CHANNEL = 5
   RELATED_VIDEO = 6
   CATEGORY = 7
+  QUERY_SEARCH = 8
 
   _VALUES_TO_NAMES = {
     0: "HUB",
@@ -220,6 +221,7 @@ class PageType:
     5: "RELATED_CHANNEL",
     6: "RELATED_VIDEO",
     7: "CATEGORY",
+    8: "QUERY_SEARCH",
   }
 
   _NAMES_TO_VALUES = {
@@ -231,6 +233,7 @@ class PageType:
     "RELATED_CHANNEL": 5,
     "RELATED_VIDEO": 6,
     "CATEGORY": 7,
+    "QUERY_SEARCH": 8,
   }
 
 class SourceType:

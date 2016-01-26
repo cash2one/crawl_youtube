@@ -81,6 +81,7 @@ enum PageType {
   RELATED_CHANNEL         = 5,    # 相关频道
   RELATED_VIDEO           = 6,    # 相关视频
   CATEGORY                = 7,    # category页(目前YouTube使用)
+  QUERY_SEARCH            = 8,    # 搜索关键词
 }
 
 enum SourceType {

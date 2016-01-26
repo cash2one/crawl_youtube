@@ -1,15 +1,15 @@
 10
 
 dir
-137992
+138212
 http://svn2.letv.cn/tp/search2/crawler_ver2/le_crawler/proto/crawl
 http://svn2.letv.cn
 
 
 
-2016-01-08T12:02:35.009342Z
-133325
-wangziqing
+2016-01-26T05:02:30.423611Z
+138212
+zhaojincheng
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2016-01-15T10:07:23.333346Z
-2ea532558c24b64f00fecd9e1536e8f2
-2016-01-08T12:02:35.009342Z
-133325
-wangziqing
+2016-01-26T05:02:52.167819Z
+c0bac092f16a0f3da7a184e450eff5ca
+2016-01-26T05:02:30.423611Z
+138212
+zhaojincheng
 
 
 
@@ -58,7 +58,7 @@ wangziqing
 
 
 
-68903
+68968
 
 __init__.py
 file
