@@ -255,7 +255,7 @@ class YouTubeCrawler(Spider):
         continue
       part = 'snippet'
       maxResults = 50
-      api = 'https://www.googleapis.com/youtube/v3/search?part=%s&maxResults=%s&order=date&q=%s' % (part, maxResults, query)
+      api = 'https://www.googleapis.com/youtube/v3/search?part=%s&maxResults=%s&order=relevance&q=%s' % (part, maxResults, query)
       yield self._create_request(api, PageType.QUERY_SEARCH, CrawlDocType.PAGE_HOT, dont_filter=True)
 
 
@@ -278,7 +278,7 @@ class YouTubeCrawler(Spider):
       if nextPageToken and query:
         part = 'snippet'
         maxResults = 50
-        api = 'https://www.googleapis.com/youtube/v3/search?part=%s&maxResults=%s&order=date&pageToken=%s&q=%s' % (part, maxResults, nextPageToken, query)
+        api = 'https://www.googleapis.com/youtube/v3/search?part=%s&maxResults=%s&order=relevance&pageToken=%s&q=%s' % (part, maxResults, nextPageToken, query)
         yield self._create_request(api, PageType.QUERY_SEARCH, CrawlDocType.HUB_CATEGORY, dont_filter=True)
       for item in rep_dict.get('items', []):
         if item.get('id', {}).get('kind', None) not in ['youtube#channel', 'youtube#video']:
