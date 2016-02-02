@@ -742,7 +742,8 @@ def build_user(channel_dict):
       country_source_list = merge_country_source(country_source_list, 
           CountryCode._NAMES_TO_VALUES.get(country, CountryCode.UNKNOWN), [CountrySource.PRODUCT])
 
-  original_user.country_source_list = country_source_list
+  if country_source_list:
+    original_user.country_source_list = country_source_list
 
   original_user.video_num = int(channel_dict.get('video_num', '0'))
   original_user.play_num = int(channel_dict.get('play_num', '0'))
