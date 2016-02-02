@@ -31,7 +31,7 @@ from duration_parser import duration2int
 from parse_youtube import parse_thumbnail_list
 from ..proto.crawl_doc.ttypes import CrawlDoc
 from ..proto.video.ttypes import MediaVideo, State, OriginalUser
-from ..proto.crawl.ttypes import CrawlDocType, Request, Response, HistoryItem, CrawlHistory, PageType, UserState, CountrySourceInfo, CountryCode
+from ..proto.crawl.ttypes import CrawlDocType, Request, Response, HistoryItem, CrawlHistory, PageType, UserState, CountrySourceInfo, CountryCode, CountrySource
 
 def str_unzip(buf):
   f = gzip.GzipFile(fileobj = StringIO.StringIO(buf), mode = 'rb')
