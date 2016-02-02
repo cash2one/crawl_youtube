@@ -11,7 +11,7 @@ import base64
 
 from le_crawler.proto.video.ttypes import OriginalUser
 from le_crawler.proto.crawl.ttypes import CrawlHistory, HistoryItem
-from le_crawler.common.utils import str2mediavideo, thrift2str, multi_key_fields, compress_play_trends, str2user #, int_typeids
+from le_crawler.common.utils import str2mediavideo, thrift2str, multi_key_fields, compress_play_trends, str2user, merge_country_source  #, int_typeids
 from le_crawler.common.parse_youtube import youtube_category_dict
 
 merged_fields = set(['crawl_history', 'play_trends', 'in_links', 'user', 'page_state', 'inlink_history'])
@@ -117,21 +117,27 @@ class MergeItem:
     inlink_history.append(latest_inlink)
     videos[0].inlink_history = inlink_history
 
+  def _merge_country_list(country_list_des, country_list_src):
+    if not country_list_src:
+      return country_list_des
+    for country_info in country_list_src:
+      country_list_des = merge_country_source(country_list_des, country_info.country_code, country_info.source_list)
+    return country_list_des
 
   def _merge_user(self, users):
     if not users:
       return
     new_user = OriginalUser()
     for k, v in new_user.__dict__.iteritems():
-      if k == 'display_countrys':
-        display_countrys_set = set([])
+      if k == 'country_source_list':
+        country_source_list = []
         for user in users:
           old_v = getattr(user, k)
           if not old_v:
             continue
-          display_countrys_set = display_countrys_set | set(old_v)
-        if display_countrys_set:
-          setattr(new_user, k, list(display_countrys_set))
+          country_source_list = _merge_country_list(old_v, country_source_list)
+        if country_source_list:
+          setattr(new_user, k, country_source_list)
       else:
         for user in users:
           old_v = getattr(user, k)

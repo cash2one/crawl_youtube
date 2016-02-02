@@ -68,16 +68,19 @@ class YouTubeCrawler(Spider):
         self._recrawl_collection = self._db.debug_recrawl_failed_info
         self._channel_collection = self._db.debug_channel_info
         self._query_collection = self._db.debug_query_info
+        self._start_request_collection = self.debug_start_request_info
       else:
         self._starturl_collection = self._db.start_channel
         self._collection = self._db.schedule_info
         self._recrawl_collection = self._db.recrawl_failed_info
         self._channel_collection = self._db.channel_info
         self._query_collection = self._db.query_info
+        self._start_request_collection = self.start_request_info
       self._ensure_indexs()
     except Exception, e:
       self._collection = None
       self.logger_.exception('failed to connect to mongodb...')
+
 
   def _ensure_indexs(self):
     #index_info = self._collection.index_information()
@@ -92,12 +95,25 @@ class YouTubeCrawler(Spider):
     self._channel_collection.create_index('channel_id', unique=True)
     self._channel_collection.create_index([('next_schedule_time', DESCENDING)])
     self._query_collection.create_index('query', unique=True)
+    self._start_request_collection.create_index('url', unique=True)
+    self._start_request_collection.create_index([('next_schedule_time', DESCENDING)])
+
 
   def _strip_key(self, url):
     if not url:
       self.logger_.error('empty url ......')
       return None
     return self._sub_key_pattern.sub('', url)
+
+  def update_start_request_info(self, url, data):
+    url = self._strip_key(url)
+    if not url:
+      return
+    data.update({'update_time': int(time.time())})
+    try:
+      self._start_request_collection.update({'url': url}, {'$set': data}, upsert=True)
+    except:
+      self.logger_.exception('Failed update start request info:[%s]' % url)
 
   def update_status(self, doc, status):
     url = self._strip_key(doc.url)
@@ -231,16 +247,16 @@ class YouTubeCrawler(Spider):
         continue
       exmap = item
       exmap.pop('_id', None)
-      countrys = exmap.get('display_countrys', [])
+      countrys = exmap.get('product_countrys', [])
       channel_dict = self.get_channel_info(channel_id)
       if channel_dict:
-        display_countrys = channel_dict.get('display_countrys', [])
+        product_countrys = channel_dict.get('product_countrys', [])
         for country in countrys:
-          if country not in display_countrys:
-            display_countrys.append(country)
+          if country not in product_countrys:
+            product_countrys.append(country)
       else:
-        display_countrys = countrys
-      channel_dict = {'channel_id': channel_id, 'display_countrys': display_countrys}
+        product_countrys = countrys
+      channel_dict = {'channel_id': channel_id, 'product_countrys': product_countrys}
       self.upsert_channel_info(channel_dict)
       exmap['channel_id'] = channel_id
       part = 'snippet,statistics,contentDetails'
@@ -372,18 +388,6 @@ class YouTubeCrawler(Spider):
       for data in datas:
         exmap = {}
         exmap.update(extend_map)
-        countrys = exmap.get('display_countrys', [])
-        channel_id = data.get('id', None)
-        channel_dict = self.get_channel_info(channel_id)
-        if channel_dict:
-          display_countrys = channel_dict.get('display_countrys', [])
-          for country in countrys:
-            if country not in display_countrys:
-              display_countrys.append(country)
-        else:
-          display_countrys = countrys
-        channel_dict = {'channel_id': channel_id, 'display_countrys': display_countrys}
-        self.upsert_channel_info(channel_dict)
         exmap['channel_id'] = channel_id
         part = 'snippet,statistics,contentDetails'
         api = 'https://www.googleapis.com/youtube/v3/channels?part=%s&id=%s' % \
@@ -617,22 +621,22 @@ class YouTubeCrawler(Spider):
             continue
 
           #TODO to delete
-          countrys = extend_map.get('display_countrys', [])
+          countrys = extend_map.get('popular_countrys', [])
           if countrys:
             channel_dict = self.get_channel_info(channel_id)
             if channel_dict:
-              display_countrys = channel_dict.get('display_countrys', [])
+              popular_countrys = channel_dict.get('popular_countrys', [])
               for country in countrys:
-                if country not in display_countrys:
-                  display_countrys.append(country)
+                if country not in popular_countrys:
+                  popular_countrys.append(country)
             else:
-              display_countrys = countrys
-            channel_dict = {'channel_id': channel_id, 'display_countrys': display_countrys}
+              popular_countrys = countrys
+            channel_dict = {'channel_id': channel_id, 'popular_countrys': popular_countrys}
             self.upsert_channel_info(channel_dict)
 
           exmap = {'channel_id': channel_id, 'source': 'youtube'}
           if countrys:
-            exmap['display_countrys'] = countrys
+            exmap['popular_countrys'] = countrys
           part = 'snippet,statistics,contentDetails'
           api = 'https://www.googleapis.com/youtube/v3/channels?part=%s&id=%s' % \
                 (part, channel_id)

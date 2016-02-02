@@ -18,7 +18,7 @@ logging.basicConfig(format="[%(levelname)s %(asctime)s %(filename)s:%(lineno)d] 
                     filename=log_name, level=logging.DEBUG)
 
 def run_job():
-  input_path = '-input /user/search/short_video/full_user_info/out_user_20160119 -input /user/search/short_video/full/out_video_20160119'
+  input_path = '-input /user/search/short_video/full_user_info/out_user_20160127 -input /user/search/short_video/full/out_video_20160127'
   out_path = '/user/search/short_video/tmp/india_full_statistic '
   reduce_amount = 100
   cmd = 'hadoop jar hadoop-streaming-2.6.0.jar ' \

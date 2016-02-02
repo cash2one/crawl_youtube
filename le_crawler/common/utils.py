@@ -31,7 +31,7 @@ from duration_parser import duration2int
 from parse_youtube import parse_thumbnail_list
 from ..proto.crawl_doc.ttypes import CrawlDoc
 from ..proto.video.ttypes import MediaVideo, State, OriginalUser
-from ..proto.crawl.ttypes import CrawlDocType, Request, Response, HistoryItem, CrawlHistory, PageType, UserState
+from ..proto.crawl.ttypes import CrawlDocType, Request, Response, HistoryItem, CrawlHistory, PageType, UserState, CountrySourceInfo, CountryCode
 
 def str_unzip(buf):
   f = gzip.GzipFile(fileobj = StringIO.StringIO(buf), mode = 'rb')
@@ -668,6 +668,24 @@ def gen_next_schedule_time(crawl_history):
       else crawl_history[0]['crawl_interval'] * 2
   return now + schedule_interval
 
+def merge_country_source(country_source_list, code, source_list_src):
+  if code is None or source is None:
+    return country_source_list
+  if country_source_list is None:
+    country_source_list = []
+  for source_info in country_source_list:
+    if source_info.country_code == code:
+      source_list = source_info.source_list
+      if source_list is not None and source_list_src is not None:
+        source_info.source_list = list(set(source_list) + set(source_list_src))
+      return country_source_list
+  source_info = CountrySourceInfo()
+  source_info.country_code = code
+  source_info.source_list = source_list_src
+  country_source_list.append(source_info)
+  return country_source_list
+
+
 def build_user(channel_dict):
   if not channel_dict:
     return None
@@ -705,24 +723,32 @@ def build_user(channel_dict):
   if portrait_url:
     original_user.portrait_url = portrait_url.encode('utf-8')
 
-  original_user.country = channel_dict.get('country', None)
-  if original_user.country:
-    original_user.country = original_user.country.encode('utf-8')
+  
+  country_source_list = []
+  country = channel_dict.get('country', None)
+  if country:
+    country_source_list = merge_country_source(country_source_list, 
+        CountryCode._NAMES_TO_VALUES.get('country', CountryCode.UNKNOW), [CountrySource.YOUTUBE])
+  
+  popular_countrys = channel_dict.get('popular_countrys', None)
+  if popular_countrys:
+    for country in popular_countrys:
+      country_source_list = merge_country_source(country_source_list, 
+          CountryCode._NAMES_TO_VALUES.get(country, CountryCode.UNKNOW), [CountrySource.POPULAR])
 
-  display_countrys = channel_dict.get('display_countrys', None)
-  if display_countrys:
-    original_user.display_countrys = [country.encode('utf-8') for country in display_countrys]
+  product_countrys = channel_dict.get('popular_countrys', None)
+  if product_countrys:
+    for country in product_countrys:
+      country_source_list = merge_country_source(country_source_list, 
+          CountryCode._NAMES_TO_VALUES.get(country, CountryCode.UNKNOW), [CountrySource.PRODUCT])
+
+  original_user.country_source_list = country_source_list
 
   original_user.video_num = int(channel_dict.get('video_num', '0'))
   original_user.play_num = int(channel_dict.get('play_num', '0'))
   original_user.fans_num = int(channel_dict.get('fans_num', '0'))
   original_user.comment_num = int(channel_dict.get('comment_num', '0'))
   original_user.update_time = channel_dict.get('update_time', None)
-
-  #TODO to delete
-  # in_related_user = channel_dict.get('in_related_user', [])
-  # if in_related_user:
-  #   original_user.in_related_user = [related_user.encode('utf-8') for related_user in in_related_user]
   
   out_related_user = channel_dict.get('out_related_user', [])
   if out_related_user:

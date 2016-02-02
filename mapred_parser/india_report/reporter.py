@@ -83,7 +83,7 @@ class CacheManager:
 
   def _load_data(self):
     logging.info('load data ...')
-    utils.cycle_run(self._load_data_internal, 12 * 60 * 60)
+    utils.cycle_run(self._load_data_internal, 6 * 60 * 60)
 
 
   def get_last_user_dir(self):
@@ -99,8 +99,9 @@ class CacheManager:
     hdfs_utils.rm_dir(self.job_out_dir_)
     input_paths = get_input_paths()
     input_paths += ' -input ' + self.get_last_user_dir()
-    reduce_amount = 1
+    reduce_amount = 100
     logging.info('out dir: %s', self.job_out_dir_)
+    #'-D mapreduce.output.fileoutputformat.compress=0 ' \
     cmd = 'hadoop jar hadoop-streaming-2.6.0.jar ' \
           '-libjars custom.jar ' \
           '-archives hdfs://cluster/user/search/short_video/bin/mapred_parser.tar.gz#mapred_parser ' \
@@ -108,7 +109,6 @@ class CacheManager:
           '-D mapreduce.job.reduces=%s ' \
           '-D mapreduce.job.name=india_youtube_statistic ' \
           '-D mapreduce.job.priority=HIGH ' \
-          '-D mapreduce.output.fileoutputformat.compress=0 ' \
           '-D stream.num.map.output.key.fields=3 ' \
           '-D mapreduce.partition.keypartitioner.options=-k1,1 ' \
           '-D mapreduce.partition.keycomparator.options="-k1,3" ' \
@@ -131,10 +131,10 @@ class CacheManager:
     self.run_job()
     logging.info('finish run job ...')
     try:
-      filename = 'part-00000'
+      filename = 'india_video.txt'
       if os.path.isfile(filename):
         os.remove(filename)
-      cmd = 'hadoop fs -get %s/india_video/%s' % (self.job_out_dir_, filename)
+      cmd = 'hadoop fs -text %s/india_video/* > %s' % (self.job_out_dir_, filename)
       logging.info('cmd: %s', cmd)
       commands.getoutput(cmd)
       logging.info('end to dump file')
@@ -148,6 +148,7 @@ class CacheManager:
           line_data = line.strip().split('\t')
           if len(line_data) != 6:
             logging.error('not len of line_data 6, line_data: %s', line_data)
+            continue
           category, play_total, url, title, crawl_time, content_timestamp = line_data
           crawl_interval = int(crawl_time) - int(content_timestamp)
           if play_total == 'None':

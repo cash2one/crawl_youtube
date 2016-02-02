@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 57
-/!svn/ver/138212/tp/search2/crawler_ver2/le_crawler/proto
+/!svn/ver/139162/tp/search2/crawler_ver2/le_crawler/proto
 END
 BUILD
 K 25
@@ -19,7 +19,7 @@ video_media.thrift
 K 25
 svn:wc:ra_dav:version-url
 V 76
-/!svn/ver/137986/tp/search2/crawler_ver2/le_crawler/proto/video_media.thrift
+/!svn/ver/139162/tp/search2/crawler_ver2/le_crawler/proto/video_media.thrift
 END
 __init__.py
 K 25
@@ -49,7 +49,7 @@ crawl_doc.thrift
 K 25
 svn:wc:ra_dav:version-url
 V 74
-/!svn/ver/138212/tp/search2/crawler_ver2/le_crawler/proto/crawl_doc.thrift
+/!svn/ver/139162/tp/search2/crawler_ver2/le_crawler/proto/crawl_doc.thrift
 END
 scheduler_service.thrift
 K 25

@@ -11,6 +11,7 @@ sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../')
 
 
 from le_crawler.proto.video.ttypes import OriginalUser
+from ..proto.crawl.ttypes import CountrySource
 from le_crawler.common.utils import str2user 
 
 if __name__ == '__main__':
@@ -30,20 +31,14 @@ if __name__ == '__main__':
     except:
       sys.stderr.write('reporter:counter:map,map_decode_failed,1\n')
       continue
-    if original_user.country == 'IN':
-      sys.stderr.write('reporter:counter:map,india_user,1\n')
-    if not original_user.out_related_user:
-      continue
-    countrys = original_user.mined_countrys if original_user.mined_countrys else []
-    if original_user.country == 'IN':
-      sys.stderr.write('reporter:counter:map,india_user_selected,1\n')
-
-    if original_user.country and original_user.country not in countrys:
-      countrys.append(original_user.country)
-    if countrys:
-      sys.stderr.write('reporter:counter:map,user_selected,1\n')
-      countrys = ';'.join(countrys)
-      for related_user in original_user.out_related_user:
-        print related_user + '\t' + 'mined_countrys' + '\t' + user_url + '\t' + countrys
+    if original_user.out_related_user and original_user.country_source_list:
+      for country_source_info in original_user.country_source_list:
+        if CountrySource.YOUTUBE in country_source_info.source_list:
+          if country_source_info.country_code == CountryCode.IN:
+            sys.stderr.write('reporter:counter:map,india_user,1\n')
+          if not country_source_info.country_code:
+            continue
+          for related_user in original_user.out_related_user:
+            print related_user + '\t' + 'mined_countrys' + '\t' + user_url + '\t' + CountryCode._VALUES_TO_NAMES[country_source_info.country_code]
 
 

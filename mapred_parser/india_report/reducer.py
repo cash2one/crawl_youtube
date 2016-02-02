@@ -23,6 +23,7 @@ class MergeItem:
     self._user = None
     self._is_india_user = False
     self._url = None
+    self._video = None
 
 
   def get_user_url(self):
@@ -40,20 +41,26 @@ class MergeItem:
       except:
         sys.stderr.write('reporter:counter:statistic,failed_2_user,1\n')
     elif data_type == 'video':
-      if url != self._url:
+      try:
+        video = str2mediavideo(base64.b64decode(data_base64))
+      except:
+        sys.stderr.write('reporter:counter:reduce,failed_2_video,1\n')
+        return
+      if url == self._url:
+        if not self._video:
+          self._video = video
+        elif video.crawl_time and video.crawl_time > self._video.crawl_time:
+          self._video = video
+      else:
+        self.print_video()
         self._url = url
-        if self._is_india_user:
-          try:
-            video = str2mediavideo(base64.b64decode(data_base64))
-            self.print_video(video)
-          except:
-            sys.stderr.write('reporter:counter:reduce,failed_2_video,1\n')
+        self._video = video
 
 
-  def print_video(self, video):
-    if not video:
+  def print_video(self):
+    video = self._video
+    if not video or not self._is_india_user:
       return
-
     category = video.category
     if not category:
       sys.stderr.write('reporter:counter:statistic,india_not_category,1\n')
@@ -61,6 +68,9 @@ class MergeItem:
     category = category.replace(' ', '_')
     sys.stderr.write('reporter:counter:statistic,india_%s,1\n' % category)
     content_timestamp = video.content_timestamp
+    if not video.crawl_time:
+      sys.stderr.write('reporter:counter:statistic,india_not_crawl_time,1\n')
+      return
     if not content_timestamp:
       sys.stderr.write('reporter:counter:statistic,india_not_content_timestamp,1\n')
       return
@@ -91,8 +101,10 @@ def main():
     if user_url == merge_item.get_user_url():
       merge_item.add_item(user_url, data_type, url, data_base64)
     else:
+      merge_item.print_video()
       merge_item.reset(user_url)
       merge_item.add_item(user_url, data_type, url, data_base64)
+  merge_item.print_video()
 
 
 if __name__ == '__main__':

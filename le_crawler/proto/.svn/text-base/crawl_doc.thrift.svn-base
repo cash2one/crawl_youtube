@@ -37,6 +37,13 @@ enum UserState {
   DISABLE                 = 1,
 }
 
+enum CountrySource {
+  YOUTUBE                 = 0,   # YouTube提供
+  PRODUCT                 = 1,   # 产品提供
+  POPULAR                 = 2,   # 从对应国家的热门视频中发现
+  MINED                   = 3,   # 从相关频道挖掘
+}
+
 enum CrawlStatus {
   DISCOVERED              = 0,
   RECRAWLED               = 1,
@@ -386,5 +393,10 @@ struct CategoryProportion {
 struct LanguageProportion {
   1:  LanguageType              language_type;
   2:  double                    proportion;
+}
+
+struct CountryInfo {
+  1:  string                          country;
+  2:  list<CountrySource>             source_list;
 }
 

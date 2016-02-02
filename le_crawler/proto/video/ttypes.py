@@ -1102,6 +1102,8 @@ class OriginalUser:
    - state
    - display_countrys
    - mined_countrys
+   - country_info
+   - country_source_list
   """
 
   thrift_spec = (
@@ -1128,9 +1130,11 @@ class OriginalUser:
     (20, TType.I32, 'state', None,     0, ), # 20
     (21, TType.LIST, 'display_countrys', (TType.STRING,None), None, ), # 21
     (22, TType.LIST, 'mined_countrys', (TType.STRING,None), None, ), # 22
+    (23, TType.LIST, 'country_info', (TType.STRUCT,(le_crawler.proto.crawl.ttypes.CountryInfo, le_crawler.proto.crawl.ttypes.CountryInfo.thrift_spec)), None, ), # 23
+    (24, TType.LIST, 'country_source_list', (TType.STRUCT,(le_crawler.proto.crawl.ttypes.CountrySourceInfo, le_crawler.proto.crawl.ttypes.CountrySourceInfo.thrift_spec)), None, ), # 24
   )
 
-  def __init__(self, user_name=None, url=None, portrait_url=None, video_num=None, play_num=None, fans_num=None, channel_desc=None, update_time=None, channel_id=None, channel_title=None, thumbnails=None, publish_time=None, comment_num=None, thumbnail_list=None, country=None, category_proportion_list=None, language_proportion_list=None, in_related_user=None, out_related_user=None, state=thrift_spec[20][4], display_countrys=None, mined_countrys=None,):
+  def __init__(self, user_name=None, url=None, portrait_url=None, video_num=None, play_num=None, fans_num=None, channel_desc=None, update_time=None, channel_id=None, channel_title=None, thumbnails=None, publish_time=None, comment_num=None, thumbnail_list=None, country=None, category_proportion_list=None, language_proportion_list=None, in_related_user=None, out_related_user=None, state=thrift_spec[20][4], display_countrys=None, mined_countrys=None, country_info=None, country_source_list=None,):
     self.user_name = user_name
     self.url = url
     self.portrait_url = portrait_url
@@ -1153,6 +1157,8 @@ class OriginalUser:
     self.state = state
     self.display_countrys = display_countrys
     self.mined_countrys = mined_countrys
+    self.country_info = country_info
+    self.country_source_list = country_source_list
 
   def read(self, iprot):
     if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
@@ -1311,6 +1317,28 @@ class OriginalUser:
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
+      elif fid == 23:
+        if ftype == TType.LIST:
+          self.country_info = []
+          (_etype89, _size86) = iprot.readListBegin()
+          for _i90 in xrange(_size86):
+            _elem91 = le_crawler.proto.crawl.ttypes.CountryInfo()
+            _elem91.read(iprot)
+            self.country_info.append(_elem91)
+          iprot.readListEnd()
+        else:
+          iprot.skip(ftype)
+      elif fid == 24:
+        if ftype == TType.LIST:
+          self.country_source_list = []
+          (_etype95, _size92) = iprot.readListBegin()
+          for _i96 in xrange(_size92):
+            _elem97 = le_crawler.proto.crawl.ttypes.CountrySourceInfo()
+            _elem97.read(iprot)
+            self.country_source_list.append(_elem97)
+          iprot.readListEnd()
+        else:
+          iprot.skip(ftype)
       else:
         iprot.skip(ftype)
       iprot.readFieldEnd()
@@ -1376,8 +1404,8 @@ class OriginalUser:
     if self.thumbnail_list is not None:
       oprot.writeFieldBegin('thumbnail_list', TType.LIST, 14)
       oprot.writeListBegin(TType.STRUCT, len(self.thumbnail_list))
-      for iter86 in self.thumbnail_list:
-        iter86.write(oprot)
+      for iter98 in self.thumbnail_list:
+        iter98.write(oprot)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.country is not None:
@@ -1387,29 +1415,29 @@ class OriginalUser:
     if self.category_proportion_list is not None:
       oprot.writeFieldBegin('category_proportion_list', TType.LIST, 16)
       oprot.writeListBegin(TType.STRUCT, len(self.category_proportion_list))
-      for iter87 in self.category_proportion_list:
-        iter87.write(oprot)
+      for iter99 in self.category_proportion_list:
+        iter99.write(oprot)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.language_proportion_list is not None:
       oprot.writeFieldBegin('language_proportion_list', TType.LIST, 17)
       oprot.writeListBegin(TType.STRUCT, len(self.language_proportion_list))
-      for iter88 in self.language_proportion_list:
-        iter88.write(oprot)
+      for iter100 in self.language_proportion_list:
+        iter100.write(oprot)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.in_related_user is not None:
       oprot.writeFieldBegin('in_related_user', TType.LIST, 18)
       oprot.writeListBegin(TType.STRING, len(self.in_related_user))
-      for iter89 in self.in_related_user:
-        oprot.writeString(iter89)
+      for iter101 in self.in_related_user:
+        oprot.writeString(iter101)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.out_related_user is not None:
       oprot.writeFieldBegin('out_related_user', TType.LIST, 19)
       oprot.writeListBegin(TType.STRING, len(self.out_related_user))
-      for iter90 in self.out_related_user:
-        oprot.writeString(iter90)
+      for iter102 in self.out_related_user:
+        oprot.writeString(iter102)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.state is not None:
@@ -1419,15 +1447,29 @@ class OriginalUser:
     if self.display_countrys is not None:
       oprot.writeFieldBegin('display_countrys', TType.LIST, 21)
       oprot.writeListBegin(TType.STRING, len(self.display_countrys))
-      for iter91 in self.display_countrys:
-        oprot.writeString(iter91)
+      for iter103 in self.display_countrys:
+        oprot.writeString(iter103)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.mined_countrys is not None:
       oprot.writeFieldBegin('mined_countrys', TType.LIST, 22)
       oprot.writeListBegin(TType.STRING, len(self.mined_countrys))
-      for iter92 in self.mined_countrys:
-        oprot.writeString(iter92)
+      for iter104 in self.mined_countrys:
+        oprot.writeString(iter104)
+      oprot.writeListEnd()
+      oprot.writeFieldEnd()
+    if self.country_info is not None:
+      oprot.writeFieldBegin('country_info', TType.LIST, 23)
+      oprot.writeListBegin(TType.STRUCT, len(self.country_info))
+      for iter105 in self.country_info:
+        iter105.write(oprot)
+      oprot.writeListEnd()
+      oprot.writeFieldEnd()
+    if self.country_source_list is not None:
+      oprot.writeFieldBegin('country_source_list', TType.LIST, 24)
+      oprot.writeListBegin(TType.STRUCT, len(self.country_source_list))
+      for iter106 in self.country_source_list:
+        iter106.write(oprot)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     oprot.writeFieldStop()
@@ -1558,6 +1600,9 @@ class MediaVideo:
    - lyrics
    - share_num
    - data_type
+   - awards
+   - long_comments
+   - short_comments
   """
 
   thrift_spec = (
@@ -1670,9 +1715,12 @@ class MediaVideo:
     (106, TType.STRING, 'lyrics', None, None, ), # 106
     (107, TType.I32, 'share_num', None, None, ), # 107
     (108, TType.I32, 'data_type', None,     1, ), # 108
+    (109, TType.LIST, 'awards', (TType.STRING,None), None, ), # 109
+    (110, TType.LIST, 'long_comments', (TType.STRING,None), None, ), # 110
+    (111, TType.LIST, 'short_comments', (TType.STRING,None), None, ), # 111
   )
 
-  def __init__(self, id=None, domain=None, domain_id=None, category=None, category_id=None, title=None, subtitle=None, title_other=None, title_en=None, actor=None, actor_id=None, director=None, director_id=None, writer=None, writer_id=None, showtime=None, showyear=None, area=None, subcategory=None, subcategory_id=None, language=None, language_id=None, fit_age=None, fit_age_id=None, short_desc=None, desc=None, tags=None, poster=None, collects=None, rating=None, commentator=None, episodes=None, is_end=None, url=None, quality=None, duration=None, copyright=None, state=None, type=None, type_id=None, version=None, version_id=None, is_pay=None, play_day_total=None, play_week_total=None, play_month_total=None, play_season_total=None, play_year_total=None, play_total=None, create_time=None, update_time=None, delete_time=None, platform_download=None, platform_play=None, platform_pay=None, publish_status=None, douban_id=None, resolution=None, is_edit=None, extend=None, episode=None, porder=None, dup=thrift_spec[64][4], is_404=thrift_spec[65][4], is_soft404=thrift_spec[66][4], area_id=None, voteup_count=thrift_spec[68][4], votedown_count=thrift_spec[69][4], play_trends=None, category_list=None, crumbs=None, crawl_time=None, content_timestamp=None, duration_seconds=None, OBSOLETE_inlink=None, OBSOLETE_outlink=None, page_state=thrift_spec[78][4], crawl_history=None, doc_id=None, discover_time=None, in_links=None, user=None, playlist=None, dimension=None, caption=None, comment_num=None, source_type=None, thumbnails=None, content_quality=None, player=None, thumbnail_list=None, dead_link=thrift_spec[93][4], stream_url=None, language_type=None, inlink_history=None, region_strategy=None, external_id=None, user_url=None, global_id=None, artists=None, album=None, author=None, composer=None, arranger=None, lyrics=None, share_num=None, data_type=thrift_spec[108][4],):
+  def __init__(self, id=None, domain=None, domain_id=None, category=None, category_id=None, title=None, subtitle=None, title_other=None, title_en=None, actor=None, actor_id=None, director=None, director_id=None, writer=None, writer_id=None, showtime=None, showyear=None, area=None, subcategory=None, subcategory_id=None, language=None, language_id=None, fit_age=None, fit_age_id=None, short_desc=None, desc=None, tags=None, poster=None, collects=None, rating=None, commentator=None, episodes=None, is_end=None, url=None, quality=None, duration=None, copyright=None, state=None, type=None, type_id=None, version=None, version_id=None, is_pay=None, play_day_total=None, play_week_total=None, play_month_total=None, play_season_total=None, play_year_total=None, play_total=None, create_time=None, update_time=None, delete_time=None, platform_download=None, platform_play=None, platform_pay=None, publish_status=None, douban_id=None, resolution=None, is_edit=None, extend=None, episode=None, porder=None, dup=thrift_spec[64][4], is_404=thrift_spec[65][4], is_soft404=thrift_spec[66][4], area_id=None, voteup_count=thrift_spec[68][4], votedown_count=thrift_spec[69][4], play_trends=None, category_list=None, crumbs=None, crawl_time=None, content_timestamp=None, duration_seconds=None, OBSOLETE_inlink=None, OBSOLETE_outlink=None, page_state=thrift_spec[78][4], crawl_history=None, doc_id=None, discover_time=None, in_links=None, user=None, playlist=None, dimension=None, caption=None, comment_num=None, source_type=None, thumbnails=None, content_quality=None, player=None, thumbnail_list=None, dead_link=thrift_spec[93][4], stream_url=None, language_type=None, inlink_history=None, region_strategy=None, external_id=None, user_url=None, global_id=None, artists=None, album=None, author=None, composer=None, arranger=None, lyrics=None, share_num=None, data_type=thrift_spec[108][4], awards=None, long_comments=None, short_comments=None,):
     self.id = id
     self.domain = domain
     self.domain_id = domain_id
@@ -1780,6 +1828,9 @@ class MediaVideo:
     self.lyrics = lyrics
     self.share_num = share_num
     self.data_type = data_type
+    self.awards = awards
+    self.long_comments = long_comments
+    self.short_comments = short_comments
 
   def read(self, iprot):
     if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
@@ -2088,11 +2139,11 @@ class MediaVideo:
       elif fid == 61:
         if ftype == TType.MAP:
           self.extend = {}
-          (_ktype94, _vtype95, _size93 ) = iprot.readMapBegin()
-          for _i97 in xrange(_size93):
-            _key98 = iprot.readString();
-            _val99 = iprot.readString();
-            self.extend[_key98] = _val99
+          (_ktype108, _vtype109, _size107 ) = iprot.readMapBegin()
+          for _i111 in xrange(_size107):
+            _key112 = iprot.readString();
+            _val113 = iprot.readString();
+            self.extend[_key112] = _val113
           iprot.readMapEnd()
         else:
           iprot.skip(ftype)
@@ -2169,20 +2220,20 @@ class MediaVideo:
       elif fid == 76:
         if ftype == TType.LIST:
           self.OBSOLETE_inlink = []
-          (_etype103, _size100) = iprot.readListBegin()
-          for _i104 in xrange(_size100):
-            _elem105 = iprot.readString();
-            self.OBSOLETE_inlink.append(_elem105)
+          (_etype117, _size114) = iprot.readListBegin()
+          for _i118 in xrange(_size114):
+            _elem119 = iprot.readString();
+            self.OBSOLETE_inlink.append(_elem119)
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
       elif fid == 77:
         if ftype == TType.LIST:
           self.OBSOLETE_outlink = []
-          (_etype109, _size106) = iprot.readListBegin()
-          for _i110 in xrange(_size106):
-            _elem111 = iprot.readString();
-            self.OBSOLETE_outlink.append(_elem111)
+          (_etype123, _size120) = iprot.readListBegin()
+          for _i124 in xrange(_size120):
+            _elem125 = iprot.readString();
+            self.OBSOLETE_outlink.append(_elem125)
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
@@ -2210,11 +2261,11 @@ class MediaVideo:
       elif fid == 82:
         if ftype == TType.LIST:
           self.in_links = []
-          (_etype115, _size112) = iprot.readListBegin()
-          for _i116 in xrange(_size112):
-            _elem117 = le_crawler.proto.crawl.ttypes.Anchor()
-            _elem117.read(iprot)
-            self.in_links.append(_elem117)
+          (_etype129, _size126) = iprot.readListBegin()
+          for _i130 in xrange(_size126):
+            _elem131 = le_crawler.proto.crawl.ttypes.Anchor()
+            _elem131.read(iprot)
+            self.in_links.append(_elem131)
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
@@ -2267,11 +2318,11 @@ class MediaVideo:
       elif fid == 92:
         if ftype == TType.LIST:
           self.thumbnail_list = []
-          (_etype121, _size118) = iprot.readListBegin()
-          for _i122 in xrange(_size118):
-            _elem123 = le_crawler.proto.crawl.ttypes.Thumbnail()
-            _elem123.read(iprot)
-            self.thumbnail_list.append(_elem123)
+          (_etype135, _size132) = iprot.readListBegin()
+          for _i136 in xrange(_size132):
+            _elem137 = le_crawler.proto.crawl.ttypes.Thumbnail()
+            _elem137.read(iprot)
+            self.thumbnail_list.append(_elem137)
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
@@ -2293,16 +2344,16 @@ class MediaVideo:
       elif fid == 96:
         if ftype == TType.LIST:
           self.inlink_history = []
-          (_etype127, _size124) = iprot.readListBegin()
-          for _i128 in xrange(_size124):
-            _elem129 = []
-            (_etype133, _size130) = iprot.readListBegin()
-            for _i134 in xrange(_size130):
-              _elem135 = le_crawler.proto.crawl.ttypes.Anchor()
-              _elem135.read(iprot)
-              _elem129.append(_elem135)
+          (_etype141, _size138) = iprot.readListBegin()
+          for _i142 in xrange(_size138):
+            _elem143 = []
+            (_etype147, _size144) = iprot.readListBegin()
+            for _i148 in xrange(_size144):
+              _elem149 = le_crawler.proto.crawl.ttypes.Anchor()
+              _elem149.read(iprot)
+              _elem143.append(_elem149)
             iprot.readListEnd()
-            self.inlink_history.append(_elem129)
+            self.inlink_history.append(_elem143)
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
@@ -2330,11 +2381,11 @@ class MediaVideo:
       elif fid == 101:
         if ftype == TType.LIST:
           self.artists = []
-          (_etype139, _size136) = iprot.readListBegin()
-          for _i140 in xrange(_size136):
-            _elem141 = Artist()
-            _elem141.read(iprot)
-            self.artists.append(_elem141)
+          (_etype153, _size150) = iprot.readListBegin()
+          for _i154 in xrange(_size150):
+            _elem155 = Artist()
+            _elem155.read(iprot)
+            self.artists.append(_elem155)
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
@@ -2347,33 +2398,33 @@ class MediaVideo:
       elif fid == 103:
         if ftype == TType.LIST:
           self.author = []
-          (_etype145, _size142) = iprot.readListBegin()
-          for _i146 in xrange(_size142):
-            _elem147 = Artist()
-            _elem147.read(iprot)
-            self.author.append(_elem147)
+          (_etype159, _size156) = iprot.readListBegin()
+          for _i160 in xrange(_size156):
+            _elem161 = Artist()
+            _elem161.read(iprot)
+            self.author.append(_elem161)
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
       elif fid == 104:
         if ftype == TType.LIST:
           self.composer = []
-          (_etype151, _size148) = iprot.readListBegin()
-          for _i152 in xrange(_size148):
-            _elem153 = Artist()
-            _elem153.read(iprot)
-            self.composer.append(_elem153)
+          (_etype165, _size162) = iprot.readListBegin()
+          for _i166 in xrange(_size162):
+            _elem167 = Artist()
+            _elem167.read(iprot)
+            self.composer.append(_elem167)
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
       elif fid == 105:
         if ftype == TType.LIST:
           self.arranger = []
-          (_etype157, _size154) = iprot.readListBegin()
-          for _i158 in xrange(_size154):
-            _elem159 = Artist()
-            _elem159.read(iprot)
-            self.arranger.append(_elem159)
+          (_etype171, _size168) = iprot.readListBegin()
+          for _i172 in xrange(_size168):
+            _elem173 = Artist()
+            _elem173.read(iprot)
+            self.arranger.append(_elem173)
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
@@ -2390,6 +2441,36 @@ class MediaVideo:
       elif fid == 108:
         if ftype == TType.I32:
           self.data_type = iprot.readI32();
+        else:
+          iprot.skip(ftype)
+      elif fid == 109:
+        if ftype == TType.LIST:
+          self.awards = []
+          (_etype177, _size174) = iprot.readListBegin()
+          for _i178 in xrange(_size174):
+            _elem179 = iprot.readString();
+            self.awards.append(_elem179)
+          iprot.readListEnd()
+        else:
+          iprot.skip(ftype)
+      elif fid == 110:
+        if ftype == TType.LIST:
+          self.long_comments = []
+          (_etype183, _size180) = iprot.readListBegin()
+          for _i184 in xrange(_size180):
+            _elem185 = iprot.readString();
+            self.long_comments.append(_elem185)
+          iprot.readListEnd()
+        else:
+          iprot.skip(ftype)
+      elif fid == 111:
+        if ftype == TType.LIST:
+          self.short_comments = []
+          (_etype189, _size186) = iprot.readListBegin()
+          for _i190 in xrange(_size186):
+            _elem191 = iprot.readString();
+            self.short_comments.append(_elem191)
+          iprot.readListEnd()
         else:
           iprot.skip(ftype)
       else:
@@ -2641,9 +2722,9 @@ class MediaVideo:
     if self.extend is not None:
       oprot.writeFieldBegin('extend', TType.MAP, 61)
       oprot.writeMapBegin(TType.STRING, TType.STRING, len(self.extend))
-      for kiter160,viter161 in self.extend.items():
-        oprot.writeString(kiter160)
-        oprot.writeString(viter161)
+      for kiter192,viter193 in self.extend.items():
+        oprot.writeString(kiter192)
+        oprot.writeString(viter193)
       oprot.writeMapEnd()
       oprot.writeFieldEnd()
     if self.episode is not None:
@@ -2705,15 +2786,15 @@ class MediaVideo:
     if self.OBSOLETE_inlink is not None:
       oprot.writeFieldBegin('OBSOLETE_inlink', TType.LIST, 76)
       oprot.writeListBegin(TType.STRING, len(self.OBSOLETE_inlink))
-      for iter162 in self.OBSOLETE_inlink:
-        oprot.writeString(iter162)
+      for iter194 in self.OBSOLETE_inlink:
+        oprot.writeString(iter194)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.OBSOLETE_outlink is not None:
       oprot.writeFieldBegin('OBSOLETE_outlink', TType.LIST, 77)
       oprot.writeListBegin(TType.STRING, len(self.OBSOLETE_outlink))
-      for iter163 in self.OBSOLETE_outlink:
-        oprot.writeString(iter163)
+      for iter195 in self.OBSOLETE_outlink:
+        oprot.writeString(iter195)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.page_state is not None:
@@ -2735,8 +2816,8 @@ class MediaVideo:
     if self.in_links is not None:
       oprot.writeFieldBegin('in_links', TType.LIST, 82)
       oprot.writeListBegin(TType.STRUCT, len(self.in_links))
-      for iter164 in self.in_links:
-        iter164.write(oprot)
+      for iter196 in self.in_links:
+        iter196.write(oprot)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.user is not None:
@@ -2778,8 +2859,8 @@ class MediaVideo:
     if self.thumbnail_list is not None:
       oprot.writeFieldBegin('thumbnail_list', TType.LIST, 92)
       oprot.writeListBegin(TType.STRUCT, len(self.thumbnail_list))
-      for iter165 in self.thumbnail_list:
-        iter165.write(oprot)
+      for iter197 in self.thumbnail_list:
+        iter197.write(oprot)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.dead_link is not None:
@@ -2797,10 +2878,10 @@ class MediaVideo:
     if self.inlink_history is not None:
       oprot.writeFieldBegin('inlink_history', TType.LIST, 96)
       oprot.writeListBegin(TType.LIST, len(self.inlink_history))
-      for iter166 in self.inlink_history:
-        oprot.writeListBegin(TType.STRUCT, len(iter166))
-        for iter167 in iter166:
-          iter167.write(oprot)
+      for iter198 in self.inlink_history:
+        oprot.writeListBegin(TType.STRUCT, len(iter198))
+        for iter199 in iter198:
+          iter199.write(oprot)
         oprot.writeListEnd()
       oprot.writeListEnd()
       oprot.writeFieldEnd()
@@ -2823,8 +2904,8 @@ class MediaVideo:
     if self.artists is not None:
       oprot.writeFieldBegin('artists', TType.LIST, 101)
       oprot.writeListBegin(TType.STRUCT, len(self.artists))
-      for iter168 in self.artists:
-        iter168.write(oprot)
+      for iter200 in self.artists:
+        iter200.write(oprot)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.album is not None:
@@ -2834,22 +2915,22 @@ class MediaVideo:
     if self.author is not None:
       oprot.writeFieldBegin('author', TType.LIST, 103)
       oprot.writeListBegin(TType.STRUCT, len(self.author))
-      for iter169 in self.author:
-        iter169.write(oprot)
+      for iter201 in self.author:
+        iter201.write(oprot)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.composer is not None:
       oprot.writeFieldBegin('composer', TType.LIST, 104)
       oprot.writeListBegin(TType.STRUCT, len(self.composer))
-      for iter170 in self.composer:
-        iter170.write(oprot)
+      for iter202 in self.composer:
+        iter202.write(oprot)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.arranger is not None:
       oprot.writeFieldBegin('arranger', TType.LIST, 105)
       oprot.writeListBegin(TType.STRUCT, len(self.arranger))
-      for iter171 in self.arranger:
-        iter171.write(oprot)
+      for iter203 in self.arranger:
+        iter203.write(oprot)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.lyrics is not None:
@@ -2863,6 +2944,27 @@ class MediaVideo:
     if self.data_type is not None:
       oprot.writeFieldBegin('data_type', TType.I32, 108)
       oprot.writeI32(self.data_type)
+      oprot.writeFieldEnd()
+    if self.awards is not None:
+      oprot.writeFieldBegin('awards', TType.LIST, 109)
+      oprot.writeListBegin(TType.STRING, len(self.awards))
+      for iter204 in self.awards:
+        oprot.writeString(iter204)
+      oprot.writeListEnd()
+      oprot.writeFieldEnd()
+    if self.long_comments is not None:
+      oprot.writeFieldBegin('long_comments', TType.LIST, 110)
+      oprot.writeListBegin(TType.STRING, len(self.long_comments))
+      for iter205 in self.long_comments:
+        oprot.writeString(iter205)
+      oprot.writeListEnd()
+      oprot.writeFieldEnd()
+    if self.short_comments is not None:
+      oprot.writeFieldBegin('short_comments', TType.LIST, 111)
+      oprot.writeListBegin(TType.STRING, len(self.short_comments))
+      for iter206 in self.short_comments:
+        oprot.writeString(iter206)
+      oprot.writeListEnd()
       oprot.writeFieldEnd()
     oprot.writeFieldStop()
     oprot.writeStructEnd()
@@ -3530,11 +3632,11 @@ class MediaAlbum:
       elif fid == 58:
         if ftype == TType.LIST:
           self.videos = []
-          (_etype175, _size172) = iprot.readListBegin()
-          for _i176 in xrange(_size172):
-            _elem177 = MediaVideoAbstract()
-            _elem177.read(iprot)
-            self.videos.append(_elem177)
+          (_etype210, _size207) = iprot.readListBegin()
+          for _i211 in xrange(_size207):
+            _elem212 = MediaVideoAbstract()
+            _elem212.read(iprot)
+            self.videos.append(_elem212)
           iprot.readListEnd()
         else:
           iprot.skip(ftype)
@@ -3551,11 +3653,11 @@ class MediaAlbum:
       elif fid == 61:
         if ftype == TType.MAP:
           self.extend = {}
-          (_ktype179, _vtype180, _size178 ) = iprot.readMapBegin()
-          for _i182 in xrange(_size178):
-            _key183 = iprot.readString();
-            _val184 = iprot.readString();
-            self.extend[_key183] = _val184
+          (_ktype214, _vtype215, _size213 ) = iprot.readMapBegin()
+          for _i217 in xrange(_size213):
+            _key218 = iprot.readString();
+            _val219 = iprot.readString();
+            self.extend[_key218] = _val219
           iprot.readMapEnd()
         else:
           iprot.skip(ftype)
@@ -3825,8 +3927,8 @@ class MediaAlbum:
     if self.videos is not None:
       oprot.writeFieldBegin('videos', TType.LIST, 58)
       oprot.writeListBegin(TType.STRUCT, len(self.videos))
-      for iter185 in self.videos:
-        iter185.write(oprot)
+      for iter220 in self.videos:
+        iter220.write(oprot)
       oprot.writeListEnd()
       oprot.writeFieldEnd()
     if self.play_stream is not None:
@@ -3840,9 +3942,9 @@ class MediaAlbum:
     if self.extend is not None:
       oprot.writeFieldBegin('extend', TType.MAP, 61)
       oprot.writeMapBegin(TType.STRING, TType.STRING, len(self.extend))
-      for kiter186,viter187 in self.extend.items():
-        oprot.writeString(kiter186)
-        oprot.writeString(viter187)
+      for kiter221,viter222 in self.extend.items():
+        oprot.writeString(kiter221)
+        oprot.writeString(viter222)
       oprot.writeMapEnd()
       oprot.writeFieldEnd()
     if self.now_episode is not None:

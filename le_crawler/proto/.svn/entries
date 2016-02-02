@@ -1,14 +1,14 @@
 10
 
 dir
-138212
+139479
 http://svn2.letv.cn/tp/search2/crawler_ver2/le_crawler/proto
 http://svn2.letv.cn
 
 
 
-2016-01-26T05:02:30.423611Z
-138212
+2016-01-28T09:13:05.089693Z
+139162
 zhaojincheng
 
 
@@ -28,40 +28,6 @@ zhaojincheng
 
 filter
 dir
-
-__init__.py
-file
-
-
-
-
-2015-12-19T02:32:04.088836Z
-d41d8cd98f00b204e9800998ecf8427e
-2015-08-10T16:25:49.151233Z
-95910
-zhaojincheng
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-0
 
 url_filter_service.thrift
 file
@@ -96,6 +62,40 @@ gaoqiang
 
 
 263
+
+__init__.py
+file
+
+
+
+
+2015-12-19T02:32:04.088836Z
+d41d8cd98f00b204e9800998ecf8427e
+2015-08-10T16:25:49.151233Z
+95910
+zhaojincheng
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+0
 
 crawl_doc.def
 file
@@ -137,10 +137,10 @@ file
 
 
 
-2016-01-26T05:02:52.170819Z
-28ff865484671acab8156c930970221a
-2016-01-26T05:02:30.423611Z
-138212
+2016-01-29T06:34:44.515800Z
+c05f98b6f062644c2af475fd412b072d
+2016-01-28T09:13:05.089693Z
+139162
 zhaojincheng
 
 
@@ -163,10 +163,7 @@ zhaojincheng
 
 
 
-10459
-
-crawl_doc
-dir
+10834
 
 scheduler_service.thrift
 file
@@ -201,6 +198,9 @@ gaoqiang
 
 
 540
+
+crawl_doc
+dir
 
 BUILD
 file
@@ -276,12 +276,33 @@ file
 
 
 
-
-1ca8391ec24dd52edb62210f4b0fcf30
-2016-01-25T09:59:48.797111Z
-137986
+2016-01-29T06:34:44.515800Z
+3f08b179c4fd3493da9acff30ce20df0
+2016-01-28T09:13:05.089693Z
+139162
 zhaojincheng
 has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+20545
 
 video
 dir

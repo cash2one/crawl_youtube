@@ -113,8 +113,10 @@ class YoutubeStatic(StaticExtractor):
     html_data = parse_channel_detail(rep_data)
     extend_map = self.parse_extend_map(crawl_doc)
     if extend_map:
-      if extend_map.get('display_countrys', None):
-        html_data['display_countrys'] = extend_map['display_countrys']
+      if extend_map.get('popular_countrys', None):
+        html_data['popular_countrys'] = extend_map['popular_countrys']
+      if extend_map.get('product_countrys', None):
+        html_data['product_countrys'] = extend_map['product_countrys']
       if extend_map.get('user_name', None):
         html_data['user_name'] = extend_map['user_name']
 
