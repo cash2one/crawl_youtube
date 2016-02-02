@@ -80,7 +80,7 @@ class YoutubeStatic(StaticExtractor):
     return self._filter_long_video(html_data, url_type)
 
 
-  def parse_related_video(crawl_doc):
+  def parse_related_video(self, crawl_doc):
     if not crawl_doc or not crawl_doc.url or not crawl_doc.response:
       return
     id = get_url_param(crawl_doc.url, 'relatedToVideoId')
