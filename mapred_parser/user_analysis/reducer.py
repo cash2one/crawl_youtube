@@ -10,7 +10,7 @@ sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../')
 
 from le_crawler.proto.video.ttypes import OriginalUser
 from le_crawler.proto.crawl.ttypes import CategoryProportion, LanguageProportion, LanguageType
-from le_crawler.common.utils import str2mediavideo, thrift2str, str2user
+from le_crawler.common.utils import str2mediavideo, thrift2str, str2user, merge_country_source
 
 
 class MergeItem:
