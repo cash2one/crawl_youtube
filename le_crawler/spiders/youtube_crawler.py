@@ -69,14 +69,14 @@ class YouTubeCrawler(Spider):
         self._recrawl_collection = self._db.debug_recrawl_failed_info
         self._channel_collection = self._db.debug_channel_info
         self._query_collection = self._db.debug_query_info
-        self._start_request_collection = self.debug_start_request_info
+        self._start_request_collection = self._db.debug_start_request_info
       else:
         self._starturl_collection = self._db.start_channel
         self._collection = self._db.schedule_info
         self._recrawl_collection = self._db.recrawl_failed_info
         self._channel_collection = self._db.channel_info
         self._query_collection = self._db.query_info
-        self._start_request_collection = self.start_request_info
+        self._start_request_collection = self._db.start_request_info
       self._ensure_indexs()
     except Exception, e:
       self._collection = None
