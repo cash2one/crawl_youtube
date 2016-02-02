@@ -48,6 +48,8 @@ def print_video(data_source, data, url, crawl_doc):
   if not data:
     sys.stderr.write('reporter:counter:map,map_thrift2str,1\n')
     return
+  if not user_url:
+    user_url = 'None'
   print url + '\t' + user_url + '\t' + data_source + '\t' + 'video' + '\t' + base64.b64encode(data)
 
 
