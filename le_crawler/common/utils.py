@@ -677,7 +677,7 @@ def merge_country_source(country_source_list, code, source_list_src):
     if source_info.country_code == code:
       source_list = source_info.source_list
       if source_list is not None and source_list_src is not None:
-        source_info.source_list = list(set(source_list) + set(source_list_src))
+        source_info.source_list = list(set(source_list) | set(source_list_src))
       return country_source_list
   source_info = CountrySourceInfo()
   source_info.country_code = code
