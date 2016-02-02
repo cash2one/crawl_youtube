@@ -31,8 +31,8 @@ def get_url_type(url):
   return None
   
 
-def print_video(data_source, data, url, crawl_doc):
-  if not url or not data_source:
+def print_video(data_source, data, crawl_doc):
+  if not data_source:
     sys.stderr.write('reporter:counter:map,invalid_data,1\n')
     return
   massage_data(data, printable=False)
@@ -44,6 +44,7 @@ def print_video(data_source, data, url, crawl_doc):
     print_user(data_source, original_user)
   user_url = video.user_url
 
+  url = video.url
   data = thrift2str(video)
   if not data:
     sys.stderr.write('reporter:counter:map,map_thrift2str,1\n')
@@ -133,5 +134,5 @@ if __name__ == '__main__':
         sys.stderr.write('reporter:counter:map,build_user,1\n')
       print_user(data_source, original_user)
     elif url_type == 'video':
-      print_video(data_source, parsed_data, url, crawl_doc)
+      print_video(data_source, parsed_data, crawl_doc)
 

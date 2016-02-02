@@ -736,7 +736,7 @@ def build_user(channel_dict):
       country_source_list = merge_country_source(country_source_list, 
           CountryCode._NAMES_TO_VALUES.get(country, CountryCode.UNKNOWN), [CountrySource.POPULAR])
 
-  product_countrys = channel_dict.get('popular_countrys', None)
+  product_countrys = channel_dict.get('product_countrys', None)
   if product_countrys:
     for country in product_countrys:
       country_source_list = merge_country_source(country_source_list, 
