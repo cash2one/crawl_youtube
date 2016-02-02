@@ -60,7 +60,7 @@ class YoutubeStatic(StaticExtractor):
     elif url_type == 'video':
       if url.startswith('https://www.youtube.com/watch'):
         html_data = self.parse_page(crawl_doc)
-      elif re.search('https://www.googleapis.com/youtube/v3/search.*relatedToVideoId', url):
+      elif re.search(r'www\.googleapis\.com\/youtube\/v3\/search.*relatedToVideoId', url):
         html_data = self.parse_related_video(crawl_doc)
     else:
       return

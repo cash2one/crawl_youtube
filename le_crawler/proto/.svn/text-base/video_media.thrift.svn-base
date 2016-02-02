@@ -126,6 +126,7 @@ struct OriginalUser {
   21: optional list<string>                              display_countrys;                     // ---OBSOLETE--- 推荐播放的国家列表
   22: optional list<string>                              mined_countrys;                       // ---OBSOLETE--- 通过相关频道挖掘的country
   23: optional list<crawl_doc.CountryInfo>               country_info;                         //国家信息
+  24: optional list<crawl_doc.CountrySourceInfo>         country_source_list;                  //国家来源标识
 }
 
 
@@ -241,6 +242,7 @@ struct MediaVideo {
   109:optional list<string>                   awards;                         //获得奖项
   110:optional list<string>                   long_comments;                  //长评论
   111:optional list<string>                   short_comments;                 //短评论
+  112:optional list<string>                   related_videos;                 //相关video
 }
 
 //专辑下的视频列表。尽量不存冗余，只存用于排序，筛选的字段.

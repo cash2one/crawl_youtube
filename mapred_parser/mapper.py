@@ -20,7 +20,8 @@ url_normalizer = UrlNormalize.get_instance()
 def get_url_type(url):
   if not url:
     return None
-  url_type_reg = {'video': [r'www\.youtube\.com\/watch'],
+  url_type_reg = {'video': [r'www\.youtube\.com\/watch',
+                            r'www\.googleapis\.com\/youtube\/v3\/search.*relatedToVideoId'],
                   'user':  [r'www\.youtube\.com\/channel',
                             r'www\.googleapis\.com\/youtube\/v3\/channels']}
   for (url_type, reg_list) in url_type_reg.items():

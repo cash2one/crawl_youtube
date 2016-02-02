@@ -1,0 +1,2166 @@
+diff --git a/le_crawler/proto/.svn/all-wcprops b/le_crawler/proto/.svn/all-wcprops
+index afd6b3d..1cf8eb2 100644
+--- a/le_crawler/proto/.svn/all-wcprops
++++ b/le_crawler/proto/.svn/all-wcprops
+@@ -1,7 +1,7 @@
+ K 25
+ svn:wc:ra_dav:version-url
+ V 57
+-/!svn/ver/139162/tp/search2/crawler_ver2/le_crawler/proto
++/!svn/ver/140332/tp/search2/crawler_ver2/le_crawler/proto
+ END
+ BUILD
+ K 25
+@@ -19,7 +19,7 @@ video_media.thrift
+ K 25
+ svn:wc:ra_dav:version-url
+ V 76
+-/!svn/ver/139162/tp/search2/crawler_ver2/le_crawler/proto/video_media.thrift
++/!svn/ver/140332/tp/search2/crawler_ver2/le_crawler/proto/video_media.thrift
+ END
+ __init__.py
+ K 25
+@@ -49,7 +49,7 @@ crawl_doc.thrift
+ K 25
+ svn:wc:ra_dav:version-url
+ V 74
+-/!svn/ver/139162/tp/search2/crawler_ver2/le_crawler/proto/crawl_doc.thrift
++/!svn/ver/140332/tp/search2/crawler_ver2/le_crawler/proto/crawl_doc.thrift
+ END
+ scheduler_service.thrift
+ K 25
+diff --git a/le_crawler/proto/.svn/entries b/le_crawler/proto/.svn/entries
+index 05bc39f..bd258fa 100644
+--- a/le_crawler/proto/.svn/entries
++++ b/le_crawler/proto/.svn/entries
+@@ -1,14 +1,14 @@
+ 10
+ 
+ dir
+-139479
++140332
+ http://svn2.letv.cn/tp/search2/crawler_ver2/le_crawler/proto
+ http://svn2.letv.cn
+ 
+ 
+ 
+-2016-01-28T09:13:05.089693Z
+-139162
++2016-02-02T11:43:34.940037Z
++140332
+ zhaojincheng
+ 
+ 
+@@ -29,17 +29,17 @@ zhaojincheng
+ filter
+ dir
+ 
+-url_filter_service.thrift
++__init__.py
+ file
+ 
+ 
+ 
+ 
+-2015-12-19T02:32:04.089836Z
+-cd448d0c5df8cf03f01fcea86c46628f
+-2015-11-23T09:21:40.273334Z
+-120107
+-gaoqiang
++2015-12-19T02:32:04.088836Z
++d41d8cd98f00b204e9800998ecf8427e
++2015-08-10T16:25:49.151233Z
++95910
++zhaojincheng
+ 
+ 
+ 
+@@ -61,19 +61,19 @@ gaoqiang
+ 
+ 
+ 
+-263
++0
+ 
+-__init__.py
++url_filter_service.thrift
+ file
+ 
+ 
+ 
+ 
+-2015-12-19T02:32:04.088836Z
+-d41d8cd98f00b204e9800998ecf8427e
+-2015-08-10T16:25:49.151233Z
+-95910
+-zhaojincheng
++2015-12-19T02:32:04.089836Z
++cd448d0c5df8cf03f01fcea86c46628f
++2015-11-23T09:21:40.273334Z
++120107
++gaoqiang
+ 
+ 
+ 
+@@ -95,7 +95,7 @@ zhaojincheng
+ 
+ 
+ 
+-0
++263
+ 
+ crawl_doc.def
+ file
+@@ -137,33 +137,14 @@ file
+ 
+ 
+ 
+-2016-01-29T06:34:44.515800Z
+-c05f98b6f062644c2af475fd412b072d
+-2016-01-28T09:13:05.089693Z
+-139162
+-zhaojincheng
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+ 
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-10834
++24fe5e63b543f832e6ba67642ed773da
++2016-02-02T11:43:34.940037Z
++140332
++zhaojincheng
++
++crawl_doc
++dir
+ 
+ scheduler_service.thrift
+ file
+@@ -199,9 +180,6 @@ gaoqiang
+ 
+ 540
+ 
+-crawl_doc
+-dir
+-
+ BUILD
+ file
+ 
+@@ -276,33 +254,12 @@ file
+ 
+ 
+ 
+-2016-01-29T06:34:44.515800Z
+-3f08b179c4fd3493da9acff30ce20df0
+-2016-01-28T09:13:05.089693Z
+-139162
++
++10a24218070d8e59e08ece3d6f688aba
++2016-02-02T11:43:34.940037Z
++140332
+ zhaojincheng
+ has-props
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-20545
+ 
+ video
+ dir
+diff --git a/le_crawler/proto/.svn/text-base/crawl_doc.thrift.svn-base b/le_crawler/proto/.svn/text-base/crawl_doc.thrift.svn-base
+index 0870074..565926a 100644
+--- a/le_crawler/proto/.svn/text-base/crawl_doc.thrift.svn-base
++++ b/le_crawler/proto/.svn/text-base/crawl_doc.thrift.svn-base
+@@ -379,6 +379,259 @@ enum LanguageType {
+   ZH_TW   = 55,
+ }
+ 
++enum CountryCode {
++  UNKNOWN = 0,
++  AD      =	1,
++  AE      =	2,
++  AF      =	3,
++  AG      =	4,
++  AI      =	5,
++  AL      =	6,
++  AM      =	7,
++  AO      =	8,
++  AQ      =	9,
++  AR      =	10,
++  AS      =	11,
++  AT      =	12,
++  AU      =	13,
++  AW      =	14,
++  AX      =	15,
++  AZ      =	16,
++  BA      =	17,
++  BB      =	18,
++  BD      =	19,
++  BE      =	20,
++  BF      =	21,
++  BG      =	22,
++  BH      =	23,
++  BI      =	24,
++  BJ      =	25,
++  BL      =	26,
++  BM      =	27,
++  BN      =	28,
++  BO      =	29,
++  BQ      =	30,
++  BR      =	31,
++  BS      =	32,
++  BT      =	33,
++  BV      =	34,
++  BW      =	35,
++  BY      =	36,
++  BZ      =	37,
++  CA      =	38,
++  CC      =	39,
++  CD      =	40,
++  CF      =	41,
++  CG      =	42,
++  CH      =	43,
++  CI      =	44,
++  CK      =	45,
++  CL      =	46,
++  CM      =	47,
++  CN      =	48,
++  CO      =	49,
++  CR      =	50,
++  CU      =	51,
++  CV      =	52,
++  CW      =	53,
++  CX      =	54,
++  CY      =	55,
++  CZ      =	56,
++  DE      =	57,
++  DJ      =	58,
++  DK      =	59,
++  DM      =	60,
++  DO      =	61,
++  DZ      =	62,
++  EC      =	63,
++  EE      =	64,
++  EG      =	65,
++  EH      =	66,
++  ER      =	67,
++  ES      =	68,
++  ET      =	69,
++  FI      =	70,
++  FJ      =	71,
++  FK      =	72,
++  FM      =	73,
++  FO      =	74,
++  FR      =	75,
++  GA      =	76,
++  GB      =	77,
++  GD      =	78,
++  GE      =	79,
++  GF      =	80,
++  GG      =	81,
++  GH      =	82,
++  GI      =	83,
++  GL      =	84,
++  GM      =	85,
++  GN      =	86,
++  GP      =	87,
++  GQ      =	88,
++  GR      =	89,
++  GS      =	90,
++  GT      =	91,
++  GU      =	92,
++  GW      =	93,
++  GY      =	94,
++  HK      =	95,
++  HM      =	96,
++  HN      =	97,
++  HR      =	98,
++  HT      =	99,
++  HU      =	100,
++  ID      =	101,
++  IE      =	102,
++  IL      =	103,
++  IM      =	104,
++  IN      =	105,
++  IO      =	106,
++  IQ      =	107,
++  IR      =	108,
++  IS      =	109,
++  IT      =	110,
++  JE      =	111,
++  JM      =	112,
++  JO      =	113,
++  JP      =	114,
++  KE      =	115,
++  KG      =	116,
++  KH      =	117,
++  KI      =	118,
++  KM      =	119,
++  KN      =	120,
++  KP      =	121,
++  KR      =	122,
++  KW      =	123,
++  KY      =	124,
++  KZ      =	125,
++  LA      =	126,
++  LB      =	127,
++  LC      =	128,
++  LI      =	129,
++  LK      =	130,
++  LR      =	131,
++  LS      =	132,
++  LT      =	133,
++  LU      =	134,
++  LV      =	135,
++  LY      =	136,
++  MA      =	137,
++  MC      =	138,
++  MD      =	139,
++  ME      =	140,
++  MF      =	141,
++  MG      =	142,
++  MH      =	143,
++  MK      =	144,
++  ML      =	145,
++  MM      =	146,
++  MN      =	147,
++  MO      =	148,
++  MP      =	149,
++  MQ      =	150,
++  MR      =	151,
++  MS      =	152,
++  MT      =	153,
++  MU      =	154,
++  MV      =	155,
++  MW      =	156,
++  MX      =	157,
++  MY      =	158,
++  MZ      =	159,
++  NA      =	160,
++  NC      =	161,
++  NE      =	162,
++  NF      =	163,
++  NG      =	164,
++  NI      =	165,
++  NL      =	166,
++  NO      =	167,
++  NP      =	168,
++  NR      =	169,
++  NU      =	170,
++  NZ      =	171,
++  OM      =	172,
++  PA      =	173,
++  PE      =	174,
++  PF      =	175,
++  PG      =	176,
++  PH      =	177,
++  PK      =	178,
++  PL      =	179,
++  PM      =	180,
++  PN      =	181,
++  PR      =	182,
++  PS      =	183,
++  PT      =	184,
++  PW      =	185,
++  PY      =	186,
++  QA      =	187,
++  RE      =	188,
++  RO      =	189,
++  RS      =	190,
++  RU      =	191,
++  RW      =	192,
++  SA      =	193,
++  SB      =	194,
++  SC      =	195,
++  SD      =	196,
++  SE      =	197,
++  SG      =	198,
++  SH      =	199,
++  SI      =	200,
++  SJ      =	201,
++  SK      =	202,
++  SL      =	203,
++  SM      =	204,
++  SN      =	205,
++  SO      =	206,
++  SR      =	207,
++  SS      =	208,
++  ST      =	209,
++  SV      =	210,
++  SX      =	211,
++  SY      =	212,
++  SZ      =	213,
++  TC      =	214,
++  TD      =	215,
++  TF      =	216,
++  TG      =	217,
++  TH      =	218,
++  TJ      =	219,
++  TK      =	220,
++  TL      =	221,
++  TM      =	222,
++  TN      =	223,
++  TO      =	224,
++  TR      =	225,
++  TT      =	226,
++  TV      =	227,
++  TW      =	228,
++  TZ      =	229,
++  UA      =	230,
++  UG      =	231,
++  UM      =	232,
++  US      =	233,
++  UY      =	234,
++  UZ      =	235,
++  VA      =	236,
++  VC      =	237,
++  VE      =	238,
++  VG      =	239,
++  VI      =	240,
++  VN      =	241,
++  VU      =	242,
++  WF      =	243,
++  WS      =	244,
++  YE      =	245,
++  YT      =	246,
++  ZA      =	247,
++  ZM      =	248,
++  ZW      =	249,
++}
++
+ 
+ struct RegionStrategy {
+   1:  optional list<string>                    region_allowed;            //Youtube在用,允许地区列表, 注(NONE为不生效，[]为全屏蔽)
+@@ -400,3 +653,7 @@ struct CountryInfo {
+   2:  list<CountrySource>             source_list;
+ }
+ 
++struct CountrySourceInfo {
++  1:  CountryCode                     country_code;
++  2:  list<CountrySource>             source_list;
++}
+diff --git a/le_crawler/proto/.svn/text-base/video_media.thrift.svn-base b/le_crawler/proto/.svn/text-base/video_media.thrift.svn-base
+index 640c783..7f86ed7 100644
+--- a/le_crawler/proto/.svn/text-base/video_media.thrift.svn-base
++++ b/le_crawler/proto/.svn/text-base/video_media.thrift.svn-base
+@@ -126,6 +126,7 @@ struct OriginalUser {
+   21: optional list<string>                              display_countrys;                     // ---OBSOLETE--- 推荐播放的国家列表
+   22: optional list<string>                              mined_countrys;                       // ---OBSOLETE--- 通过相关频道挖掘的country
+   23: optional list<crawl_doc.CountryInfo>               country_info;                         //国家信息
++  24: optional list<crawl_doc.CountrySourceInfo>         country_source_list;                  //国家来源标识
+ }
+ 
+ 
+@@ -241,6 +242,7 @@ struct MediaVideo {
+   109:optional list<string>                   awards;                         //获得奖项
+   110:optional list<string>                   long_comments;                  //长评论
+   111:optional list<string>                   short_comments;                 //短评论
++  112:optional list<string>                   related_videos;                 //相关video
+ }
+ 
+ //专辑下的视频列表。尽量不存冗余，只存用于排序，筛选的字段.
+diff --git a/le_crawler/proto/crawl/.svn/all-wcprops b/le_crawler/proto/crawl/.svn/all-wcprops
+index 364cf8d..a382eee 100644
+--- a/le_crawler/proto/crawl/.svn/all-wcprops
++++ b/le_crawler/proto/crawl/.svn/all-wcprops
+@@ -1,13 +1,13 @@
+ K 25
+ svn:wc:ra_dav:version-url
+ V 63
+-/!svn/ver/139162/tp/search2/crawler_ver2/le_crawler/proto/crawl
++/!svn/ver/140332/tp/search2/crawler_ver2/le_crawler/proto/crawl
+ END
+ ttypes.py
+ K 25
+ svn:wc:ra_dav:version-url
+ V 73
+-/!svn/ver/139162/tp/search2/crawler_ver2/le_crawler/proto/crawl/ttypes.py
++/!svn/ver/140332/tp/search2/crawler_ver2/le_crawler/proto/crawl/ttypes.py
+ END
+ __init__.py
+ K 25
+diff --git a/le_crawler/proto/crawl/.svn/entries b/le_crawler/proto/crawl/.svn/entries
+index 1d40bd7..16a85e3 100644
+--- a/le_crawler/proto/crawl/.svn/entries
++++ b/le_crawler/proto/crawl/.svn/entries
+@@ -1,14 +1,14 @@
+ 10
+ 
+ dir
+-139479
++140332
+ http://svn2.letv.cn/tp/search2/crawler_ver2/le_crawler/proto/crawl
+ http://svn2.letv.cn
+ 
+ 
+ 
+-2016-01-28T09:13:05.089693Z
+-139162
++2016-02-02T11:43:34.940037Z
++140332
+ zhaojincheng
+ 
+ 
+@@ -32,33 +32,11 @@ file
+ 
+ 
+ 
+-2016-01-29T06:34:44.513800Z
+-933e850e4bbdbff9aeeee2ca7f4e1e47
+-2016-01-28T09:13:05.089693Z
+-139162
+-zhaojincheng
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+ 
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-71771
++b461a6e2c1bac35c1e895f9763a61f6e
++2016-02-02T11:43:34.940037Z
++140332
++zhaojincheng
+ 
+ __init__.py
+ file
+diff --git a/le_crawler/proto/crawl/.svn/text-base/ttypes.py.svn-base b/le_crawler/proto/crawl/.svn/text-base/ttypes.py.svn-base
+index a46f4d4..6d31775 100644
+--- a/le_crawler/proto/crawl/.svn/text-base/ttypes.py.svn-base
++++ b/le_crawler/proto/crawl/.svn/text-base/ttypes.py.svn-base
+@@ -707,6 +707,764 @@ class LanguageType:
+     "ZH_TW": 55,
+   }
+ 
++class CountryCode:
++  UNKNOWN = 0
++  AD = 1
++  AE = 2
++  AF = 3
++  AG = 4
++  AI = 5
++  AL = 6
++  AM = 7
++  AO = 8
++  AQ = 9
++  AR = 10
++  AS = 11
++  AT = 12
++  AU = 13
++  AW = 14
++  AX = 15
++  AZ = 16
++  BA = 17
++  BB = 18
++  BD = 19
++  BE = 20
++  BF = 21
++  BG = 22
++  BH = 23
++  BI = 24
++  BJ = 25
++  BL = 26
++  BM = 27
++  BN = 28
++  BO = 29
++  BQ = 30
++  BR = 31
++  BS = 32
++  BT = 33
++  BV = 34
++  BW = 35
++  BY = 36
++  BZ = 37
++  CA = 38
++  CC = 39
++  CD = 40
++  CF = 41
++  CG = 42
++  CH = 43
++  CI = 44
++  CK = 45
++  CL = 46
++  CM = 47
++  CN = 48
++  CO = 49
++  CR = 50
++  CU = 51
++  CV = 52
++  CW = 53
++  CX = 54
++  CY = 55
++  CZ = 56
++  DE = 57
++  DJ = 58
++  DK = 59
++  DM = 60
++  DO = 61
++  DZ = 62
++  EC = 63
++  EE = 64
++  EG = 65
++  EH = 66
++  ER = 67
++  ES = 68
++  ET = 69
++  FI = 70
++  FJ = 71
++  FK = 72
++  FM = 73
++  FO = 74
++  FR = 75
++  GA = 76
++  GB = 77
++  GD = 78
++  GE = 79
++  GF = 80
++  GG = 81
++  GH = 82
++  GI = 83
++  GL = 84
++  GM = 85
++  GN = 86
++  GP = 87
++  GQ = 88
++  GR = 89
++  GS = 90
++  GT = 91
++  GU = 92
++  GW = 93
++  GY = 94
++  HK = 95
++  HM = 96
++  HN = 97
++  HR = 98
++  HT = 99
++  HU = 100
++  ID = 101
++  IE = 102
++  IL = 103
++  IM = 104
++  IN = 105
++  IO = 106
++  IQ = 107
++  IR = 108
++  IS = 109
++  IT = 110
++  JE = 111
++  JM = 112
++  JO = 113
++  JP = 114
++  KE = 115
++  KG = 116
++  KH = 117
++  KI = 118
++  KM = 119
++  KN = 120
++  KP = 121
++  KR = 122
++  KW = 123
++  KY = 124
++  KZ = 125
++  LA = 126
++  LB = 127
++  LC = 128
++  LI = 129
++  LK = 130
++  LR = 131
++  LS = 132
++  LT = 133
++  LU = 134
++  LV = 135
++  LY = 136
++  MA = 137
++  MC = 138
++  MD = 139
++  ME = 140
++  MF = 141
++  MG = 142
++  MH = 143
++  MK = 144
++  ML = 145
++  MM = 146
++  MN = 147
++  MO = 148
++  MP = 149
++  MQ = 150
++  MR = 151
++  MS = 152
++  MT = 153
++  MU = 154
++  MV = 155
++  MW = 156
++  MX = 157
++  MY = 158
++  MZ = 159
++  NA = 160
++  NC = 161
++  NE = 162
++  NF = 163
++  NG = 164
++  NI = 165
++  NL = 166
++  NO = 167
++  NP = 168
++  NR = 169
++  NU = 170
++  NZ = 171
++  OM = 172
++  PA = 173
++  PE = 174
++  PF = 175
++  PG = 176
++  PH = 177
++  PK = 178
++  PL = 179
++  PM = 180
++  PN = 181
++  PR = 182
++  PS = 183
++  PT = 184
++  PW = 185
++  PY = 186
++  QA = 187
++  RE = 188
++  RO = 189
++  RS = 190
++  RU = 191
++  RW = 192
++  SA = 193
++  SB = 194
++  SC = 195
++  SD = 196
++  SE = 197
++  SG = 198
++  SH = 199
++  SI = 200
++  SJ = 201
++  SK = 202
++  SL = 203
++  SM = 204
++  SN = 205
++  SO = 206
++  SR = 207
++  SS = 208
++  ST = 209
++  SV = 210
++  SX = 211
++  SY = 212
++  SZ = 213
++  TC = 214
++  TD = 215
++  TF = 216
++  TG = 217
++  TH = 218
++  TJ = 219
++  TK = 220
++  TL = 221
++  TM = 222
++  TN = 223
++  TO = 224
++  TR = 225
++  TT = 226
++  TV = 227
++  TW = 228
++  TZ = 229
++  UA = 230
++  UG = 231
++  UM = 232
++  US = 233
++  UY = 234
++  UZ = 235
++  VA = 236
++  VC = 237
++  VE = 238
++  VG = 239
++  VI = 240
++  VN = 241
++  VU = 242
++  WF = 243
++  WS = 244
++  YE = 245
++  YT = 246
++  ZA = 247
++  ZM = 248
++  ZW = 249
++
++  _VALUES_TO_NAMES = {
++    0: "UNKNOWN",
++    1: "AD",
++    2: "AE",
++    3: "AF",
++    4: "AG",
++    5: "AI",
++    6: "AL",
++    7: "AM",
++    8: "AO",
++    9: "AQ",
++    10: "AR",
++    11: "AS",
++    12: "AT",
++    13: "AU",
++    14: "AW",
++    15: "AX",
++    16: "AZ",
++    17: "BA",
++    18: "BB",
++    19: "BD",
++    20: "BE",
++    21: "BF",
++    22: "BG",
++    23: "BH",
++    24: "BI",
++    25: "BJ",
++    26: "BL",
++    27: "BM",
++    28: "BN",
++    29: "BO",
++    30: "BQ",
++    31: "BR",
++    32: "BS",
++    33: "BT",
++    34: "BV",
++    35: "BW",
++    36: "BY",
++    37: "BZ",
++    38: "CA",
++    39: "CC",
++    40: "CD",
++    41: "CF",
++    42: "CG",
++    43: "CH",
++    44: "CI",
++    45: "CK",
++    46: "CL",
++    47: "CM",
++    48: "CN",
++    49: "CO",
++    50: "CR",
++    51: "CU",
++    52: "CV",
++    53: "CW",
++    54: "CX",
++    55: "CY",
++    56: "CZ",
++    57: "DE",
++    58: "DJ",
++    59: "DK",
++    60: "DM",
++    61: "DO",
++    62: "DZ",
++    63: "EC",
++    64: "EE",
++    65: "EG",
++    66: "EH",
++    67: "ER",
++    68: "ES",
++    69: "ET",
++    70: "FI",
++    71: "FJ",
++    72: "FK",
++    73: "FM",
++    74: "FO",
++    75: "FR",
++    76: "GA",
++    77: "GB",
++    78: "GD",
++    79: "GE",
++    80: "GF",
++    81: "GG",
++    82: "GH",
++    83: "GI",
++    84: "GL",
++    85: "GM",
++    86: "GN",
++    87: "GP",
++    88: "GQ",
++    89: "GR",
++    90: "GS",
++    91: "GT",
++    92: "GU",
++    93: "GW",
++    94: "GY",
++    95: "HK",
++    96: "HM",
++    97: "HN",
++    98: "HR",
++    99: "HT",
++    100: "HU",
++    101: "ID",
++    102: "IE",
++    103: "IL",
++    104: "IM",
++    105: "IN",
++    106: "IO",
++    107: "IQ",
++    108: "IR",
++    109: "IS",
++    110: "IT",
++    111: "JE",
++    112: "JM",
++    113: "JO",
++    114: "JP",
++    115: "KE",
++    116: "KG",
++    117: "KH",
++    118: "KI",
++    119: "KM",
++    120: "KN",
++    121: "KP",
++    122: "KR",
++    123: "KW",
++    124: "KY",
++    125: "KZ",
++    126: "LA",
++    127: "LB",
++    128: "LC",
++    129: "LI",
++    130: "LK",
++    131: "LR",
++    132: "LS",
++    133: "LT",
++    134: "LU",
++    135: "LV",
++    136: "LY",
++    137: "MA",
++    138: "MC",
++    139: "MD",
++    140: "ME",
++    141: "MF",
++    142: "MG",
++    143: "MH",
++    144: "MK",
++    145: "ML",
++    146: "MM",
++    147: "MN",
++    148: "MO",
++    149: "MP",
++    150: "MQ",
++    151: "MR",
++    152: "MS",
++    153: "MT",
++    154: "MU",
++    155: "MV",
++    156: "MW",
++    157: "MX",
++    158: "MY",
++    159: "MZ",
++    160: "NA",
++    161: "NC",
++    162: "NE",
++    163: "NF",
++    164: "NG",
++    165: "NI",
++    166: "NL",
++    167: "NO",
++    168: "NP",
++    169: "NR",
++    170: "NU",
++    171: "NZ",
++    172: "OM",
++    173: "PA",
++    174: "PE",
++    175: "PF",
++    176: "PG",
++    177: "PH",
++    178: "PK",
++    179: "PL",
++    180: "PM",
++    181: "PN",
++    182: "PR",
++    183: "PS",
++    184: "PT",
++    185: "PW",
++    186: "PY",
++    187: "QA",
++    188: "RE",
++    189: "RO",
++    190: "RS",
++    191: "RU",
++    192: "RW",
++    193: "SA",
++    194: "SB",
++    195: "SC",
++    196: "SD",
++    197: "SE",
++    198: "SG",
++    199: "SH",
++    200: "SI",
++    201: "SJ",
++    202: "SK",
++    203: "SL",
++    204: "SM",
++    205: "SN",
++    206: "SO",
++    207: "SR",
++    208: "SS",
++    209: "ST",
++    210: "SV",
++    211: "SX",
++    212: "SY",
++    213: "SZ",
++    214: "TC",
++    215: "TD",
++    216: "TF",
++    217: "TG",
++    218: "TH",
++    219: "TJ",
++    220: "TK",
++    221: "TL",
++    222: "TM",
++    223: "TN",
++    224: "TO",
++    225: "TR",
++    226: "TT",
++    227: "TV",
++    228: "TW",
++    229: "TZ",
++    230: "UA",
++    231: "UG",
++    232: "UM",
++    233: "US",
++    234: "UY",
++    235: "UZ",
++    236: "VA",
++    237: "VC",
++    238: "VE",
++    239: "VG",
++    240: "VI",
++    241: "VN",
++    242: "VU",
++    243: "WF",
++    244: "WS",
++    245: "YE",
++    246: "YT",
++    247: "ZA",
++    248: "ZM",
++    249: "ZW",
++  }
++
++  _NAMES_TO_VALUES = {
++    "UNKNOWN": 0,
++    "AD": 1,
++    "AE": 2,
++    "AF": 3,
++    "AG": 4,
++    "AI": 5,
++    "AL": 6,
++    "AM": 7,
++    "AO": 8,
++    "AQ": 9,
++    "AR": 10,
++    "AS": 11,
++    "AT": 12,
++    "AU": 13,
++    "AW": 14,
++    "AX": 15,
++    "AZ": 16,
++    "BA": 17,
++    "BB": 18,
++    "BD": 19,
++    "BE": 20,
++    "BF": 21,
++    "BG": 22,
++    "BH": 23,
++    "BI": 24,
++    "BJ": 25,
++    "BL": 26,
++    "BM": 27,
++    "BN": 28,
++    "BO": 29,
++    "BQ": 30,
++    "BR": 31,
++    "BS": 32,
++    "BT": 33,
++    "BV": 34,
++    "BW": 35,
++    "BY": 36,
++    "BZ": 37,
++    "CA": 38,
++    "CC": 39,
++    "CD": 40,
++    "CF": 41,
++    "CG": 42,
++    "CH": 43,
++    "CI": 44,
++    "CK": 45,
++    "CL": 46,
++    "CM": 47,
++    "CN": 48,
++    "CO": 49,
++    "CR": 50,
++    "CU": 51,
++    "CV": 52,
++    "CW": 53,
++    "CX": 54,
++    "CY": 55,
++    "CZ": 56,
++    "DE": 57,
++    "DJ": 58,
++    "DK": 59,
++    "DM": 60,
++    "DO": 61,
++    "DZ": 62,
++    "EC": 63,
++    "EE": 64,
++    "EG": 65,
++    "EH": 66,
++    "ER": 67,
++    "ES": 68,
++    "ET": 69,
++    "FI": 70,
++    "FJ": 71,
++    "FK": 72,
++    "FM": 73,
++    "FO": 74,
++    "FR": 75,
++    "GA": 76,
++    "GB": 77,
++    "GD": 78,
++    "GE": 79,
++    "GF": 80,
++    "GG": 81,
++    "GH": 82,
++    "GI": 83,
++    "GL": 84,
++    "GM": 85,
++    "GN": 86,
++    "GP": 87,
++    "GQ": 88,
++    "GR": 89,
++    "GS": 90,
++    "GT": 91,
++    "GU": 92,
++    "GW": 93,
++    "GY": 94,
++    "HK": 95,
++    "HM": 96,
++    "HN": 97,
++    "HR": 98,
++    "HT": 99,
++    "HU": 100,
++    "ID": 101,
++    "IE": 102,
++    "IL": 103,
++    "IM": 104,
++    "IN": 105,
++    "IO": 106,
++    "IQ": 107,
++    "IR": 108,
++    "IS": 109,
++    "IT": 110,
++    "JE": 111,
++    "JM": 112,
++    "JO": 113,
++    "JP": 114,
++    "KE": 115,
++    "KG": 116,
++    "KH": 117,
++    "KI": 118,
++    "KM": 119,
++    "KN": 120,
++    "KP": 121,
++    "KR": 122,
++    "KW": 123,
++    "KY": 124,
++    "KZ": 125,
++    "LA": 126,
++    "LB": 127,
++    "LC": 128,
++    "LI": 129,
++    "LK": 130,
++    "LR": 131,
++    "LS": 132,
++    "LT": 133,
++    "LU": 134,
++    "LV": 135,
++    "LY": 136,
++    "MA": 137,
++    "MC": 138,
++    "MD": 139,
++    "ME": 140,
++    "MF": 141,
++    "MG": 142,
++    "MH": 143,
++    "MK": 144,
++    "ML": 145,
++    "MM": 146,
++    "MN": 147,
++    "MO": 148,
++    "MP": 149,
++    "MQ": 150,
++    "MR": 151,
++    "MS": 152,
++    "MT": 153,
++    "MU": 154,
++    "MV": 155,
++    "MW": 156,
++    "MX": 157,
++    "MY": 158,
++    "MZ": 159,
++    "NA": 160,
++    "NC": 161,
++    "NE": 162,
++    "NF": 163,
++    "NG": 164,
++    "NI": 165,
++    "NL": 166,
++    "NO": 167,
++    "NP": 168,
++    "NR": 169,
++    "NU": 170,
++    "NZ": 171,
++    "OM": 172,
++    "PA": 173,
++    "PE": 174,
++    "PF": 175,
++    "PG": 176,
++    "PH": 177,
++    "PK": 178,
++    "PL": 179,
++    "PM": 180,
++    "PN": 181,
++    "PR": 182,
++    "PS": 183,
++    "PT": 184,
++    "PW": 185,
++    "PY": 186,
++    "QA": 187,
++    "RE": 188,
++    "RO": 189,
++    "RS": 190,
++    "RU": 191,
++    "RW": 192,
++    "SA": 193,
++    "SB": 194,
++    "SC": 195,
++    "SD": 196,
++    "SE": 197,
++    "SG": 198,
++    "SH": 199,
++    "SI": 200,
++    "SJ": 201,
++    "SK": 202,
++    "SL": 203,
++    "SM": 204,
++    "SN": 205,
++    "SO": 206,
++    "SR": 207,
++    "SS": 208,
++    "ST": 209,
++    "SV": 210,
++    "SX": 211,
++    "SY": 212,
++    "SZ": 213,
++    "TC": 214,
++    "TD": 215,
++    "TF": 216,
++    "TG": 217,
++    "TH": 218,
++    "TJ": 219,
++    "TK": 220,
++    "TL": 221,
++    "TM": 222,
++    "TN": 223,
++    "TO": 224,
++    "TR": 225,
++    "TT": 226,
++    "TV": 227,
++    "TW": 228,
++    "TZ": 229,
++    "UA": 230,
++    "UG": 231,
++    "UM": 232,
++    "US": 233,
++    "UY": 234,
++    "UZ": 235,
++    "VA": 236,
++    "VC": 237,
++    "VE": 238,
++    "VG": 239,
++    "VI": 240,
++    "VN": 241,
++    "VU": 242,
++    "WF": 243,
++    "WS": 244,
++    "YE": 245,
++    "YT": 246,
++    "ZA": 247,
++    "ZM": 248,
++    "ZW": 249,
++  }
++
+ 
+ class CrawlDocAttachment:
+   """
+@@ -2553,3 +3311,83 @@ class CountryInfo:
+ 
+   def __ne__(self, other):
+     return not (self == other)
++
++class CountrySourceInfo:
++  """
++  Attributes:
++   - country_code
++   - source_list
++  """
++
++  thrift_spec = (
++    None, # 0
++    (1, TType.I32, 'country_code', None, None, ), # 1
++    (2, TType.LIST, 'source_list', (TType.I32,None), None, ), # 2
++  )
++
++  def __init__(self, country_code=None, source_list=None,):
++    self.country_code = country_code
++    self.source_list = source_list
++
++  def read(self, iprot):
++    if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
++      fastbinary.decode_binary(self, iprot.trans, (self.__class__, self.thrift_spec))
++      return
++    iprot.readStructBegin()
++    while True:
++      (fname, ftype, fid) = iprot.readFieldBegin()
++      if ftype == TType.STOP:
++        break
++      if fid == 1:
++        if ftype == TType.I32:
++          self.country_code = iprot.readI32();
++        else:
++          iprot.skip(ftype)
++      elif fid == 2:
++        if ftype == TType.LIST:
++          self.source_list = []
++          (_etype52, _size49) = iprot.readListBegin()
++          for _i53 in xrange(_size49):
++            _elem54 = iprot.readI32();
++            self.source_list.append(_elem54)
++          iprot.readListEnd()
++        else:
++          iprot.skip(ftype)
++      else:
++        iprot.skip(ftype)
++      iprot.readFieldEnd()
++    iprot.readStructEnd()
++
++  def write(self, oprot):
++    if oprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and self.thrift_spec is not None and fastbinary is not None:
++      oprot.trans.write(fastbinary.encode_binary(self, (self.__class__, self.thrift_spec)))
++      return
++    oprot.writeStructBegin('CountrySourceInfo')
++    if self.country_code is not None:
++      oprot.writeFieldBegin('country_code', TType.I32, 1)
++      oprot.writeI32(self.country_code)
++      oprot.writeFieldEnd()
++    if self.source_list is not None:
++      oprot.writeFieldBegin('source_list', TType.LIST, 2)
++      oprot.writeListBegin(TType.I32, len(self.source_list))
++      for iter55 in self.source_list:
++        oprot.writeI32(iter55)
++      oprot.writeListEnd()
++      oprot.writeFieldEnd()
++    oprot.writeFieldStop()
++    oprot.writeStructEnd()
++
++  def validate(self):
++    return
++
++
++  def __repr__(self):
++    L = ['%s=%r' % (key, value)
++      for key, value in self.__dict__.iteritems()]
++    return '%s(%s)' % (self.__class__.__name__, ', '.join(L))
++
++  def __eq__(self, other):
++    return isinstance(other, self.__class__) and self.__dict__ == other.__dict__
++
++  def __ne__(self, other):
++    return not (self == other)
+diff --git a/le_crawler/proto/crawl_doc/.svn/entries b/le_crawler/proto/crawl_doc/.svn/entries
+index c44155b..d1c5f4f 100644
+--- a/le_crawler/proto/crawl_doc/.svn/entries
++++ b/le_crawler/proto/crawl_doc/.svn/entries
+@@ -1,7 +1,7 @@
+ 10
+ 
+ dir
+-139479
++140332
+ http://svn2.letv.cn/tp/search2/crawler_ver2/le_crawler/proto/crawl_doc
+ http://svn2.letv.cn
+ 
+diff --git a/le_crawler/proto/filter/.svn/entries b/le_crawler/proto/filter/.svn/entries
+index fa8ceec..20ce3d5 100644
+--- a/le_crawler/proto/filter/.svn/entries
++++ b/le_crawler/proto/filter/.svn/entries
+@@ -1,7 +1,7 @@
+ 10
+ 
+ dir
+-139479
++140332
+ http://svn2.letv.cn/tp/search2/crawler_ver2/le_crawler/proto/filter
+ http://svn2.letv.cn
+ 
+diff --git a/le_crawler/proto/scheduler/.svn/entries b/le_crawler/proto/scheduler/.svn/entries
+index befca1a..f7e60ba 100644
+--- a/le_crawler/proto/scheduler/.svn/entries
++++ b/le_crawler/proto/scheduler/.svn/entries
+@@ -1,7 +1,7 @@
+ 10
+ 
+ dir
+-139479
++140332
+ http://svn2.letv.cn/tp/search2/crawler_ver2/le_crawler/proto/scheduler
+ http://svn2.letv.cn
+ 
+diff --git a/le_crawler/proto/util/.svn/entries b/le_crawler/proto/util/.svn/entries
+index 0fc52ad..f3eef3a 100644
+--- a/le_crawler/proto/util/.svn/entries
++++ b/le_crawler/proto/util/.svn/entries
+@@ -1,7 +1,7 @@
+ 10
+ 
+ dir
+-139479
++140332
+ http://svn2.letv.cn/tp/search2/crawler_ver2/le_crawler/proto/util
+ http://svn2.letv.cn
+ 
+diff --git a/le_crawler/proto/video/.svn/all-wcprops b/le_crawler/proto/video/.svn/all-wcprops
+index fcbbf08..3d31bcf 100644
+--- a/le_crawler/proto/video/.svn/all-wcprops
++++ b/le_crawler/proto/video/.svn/all-wcprops
+@@ -1,13 +1,13 @@
+ K 25
+ svn:wc:ra_dav:version-url
+ V 63
+-/!svn/ver/139162/tp/search2/crawler_ver2/le_crawler/proto/video
++/!svn/ver/140332/tp/search2/crawler_ver2/le_crawler/proto/video
+ END
+ ttypes.py
+ K 25
+ svn:wc:ra_dav:version-url
+ V 73
+-/!svn/ver/139162/tp/search2/crawler_ver2/le_crawler/proto/video/ttypes.py
++/!svn/ver/140332/tp/search2/crawler_ver2/le_crawler/proto/video/ttypes.py
+ END
+ __init__.py
+ K 25
+diff --git a/le_crawler/proto/video/.svn/entries b/le_crawler/proto/video/.svn/entries
+index e2cacb9..e505101 100644
+--- a/le_crawler/proto/video/.svn/entries
++++ b/le_crawler/proto/video/.svn/entries
+@@ -1,14 +1,14 @@
+ 10
+ 
+ dir
+-139479
++140332
+ http://svn2.letv.cn/tp/search2/crawler_ver2/le_crawler/proto/video
+ http://svn2.letv.cn
+ 
+ 
+ 
+-2016-01-28T09:13:05.089693Z
+-139162
++2016-02-02T11:43:34.940037Z
++140332
+ zhaojincheng
+ 
+ 
+@@ -32,33 +32,11 @@ file
+ 
+ 
+ 
+-2016-01-29T06:34:44.509800Z
+-fb86550df93bf1bbf3b60b007ba57002
+-2016-01-28T09:13:05.089693Z
+-139162
+-zhaojincheng
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+ 
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-139336
++bdc888540fa65530c59414d33f1e8ab4
++2016-02-02T11:43:34.940037Z
++140332
++zhaojincheng
+ 
+ __init__.py
+ file
+diff --git a/le_crawler/proto/video/.svn/text-base/ttypes.py.svn-base b/le_crawler/proto/video/.svn/text-base/ttypes.py.svn-base
+index 03cd8a6..50cf866 100644
+--- a/le_crawler/proto/video/.svn/text-base/ttypes.py.svn-base
++++ b/le_crawler/proto/video/.svn/text-base/ttypes.py.svn-base
+@@ -1103,6 +1103,7 @@ class OriginalUser:
+    - display_countrys
+    - mined_countrys
+    - country_info
++   - country_source_list
+   """
+ 
+   thrift_spec = (
+@@ -1130,9 +1131,10 @@ class OriginalUser:
+     (21, TType.LIST, 'display_countrys', (TType.STRING,None), None, ), # 21
+     (22, TType.LIST, 'mined_countrys', (TType.STRING,None), None, ), # 22
+     (23, TType.LIST, 'country_info', (TType.STRUCT,(le_crawler.proto.crawl.ttypes.CountryInfo, le_crawler.proto.crawl.ttypes.CountryInfo.thrift_spec)), None, ), # 23
++    (24, TType.LIST, 'country_source_list', (TType.STRUCT,(le_crawler.proto.crawl.ttypes.CountrySourceInfo, le_crawler.proto.crawl.ttypes.CountrySourceInfo.thrift_spec)), None, ), # 24
+   )
+ 
+-  def __init__(self, user_name=None, url=None, portrait_url=None, video_num=None, play_num=None, fans_num=None, channel_desc=None, update_time=None, channel_id=None, channel_title=None, thumbnails=None, publish_time=None, comment_num=None, thumbnail_list=None, country=None, category_proportion_list=None, language_proportion_list=None, in_related_user=None, out_related_user=None, state=thrift_spec[20][4], display_countrys=None, mined_countrys=None, country_info=None,):
++  def __init__(self, user_name=None, url=None, portrait_url=None, video_num=None, play_num=None, fans_num=None, channel_desc=None, update_time=None, channel_id=None, channel_title=None, thumbnails=None, publish_time=None, comment_num=None, thumbnail_list=None, country=None, category_proportion_list=None, language_proportion_list=None, in_related_user=None, out_related_user=None, state=thrift_spec[20][4], display_countrys=None, mined_countrys=None, country_info=None, country_source_list=None,):
+     self.user_name = user_name
+     self.url = url
+     self.portrait_url = portrait_url
+@@ -1156,6 +1158,7 @@ class OriginalUser:
+     self.display_countrys = display_countrys
+     self.mined_countrys = mined_countrys
+     self.country_info = country_info
++    self.country_source_list = country_source_list
+ 
+   def read(self, iprot):
+     if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
+@@ -1325,6 +1328,17 @@ class OriginalUser:
+           iprot.readListEnd()
+         else:
+           iprot.skip(ftype)
++      elif fid == 24:
++        if ftype == TType.LIST:
++          self.country_source_list = []
++          (_etype95, _size92) = iprot.readListBegin()
++          for _i96 in xrange(_size92):
++            _elem97 = le_crawler.proto.crawl.ttypes.CountrySourceInfo()
++            _elem97.read(iprot)
++            self.country_source_list.append(_elem97)
++          iprot.readListEnd()
++        else:
++          iprot.skip(ftype)
+       else:
+         iprot.skip(ftype)
+       iprot.readFieldEnd()
+@@ -1390,8 +1404,8 @@ class OriginalUser:
+     if self.thumbnail_list is not None:
+       oprot.writeFieldBegin('thumbnail_list', TType.LIST, 14)
+       oprot.writeListBegin(TType.STRUCT, len(self.thumbnail_list))
+-      for iter92 in self.thumbnail_list:
+-        iter92.write(oprot)
++      for iter98 in self.thumbnail_list:
++        iter98.write(oprot)
+       oprot.writeListEnd()
+       oprot.writeFieldEnd()
+     if self.country is not None:
+@@ -1401,29 +1415,29 @@ class OriginalUser:
+     if self.category_proportion_list is not None:
+       oprot.writeFieldBegin('category_proportion_list', TType.LIST, 16)
+       oprot.writeListBegin(TType.STRUCT, len(self.category_proportion_list))
+-      for iter93 in self.category_proportion_list:
+-        iter93.write(oprot)
++      for iter99 in self.category_proportion_list:
++        iter99.write(oprot)
+       oprot.writeListEnd()
+       oprot.writeFieldEnd()
+     if self.language_proportion_list is not None:
+       oprot.writeFieldBegin('language_proportion_list', TType.LIST, 17)
+       oprot.writeListBegin(TType.STRUCT, len(self.language_proportion_list))
+-      for iter94 in self.language_proportion_list:
+-        iter94.write(oprot)
++      for iter100 in self.language_proportion_list:
++        iter100.write(oprot)
+       oprot.writeListEnd()
+       oprot.writeFieldEnd()
+     if self.in_related_user is not None:
+       oprot.writeFieldBegin('in_related_user', TType.LIST, 18)
+       oprot.writeListBegin(TType.STRING, len(self.in_related_user))
+-      for iter95 in self.in_related_user:
+-        oprot.writeString(iter95)
++      for iter101 in self.in_related_user:
++        oprot.writeString(iter101)
+       oprot.writeListEnd()
+       oprot.writeFieldEnd()
+     if self.out_related_user is not None:
+       oprot.writeFieldBegin('out_related_user', TType.LIST, 19)
+       oprot.writeListBegin(TType.STRING, len(self.out_related_user))
+-      for iter96 in self.out_related_user:
+-        oprot.writeString(iter96)
++      for iter102 in self.out_related_user:
++        oprot.writeString(iter102)
+       oprot.writeListEnd()
+       oprot.writeFieldEnd()
+     if self.state is not None:
+@@ -1433,22 +1447,29 @@ class OriginalUser:
+     if self.display_countrys is not None:
+       oprot.writeFieldBegin('display_countrys', TType.LIST, 21)
+       oprot.writeListBegin(TType.STRING, len(self.display_countrys))
+-      for iter97 in self.display_countrys:
+-        oprot.writeString(iter97)
++      for iter103 in self.display_countrys:
++        oprot.writeString(iter103)
+       oprot.writeListEnd()
+       oprot.writeFieldEnd()
+     if self.mined_countrys is not None:
+       oprot.writeFieldBegin('mined_countrys', TType.LIST, 22)
+       oprot.writeListBegin(TType.STRING, len(self.mined_countrys))
+-      for iter98 in self.mined_countrys:
+-        oprot.writeString(iter98)
++      for iter104 in self.mined_countrys:
++        oprot.writeString(iter104)
+       oprot.writeListEnd()
+       oprot.writeFieldEnd()
+     if self.country_info is not None:
+       oprot.writeFieldBegin('country_info', TType.LIST, 23)
+       oprot.writeListBegin(TType.STRUCT, len(self.country_info))
+-      for iter99 in self.country_info:
+-        iter99.write(oprot)
++      for iter105 in self.country_info:
++        iter105.write(oprot)
++      oprot.writeListEnd()
++      oprot.writeFieldEnd()
++    if self.country_source_list is not None:
++      oprot.writeFieldBegin('country_source_list', TType.LIST, 24)
++      oprot.writeListBegin(TType.STRUCT, len(self.country_source_list))
++      for iter106 in self.country_source_list:
++        iter106.write(oprot)
+       oprot.writeListEnd()
+       oprot.writeFieldEnd()
+     oprot.writeFieldStop()
+@@ -1582,6 +1603,7 @@ class MediaVideo:
+    - awards
+    - long_comments
+    - short_comments
++   - related_videos
+   """
+ 
+   thrift_spec = (
+@@ -1697,9 +1719,10 @@ class MediaVideo:
+     (109, TType.LIST, 'awards', (TType.STRING,None), None, ), # 109
+     (110, TType.LIST, 'long_comments', (TType.STRING,None), None, ), # 110
+     (111, TType.LIST, 'short_comments', (TType.STRING,None), None, ), # 111
++    (112, TType.LIST, 'related_videos', (TType.STRING,None), None, ), # 112
+   )
+ 
+-  def __init__(self, id=None, domain=None, domain_id=None, category=None, category_id=None, title=None, subtitle=None, title_other=None, title_en=None, actor=None, actor_id=None, director=None, director_id=None, writer=None, writer_id=None, showtime=None, showyear=None, area=None, subcategory=None, subcategory_id=None, language=None, language_id=None, fit_age=None, fit_age_id=None, short_desc=None, desc=None, tags=None, poster=None, collects=None, rating=None, commentator=None, episodes=None, is_end=None, url=None, quality=None, duration=None, copyright=None, state=None, type=None, type_id=None, version=None, version_id=None, is_pay=None, play_day_total=None, play_week_total=None, play_month_total=None, play_season_total=None, play_year_total=None, play_total=None, create_time=None, update_time=None, delete_time=None, platform_download=None, platform_play=None, platform_pay=None, publish_status=None, douban_id=None, resolution=None, is_edit=None, extend=None, episode=None, porder=None, dup=thrift_spec[64][4], is_404=thrift_spec[65][4], is_soft404=thrift_spec[66][4], area_id=None, voteup_count=thrift_spec[68][4], votedown_count=thrift_spec[69][4], play_trends=None, category_list=None, crumbs=None, crawl_time=None, content_timestamp=None, duration_seconds=None, OBSOLETE_inlink=None, OBSOLETE_outlink=None, page_state=thrift_spec[78][4], crawl_history=None, doc_id=None, discover_time=None, in_links=None, user=None, playlist=None, dimension=None, caption=None, comment_num=None, source_type=None, thumbnails=None, content_quality=None, player=None, thumbnail_list=None, dead_link=thrift_spec[93][4], stream_url=None, language_type=None, inlink_history=None, region_strategy=None, external_id=None, user_url=None, global_id=None, artists=None, album=None, author=None, composer=None, arranger=None, lyrics=None, share_num=None, data_type=thrift_spec[108][4], awards=None, long_comments=None, short_comments=None,):
++  def __init__(self, id=None, domain=None, domain_id=None, category=None, category_id=None, title=None, subtitle=None, title_other=None, title_en=None, actor=None, actor_id=None, director=None, director_id=None, writer=None, writer_id=None, showtime=None, showyear=None, area=None, subcategory=None, subcategory_id=None, language=None, language_id=None, fit_age=None, fit_age_id=None, short_desc=None, desc=None, tags=None, poster=None, collects=None, rating=None, commentator=None, episodes=None, is_end=None, url=None, quality=None, duration=None, copyright=None, state=None, type=None, type_id=None, version=None, version_id=None, is_pay=None, play_day_total=None, play_week_total=None, play_month_total=None, play_season_total=None, play_year_total=None, play_total=None, create_time=None, update_time=None, delete_time=None, platform_download=None, platform_play=None, platform_pay=None, publish_status=None, douban_id=None, resolution=None, is_edit=None, extend=None, episode=None, porder=None, dup=thrift_spec[64][4], is_404=thrift_spec[65][4], is_soft404=thrift_spec[66][4], area_id=None, voteup_count=thrift_spec[68][4], votedown_count=thrift_spec[69][4], play_trends=None, category_list=None, crumbs=None, crawl_time=None, content_timestamp=None, duration_seconds=None, OBSOLETE_inlink=None, OBSOLETE_outlink=None, page_state=thrift_spec[78][4], crawl_history=None, doc_id=None, discover_time=None, in_links=None, user=None, playlist=None, dimension=None, caption=None, comment_num=None, source_type=None, thumbnails=None, content_quality=None, player=None, thumbnail_list=None, dead_link=thrift_spec[93][4], stream_url=None, language_type=None, inlink_history=None, region_strategy=None, external_id=None, user_url=None, global_id=None, artists=None, album=None, author=None, composer=None, arranger=None, lyrics=None, share_num=None, data_type=thrift_spec[108][4], awards=None, long_comments=None, short_comments=None, related_videos=None,):
+     self.id = id
+     self.domain = domain
+     self.domain_id = domain_id
+@@ -1810,6 +1833,7 @@ class MediaVideo:
+     self.awards = awards
+     self.long_comments = long_comments
+     self.short_comments = short_comments
++    self.related_videos = related_videos
+ 
+   def read(self, iprot):
+     if iprot.__class__ == TBinaryProtocol.TBinaryProtocolAccelerated and isinstance(iprot.trans, TTransport.CReadableTransport) and self.thrift_spec is not None and fastbinary is not None:
+@@ -2118,11 +2142,11 @@ class MediaVideo:
+       elif fid == 61:
+         if ftype == TType.MAP:
+           self.extend = {}
+-          (_ktype101, _vtype102, _size100 ) = iprot.readMapBegin()
+-          for _i104 in xrange(_size100):
+-            _key105 = iprot.readString();
+-            _val106 = iprot.readString();
+-            self.extend[_key105] = _val106
++          (_ktype108, _vtype109, _size107 ) = iprot.readMapBegin()
++          for _i111 in xrange(_size107):
++            _key112 = iprot.readString();
++            _val113 = iprot.readString();
++            self.extend[_key112] = _val113
+           iprot.readMapEnd()
+         else:
+           iprot.skip(ftype)
+@@ -2199,20 +2223,20 @@ class MediaVideo:
+       elif fid == 76:
+         if ftype == TType.LIST:
+           self.OBSOLETE_inlink = []
+-          (_etype110, _size107) = iprot.readListBegin()
+-          for _i111 in xrange(_size107):
+-            _elem112 = iprot.readString();
+-            self.OBSOLETE_inlink.append(_elem112)
++          (_etype117, _size114) = iprot.readListBegin()
++          for _i118 in xrange(_size114):
++            _elem119 = iprot.readString();
++            self.OBSOLETE_inlink.append(_elem119)
+           iprot.readListEnd()
+         else:
+           iprot.skip(ftype)
+       elif fid == 77:
+         if ftype == TType.LIST:
+           self.OBSOLETE_outlink = []
+-          (_etype116, _size113) = iprot.readListBegin()
+-          for _i117 in xrange(_size113):
+-            _elem118 = iprot.readString();
+-            self.OBSOLETE_outlink.append(_elem118)
++          (_etype123, _size120) = iprot.readListBegin()
++          for _i124 in xrange(_size120):
++            _elem125 = iprot.readString();
++            self.OBSOLETE_outlink.append(_elem125)
+           iprot.readListEnd()
+         else:
+           iprot.skip(ftype)
+@@ -2240,11 +2264,11 @@ class MediaVideo:
+       elif fid == 82:
+         if ftype == TType.LIST:
+           self.in_links = []
+-          (_etype122, _size119) = iprot.readListBegin()
+-          for _i123 in xrange(_size119):
+-            _elem124 = le_crawler.proto.crawl.ttypes.Anchor()
+-            _elem124.read(iprot)
+-            self.in_links.append(_elem124)
++          (_etype129, _size126) = iprot.readListBegin()
++          for _i130 in xrange(_size126):
++            _elem131 = le_crawler.proto.crawl.ttypes.Anchor()
++            _elem131.read(iprot)
++            self.in_links.append(_elem131)
+           iprot.readListEnd()
+         else:
+           iprot.skip(ftype)
+@@ -2297,11 +2321,11 @@ class MediaVideo:
+       elif fid == 92:
+         if ftype == TType.LIST:
+           self.thumbnail_list = []
+-          (_etype128, _size125) = iprot.readListBegin()
+-          for _i129 in xrange(_size125):
+-            _elem130 = le_crawler.proto.crawl.ttypes.Thumbnail()
+-            _elem130.read(iprot)
+-            self.thumbnail_list.append(_elem130)
++          (_etype135, _size132) = iprot.readListBegin()
++          for _i136 in xrange(_size132):
++            _elem137 = le_crawler.proto.crawl.ttypes.Thumbnail()
++            _elem137.read(iprot)
++            self.thumbnail_list.append(_elem137)
+           iprot.readListEnd()
+         else:
+           iprot.skip(ftype)
+@@ -2323,16 +2347,16 @@ class MediaVideo:
+       elif fid == 96:
+         if ftype == TType.LIST:
+           self.inlink_history = []
+-          (_etype134, _size131) = iprot.readListBegin()
+-          for _i135 in xrange(_size131):
+-            _elem136 = []
+-            (_etype140, _size137) = iprot.readListBegin()
+-            for _i141 in xrange(_size137):
+-              _elem142 = le_crawler.proto.crawl.ttypes.Anchor()
+-              _elem142.read(iprot)
+-              _elem136.append(_elem142)
++          (_etype141, _size138) = iprot.readListBegin()
++          for _i142 in xrange(_size138):
++            _elem143 = []
++            (_etype147, _size144) = iprot.readListBegin()
++            for _i148 in xrange(_size144):
++              _elem149 = le_crawler.proto.crawl.ttypes.Anchor()
++              _elem149.read(iprot)
++              _elem143.append(_elem149)
+             iprot.readListEnd()
+-            self.inlink_history.append(_elem136)
++            self.inlink_history.append(_elem143)
+           iprot.readListEnd()
+         else:
+           iprot.skip(ftype)
+@@ -2360,11 +2384,11 @@ class MediaVideo:
+       elif fid == 101:
+         if ftype == TType.LIST:
+           self.artists = []
+-          (_etype146, _size143) = iprot.readListBegin()
+-          for _i147 in xrange(_size143):
+-            _elem148 = Artist()
+-            _elem148.read(iprot)
+-            self.artists.append(_elem148)
++          (_etype153, _size150) = iprot.readListBegin()
++          for _i154 in xrange(_size150):
++            _elem155 = Artist()
++            _elem155.read(iprot)
++            self.artists.append(_elem155)
+           iprot.readListEnd()
+         else:
+           iprot.skip(ftype)
+@@ -2377,33 +2401,33 @@ class MediaVideo:
+       elif fid == 103:
+         if ftype == TType.LIST:
+           self.author = []
+-          (_etype152, _size149) = iprot.readListBegin()
+-          for _i153 in xrange(_size149):
+-            _elem154 = Artist()
+-            _elem154.read(iprot)
+-            self.author.append(_elem154)
++          (_etype159, _size156) = iprot.readListBegin()
++          for _i160 in xrange(_size156):
++            _elem161 = Artist()
++            _elem161.read(iprot)
++            self.author.append(_elem161)
+           iprot.readListEnd()
+         else:
+           iprot.skip(ftype)
+       elif fid == 104:
+         if ftype == TType.LIST:
+           self.composer = []
+-          (_etype158, _size155) = iprot.readListBegin()
+-          for _i159 in xrange(_size155):
+-            _elem160 = Artist()
+-            _elem160.read(iprot)
+-            self.composer.append(_elem160)
++          (_etype165, _size162) = iprot.readListBegin()
++          for _i166 in xrange(_size162):
++            _elem167 = Artist()
++            _elem167.read(iprot)
++            self.composer.append(_elem167)
+           iprot.readListEnd()
+         else:
+           iprot.skip(ftype)
+       elif fid == 105:
+         if ftype == TType.LIST:
+           self.arranger = []
+-          (_etype164, _size161) = iprot.readListBegin()
+-          for _i165 in xrange(_size161):
+-            _elem166 = Artist()
+-            _elem166.read(iprot)
+-            self.arranger.append(_elem166)
++          (_etype171, _size168) = iprot.readListBegin()
++          for _i172 in xrange(_size168):
++            _elem173 = Artist()
++            _elem173.read(iprot)
++            self.arranger.append(_elem173)
+           iprot.readListEnd()
+         else:
+           iprot.skip(ftype)
+@@ -2425,30 +2449,40 @@ class MediaVideo:
+       elif fid == 109:
+         if ftype == TType.LIST:
+           self.awards = []
+-          (_etype170, _size167) = iprot.readListBegin()
+-          for _i171 in xrange(_size167):
+-            _elem172 = iprot.readString();
+-            self.awards.append(_elem172)
++          (_etype177, _size174) = iprot.readListBegin()
++          for _i178 in xrange(_size174):
++            _elem179 = iprot.readString();
++            self.awards.append(_elem179)
+           iprot.readListEnd()
+         else:
+           iprot.skip(ftype)
+       elif fid == 110:
+         if ftype == TType.LIST:
+           self.long_comments = []
+-          (_etype176, _size173) = iprot.readListBegin()
+-          for _i177 in xrange(_size173):
+-            _elem178 = iprot.readString();
+-            self.long_comments.append(_elem178)
++          (_etype183, _size180) = iprot.readListBegin()
++          for _i184 in xrange(_size180):
++            _elem185 = iprot.readString();
++            self.long_comments.append(_elem185)
+           iprot.readListEnd()
+         else:
+           iprot.skip(ftype)
+       elif fid == 111:
+         if ftype == TType.LIST:
+           self.short_comments = []
+-          (_etype182, _size179) = iprot.readListBegin()
+-          for _i183 in xrange(_size179):
+-            _elem184 = iprot.readString();
+-            self.short_comments.append(_elem184)
++          (_etype189, _size186) = iprot.readListBegin()
++          for _i190 in xrange(_size186):
++            _elem191 = iprot.readString();
++            self.short_comments.append(_elem191)
++          iprot.readListEnd()
++        else:
++          iprot.skip(ftype)
++      elif fid == 112:
++        if ftype == TType.LIST:
++          self.related_videos = []
++          (_etype195, _size192) = iprot.readListBegin()
++          for _i196 in xrange(_size192):
++            _elem197 = iprot.readString();
++            self.related_videos.append(_elem197)
+           iprot.readListEnd()
+         else:
+           iprot.skip(ftype)
+@@ -2701,9 +2735,9 @@ class MediaVideo:
+     if self.extend is not None:
+       oprot.writeFieldBegin('extend', TType.MAP, 61)
+       oprot.writeMapBegin(TType.STRING, TType.STRING, len(self.extend))
+-      for kiter185,viter186 in self.extend.items():
+-        oprot.writeString(kiter185)
+-        oprot.writeString(viter186)
++      for kiter198,viter199 in self.extend.items():
++        oprot.writeString(kiter198)
++        oprot.writeString(viter199)
+       oprot.writeMapEnd()
+       oprot.writeFieldEnd()
+     if self.episode is not None:
+@@ -2765,15 +2799,15 @@ class MediaVideo:
+     if self.OBSOLETE_inlink is not None:
+       oprot.writeFieldBegin('OBSOLETE_inlink', TType.LIST, 76)
+       oprot.writeListBegin(TType.STRING, len(self.OBSOLETE_inlink))
+-      for iter187 in self.OBSOLETE_inlink:
+-        oprot.writeString(iter187)
++      for iter200 in self.OBSOLETE_inlink:
++        oprot.writeString(iter200)
+       oprot.writeListEnd()
+       oprot.writeFieldEnd()
+     if self.OBSOLETE_outlink is not None:
+       oprot.writeFieldBegin('OBSOLETE_outlink', TType.LIST, 77)
+       oprot.writeListBegin(TType.STRING, len(self.OBSOLETE_outlink))
+-      for iter188 in self.OBSOLETE_outlink:
+-        oprot.writeString(iter188)
++      for iter201 in self.OBSOLETE_outlink:
++        oprot.writeString(iter201)
+       oprot.writeListEnd()
+       oprot.writeFieldEnd()
+     if self.page_state is not None:
+@@ -2795,8 +2829,8 @@ class MediaVideo:
+     if self.in_links is not None:
+       oprot.writeFieldBegin('in_links', TType.LIST, 82)
+       oprot.writeListBegin(TType.STRUCT, len(self.in_links))
+-      for iter189 in self.in_links:
+-        iter189.write(oprot)
++      for iter202 in self.in_links:
++        iter202.write(oprot)
+       oprot.writeListEnd()
+       oprot.writeFieldEnd()
+     if self.user is not None:
+@@ -2838,8 +2872,8 @@ class MediaVideo:
+     if self.thumbnail_list is not None:
+       oprot.writeFieldBegin('thumbnail_list', TType.LIST, 92)
+       oprot.writeListBegin(TType.STRUCT, len(self.thumbnail_list))
+-      for iter190 in self.thumbnail_list:
+-        iter190.write(oprot)
++      for iter203 in self.thumbnail_list:
++        iter203.write(oprot)
+       oprot.writeListEnd()
+       oprot.writeFieldEnd()
+     if self.dead_link is not None:
+@@ -2857,10 +2891,10 @@ class MediaVideo:
+     if self.inlink_history is not None:
+       oprot.writeFieldBegin('inlink_history', TType.LIST, 96)
+       oprot.writeListBegin(TType.LIST, len(self.inlink_history))
+-      for iter191 in self.inlink_history:
+-        oprot.writeListBegin(TType.STRUCT, len(iter191))
+-        for iter192 in iter191:
+-          iter192.write(oprot)
++      for iter204 in self.inlink_history:
++        oprot.writeListBegin(TType.STRUCT, len(iter204))
++        for iter205 in iter204:
++          iter205.write(oprot)
+         oprot.writeListEnd()
+       oprot.writeListEnd()
+       oprot.writeFieldEnd()
+@@ -2883,8 +2917,8 @@ class MediaVideo:
+     if self.artists is not None:
+       oprot.writeFieldBegin('artists', TType.LIST, 101)
+       oprot.writeListBegin(TType.STRUCT, len(self.artists))
+-      for iter193 in self.artists:
+-        iter193.write(oprot)
++      for iter206 in self.artists:
++        iter206.write(oprot)
+       oprot.writeListEnd()
+       oprot.writeFieldEnd()
+     if self.album is not None:
+@@ -2894,22 +2928,22 @@ class MediaVideo:
+     if self.author is not None:
+       oprot.writeFieldBegin('author', TType.LIST, 103)
+       oprot.writeListBegin(TType.STRUCT, len(self.author))
+-      for iter194 in self.author:
+-        iter194.write(oprot)
++      for iter207 in self.author:
++        iter207.write(oprot)
+       oprot.writeListEnd()
+       oprot.writeFieldEnd()
+     if self.composer is not None:
+       oprot.writeFieldBegin('composer', TType.LIST, 104)
+       oprot.writeListBegin(TType.STRUCT, len(self.composer))
+-      for iter195 in self.composer:
+-        iter195.write(oprot)
++      for iter208 in self.composer:
++        iter208.write(oprot)
+       oprot.writeListEnd()
+       oprot.writeFieldEnd()
+     if self.arranger is not None:
+       oprot.writeFieldBegin('arranger', TType.LIST, 105)
+       oprot.writeListBegin(TType.STRUCT, len(self.arranger))
+-      for iter196 in self.arranger:
+-        iter196.write(oprot)
++      for iter209 in self.arranger:
++        iter209.write(oprot)
+       oprot.writeListEnd()
+       oprot.writeFieldEnd()
+     if self.lyrics is not None:
+@@ -2927,22 +2961,29 @@ class MediaVideo:
+     if self.awards is not None:
+       oprot.writeFieldBegin('awards', TType.LIST, 109)
+       oprot.writeListBegin(TType.STRING, len(self.awards))
+-      for iter197 in self.awards:
+-        oprot.writeString(iter197)
++      for iter210 in self.awards:
++        oprot.writeString(iter210)
+       oprot.writeListEnd()
+       oprot.writeFieldEnd()
+     if self.long_comments is not None:
+       oprot.writeFieldBegin('long_comments', TType.LIST, 110)
+       oprot.writeListBegin(TType.STRING, len(self.long_comments))
+-      for iter198 in self.long_comments:
+-        oprot.writeString(iter198)
++      for iter211 in self.long_comments:
++        oprot.writeString(iter211)
+       oprot.writeListEnd()
+       oprot.writeFieldEnd()
+     if self.short_comments is not None:
+       oprot.writeFieldBegin('short_comments', TType.LIST, 111)
+       oprot.writeListBegin(TType.STRING, len(self.short_comments))
+-      for iter199 in self.short_comments:
+-        oprot.writeString(iter199)
++      for iter212 in self.short_comments:
++        oprot.writeString(iter212)
++      oprot.writeListEnd()
++      oprot.writeFieldEnd()
++    if self.related_videos is not None:
++      oprot.writeFieldBegin('related_videos', TType.LIST, 112)
++      oprot.writeListBegin(TType.STRING, len(self.related_videos))
++      for iter213 in self.related_videos:
++        oprot.writeString(iter213)
+       oprot.writeListEnd()
+       oprot.writeFieldEnd()
+     oprot.writeFieldStop()
+@@ -3611,11 +3652,11 @@ class MediaAlbum:
+       elif fid == 58:
+         if ftype == TType.LIST:
+           self.videos = []
+-          (_etype203, _size200) = iprot.readListBegin()
+-          for _i204 in xrange(_size200):
+-            _elem205 = MediaVideoAbstract()
+-            _elem205.read(iprot)
+-            self.videos.append(_elem205)
++          (_etype217, _size214) = iprot.readListBegin()
++          for _i218 in xrange(_size214):
++            _elem219 = MediaVideoAbstract()
++            _elem219.read(iprot)
++            self.videos.append(_elem219)
+           iprot.readListEnd()
+         else:
+           iprot.skip(ftype)
+@@ -3632,11 +3673,11 @@ class MediaAlbum:
+       elif fid == 61:
+         if ftype == TType.MAP:
+           self.extend = {}
+-          (_ktype207, _vtype208, _size206 ) = iprot.readMapBegin()
+-          for _i210 in xrange(_size206):
+-            _key211 = iprot.readString();
+-            _val212 = iprot.readString();
+-            self.extend[_key211] = _val212
++          (_ktype221, _vtype222, _size220 ) = iprot.readMapBegin()
++          for _i224 in xrange(_size220):
++            _key225 = iprot.readString();
++            _val226 = iprot.readString();
++            self.extend[_key225] = _val226
+           iprot.readMapEnd()
+         else:
+           iprot.skip(ftype)
+@@ -3906,8 +3947,8 @@ class MediaAlbum:
+     if self.videos is not None:
+       oprot.writeFieldBegin('videos', TType.LIST, 58)
+       oprot.writeListBegin(TType.STRUCT, len(self.videos))
+-      for iter213 in self.videos:
+-        iter213.write(oprot)
++      for iter227 in self.videos:
++        iter227.write(oprot)
+       oprot.writeListEnd()
+       oprot.writeFieldEnd()
+     if self.play_stream is not None:
+@@ -3921,9 +3962,9 @@ class MediaAlbum:
+     if self.extend is not None:
+       oprot.writeFieldBegin('extend', TType.MAP, 61)
+       oprot.writeMapBegin(TType.STRING, TType.STRING, len(self.extend))
+-      for kiter214,viter215 in self.extend.items():
+-        oprot.writeString(kiter214)
+-        oprot.writeString(viter215)
++      for kiter228,viter229 in self.extend.items():
++        oprot.writeString(kiter228)
++        oprot.writeString(viter229)
+       oprot.writeMapEnd()
+       oprot.writeFieldEnd()
+     if self.now_episode is not None:
+diff --git a/le_crawler/proto/video_media.thrift b/le_crawler/proto/video_media.thrift
+old mode 100644
+new mode 100755
+index b855ecb..7f86ed7
+--- a/le_crawler/proto/video_media.thrift
++++ b/le_crawler/proto/video_media.thrift
+@@ -242,7 +242,7 @@ struct MediaVideo {
+   109:optional list<string>                   awards;                         //获得奖项
+   110:optional list<string>                   long_comments;                  //长评论
+   111:optional list<string>                   short_comments;                 //短评论
+-  111:optional list<string>                   related_videos;                 //相关video
++  112:optional list<string>                   related_videos;                 //相关video
+ }
+ 
+ //专辑下的视频列表。尽量不存冗余，只存用于排序，筛选的字段.
