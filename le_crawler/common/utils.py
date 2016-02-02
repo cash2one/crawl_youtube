@@ -728,7 +728,7 @@ def build_user(channel_dict):
   country = channel_dict.get('country', None)
   if country:
     country_source_list = merge_country_source(country_source_list, 
-        CountryCode._NAMES_TO_VALUES.get('country', CountryCode.UNKNOWN), [CountrySource.YOUTUBE])
+        CountryCode._NAMES_TO_VALUES.get(country, CountryCode.UNKNOWN), [CountrySource.YOUTUBE])
   
   popular_countrys = channel_dict.get('popular_countrys', None)
   if popular_countrys:
