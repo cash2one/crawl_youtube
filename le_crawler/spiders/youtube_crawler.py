@@ -249,16 +249,17 @@ class YouTubeCrawler(Spider):
       exmap = item
       exmap.pop('_id', None)
       countrys = exmap.get('product_countrys', [])
-      channel_dict = self.get_channel_info(channel_id)
-      if channel_dict:
-        product_countrys = channel_dict.get('product_countrys', [])
-        for country in countrys:
-          if country not in product_countrys:
-            product_countrys.append(country)
-      else:
-        product_countrys = countrys
-      channel_dict = {'channel_id': channel_id, 'product_countrys': product_countrys}
-      self.upsert_channel_info(channel_dict)
+      if countrys:
+        channel_dict = self.get_channel_info(channel_id)
+        if channel_dict:
+          product_countrys = channel_dict.get('product_countrys', [])
+          for country in countrys:
+            if country not in product_countrys:
+              product_countrys.append(country)
+        else:
+          product_countrys = countrys
+        channel_dict = {'channel_id': channel_id, 'product_countrys': product_countrys}
+        self.upsert_channel_info(channel_dict)
       exmap['channel_id'] = channel_id
       part = 'snippet,statistics,contentDetails'
       api = 'https://www.googleapis.com/youtube/v3/channels?part=%s&id=%s' % \

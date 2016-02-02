@@ -29,7 +29,7 @@ class Recrawler(object):
       client = MongoClient('10.120.1.61:9220,10.120.1.62:9220,10.120.1.63:9220')
       self._db = client.admin
       self._db.authenticate('admin', 'NzU3ZmU4YmFhZDg')
-      self._collection = self._db.recrawl_start_info
+      self._collection = self._db.start_request_info
     except Exception, e:
       self._collection = None
       self._logger.exception('failed to connect to mongodb...')
