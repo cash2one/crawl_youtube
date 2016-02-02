@@ -11,7 +11,7 @@ sys.path.append(os.path.dirname(os.path.realpath(__file__)) + '/../')
 
 
 from le_crawler.proto.video.ttypes import OriginalUser
-from ..proto.crawl.ttypes import CountrySource
+from le_crawler.proto.crawl.ttypes import CountrySource
 from le_crawler.common.utils import str2user 
 
 if __name__ == '__main__':
