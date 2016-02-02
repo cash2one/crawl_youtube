@@ -669,7 +669,7 @@ def gen_next_schedule_time(crawl_history):
   return now + schedule_interval
 
 def merge_country_source(country_source_list, code, source_list_src):
-  if code is None or source is None:
+  if code is None or source_list_src is None:
     return country_source_list
   if country_source_list is None:
     country_source_list = []
