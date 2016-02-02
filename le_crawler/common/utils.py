@@ -728,19 +728,19 @@ def build_user(channel_dict):
   country = channel_dict.get('country', None)
   if country:
     country_source_list = merge_country_source(country_source_list, 
-        CountryCode._NAMES_TO_VALUES.get('country', CountryCode.UNKNOW), [CountrySource.YOUTUBE])
+        CountryCode._NAMES_TO_VALUES.get('country', CountryCode.UNKNOWN), [CountrySource.YOUTUBE])
   
   popular_countrys = channel_dict.get('popular_countrys', None)
   if popular_countrys:
     for country in popular_countrys:
       country_source_list = merge_country_source(country_source_list, 
-          CountryCode._NAMES_TO_VALUES.get(country, CountryCode.UNKNOW), [CountrySource.POPULAR])
+          CountryCode._NAMES_TO_VALUES.get(country, CountryCode.UNKNOWN), [CountrySource.POPULAR])
 
   product_countrys = channel_dict.get('popular_countrys', None)
   if product_countrys:
     for country in product_countrys:
       country_source_list = merge_country_source(country_source_list, 
-          CountryCode._NAMES_TO_VALUES.get(country, CountryCode.UNKNOW), [CountrySource.PRODUCT])
+          CountryCode._NAMES_TO_VALUES.get(country, CountryCode.UNKNOWN), [CountrySource.PRODUCT])
 
   original_user.country_source_list = country_source_list
 

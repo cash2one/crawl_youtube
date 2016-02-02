@@ -68,7 +68,7 @@ class MergeItem:
     country_source_list = original_user.country_source_list
     for country in mined_countrys:
       country_source_list = merge_country_source(country_source_list, 
-          CountryCode._NAMES_TO_VALUES.get(country, CountryCode.UNKNOW), [CountrySource.MINED])
+          CountryCode._NAMES_TO_VALUES.get(country, CountryCode.UNKNOWN), [CountrySource.MINED])
     original_user.country_source_list = country_source_list
 
     user_str = thrift2str(original_user)
