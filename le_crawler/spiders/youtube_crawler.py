@@ -47,7 +47,8 @@ class YouTubeCrawler(Spider):
                           PageType.CHANNEL:               self.parse_channel,
                           PageType.PLAY:                  self.parse_page,
                           PageType.RELATED_CHANNEL:       self.parse_related_channel,
-                          PageType.QUERY_SEARCH:          self.parse_query_search}
+                          PageType.QUERY_SEARCH:          self.parse_query_search,
+                          PageType.RELATED_VIDEO:         self.parse_related_video}
     self._init_client()
     self.start_size = len(YouTubeCrawler.start_url_loader.get_start_urls()) + self._starturl_collection.count()
     self._sub_key_pattern = re.compile(r"&key=.*")
@@ -667,7 +668,12 @@ class YouTubeCrawler(Spider):
                 (part, channel_id)
           items.append(self._create_request(api, PageType.CHANNEL, CrawlDocType.HUB_HOME, meta={'extend_map': exmap}, headers=headers, in_doc=doc))
           
-        doc.url = gen_youtube_video_url(url)  
+        video_id = get_url_param(url, 'id')
+        if video_id:
+          relate_api = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&relatedToVideoId=%s&type=video' % video_id
+          items.append(self._create_request(relate_api, PageType.RELATED_VIDEO, CrawlDocType.HUB_RELATIVES, headers=headers, dont_filter=False, in_doc=doc))
+
+        doc.url = gen_youtube_video_url(url)
         youtube_item = crawldoc_to_youtube_item(doc, response)
         if youtube_item:
           items.append(youtube_item)
@@ -680,3 +686,22 @@ class YouTubeCrawler(Spider):
       print msg
       self.log('Failed parse_page:%s, url:%s' % (msg, url), log.ERROR)
 
+  def parse_related_video(self, response):
+    try:
+      items = []
+      url = response.url.strip()
+      headers = {'Referer': url}
+      doc = response.meta.get('crawl_doc')
+      #print 'parse_related_video url:', url
+      self.logger_.error('parse_related_video url: %s' % url)
+      #page = response.body.decode(response.encoding)
+      youtube_item = crawldoc_to_youtube_item(doc, response)
+      if youtube_item:
+        items.append(youtube_item)
+      return items
+    except Exception, e:
+      msg = e.message
+      msg += traceback.format_exc()
+      print msg
+      self.log('Failed parse_related_video: %s, url:%s' % (msg, url), log.ERROR)
+ 

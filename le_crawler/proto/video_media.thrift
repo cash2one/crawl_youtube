@@ -242,6 +242,7 @@ struct MediaVideo {
   109:optional list<string>                   awards;                         //获得奖项
   110:optional list<string>                   long_comments;                  //长评论
   111:optional list<string>                   short_comments;                 //短评论
+  111:optional list<string>                   related_videos;                 //相关video
 }
 
 //专辑下的视频列表。尽量不存冗余，只存用于排序，筛选的字段.

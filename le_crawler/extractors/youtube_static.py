@@ -58,7 +58,10 @@ class YoutubeStatic(StaticExtractor):
             html_data['url'] = 'https://www.youtube.com/channel/' + channel_id
           url = crawl_doc.url = html_data['url']
     elif url_type == 'video':
-      html_data = self.parse_page(crawl_doc)
+      if url.startswith('https://www.youtube.com/watch'):
+        html_data = self.parse_page(crawl_doc)
+      elif re.search('https://www.googleapis.com/youtube/v3/search.*relatedToVideoId', url):
+        html_data = self.parse_related_video(crawl_doc)
     else:
       return
 
@@ -75,6 +78,35 @@ class YoutubeStatic(StaticExtractor):
     html_data['domain_id'] = source_set[self._web_name]
     html_data['page_state'] = crawl_doc.page_state
     return self._filter_long_video(html_data, url_type)
+
+
+  def parse_related_video(crawl_doc):
+    if not crawl_doc or not crawl_doc.url or not crawl_doc.response:
+      return
+    id = get_url_param(crawl_doc.url, 'relatedToVideoId')
+    
+    page = crawl_doc.response.body
+    if not page:
+      return
+    rep_data = json.loads(page)
+    if not rep_data:
+      return
+    items = rep_data.get('items', None)
+    if not items:
+      return
+    related_videos = []
+    for item in items:
+      video_id = item.get('id', {}).get('videoId', None)
+      if video_id:
+        video_url = 'https://www.youtube.com/watch?v=' + video_id
+        related_videos.append(video_url)
+    html_data = {}
+    html_data['related_videos'] = related_videos 
+    video_id = get_url_param(crawl_doc.url, 'relatedToVideoId')
+    if not id:
+      return
+    crawl_doc.url = html_data['url'] = 'https://www.youtube.com/watch?v=' + video_id
+    return html_data
 
 
   def parse_channel_id(self, channel_url):
