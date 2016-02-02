@@ -117,7 +117,7 @@ class MergeItem:
     inlink_history.append(latest_inlink)
     videos[0].inlink_history = inlink_history
 
-  def _merge_country_list(country_list_des, country_list_src):
+  def _merge_country_list(self, country_list_des, country_list_src):
     if not country_list_src:
       return country_list_des
     for country_info in country_list_src:
@@ -135,7 +135,7 @@ class MergeItem:
           old_v = getattr(user, k)
           if not old_v:
             continue
-          country_source_list = _merge_country_list(old_v, country_source_list)
+          country_source_list = self._merge_country_list(old_v, country_source_list)
         if country_source_list:
           setattr(new_user, k, country_source_list)
       else:
