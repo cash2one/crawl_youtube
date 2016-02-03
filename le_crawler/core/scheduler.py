@@ -160,7 +160,7 @@ class CrawlDocScheduler(object):
         crawl_doc_slim_str = pickle.dumps(crawl_doc_slim)
         if crawl_doc_slim.priority in [CrawlDocType.PAGE_HOT]:
           self.spider_.update_start_request_info(url=doc.url,
-                                                 data={'next_schedule_time': now + 60 * 60,
+                                                 data={'next_schedule_time': now + 2 * 60 * 60,
                                                        'crawl_doc_slim': crawl_doc_slim_str,
                                                        'update_time': now})
         if crawl_doc_slim.priority in [CrawlDocType.PAGE_PLAY, CrawlDocType.HUB_OTHER, CrawlDocType.HUB_RELATIVES]:

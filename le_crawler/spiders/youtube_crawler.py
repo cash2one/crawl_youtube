@@ -390,6 +390,7 @@ class YouTubeCrawler(Spider):
       for data in datas:
         exmap = {}
         exmap.update(extend_map)
+        channel_id = data.get('id', None)
         exmap['channel_id'] = channel_id
         part = 'snippet,statistics,contentDetails'
         api = 'https://www.googleapis.com/youtube/v3/channels?part=%s&id=%s' % \
