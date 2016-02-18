@@ -285,7 +285,18 @@ class SchedulerYoutube(CrawlDocScheduler):
                   'AIzaSyCenkcTZhqtF5WONq2i-g9N368E1Bac8eQ',
                   'AIzaSyBJOVWoK4x7tC15m7QlRagR7sJucXS-Y9w',
                   'AIzaSyCj3ZS3m064vVkgzGPuvJzA7060Plu5Fv8',
-                  'AIzaSyDITZ0N3tHoMDI-W4osEX-YzhEX2LGL9Wo']
+                  'AIzaSyDITZ0N3tHoMDI-W4osEX-YzhEX2LGL9Wo',
+                  'AIzaSyDq37GWF-RF84IEjGGVOUerWVExVLgYnzA',
+                  'AIzaSyBMJrN_QMDNJhgkQP5iLifbhMKJU-YXhw8',
+                  'AIzaSyAfhEmEHHpQTie4FACViXWbT8aQylafOpc',
+                  'AIzaSyCyAFCpSwCNpge8hAjmhQfI1mjfYqoZA7E',
+                  'AIzaSyBR01NDgH6NfrwCx8iRkhsb2I8wQDmxQ-w',
+                  'AIzaSyBVGEflua4xjKkEWAbd27MyJy_skaN2vvA',
+                  'AIzaSyDuLd8CI7rBFJeY2MQI4oi6QrMV46p8HRI',
+                  'AIzaSyDrFwrFVZuhl_qmVpMdHUIrLfIU4Wwtml8',
+                  'AIzaSyA-to_lxQg2AuqvpDe7tgOSgtWp0Ul3MgI',
+                  'AIzaSyA1bBnyAqrArVY3y0mf_ad75Um2uSbv7fM',
+                  'AIzaSyBQCA4RX1jBKBOqtIRp1DG6I_GsqSSH8n0']
     self.cache_input_max_ = 50
     self.cache_upload_max_ = 50
 
